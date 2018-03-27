@@ -1,0 +1,97 @@
+plugins {
+  id  'com.github.spotbugs' version '1.6.0'
+}
+
+apply plugin: 'application'
+apply plugin: 'jacoco'
+apply plugin: 'java'
+
+
+// OS Type
+def static String checkBuildOS() {
+    String osName = System.getProperty("os.name");
+    if (osName.startsWith("mac os")) {
+        return "apple";
+    }
+    else {
+        return false;
+    }
+}
+
+mainClassName = 'JChess.Chess'
+
+compileJava.options.encoding = 'UTF-8'
+
+// Repositories and dependencies for code go here
+repositories {
+  mavenCentral()
+  jcenter()
+}
+
+///////////////////////////////////////////////////////////////////////////
+// Configure Checkstyle
+///////////////////////////////////////////////////////////////////////////
+apply plugin: 'checkstyle'
+checkstyle {
+  // Keep checkstyle a little quieter
+  ignoreFailures = true
+  showViolations = false
+}
+
+tasks.withType(Checkstyle) {
+  reports {
+    html.enabled = true
+    xml.enabled = false
+  }
+}
+checkstyle {
+  toolVersion = "8.8"
+}
+
+dependencies {
+  compile 'com.io7m.xom:xom:1.2.+'
+  compile 'net.sourceforge.nekohtml:nekohtml:1.9.+'
+  compile 'org.json:json:+'
+
+  if (checkBuildOS()){
+    compile group: 'com.apple', name: 'AppleJavaExtensions', version: '1.4'
+  }
+
+  testCompile 'junit:junit:4.12'
+  testCompile "org.mockito:mockito-core:2.+"
+
+}
+
+// Referenced from jacoco documentation
+// https://docs.gradle.org/current/userguide/jacoco_plugin.html
+jacocoTestReport {
+	reports {
+		xml.enabled false
+		csv.enabled false
+		html.destination file("${buildDir}/jacocoHtml")
+	}
+}
+
+test {
+  testLogging {
+    exceptionFormat = 'full'
+    }
+}    
+
+///////////////////////////////////////////////////////////////////////////
+// Configure SpotBugs
+///////////////////////////////////////////////////////////////////////////
+
+spotbugs {
+  toolVersion = '3.1.1'
+  ignoreFailures = true
+}
+
+// To generate an HTML report instead of XML
+tasks.withType(com.github.spotbugs.SpotBugsTask) {
+  reports {
+    xml.enabled = false
+    html.enabled = true
+  }
+}
+
