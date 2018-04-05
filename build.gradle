@@ -18,7 +18,15 @@ def static String checkBuildOS() {
     }
 }
 
-mainClassName = 'JChess.Chess'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+sourceSets {
+    main.java.srcDirs = ['src']
+    main.resources.srcDirs = ['resources']
+}
+
+mainClassName = 'ChessGame/Chess'
 
 compileJava.options.encoding = 'UTF-8'
 
