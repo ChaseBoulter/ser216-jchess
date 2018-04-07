@@ -1,5 +1,5 @@
 
-package MainFrame.ChessFrame.ThreadTimer;
+package mainframe.chessframe.threadtimer;
 
 
 import javax.swing.JLabel;

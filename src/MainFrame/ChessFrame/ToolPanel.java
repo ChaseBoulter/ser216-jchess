@@ -1,8 +1,8 @@
 
-package MainFrame.ChessFrame;
+package mainframe.chessframe;
 
 
-import MainFrame.ChessFrame.ThreadTimer.ThreadTimer;
+import mainframe.chessframe.threadtimer.ThreadTimer;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
