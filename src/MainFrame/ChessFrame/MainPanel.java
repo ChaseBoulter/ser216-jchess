@@ -1,8 +1,7 @@
 
 package mainframe.chessframe;
 
-import mainframe.chessframe.players.player1;
-import mainframe.chessframe.players.player2;
+import players.*;
 
 import java.awt.Point;
 import java.awt.Color;
