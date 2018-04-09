@@ -1,8 +1,7 @@
 
 package mainframe.chessframe;
 
-import mainframe.chessframe.players.player1;
-import mainframe.chessframe.players.player2;
+import players.*;
 
 import java.awt.Point;
 import java.awt.Color;
@@ -30,8 +29,8 @@ import javax.net.*;
 
 public class MainPanel extends JPanel {
 
-    private player1 P1 = new player1();
-    private player2 P2 = new player2();
+    private Player1 P1 = new Player1();
+    private Player2 P2 = new Player2();
     private final int Divide = 600 / 8;
     private int move = 0;
     private Rectangle2D rec;
@@ -170,8 +169,8 @@ public class MainPanel extends JPanel {
     }
 
     public void start_Again() {
-        P1 = new player1();
-        P2 = new player2();
+        P1 = new Player1();
+        P2 = new Player2();
         move = 0;
         players_turn = 1;
         GameOver = false;
