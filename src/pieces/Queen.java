@@ -1,102 +1,18 @@
 
-package mainframe.chessframe.players.pieces;
+package pieces;
 
 import java.awt.Image;
 import java.awt.Point;
 
-public class Queen {
-
-    /** Creates a new instance of Queen. */
-    private int X;
-    private int Y;
-    private Point pixelPoint = new Point();
-    private int pixelX;
-    private int pixelY;
-    private boolean havelife = true;
-    private PieceIcon pieceIcon;
-    private Point p = new Point();
-    private Point old = new Point();
+public class Queen extends Piece {
 
     public Queen(String NameIcon, int startX, int startY) {
-
         pieceIcon = new PieceIcon(NameIcon);
 
         X = startX;
         Y = startY;
         p.x = X;
         p.y = Y;
-    }
-
-    public Image returnPieceImage() {
-        return pieceIcon.returnPieceIcon();
-    }
-
-    public Point returnPostion() {
-        return (Point) p.clone();
-    }
-
-    public int returnX() {
-        return X;
-    }
-
-    public void setPixels(int newpixelX, int newpixelY) {
-        pixelPoint.x = newpixelX;
-        pixelPoint.y = newpixelY;
-    }
-
-    public int getPixelX() {
-        return pixelX;
-    }
-
-    public int getPixelY() {
-        return pixelY;
-    }
-
-    public Point getpixelPoint() {
-        return pixelPoint;
-    }
-
-    public int returnY() {
-        return Y;
-    }
-
-    public void setPoint(Point newPoint) {
-        old.x = p.x;
-        old.y = p.y;
-        X = p.x = newPoint.x;
-        Y = p.y = newPoint.y;
-    }
-
-    public void setX(int newX) {
-        X = newX;
-        p.x = X;
-    }
-
-    public Point returnOld() {
-        return old;
-    }
-
-    public void setY(int newY) {
-        Y = newY;
-        p.y = Y;
-    }
-
-    public void toOld(Point Old) {
-
-        p.x = Old.x;
-        p.y = Old.y;
-
-    }
-
-    public boolean returnLife() {
-        return havelife;
-    }
-
-    public boolean Inthispostion(int x, int y) {
-        if (p.x == x && p.y == y) {
-            return true;
-        }
-        return false;
     }
 
     public boolean Canmove(int x, int y) {
@@ -126,7 +42,8 @@ public class Queen {
             if ((X < i)) {
                 while ((i != X + 1)) {
                     i--;
-                    if (((othersPostion.y) == j) && ((othersPostion.x == i)))// there Same Color piece
+                    // they're Same Color piece
+                    if (((othersPostion.y) == j) && ((othersPostion.x == i)))
                     {
                         return true;
                     }

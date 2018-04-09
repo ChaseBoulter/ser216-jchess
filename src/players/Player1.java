@@ -1,680 +1,672 @@
 
-package mainframe.chessframe.players;
+package players;
 
-import mainframe.chessframe.players.pieces.*;
-//import MainFrame.ChessFrame.players.Pieces.Bishop;
-//import MainFrame.ChessFrame.players.Pieces.Horse;
-//import MainFrame.ChessFrame.players.Pieces.Queen;
-//import MainFrame.ChessFrame.players.Pieces.Solider;
-//import MainFrame.ChessFrame.players.Pieces.king;
+import pieces.*;
+import java.awt.Button;
+import java.awt.Canvas;
+import java.awt.Checkbox;
+import java.awt.CheckboxMenuItem;
+import java.awt.Choice;
+import java.awt.Dialog;
+import java.awt.Dimension;
+import java.awt.EventQueue;
+import java.awt.FileDialog;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Frame;
+import java.awt.HeadlessException;
 import java.awt.Image;
+import java.awt.Label;
+import java.awt.List;
+import java.awt.Menu;
+import java.awt.MenuBar;
+import java.awt.MenuItem;
+import java.awt.Panel;
 import java.awt.Point;
-import java.util.Enumeration;
+import java.awt.PopupMenu;
+import java.awt.PrintJob;
+import java.awt.ScrollPane;
+import java.awt.Scrollbar;
+import java.awt.TextArea;
+import java.awt.TextField;
+import java.awt.Toolkit;
+import java.awt.Window;
+import java.awt.datatransfer.Clipboard;
+import java.awt.dnd.DragGestureEvent;
+import java.awt.dnd.InvalidDnDOperationException;
+import java.awt.dnd.peer.DragSourceContextPeer;
+import java.awt.im.InputMethodHighlight;
+import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
+import java.awt.image.ImageObserver;
+import java.awt.image.ImageProducer;
+import java.awt.peer.ButtonPeer;
+import java.awt.peer.CanvasPeer;
+import java.awt.peer.CheckboxMenuItemPeer;
+import java.awt.peer.CheckboxPeer;
+import java.awt.peer.ChoicePeer;
+import java.awt.peer.DialogPeer;
+import java.awt.peer.FileDialogPeer;
+import java.awt.peer.FontPeer;
+import java.awt.peer.FramePeer;
+import java.awt.peer.LabelPeer;
+import java.awt.peer.ListPeer;
+import java.awt.peer.MenuBarPeer;
+import java.awt.peer.MenuItemPeer;
+import java.awt.peer.MenuPeer;
+import java.awt.peer.PanelPeer;
+import java.awt.peer.PopupMenuPeer;
+import java.awt.peer.ScrollPanePeer;
+import java.awt.peer.ScrollbarPeer;
+import java.awt.peer.TextAreaPeer;
+import java.awt.peer.TextFieldPeer;
+import java.awt.peer.WindowPeer;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.util.Map;
+import java.util.Properties;
 
-public class player2 implements Enumeration {
-    public Castle BC1;
-    public Castle BC2;
-    public Horse BH1;
-    public Horse BH2;
-    public Bishop BE1;
-    public Bishop BE2;
-    public Queen BQ;
-    private King BK;
-    public Pawn[] BS = new Pawn[8];
-    private int choosenOne;
+public class Player1 {
+
+    /** Creates a new instance of Player1 */
+    public Castle WC1;
+    public Castle WC2;
+    public Horse WH1;
+    public Horse WH2;
+    public Queen WQ;
+    public Bishop WE1;
+    public Bishop WE2;
+    public Pawn[] WS = new Pawn[8];
+    public King WK;
     private int inHand = -1;
     private boolean kingischeck = false;
+    private int choosenOne;
+    String Color = "white";
     private Point other;
-    private int ate_to_protect;
+    int ate_to_protect;
 
-    private String Color = "black";
-
-    /** Creates a new instance of player2 */
-    public player2() {
+    public Player1() {
         String fileSeparator = new String(System.getProperty("file.separator"));
-        BC1 = new Castle("src" + fileSeparator + "Icons" + fileSeparator + "Player2Icons" + fileSeparator + "br.gif", 1,
-                1);
-        BC2 = new Castle("src" + fileSeparator + "Icons" + fileSeparator + "Player2Icons" + fileSeparator + "br.gif", 8,
-                1);
-        BH1 = new Horse("src" + fileSeparator + "Icons" + fileSeparator + "Player2Icons" + fileSeparator + "bn.gif", 2,
-                1);
-        BH2 = new Horse("src" + fileSeparator + "Icons" + fileSeparator + "Player2Icons" + fileSeparator + "bn.gif", 7,
-                1);
-        BE1 = new Bishop("src" + fileSeparator + "Icons" + fileSeparator + "Player2Icons" + fileSeparator + "bb.gif",
-                3, 1);
-        BE2 = new Bishop("src" + fileSeparator + "Icons" + fileSeparator + "Player2Icons" + fileSeparator + "bb.gif",
-                6, 1);
-        BQ = new Queen("src" + fileSeparator + "Icons" + fileSeparator + "Player2Icons" + fileSeparator + "bq.gif", 4,
-                1);
-        BK = new King("src" + fileSeparator + "Icons" + fileSeparator + "Player2Icons" + fileSeparator + "bk.gif", 5,
-                1);
+        WC1 = new Castle("src" + fileSeparator + "Icons" + fileSeparator
+                + "Player1Icons" + fileSeparator + "wr.gif", 8, 8);
+        WC2 = new Castle("src" + fileSeparator + "Icons" + fileSeparator
+                + "Player1Icons" + fileSeparator + "wr.gif", 1, 8);
+        WH1 = new Horse("src" + fileSeparator + "Icons" + fileSeparator
+                + "Player1Icons" + fileSeparator + "wn.gif", 2, 8);
+        WH2 = new Horse("src" + fileSeparator + "Icons" + fileSeparator
+                + "Player1Icons" + fileSeparator + "wn.gif", 7, 8);
+        WE1 = new Bishop("src" + fileSeparator + "Icons" + fileSeparator
+                + "Player1Icons" + fileSeparator + "wb.gif", 3, 8);
+        WE2 = new Bishop("src" + fileSeparator + "Icons" + fileSeparator
+                + "Player1Icons" + fileSeparator + "wb.gif", 6, 8);
+        WQ = new Queen("src" + fileSeparator + "Icons" + fileSeparator
+                + "Player1Icons" + fileSeparator + "wq.gif", 4, 8);
+        WK = new King("src" + fileSeparator + "Icons" + fileSeparator
+                + "Player1Icons" + fileSeparator + "wk.gif", 5, 8);
         int j = 1;
         for (int i = 0; i <= 7; i++, j++) {
-            BS[i] = new Pawn(
-                    "src" + fileSeparator + "Icons" + fileSeparator + "Player2Icons" + fileSeparator + "bp.gif", j, 2);
+            WS[i] = new Pawn(
+                    "src" + fileSeparator + "Icons" + fileSeparator + "Player1Icons" + fileSeparator + "wp.gif", j, 7);
         }
-    }
-
-    public void setChoosen(int newChoosen) {
-        choosenOne = newChoosen;
     }
 
     public Point returnPostion(int i) {
 
         switch (i) {
-        case 1:
-            return BC1.returnPostion();
-        case 2:
-            return BC2.returnPostion();
-        case 3:
-            return BH1.returnPostion();
-        case 4:
-            return BH2.returnPostion();
-        case 5:
-            return BE1.returnPostion();
-        case 6:
-            return BE2.returnPostion();
-        case 7:
-            return BQ.returnPostion();
-        case 8:
-            return BK.returnPostion();
-        case 9:
-            return BS[0].returnPostion();
-        case 10:
-            return BS[1].returnPostion();
-        case 11:
-            return BS[2].returnPostion();
-        case 12:
-            return BS[3].returnPostion();
-        case 13:
-            return BS[4].returnPostion();
-        case 14:
-            return BS[5].returnPostion();
-        case 15:
-            return BS[6].returnPostion();
-        case 16:
-            return BS[7].returnPostion();
-        default:
-            break;
 
+            case 17:
+                return WC1.returnPostion();
+            case 18:
+                return WC2.returnPostion();
+            case 19:
+                return WH1.returnPostion();
+            case 20:
+                return WH2.returnPostion();
+            case 21:
+                return WE1.returnPostion();
+            case 22:
+                return WE2.returnPostion();
+            case 23:
+                return WQ.returnPostion();
+            case 24:
+                return WK.returnPostion();
+            case 25:
+                return WS[0].returnPostion();
+            case 26:
+                return WS[1].returnPostion();
+            case 27:
+                return WS[2].returnPostion();
+            case 28:
+                return WS[3].returnPostion();
+            case 29:
+                return WS[4].returnPostion();
+            case 30:
+                return WS[5].returnPostion();
+            case 31:
+                return WS[6].returnPostion();
+            case 32:
+                return WS[7].returnPostion();
+            default:
+                break;
         }
         return new Point(-1, -1);
-
     }
 
     public Point returnOldPostion(int i) {
 
         switch (i) {
-        case 1:
-            return BC1.returnOld();
-        case 2:
-            return BC2.returnOld();
-        case 3:
-            return BH1.returnOld();
-        case 4:
-            return BH2.returnOld();
-        case 5:
-            return BE1.returnOld();
-        case 6:
-            return BE2.returnOld();
-        case 7:
-            return BQ.returnOld();
-        case 8:
-            return BK.returnOld();
-        case 9:
-            return BS[0].returnOld();
-        case 10:
-            return BS[1].returnOld();
-        case 11:
-            return BS[2].returnOld();
-        case 12:
-            return BS[3].returnOld();
-        case 13:
-            return BS[4].returnOld();
-        case 14:
-            return BS[5].returnOld();
-        case 15:
-            return BS[6].returnOld();
-        case 16:
-            return BS[7].returnOld();
-        default:
-            break;
 
+            case 17:
+                return WC1.returnOld();
+            case 18:
+                return WC2.returnOld();
+            case 19:
+                return WH1.returnOld();
+            case 20:
+                return WH2.returnOld();
+            case 21:
+                return WE1.returnOld();
+            case 22:
+                return WE2.returnOld();
+            case 23:
+                return WQ.returnOld();
+            case 24:
+                return WK.returnOld();
+            case 25:
+                return WS[0].returnOld();
+            case 26:
+                return WS[1].returnOld();
+            case 27:
+                return WS[2].returnOld();
+            case 28:
+                return WS[3].returnOld();
+            case 29:
+                return WS[4].returnOld();
+            case 30:
+                return WS[5].returnOld();
+            case 31:
+                return WS[6].returnOld();
+            case 32:
+                return WS[7].returnOld();
+            default:
+                break;
         }
         return new Point(-1, -1);
-
     }
 
     public Image returnIconImage(int i) {
-        switch (i) {
-        case 1:
-            return BC1.returnPieceImage();
-        case 2:
-            return BC2.returnPieceImage();
-        case 3:
-            return BH1.returnPieceImage();
-        case 4:
-            return BH2.returnPieceImage();
-        case 5:
-            return BE1.returnPieceImage();
-        case 6:
-            return BE2.returnPieceImage();
-        case 7:
-            return BQ.returnPieceImage();
-        case 8:
-            return BK.returnPieceImage();
-        case 9:
-            return BS[0].returnPieceImage();
-        case 10:
-            return BS[1].returnPieceImage();
-        case 11:
-            return BS[2].returnPieceImage();
-        case 12:
-            return BS[3].returnPieceImage();
-        case 13:
-            return BS[4].returnPieceImage();
-        case 14:
-            return BS[5].returnPieceImage();
-        case 15:
-            return BS[6].returnPieceImage();
-        case 16:
-            return BS[7].returnPieceImage();
-        default:
-            break;
 
+        switch (i) {
+    
+            case 17:
+                return WC1.returnPieceImage();
+            case 18:
+                return WC2.returnPieceImage();
+            case 19:
+                return WH1.returnPieceImage();
+            case 20:
+                return WH2.returnPieceImage();
+            case 21:
+                return WE1.returnPieceImage();
+            case 22:
+                return WE2.returnPieceImage();
+            case 23:
+                return WQ.returnPieceImage();
+            case 24:
+                return WK.returnPieceImage();
+            case 25:
+                return WS[0].returnPieceImage();
+            case 26:
+                return WS[1].returnPieceImage();
+            case 27:
+                return WS[2].returnPieceImage();
+            case 28:
+                return WS[3].returnPieceImage();
+            case 29:
+                return WS[4].returnPieceImage();
+            case 30:
+                return WS[5].returnPieceImage();
+            case 31:
+                return WS[6].returnPieceImage();
+            case 32:
+                return WS[7].returnPieceImage();
+            default:
+                break;
         }
         return null;
-
     }
 
     public void changePostion(Point newPoint, int i) {
         switch (i) {
-        case 1:
-            BC1.setPoint(newPoint);
-            break;
-        case 2:
-            BC2.setPoint(newPoint);
-            break;
-        case 3:
-            BH1.setPoint(newPoint);
-            break;
-        case 4:
-            BH2.setPoint(newPoint);
-            break;
-        case 5:
-            BE1.setPoint(newPoint);
-            break;
-        case 6:
-            BE2.setPoint(newPoint);
-            break;
-        case 7:
-            BQ.setPoint(newPoint);
-            break;
-        case 8:
-            BK.setPoint(newPoint);
-            break;
-        case 9:
-            BS[0].setPoint(newPoint);
-            break;
-        case 10:
-            BS[1].setPoint(newPoint);
-            break;
-        case 11:
-            BS[2].setPoint(newPoint);
-            break;
-        case 12:
-            BS[3].setPoint(newPoint);
-            break;
-        case 13:
-            BS[4].setPoint(newPoint);
-            break;
-        case 14:
-            BS[5].setPoint(newPoint);
-            break;
-        case 15:
-            BS[6].setPoint(newPoint);
-            break;
-        case 16:
-            BS[7].setPoint(newPoint);
-            break;
-        default:
-            break;
 
+            case 17:
+                WC1.setPoint(newPoint);
+                break;
+            case 18:
+                WC2.setPoint(newPoint);
+                break;
+            case 19:
+                WH1.setPoint(newPoint);
+                break;
+            case 20:
+                WH2.setPoint(newPoint);
+                break;
+            case 21:
+                WE1.setPoint(newPoint);
+                break;
+            case 22:
+                WE2.setPoint(newPoint);
+                break;
+            case 23:
+                WQ.setPoint(newPoint);
+                break;
+            case 24:
+                WK.setPoint(newPoint);
+                break;
+            case 25:
+                WS[0].setPoint(newPoint);
+                break;
+            case 26:
+                WS[1].setPoint(newPoint);
+                break;
+            case 27:
+                WS[2].setPoint(newPoint);
+                break;
+            case 28:
+                WS[3].setPoint(newPoint);
+                break;
+            case 29:
+                WS[4].setPoint(newPoint);
+                break;
+            case 30:
+                WS[5].setPoint(newPoint);
+                break;
+            case 31:
+                WS[6].setPoint(newPoint);
+                break;
+            case 32:
+                WS[7].setPoint(newPoint);
+                break;
+            default:
+                break;
         }
 
     }
 
     public void changePostionToOld(Point newPoint, int i) {
         switch (i) {
-        case 1:
-            BC1.toOld(newPoint);
-            break;
-        case 2:
-            BC2.toOld(newPoint);
-            break;
-        case 3:
-            BH1.toOld(newPoint);
-            break;
-        case 4:
-            BH2.toOld(newPoint);
-            break;
-        case 5:
-            BE1.toOld(newPoint);
-            break;
-        case 6:
-            BE2.toOld(newPoint);
-            break;
-        case 7:
-            BQ.toOld(newPoint);
-            break;
-        case 8:
-            BK.toOld(newPoint);
-            break;
-        case 9:
-            BS[0].toOld(newPoint);
-            break;
-        case 10:
-            BS[1].toOld(newPoint);
-            break;
-        case 11:
-            BS[2].toOld(newPoint);
-            break;
-        case 12:
-            BS[3].toOld(newPoint);
-            break;
-        case 13:
-            BS[4].toOld(newPoint);
-            break;
-        case 14:
-            BS[5].toOld(newPoint);
-            break;
-        case 15:
-            BS[6].toOld(newPoint);
-            break;
-        case 16:
-            BS[7].toOld(newPoint);
-            break;
-        default:
-            break;
 
+            case 17:
+                WC1.toOld(newPoint);
+                break;
+            case 18:
+                WC2.toOld(newPoint);
+                break;
+            case 19:
+                WH1.toOld(newPoint);
+                break;
+            case 20:
+                WH2.toOld(newPoint);
+                break;
+            case 21:
+                WE1.toOld(newPoint);
+                break;
+            case 22:
+                WE2.toOld(newPoint);
+                break;
+            case 23:
+                WQ.toOld(newPoint);
+                break;
+            case 24:
+                WK.toOld(newPoint);
+                break;
+            case 25:
+                WS[0].toOld(newPoint);
+                break;
+            case 26:
+                WS[1].toOld(newPoint);
+                break;
+            case 27:
+                WS[2].toOld(newPoint);
+                break;
+            case 28:
+                WS[3].toOld(newPoint);
+                break;
+            case 29:
+                WS[4].toOld(newPoint);
+                break;
+            case 30:
+                WS[5].toOld(newPoint);
+                break;
+            case 31:
+                WS[6].toOld(newPoint);
+                break;
+            case 32:
+                WS[7].toOld(newPoint);
+                break;
+            default:
+                break;
         }
-
     }
 
-    public void changePixel(int newPixelX, int newPixelY) {
+    public void changePixel(int newPixelX, int newPixelY, int i) {
+        choosenOne = i;
         switch (choosenOne) {
-        case 1:
-            BC1.setPixels(newPixelX, newPixelY);
-            break;
-        case 2:
-            BC2.setPixels(newPixelX, newPixelY);
-            break;
-        case 3:
-            BH1.setPixels(newPixelX, newPixelY);
-            break;
-        case 4:
-            BH2.setPixels(newPixelX, newPixelY);
-            break;
-        case 5:
-            BE1.setPixels(newPixelX, newPixelY);
-            break;
-        case 6:
-            BE2.setPixels(newPixelX, newPixelY);
-            break;
-        case 7:
-            BQ.setPixels(newPixelX, newPixelY);
-            break;
-        case 8:
-            BK.setPixels(newPixelX, newPixelY);
-            break;
-        case 9:
-            BS[0].setPixels(newPixelX, newPixelY);
-            break;
-        case 10:
-            BS[1].setPixels(newPixelX, newPixelY);
-            break;
-        case 11:
-            BS[2].setPixels(newPixelX, newPixelY);
-            break;
-        case 12:
-            BS[3].setPixels(newPixelX, newPixelY);
-            break;
-        case 13:
-            BS[4].setPixels(newPixelX, newPixelY);
-            break;
-        case 14:
-            BS[5].setPixels(newPixelX, newPixelY);
-            break;
-        case 15:
-            BS[6].setPixels(newPixelX, newPixelY);
-            break;
-        case 16:
-            BS[7].setPixels(newPixelX, newPixelY);
-            break;
-        default:
-            break;
 
+            case 17:
+                WC1.setPixels(newPixelX, newPixelY);
+                break;
+            case 18:
+                WC2.setPixels(newPixelX, newPixelY);
+                break;
+            case 19:
+                WH1.setPixels(newPixelX, newPixelY);
+                break;
+            case 20:
+                WH2.setPixels(newPixelX, newPixelY);
+                break;
+            case 21:
+                WE1.setPixels(newPixelX, newPixelY);
+                break;
+            case 22:
+                WE2.setPixels(newPixelX, newPixelY);
+                break;
+            case 23:
+                WQ.setPixels(newPixelX, newPixelY);
+                break;
+            case 24:
+                WK.setPixels(newPixelX, newPixelY);
+                break;
+            case 25:
+                WS[0].setPixels(newPixelX, newPixelY);
+                break;
+            case 26:
+                WS[1].setPixels(newPixelX, newPixelY);
+                break;
+            case 27:
+                WS[2].setPixels(newPixelX, newPixelY);
+                break;
+            case 28:
+                WS[3].setPixels(newPixelX, newPixelY);
+                break;
+            case 29:
+                WS[4].setPixels(newPixelX, newPixelY);
+                break;
+            case 30:
+                WS[5].setPixels(newPixelX, newPixelY);
+                break;
+            case 31:
+                WS[6].setPixels(newPixelX, newPixelY);
+                break;
+            case 32:
+                WS[7].setPixels(newPixelX, newPixelY);
+                break;
+            default:
+                break;
         }
     }
 
     public Point getPixelPoint(int i) {
         choosenOne = i;
         switch (choosenOne) {
-        case 1:
-            return BC1.getpixelPoint();
-        case 2:
-            return BC2.getpixelPoint();
-        case 3:
-            return BH1.getpixelPoint();
-        case 4:
-            return BH2.getpixelPoint();
-        case 5:
-            return BE1.getpixelPoint();
-        case 6:
-            return BE2.getpixelPoint();
-        case 7:
-            return BQ.getpixelPoint();
-        case 8:
-            return BK.getpixelPoint();
-        case 9:
-            return BS[0].getpixelPoint();
-        case 10:
-            return BS[1].getpixelPoint();
-        case 11:
-            return BS[2].getpixelPoint();
-        case 12:
-            return BS[3].getpixelPoint();
-        case 13:
-            return BS[4].getpixelPoint();
-        case 14:
-            return BS[5].getpixelPoint();
-        case 15:
-            return BS[6].getpixelPoint();
-        case 16:
-            return BS[7].getpixelPoint();
-        default:
-            break;
 
+            case 17:
+                return WC1.getpixelPoint();
+            case 18:
+                return WC2.getpixelPoint();
+            case 19:
+                return WH1.getpixelPoint();
+            case 20:
+                return WH2.getpixelPoint();
+            case 21:
+                return WE1.getpixelPoint();
+            case 22:
+                return WE2.getpixelPoint();
+            case 23:
+                return WQ.getpixelPoint();
+            case 24:
+                return WK.getpixelPoint();
+            case 25:
+                return WS[0].getpixelPoint();
+            case 26:
+                return WS[1].getpixelPoint();
+            case 27:
+                return WS[2].getpixelPoint();
+            case 28:
+                return WS[3].getpixelPoint();
+            case 29:
+                return WS[4].getpixelPoint();
+            case 30:
+                return WS[5].getpixelPoint();
+            case 31:
+                return WS[6].getpixelPoint();
+            case 32:
+                return WS[7].getpixelPoint();
+            default:
+                break;
         }
         return null;
-    }
-
-    public void changePixel(int newPixelX, int newPixelY, int i) {
-        choosenOne = i;
-        switch (choosenOne) {
-        case 1:
-            BC1.setPixels(newPixelX, newPixelY);
-            break;
-        case 2:
-            BC2.setPixels(newPixelX, newPixelY);
-            break;
-        case 3:
-            BH1.setPixels(newPixelX, newPixelY);
-            break;
-        case 4:
-            BH2.setPixels(newPixelX, newPixelY);
-            break;
-        case 5:
-            BE1.setPixels(newPixelX, newPixelY);
-            break;
-        case 6:
-            BE2.setPixels(newPixelX, newPixelY);
-            break;
-        case 7:
-            BQ.setPixels(newPixelX, newPixelY);
-            break;
-        case 8:
-            BK.setPixels(newPixelX, newPixelY);
-            break;
-        case 9:
-            BS[0].setPixels(newPixelX, newPixelY);
-            break;
-        case 10:
-            BS[1].setPixels(newPixelX, newPixelY);
-            break;
-        case 11:
-            BS[2].setPixels(newPixelX, newPixelY);
-            break;
-        case 12:
-            BS[3].setPixels(newPixelX, newPixelY);
-            break;
-        case 13:
-            BS[4].setPixels(newPixelX, newPixelY);
-            break;
-        case 14:
-            BS[5].setPixels(newPixelX, newPixelY);
-            break;
-        case 15:
-            BS[6].setPixels(newPixelX, newPixelY);
-            break;
-        case 16:
-            BS[7].setPixels(newPixelX, newPixelY);
-            break;
-        default:
-            break;
-
-        }
-    }
-
-    public boolean Killedpiec(int i) {
-        Point out = new Point(20, 20);
-        switch (i) {
-        case 1:
-            BC1.setPoint(out);
-            return true;
-        case 2:
-            BC2.setPoint(out);
-            return true;
-        case 3:
-            BH1.setPoint(out);
-            return true;
-        case 4:
-            BH2.setPoint(out);
-            return true;
-        case 5:
-            BE1.setPoint(out);
-            return true;
-        case 6:
-            BE2.setPoint(out);
-            return true;
-        case 7:
-            BQ.setPoint(out);
-            return true;
-        case 8:
-            return true;// the King "Can't be moved out"
-        case 9:
-            BS[0].setPoint(out);
-            return true;
-        case 10:
-            BS[1].setPoint(out);
-            return true;
-        case 11:
-            BS[2].setPoint(out);
-            return true;
-        case 12:
-            BS[3].setPoint(out);
-            return true;
-        case 13:
-            BS[4].setPoint(out);
-            return true;
-        case 14:
-            BS[5].setPoint(out);
-            return true;
-        case 15:
-            BS[6].setPoint(out);
-            return true;
-        case 16:
-            BS[7].setPoint(out);
-            return true;
-        default:
-            break;
-        }
-        return false;
     }
 
     public boolean checkthemove(Point newP, int i) {
         choosenOne = i;
         switch (choosenOne) {
 
-        case 1:
-            return BC1.Canmove(newP.x, newP.y);
-        case 2:
-            return BC2.Canmove(newP.x, newP.y);
-        case 3:
-            return BH1.Canmove(newP.x, newP.y);
-        case 4:
-            return BH2.Canmove(newP.x, newP.y);
-        case 5:
-            return BE1.Canmove(newP.x, newP.y);
-        case 6:
-            return BE2.Canmove(newP.x, newP.y);
-        case 7:
-            return BQ.Canmove(newP.x, newP.y);
-        case 8:
-            return BK.Canmove(newP.x, newP.y);
-        case 9:
-            return BS[0].Canmove(newP.x, newP.y, Color);
-        case 10:
-            return BS[1].Canmove(newP.x, newP.y, Color);
-        case 11:
-            return BS[2].Canmove(newP.x, newP.y, Color);
-        case 12:
-            return BS[3].Canmove(newP.x, newP.y, Color);
-        case 13:
-            return BS[4].Canmove(newP.x, newP.y, Color);
-        case 14:
-            return BS[5].Canmove(newP.x, newP.y, Color);
-        case 15:
-            return BS[6].Canmove(newP.x, newP.y, Color);
-        case 16:
-            return BS[7].Canmove(newP.x, newP.y, Color);
-        default:
-            break;
+            case 17:
+                return WC1.Canmove(newP.x, newP.y);
+            case 18:
+                return WC2.Canmove(newP.x, newP.y);
+            case 19:
+                return WH1.Canmove(newP.x, newP.y);
+            case 20:
+                return WH2.Canmove(newP.x, newP.y);
+            case 21:
+                return WE1.Canmove(newP.x, newP.y);
+            case 22:
+                return WE2.Canmove(newP.x, newP.y);
+            case 23:
+                return WQ.Canmove(newP.x, newP.y);
+            case 24:
+                return WK.Canmove(newP.x, newP.y);
+            case 25:
+                return WS[0].Canmove(newP.x, newP.y, Color);
+            case 26:
+                return WS[1].Canmove(newP.x, newP.y, Color);
+            case 27:
+                return WS[2].Canmove(newP.x, newP.y, Color);
+            case 28:
+                return WS[3].Canmove(newP.x, newP.y, Color);
+            case 29:
+                return WS[4].Canmove(newP.x, newP.y, Color);
+            case 30:
+                return WS[5].Canmove(newP.x, newP.y, Color);
+            case 31:
+                return WS[6].Canmove(newP.x, newP.y, Color);
+            case 32:
+                return WS[7].Canmove(newP.x, newP.y, Color);
+            default:
+                break;
         }
         return false;
     }
 
     public boolean setSeentoSiliders(int i, Point P) {
-
         switch (i) {
-        case 9:
-            return BS[0].setSeenbychecking(P, "black");
-        case 10:
-            return BS[1].setSeenbychecking(P, "black");
-        case 11:
-            return BS[2].setSeenbychecking(P, "black");
-        case 12:
-            return BS[3].setSeenbychecking(P, "black");
-        case 13:
-            return BS[4].setSeenbychecking(P, "black");
-        case 14:
-            return BS[5].setSeenbychecking(P, "black");
-        case 15:
-            return BS[6].setSeenbychecking(P, "black");
-        case 16:
-            return BS[7].setSeenbychecking(P, "black");
-        default:
-            break;
+            case 25:
+                return WS[0].setSeenbychecking(P, "white");
+            case 26:
+                return WS[1].setSeenbychecking(P, "white");
+            case 27:
+                return WS[2].setSeenbychecking(P, "white");
+            case 28:
+                return WS[3].setSeenbychecking(P, "white");
+            case 29:
+                return WS[4].setSeenbychecking(P, "white");
+            case 30:
+                return WS[5].setSeenbychecking(P, "white");
+            case 31:
+                return WS[6].setSeenbychecking(P, "white");
+            case 32:
+                return WS[7].setSeenbychecking(P, "white");
+            default:
+                break;
         }
         return false;
-
     }
 
     public boolean returnsoliderSeen(int i) {
         switch (i) {
-
-        case 9:
-            return BS[0].returnMyseen();
-        case 10:
-            return BS[1].returnMyseen();
-        case 11:
-            return BS[2].returnMyseen();
-        case 12:
-            return BS[3].returnMyseen();
-        case 13:
-            return BS[4].returnMyseen();
-        case 14:
-            return BS[5].returnMyseen();
-        case 15:
-            return BS[6].returnMyseen();
-        case 16:
-            return BS[7].returnMyseen();
-        default:
-            break;
+            case 25:
+                return WS[0].returnMyseen();
+            case 26:
+                return WS[1].returnMyseen();
+            case 27:
+                return WS[2].returnMyseen();
+            case 28:
+                return WS[3].returnMyseen();
+            case 29:
+                return WS[4].returnMyseen();
+            case 30:
+                return WS[5].returnMyseen();
+            case 31:
+                return WS[6].returnMyseen();
+            case 32:
+                return WS[7].returnMyseen();
+            default:
+                break;
         }
         return false;
     }
 
     public boolean checktheWay(Point newP, Point postionFromOthers, int i) {
         switch (i) {
-        case 1:
-            return BC1.PieceInMYway(newP.x, newP.y, postionFromOthers);
-        case 2:
-            return BC2.PieceInMYway(newP.x, newP.y, postionFromOthers);
-        case 5:
-            return BE1.PieceInMYway(newP.x, newP.y, postionFromOthers);
-        case 6:
-            return BE2.PieceInMYway(newP.x, newP.y, postionFromOthers);
-        case 7:
-            return BQ.PieceInMYway(newP.x, newP.y, postionFromOthers);
-        case 9:
-            return BS[0].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);
-        case 10:
-            return BS[1].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);
-        case 11:
-            return BS[2].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);
-        case 12:
-            return BS[3].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);
-        case 13:
-            return BS[4].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);
-        case 14:
-            return BS[5].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);
-        case 15:
-            return BS[6].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);
-        case 16: {
-            return BS[7].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);
-        }
-        default:
-            break;
+
+            case 17:
+                return WC1.PieceInMYway(newP.x, newP.y, postionFromOthers);
+            case 18:
+                return WC2.PieceInMYway(newP.x, newP.y, postionFromOthers);
+            case 21:
+                return WE1.PieceInMYway(newP.x, newP.y, postionFromOthers);
+            case 22:
+                return WE2.PieceInMYway(newP.x, newP.y, postionFromOthers);
+            case 23:
+                return WQ.PieceInMYway(newP.x, newP.y, postionFromOthers);
+            case 25:
+                return WS[0].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);
+            case 26:
+                return WS[1].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);
+            case 27:
+                return WS[2].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);
+            case 28:
+                return WS[3].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);
+            case 29:
+                return WS[4].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);
+            case 30:
+                return WS[5].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);
+            case 31:
+                return WS[6].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);
+            case 32:
+                return WS[7].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);
+            default:
+                break;
 
         }
+        return false;
+    }
+
+    public boolean Killedpiec(int i) {
+        Point out = new Point(13, 13);
+        switch (i) {
+
+            case 17:
+                WC1.setPoint(out);
+                return true;
+            case 18:
+                WC2.setPoint(out);
+                return true;
+            case 19:
+                WH1.setPoint(out);
+                return true;
+            case 20:
+                WH2.setPoint(out);
+                return true;
+            case 21:
+                WE1.setPoint(out);
+                return true;
+            case 22:
+                WE2.setPoint(out);
+                return true;
+            case 23:
+                WQ.setPoint(out);
+                return true;
+            case 24:
+                return false;
+            case 25:
+                WS[0].setPoint(out);
+                return true;
+            case 26:
+                WS[1].setPoint(out);
+                return true;
+            case 27:
+                WS[2].setPoint(out);
+                return true;
+            case 28:
+                WS[3].setPoint(out);
+                return true;
+            case 29:
+                WS[4].setPoint(out);
+                return true;
+            case 30:
+                WS[5].setPoint(out);
+                return true;
+            case 31:
+                WS[6].setPoint(out);
+                return true;
+            case 32:
+                WS[7].setPoint(out);
+                return true;
+            default:
+                break;
+        }
+
         return false;
     }
 
     public boolean checKing(Point p1, Point p2, int i) {
         switch (i) {
 
-        case 1:
-            return BC1.checkKing(p1.x, p1.y, p2);
-        case 2:
-            return BC2.checkKing(p1.x, p1.y, p2);
-        case 3:
-            return BH1.Canmove(p1.x, p1.y);
-        case 4:
-            return BH2.Canmove(p1.x, p1.y);
-        case 5:
-            return BE1.checkKing(p1.x, p1.y, p2);
-        case 6:
-            return BE2.checkKing(p1.x, p1.y, p2);
-        case 7:
-            return BQ.checkKing(p1.x, p1.y, p2);
+            case 17:
+                return WC1.checkKing(p1.x, p1.y, p2);
+            case 18:
+                return WC2.checkKing(p1.x, p1.y, p2);
+            case 19:
+                return WH1.Canmove(p1.x, p1.y);
+            case 20:
+                return WH2.Canmove(p1.x, p1.y);
+            case 21:
+                return WE1.checkKing(p1.x, p1.y, p2);
+            case 22:
+                return WE2.checkKing(p1.x, p1.y, p2);
+            case 23:
+                return WQ.checkKing(p1.x, p1.y, p2);
 
-        case 9:
-            return BS[0].Canmove(p1.x, p1.y, Color);
-        case 10:
-            return BS[1].Canmove(p1.x, p1.y, Color);
-        case 11:
-            return BS[2].Canmove(p1.x, p1.y, Color);
-        case 12:
-            return BS[3].Canmove(p1.x, p1.y, Color);
-        case 13:
-            return BS[4].Canmove(p1.x, p1.y, Color);
-        case 14:
-            return BS[5].Canmove(p1.x, p1.y, Color);
-        case 15:
-            return BS[6].Canmove(p1.x, p1.y, Color);
-        case 16:
-            return BS[7].Canmove(p1.x, p1.y, Color);
+            case 25:
+                return WS[0].Canmove(p1.x, p1.y, Color);
+            case 26:
+                return WS[1].Canmove(p1.x, p1.y, Color);
+            case 27:
+                return WS[2].Canmove(p1.x, p1.y, Color);
+            case 28:
+                return WS[3].Canmove(p1.x, p1.y, Color);
+            case 29:
+                return WS[4].Canmove(p1.x, p1.y, Color);
+            case 30:
+                return WS[5].Canmove(p1.x, p1.y, Color);
+            case 31:
+                return WS[6].Canmove(p1.x, p1.y, Color);
+            case 32:
+                return WS[7].Canmove(p1.x, p1.y, Color);
         default:
             break;
         }
@@ -702,26 +694,87 @@ public class player2 implements Enumeration {
     }
 
     public boolean returncheckKing() {
+
         return kingischeck;
     }
 
-    public boolean see_king_Check(player1 White) {
+    public boolean if_MyKing_In_check(Player2 Black) {
+        boolean isCheckmate = false;
+        boolean flag = false;
 
-        Point My_King_Postion = BK.returnPostion();
+        return false;
+    }
+
+    public boolean Check_Mate_GameOver(Player2 Enemy) {
+
+        if (!KingGenerate_moves(Enemy)) {
+
+            inHand = -1;
+            return false;
+        } else if (!CastleGenerate_moves(Enemy, WC1)) {
+
+            inHand = -1;
+            return false;
+        } else if (!CastleGenerate_moves(Enemy, WC2)) {
+
+            inHand = -1;
+            return false;
+        } else if (!BishopGenerate_moves(Enemy, WE1)) {
+
+            inHand = -1;
+            return false;
+        } else if (!BishopGenerate_moves(Enemy, WE2)) {
+
+            inHand = -1;
+            return false;
+        } else if (!HosreGenerate_moves(Enemy, WH1)) {
+
+            inHand = -1;
+            return false;
+        } else if (!HosreGenerate_moves(Enemy, WH2)) {
+
+            inHand = -1;
+            return false;
+        }
+
+        else if (!QueenGenerate_moves(Enemy)) {
+
+            inHand = -1;
+            return false;
+        }
+
+        for (int i = 0; i <= 7; i++) {
+            inHand = 25 + i;
+            if (!SoliderGenerate_moves(Enemy, WS[i])) {
+
+                inHand = -1;
+                System.out.println("I Killed Solider 1");
+                return false;
+            }
+        }
+
+        inHand = -1;
+        return true;
+
+    }
+
+    public boolean see_king_Check(Player2 Black) {
+
+        Point My_King_Postion = WK.returnPostion();
         boolean flag = false;
 
         ////////// Start Checking the King ////////////
-        for (int i = 17; i < 33; i++) {
-            if (i < 25) {
-                if (White.checkthemove(My_King_Postion, i)) {
+        for (int i = 1; i < 17; i++) {
+            if (i < 9) {
+                if (Black.checkthemove(My_King_Postion, i)) {
 
                     flag = true;
                     for (int j = 1; j < 33; j++) {
 
                         if (j < 17) {
 
-                            if (White.checktheWay(My_King_Postion, returnPostion(j), i)) {
-                                // Means there is somting in the Way so can't move'
+                            if (Black.checktheWay(My_King_Postion, Black.returnPostion(j), i)) {
+                                // Means there is something in the Way so can't move'
 
                                 flag = false;
 
@@ -730,11 +783,11 @@ public class player2 implements Enumeration {
 
                         else {
 
-                            if (j != 8) {
-                                if (White.checktheWay(My_King_Postion, White.returnPostion(j), i)) {
+                            if (j != 24) {
+                                if (Black.checktheWay(My_King_Postion, returnPostion(j), i)) {
 
                                     flag = false;
-                                    // Means there is somting in the Way so can't move'
+                                    // Means there is something in the Way so can't move'
 
                                 }
                             }
@@ -751,91 +804,25 @@ public class player2 implements Enumeration {
                 }
             } else {
                 // For soliders
-                if (White.setSeentoSiliders(i, My_King_Postion)) {
+                if (Black.setSeentoSiliders(i, My_King_Postion)) {
 
                     break;
 
                 }
             }
             // if(stillIn_Check){ return true;}//Here Means White king is in check !!!
-            if (i == 32) {
+            if (i == 16) {
 
                 return false;
             }
         }
 
         return true;
-    }
-
-    public boolean Check_Mate_GameOver(player1 Enemy) {
-
-        if (!KingGenerate_moves(Enemy)) {
-
-            inHand = -1;
-            System.out.println("I Killed King  2");
-
-            return false;
-        } else if (!CastleGenerate_moves(Enemy, BC1)) {
-
-            inHand = -1;
-            System.out.println("I Killed Castle 2");
-
-            return false;
-        } else if (!CastleGenerate_moves(Enemy, BC2)) {
-
-            inHand = -1;
-            System.out.println("I Killed Castle 2");
-            return false;
-        } else if (!BishopGenerate_moves(Enemy, BE1)) {
-
-            inHand = -1;
-            System.out.println("I Killed Bishop2");
-            return false;
-        } else if (!BishopGenerate_moves(Enemy, BE2)) {
-
-            inHand = -1;
-            System.out.println("I Killed Bishop2");
-
-            return false;
-        } else if (!HosreGenerate_moves(Enemy, BH1)) {
-
-            inHand = -1;
-            System.out.println("I Killed Horse 2");
-            return false;
-        } else if (!HosreGenerate_moves(Enemy, BH2)) {
-
-            inHand = -1;
-            System.out.println("I Killed Horse 2");
-            return false;
-        }
-
-        else if (!QueenGenerate_moves(Enemy)) {
-
-            inHand = -1;
-            System.out.println("I Killed Queen 2");
-            return false;
-        }
-
-        for (int i = 0; i <= 7; i++) {
-            inHand = 9 + i;
-            if (!SoliderGenerate_moves(Enemy, BS[i])) {
-
-                inHand = -1;
-
-                System.out.println("I Killed Solider 2");
-
-                return false;
-            }
-        }
-
-        inHand = -1;
-        return true;
-
     }
 
     public boolean Pice_already_there(Point newP) {
         Point samePostion;
-        for (int i = 1; i <= 16; i++) {
+        for (int i = 17; i <= 32; i++) {
             if (GetInhand() != i)// There is no need to check the inHand pice
             {
 
@@ -854,53 +841,50 @@ public class player2 implements Enumeration {
         return true;
     }
 
-    public boolean Pice_already_there_from_enemy(Point newP, player1 enemy) {
+    public boolean Pice_already_there_from_enemy(Point newP, Player2 enemy) {
         Point samePostion;
-        for (int i = 17; i <= 32; i++) {
-
-            // Check if there is White Pices in the new Point
-            // If so we Can't move (Same Color)!!
-
+        for (int i = 1; i <= 16; i++) {
             samePostion = enemy.returnPostion(i);
             if (newP.x == samePostion.x && newP.y == samePostion.y) {
 
                 return false;
 
             }
-
         }
 
         return true;
     }
 
-    public int Get_Pice_already_there_from_enemy(Point newP, player1 enemy) {
+    public int Get_Pice_already_there_from_enemy(Point newP, Player2 enemy) {
         Point samePostion;
-        for (int i = 17; i <= 32; i++) {
+        for (int i = 1; i <= 16; i++) {
             samePostion = enemy.returnPostion(i);
             if (newP.x == samePostion.x && newP.y == samePostion.y) {
+
                 return i;
+
             }
         }
+
         return -1;
     }
 
-    public boolean KingGenerate_moves(player1 enemy) {
+    public boolean KingGenerate_moves(Player2 enemy) {
         boolean somthing_killed = false;
         Point Oldp = new Point();
 
         Point PlaceCheck = new Point();
-        inHand = 8;
+        inHand = 24;
 
-        int x = BK.returnX();
-        int y = BK.returnY();
-
+        int x = WK.returnX();
+        int y = WK.returnY();
         Oldp.x = x;
         Oldp.y = y;
 
         if (x + 1 <= 8) {
 
-            BK.setX(x + 1);
-            BK.setY(y);
+            WK.setX(x + 1);
+            WK.setY(y);
             PlaceCheck.x = x + 1;
             PlaceCheck.y = y;
 
@@ -910,7 +894,7 @@ public class player2 implements Enumeration {
             if (Pice_already_there(PlaceCheck)) {
                 if (!see_king_Check(enemy)) {
 
-                    BK.setPoint(Oldp);
+                    WK.setPoint(Oldp);
                     if (somthing_killed) {
                         enemy.changePostion(other, ate_to_protect);
                         somthing_killed = false;
@@ -920,15 +904,15 @@ public class player2 implements Enumeration {
             }
 
         }
-        BK.setPoint(Oldp);
+        WK.setPoint(Oldp);
         if (somthing_killed) {
             enemy.changePostion(other, ate_to_protect);
             somthing_killed = false;
         }
         if (y + 1 <= 8) {
 
-            BK.setX(x);
-            BK.setY(y + 1);
+            WK.setX(x);
+            WK.setY(y + 1);
             PlaceCheck.x = x;
             PlaceCheck.y = y + 1;
             if (kill_to_protect_king(enemy, returnPostion(inHand))) {
@@ -937,7 +921,7 @@ public class player2 implements Enumeration {
             if (Pice_already_there(PlaceCheck)) {
                 if (!see_king_Check(enemy)) {
 
-                    BK.setPoint(Oldp);
+                    WK.setPoint(Oldp);
                     if (somthing_killed) {
                         enemy.changePostion(other, ate_to_protect);
                         somthing_killed = false;
@@ -948,7 +932,7 @@ public class player2 implements Enumeration {
             }
 
         }
-        BK.setPoint(Oldp);
+        WK.setPoint(Oldp);
         if (somthing_killed) {
             enemy.changePostion(other, ate_to_protect);
             somthing_killed = false;
@@ -956,8 +940,8 @@ public class player2 implements Enumeration {
 
         if (y - 1 > 0) {
 
-            BK.setX(x);
-            BK.setY(y - 1);
+            WK.setX(x);
+            WK.setY(y - 1);
 
             PlaceCheck.x = x;
             PlaceCheck.y = y - 1;
@@ -969,7 +953,7 @@ public class player2 implements Enumeration {
             if (Pice_already_there(PlaceCheck)) {
                 if (!see_king_Check(enemy)) {
 
-                    BK.setPoint(Oldp);
+                    WK.setPoint(Oldp);
                     if (somthing_killed) {
                         enemy.changePostion(other, ate_to_protect);
                         somthing_killed = false;
@@ -980,15 +964,15 @@ public class player2 implements Enumeration {
             }
 
         }
-        BK.setPoint(Oldp);
+        WK.setPoint(Oldp);
         if (somthing_killed) {
             enemy.changePostion(other, ate_to_protect);
             somthing_killed = false;
         }
         if (x - 1 > 0) {
 
-            BK.setX(x - 1);
-            BK.setY(y);
+            WK.setX(x - 1);
+            WK.setY(y);
 
             PlaceCheck.x = x - 1;
             PlaceCheck.y = y;
@@ -1001,21 +985,21 @@ public class player2 implements Enumeration {
                         enemy.changePostion(other, ate_to_protect);
                         somthing_killed = false;
                     }
-                    BK.setPoint(Oldp);
+                    WK.setPoint(Oldp);
                     return false;
                 }
             }
 
         }
-        BK.setPoint(Oldp);
+        WK.setPoint(Oldp);
         if (somthing_killed) {
             enemy.changePostion(other, ate_to_protect);
             somthing_killed = false;
         }
         if (y - 1 > 0 && x - 1 > 0) {
 
-            BK.setX(x - 1);
-            BK.setY(y - 1);
+            WK.setX(x - 1);
+            WK.setY(y - 1);
 
             PlaceCheck.x = x - 1;
             PlaceCheck.y = y - 1;
@@ -1030,21 +1014,21 @@ public class player2 implements Enumeration {
                         enemy.changePostion(other, ate_to_protect);
                         somthing_killed = false;
                     }
-                    BK.setPoint(Oldp);
+                    WK.setPoint(Oldp);
                     return false;
                 }
             }
 
         }
-        BK.setPoint(Oldp);
+        WK.setPoint(Oldp);
         if (somthing_killed) {
             enemy.changePostion(other, ate_to_protect);
             somthing_killed = false;
         }
         if (y + 1 <= 8 && x + 1 <= 8) {
 
-            BK.setX(x + 1);
-            BK.setY(y + 1);
+            WK.setX(x + 1);
+            WK.setY(y + 1);
 
             PlaceCheck.x = x + 1;
             PlaceCheck.y = y + 1;
@@ -1058,21 +1042,21 @@ public class player2 implements Enumeration {
                         enemy.changePostion(other, ate_to_protect);
                         somthing_killed = false;
                     }
-                    BK.setPoint(Oldp);
+                    WK.setPoint(Oldp);
                     return false;
                 }
             }
 
         }
-        BK.setPoint(Oldp);
+        WK.setPoint(Oldp);
         if (somthing_killed) {
             enemy.changePostion(other, ate_to_protect);
             somthing_killed = false;
         }
         if (y - 1 > 0 && x + 1 <= 8) {
 
-            BK.setX(x + 1);
-            BK.setY(y - 1);
+            WK.setX(x + 1);
+            WK.setY(y - 1);
 
             PlaceCheck.x = x + 1;
             PlaceCheck.y = y - 1;
@@ -1085,21 +1069,21 @@ public class player2 implements Enumeration {
                         enemy.changePostion(other, ate_to_protect);
                         somthing_killed = false;
                     }
-                    BK.setPoint(Oldp);
+                    WK.setPoint(Oldp);
                     return false;
                 }
             }
 
         }
-        BK.setPoint(Oldp);
+        WK.setPoint(Oldp);
         if (somthing_killed) {
             enemy.changePostion(other, ate_to_protect);
             somthing_killed = false;
         }
         if (y + 1 <= 8 && x - 1 > 0) {
 
-            BK.setX(x - 1);
-            BK.setY(y + 1);
+            WK.setX(x - 1);
+            WK.setY(y + 1);
 
             PlaceCheck.x = x - 1;
             PlaceCheck.y = y + 1;
@@ -1112,7 +1096,7 @@ public class player2 implements Enumeration {
                         enemy.changePostion(other, ate_to_protect);
                         somthing_killed = false;
                     }
-                    BK.setPoint(Oldp);
+                    WK.setPoint(Oldp);
                     return false;
                 }
             }
@@ -1124,23 +1108,23 @@ public class player2 implements Enumeration {
             somthing_killed = false;
         }
 
-        BK.setPoint(Oldp);
+        WK.setPoint(Oldp);
         return true;
 
     }
 
-    public boolean CastleGenerate_moves(player1 enemy, Castle BC) {
+    public boolean CastleGenerate_moves(Player2 enemy, Castle WC) {
         boolean somthing_killed = false;
         Point Oldp1 = new Point();
 
         Point PlaceCheck = new Point();
-        int x1 = BC.returnX();
-        int y1 = BC.returnY();
+        int x1 = WC.returnX();
+        int y1 = WC.returnY();
 
-        if (BC == BC1) {
-            inHand = 1;
+        if (WC == WC1) {
+            inHand = 17;
         } else {
-            inHand = 2;
+            inHand = 18;
         }
         /////////////////////
 
@@ -1151,19 +1135,17 @@ public class player2 implements Enumeration {
 
         if (x1 != 20) {
             for (int i = 1; i <= 8; i++) {
-
-                BC.setX(i);
+                WC.setX(i);
                 PlaceCheck.x = i;
 
                 if (Check_The_Way_to_Postion(enemy, Oldp1)) {
                     if (kill_to_protect_king(enemy, returnPostion(inHand))) {
                         somthing_killed = true;
                     }
-
                     if (Pice_already_there(PlaceCheck)) {
                         if (!see_king_Check(enemy)) {
-                            BC.setX(Oldp1.x);
-                            BC.setY(Oldp1.y);
+                            WC.setX(Oldp1.x);
+                            WC.setY(Oldp1.y);
 
                             if (somthing_killed) {
                                 enemy.changePostion(other, ate_to_protect);
@@ -1180,7 +1162,7 @@ public class player2 implements Enumeration {
                 }
 
             }
-            BC.setX(Oldp1.x);
+            WC.setX(Oldp1.x);
             PlaceCheck.x = Oldp1.x;
 
             if (somthing_killed) {
@@ -1188,7 +1170,7 @@ public class player2 implements Enumeration {
                 somthing_killed = false;
             }
             for (int i = 1; i <= 8; i++) {
-                BC.setY(i);
+                WC.setY(i);
                 PlaceCheck.y = i;
                 if (Check_The_Way_to_Postion(enemy, Oldp1)) {
                     if (kill_to_protect_king(enemy, returnPostion(inHand))) {
@@ -1196,8 +1178,8 @@ public class player2 implements Enumeration {
                     }
                     if (Pice_already_there(PlaceCheck)) {
                         if (!see_king_Check(enemy)) {
-                            BC.setX(Oldp1.x);
-                            BC.setY(Oldp1.y);
+                            WC.setX(Oldp1.x);
+                            WC.setY(Oldp1.y);
 
                             if (somthing_killed) {
                                 enemy.changePostion(other, ate_to_protect);
@@ -1214,7 +1196,7 @@ public class player2 implements Enumeration {
                 }
 
             }
-            BC.setY(Oldp1.y);
+            WC.setY(Oldp1.y);
         }
         //////////////////////////////////////////
         ///////////////////////////
@@ -1223,29 +1205,29 @@ public class player2 implements Enumeration {
             enemy.changePostion(other, ate_to_protect);
             somthing_killed = false;
         }
-        BC.setX(Oldp1.x);
-        BC.setY(Oldp1.y);
+        WC.setX(Oldp1.x);
+        WC.setY(Oldp1.y);
         return true;
     }
 
-    public boolean BishopGenerate_moves(player1 enemy, Bishop BE) {
+    public boolean BishopGenerate_moves(Player2 enemy, Bishop WE) {
         boolean somthing_killed = false;
         Point Oldp1 = new Point();
         Point PlaceCheck = new Point();
 
-        Oldp1 = BE.returnPostion();
+        Oldp1 = WE.returnPostion();
 
-        if (BE == BE1) {
-            inHand = 5;
+        if (WE == WE1) {
+            inHand = 21;
         } else {
-            inHand = 6;
+            inHand = 22;
         }
 
         if (Oldp1.x != 20) {
             for (int x = Oldp1.x, y = Oldp1.y; x >= 1 && y <= 8; x--, y++) {
 
-                BE.setX(x);
-                BE.setY(y);
+                WE.setX(x);
+                WE.setY(y);
                 PlaceCheck.x = x;
                 PlaceCheck.y = y;
                 if (Check_The_Way_to_Postion(enemy, Oldp1)) {
@@ -1259,7 +1241,7 @@ public class player2 implements Enumeration {
                                 enemy.changePostion(other, ate_to_protect);
                                 somthing_killed = false;
                             }
-                            BE.setPoint(Oldp1);
+                            WE.setPoint(Oldp1);
                             return false;
                         }
                     }
@@ -1277,8 +1259,8 @@ public class player2 implements Enumeration {
             }
             for (int x = Oldp1.x, y = Oldp1.y; y >= 1 && x <= 8; x++, y--) {
 
-                BE.setX(x);
-                BE.setY(y);
+                WE.setX(x);
+                WE.setY(y);
                 PlaceCheck.x = x;
                 PlaceCheck.y = y;
                 if (Check_The_Way_to_Postion(enemy, Oldp1)) {
@@ -1291,7 +1273,7 @@ public class player2 implements Enumeration {
                                 enemy.changePostion(other, ate_to_protect);
                                 somthing_killed = false;
                             }
-                            BE.setPoint(Oldp1);
+                            WE.setPoint(Oldp1);
                             return false;
                         }
                     }
@@ -1303,11 +1285,11 @@ public class player2 implements Enumeration {
                 }
 
             }
-            BE.setPoint(Oldp1);
+            WE.setPoint(Oldp1);
 
         }
 
-        BE.setPoint(Oldp1);
+        WE.setPoint(Oldp1);
 
         if (somthing_killed) {
             enemy.changePostion(other, ate_to_protect);
@@ -1317,17 +1299,17 @@ public class player2 implements Enumeration {
         return true;
     }
 
-    public boolean HosreGenerate_moves(player1 enemy, Horse BH) {
+    public boolean HosreGenerate_moves(Player2 enemy, Horse WH) {
         Point oldp1 = new Point();
         boolean somthing_killed = false;
-        oldp1 = BH.returnPostion();
+        oldp1 = WH.returnPostion();
 
         Point PlaceCheck = new Point();
 
-        if (BH == BH1) {
-            inHand = 3;
+        if (WH == WH1) {
+            inHand = 19;
         } else {
-            inHand = 4;
+            inHand = 20;
         }
 
         int x = oldp1.x;
@@ -1336,8 +1318,8 @@ public class player2 implements Enumeration {
         if (x != 20) {
 
             if (x + 1 <= 8 && y + 1 <= 8) {
-                BH.setX(x + 1);
-                BH.setY(y + 2);
+                WH.setX(x + 1);
+                WH.setY(y + 2);
                 PlaceCheck.x = x + 1;
                 PlaceCheck.y = y + 2;
 
@@ -1347,7 +1329,7 @@ public class player2 implements Enumeration {
 
                 if (Pice_already_there(PlaceCheck)) {
                     if (!see_king_Check(enemy)) {
-                        BH.setPoint(oldp1);
+                        WH.setPoint(oldp1);
 
                         if (somthing_killed) {
                             enemy.changePostion(other, ate_to_protect);
@@ -1364,8 +1346,8 @@ public class player2 implements Enumeration {
             }
 
             if (x + 1 <= 8 && y - 2 >= 1) {
-                BH.setX(x + 1);
-                BH.setY(y - 2);
+                WH.setX(x + 1);
+                WH.setY(y - 2);
                 PlaceCheck.x = x + 1;
                 PlaceCheck.y = y - 2;
                 if (kill_to_protect_king(enemy, returnPostion(inHand))) {
@@ -1378,7 +1360,7 @@ public class player2 implements Enumeration {
                             enemy.changePostion(other, ate_to_protect);
                             somthing_killed = false;
                         }
-                        BH.setPoint(oldp1);
+                        WH.setPoint(oldp1);
                         return false;
                     }
                 }
@@ -1389,8 +1371,8 @@ public class player2 implements Enumeration {
             }
 
             if (x + 2 <= 8 && y + 1 <= 8) {
-                BH.setX(x + 2);
-                BH.setY(y + 1);
+                WH.setX(x + 2);
+                WH.setY(y + 1);
                 PlaceCheck.x = x + 2;
                 PlaceCheck.y = y + 1;
 
@@ -1404,7 +1386,7 @@ public class player2 implements Enumeration {
                             enemy.changePostion(other, ate_to_protect);
                             somthing_killed = false;
                         }
-                        BH.setPoint(oldp1);
+                        WH.setPoint(oldp1);
                         return false;
                     }
                 }
@@ -1415,8 +1397,8 @@ public class player2 implements Enumeration {
                 somthing_killed = false;
             }
             if (x + 2 <= 8 && y - 1 >= 1) {
-                BH.setX(x + 2);
-                BH.setY(y - 1);
+                WH.setX(x + 2);
+                WH.setY(y - 1);
                 PlaceCheck.x = x + 2;
                 PlaceCheck.y = y - 1;
                 if (kill_to_protect_king(enemy, returnPostion(inHand))) {
@@ -1429,7 +1411,7 @@ public class player2 implements Enumeration {
                             enemy.changePostion(other, ate_to_protect);
                             somthing_killed = false;
                         }
-                        BH.setPoint(oldp1);
+                        WH.setPoint(oldp1);
                         return false;
                     }
                 }
@@ -1440,8 +1422,8 @@ public class player2 implements Enumeration {
             }
 
             if (x - 1 >= 1 && y + 2 <= 8) {
-                BH.setX(x - 1);
-                BH.setY(y + 2);
+                WH.setX(x - 1);
+                WH.setY(y + 2);
                 PlaceCheck.x = x - 1;
                 PlaceCheck.y = y + 2;
 
@@ -1455,7 +1437,7 @@ public class player2 implements Enumeration {
                             enemy.changePostion(other, ate_to_protect);
                             somthing_killed = false;
                         }
-                        BH.setPoint(oldp1);
+                        WH.setPoint(oldp1);
                         return false;
                     }
                 }
@@ -1466,8 +1448,8 @@ public class player2 implements Enumeration {
             }
 
             if (x - 1 >= 1 && y - 2 >= 1) {
-                BH.setX(x - 1);
-                BH.setY(y - 2);
+                WH.setX(x - 1);
+                WH.setY(y - 2);
                 PlaceCheck.x = x - 1;
                 PlaceCheck.y = y - 2;
                 if (kill_to_protect_king(enemy, returnPostion(inHand))) {
@@ -1480,7 +1462,7 @@ public class player2 implements Enumeration {
                             enemy.changePostion(other, ate_to_protect);
                             somthing_killed = false;
                         }
-                        BH.setPoint(oldp1);
+                        WH.setPoint(oldp1);
                         return false;
                     }
                 }
@@ -1491,8 +1473,8 @@ public class player2 implements Enumeration {
             }
 
             if (x - 2 >= 1 && y + 1 <= 8) {
-                BH.setX(x - 2);
-                BH.setY(y + 1);
+                WH.setX(x - 2);
+                WH.setY(y + 1);
                 PlaceCheck.x = x - 2;
                 PlaceCheck.y = y + 1;
 
@@ -1505,7 +1487,7 @@ public class player2 implements Enumeration {
                             enemy.changePostion(other, ate_to_protect);
                             somthing_killed = false;
                         }
-                        BH.setPoint(oldp1);
+                        WH.setPoint(oldp1);
                         return false;
                     }
                 }
@@ -1517,8 +1499,8 @@ public class player2 implements Enumeration {
             }
 
             if (x - 2 >= 1 && y - 1 >= 1) {
-                BH.setX(x - 2);
-                BH.setY(y - 1);
+                WH.setX(x - 2);
+                WH.setY(y - 1);
                 PlaceCheck.x = x - 2;
                 PlaceCheck.y = y - 1;
 
@@ -1532,7 +1514,7 @@ public class player2 implements Enumeration {
                             enemy.changePostion(other, ate_to_protect);
                             somthing_killed = false;
                         }
-                        BH.setPoint(oldp1);
+                        WH.setPoint(oldp1);
                         return false;
                     }
                 }
@@ -1543,27 +1525,27 @@ public class player2 implements Enumeration {
             }
 
         }
-        BH.setPoint(oldp1);
+        WH.setPoint(oldp1);
 
         return true;
     }
 
-    public boolean QueenGenerate_moves(player1 enemy) {
+    public boolean QueenGenerate_moves(Player2 enemy) {
         boolean somthing_killed = false;
 
         Point Oldp1 = new Point();
 
-        Oldp1 = BQ.returnPostion();
+        Oldp1 = WQ.returnPostion();
 
         Point PlaceCheck = new Point();
 
-        inHand = 7;
+        inHand = 23;
 
         if (Oldp1.x != 20) {
             for (int x = Oldp1.x, y = Oldp1.y; x >= 1 && y <= 8; x--, y++) {
 
-                BQ.setX(x);
-                BQ.setY(y);
+                WQ.setX(x);
+                WQ.setY(y);
                 PlaceCheck.x = x;
                 PlaceCheck.y = y;
                 if (Check_The_Way_to_Postion(enemy, Oldp1)) {
@@ -1573,7 +1555,7 @@ public class player2 implements Enumeration {
 
                     if (Pice_already_there(PlaceCheck)) {
                         if (!see_king_Check(enemy)) {
-                            BQ.setPoint(Oldp1);
+                            WQ.setPoint(Oldp1);
 
                             if (somthing_killed) {
                                 enemy.changePostion(other, ate_to_protect);
@@ -1596,8 +1578,8 @@ public class player2 implements Enumeration {
             }
             for (int x = Oldp1.x, y = Oldp1.y; y >= 1 && x <= 8; x++, y--) {
 
-                BQ.setX(x);
-                BQ.setY(y);
+                WQ.setX(x);
+                WQ.setY(y);
                 PlaceCheck.x = x;
                 PlaceCheck.y = y;
                 if (Check_The_Way_to_Postion(enemy, Oldp1)) {
@@ -1606,7 +1588,7 @@ public class player2 implements Enumeration {
                     }
                     if (Pice_already_there(PlaceCheck)) {
                         if (!see_king_Check(enemy)) {
-                            BQ.setPoint(Oldp1);
+                            WQ.setPoint(Oldp1);
                             if (somthing_killed) {
                                 enemy.changePostion(other, ate_to_protect);
                                 somthing_killed = false;
@@ -1622,7 +1604,7 @@ public class player2 implements Enumeration {
                 }
 
             }
-            BQ.setPoint(Oldp1);
+            WQ.setPoint(Oldp1);
             PlaceCheck.x = Oldp1.x;
             PlaceCheck.y = Oldp1.y;
 
@@ -1632,7 +1614,7 @@ public class player2 implements Enumeration {
             }
 
             for (int i = 1; i <= 8; i++) {
-                BQ.setX(i);
+                WQ.setX(i);
 
                 PlaceCheck.x = i;
                 if (Check_The_Way_to_Postion(enemy, Oldp1)) {
@@ -1641,7 +1623,7 @@ public class player2 implements Enumeration {
                     }
                     if (Pice_already_there(PlaceCheck)) {
                         if (!see_king_Check(enemy)) {
-                            BQ.setX(Oldp1.x);
+                            WQ.setX(Oldp1.x);
                             if (somthing_killed) {
                                 enemy.changePostion(other, ate_to_protect);
                                 somthing_killed = false;
@@ -1657,7 +1639,7 @@ public class player2 implements Enumeration {
                 }
 
             }
-            BQ.setX(Oldp1.x);
+            WQ.setX(Oldp1.x);
             PlaceCheck.x = Oldp1.x;
 
             if (somthing_killed) {
@@ -1666,7 +1648,7 @@ public class player2 implements Enumeration {
             }
 
             for (int i = 1; i <= 8; i++) {
-                BQ.setY(i);
+                WQ.setY(i);
                 PlaceCheck.y = i;
                 if (Check_The_Way_to_Postion(enemy, Oldp1)) {
                     if (kill_to_protect_king(enemy, returnPostion(inHand))) {
@@ -1674,7 +1656,7 @@ public class player2 implements Enumeration {
                     }
                     if (Pice_already_there(PlaceCheck)) {
                         if (!see_king_Check(enemy)) {
-                            BQ.setY(Oldp1.y);
+                            WQ.setY(Oldp1.y);
                             if (somthing_killed) {
                                 enemy.changePostion(other, ate_to_protect);
                                 somthing_killed = false;
@@ -1690,7 +1672,7 @@ public class player2 implements Enumeration {
                 }
 
             }
-            BQ.setY(Oldp1.y);
+            WQ.setY(Oldp1.y);
         }
 
         if (somthing_killed) {
@@ -1702,7 +1684,7 @@ public class player2 implements Enumeration {
 
     }
 
-    public boolean SoliderGenerate_moves(player1 enemy, Pawn Sold) {
+    public boolean SoliderGenerate_moves(Player2 enemy, Pawn Sold) {
         Point Oldp1 = new Point();
         Oldp1 = Sold.returnPostion();
         Point PlaceCheck = new Point();
@@ -1710,10 +1692,10 @@ public class player2 implements Enumeration {
         PlaceCheck.y = Oldp1.y;
 
         if (Oldp1.x != 20) {
-            if (Sold.Canmove(Oldp1.x, Oldp1.y + 2, Color) && Oldp1.y + 2 >= 1) {
-                Sold.setY(Oldp1.y + 2);
+            if (Sold.Canmove(Oldp1.x, Oldp1.y - 2, Color) && Oldp1.y - 2 >= 1) {
+                Sold.setY(Oldp1.y - 2);
 
-                PlaceCheck.y = Oldp1.y + 2;
+                PlaceCheck.y = Oldp1.y - 1;
 
                 if (Pice_already_there(PlaceCheck)) {
                     if (Pice_already_there_from_enemy(PlaceCheck, enemy)) {
@@ -1726,23 +1708,26 @@ public class player2 implements Enumeration {
                 }
 
             }
-            if (Sold.Canmove(Oldp1.x, Oldp1.y + 1, Color) && Oldp1.y + 1 >= 1) {
-                Sold.setY(Oldp1.y + 1);
-                PlaceCheck.y = Oldp1.y + 1;
+            if (Sold.Canmove(Oldp1.x, Oldp1.y - 1, Color) && Oldp1.y - 1 >= 1) {
+                Sold.setY(Oldp1.y - 1);
+                PlaceCheck.y = Oldp1.y - 1;
 
                 if (Pice_already_there(PlaceCheck)) {
                     if (Pice_already_there_from_enemy(PlaceCheck, enemy)) {
+
                         if (!see_king_Check(enemy)) {
                             Sold.setPoint(Oldp1);
-
+                            System.out.println("dff");
+                            System.out.println("dff");
+                            System.out.println("dff");
                             return false;
                         }
                     }
                 }
             }
 
-            if (Pice_already_there_from_enemy(new Point(Oldp1.x - 1, Oldp1.y + 1), enemy)) {
-                if (kill_to_protect_king(enemy, new Point(Oldp1.x - 1, Oldp1.y + 1))) {
+            if (!Pice_already_there_from_enemy(new Point(Oldp1.x - 1, Oldp1.y - 1), enemy)) {
+                if (kill_to_protect_king(enemy, new Point(Oldp1.x - 1, Oldp1.y - 1))) {
 
                     if (!see_king_Check(enemy)) {
                         enemy.changePostion(other, ate_to_protect);
@@ -1754,8 +1739,8 @@ public class player2 implements Enumeration {
                 }
             }
 
-            if (!Pice_already_there_from_enemy(new Point(Oldp1.x + 1, Oldp1.y + 1), enemy)) {
-                if (kill_to_protect_king(enemy, new Point(Oldp1.x + 1, Oldp1.y + 1))) {
+            if (!Pice_already_there_from_enemy(new Point(Oldp1.x + 1, Oldp1.y - 1), enemy)) {
+                if (kill_to_protect_king(enemy, new Point(Oldp1.x + 1, Oldp1.y - 1))) {
                     if (!see_king_Check(enemy)) {
                         enemy.changePostion(other, ate_to_protect);
                         Sold.setPoint(Oldp1);
@@ -1773,7 +1758,7 @@ public class player2 implements Enumeration {
         return true;
     }
 
-    public boolean Check_The_Way_to_Postion(player1 enemy, Point newP) {
+    public boolean Check_The_Way_to_Postion(Player2 enemy, Point newP) {
         boolean flag = false;
 
         for (int i = 1; i <= 32; i++) {
@@ -1781,7 +1766,6 @@ public class player2 implements Enumeration {
             {
                 if (i < 17) {
                     flag = checktheWay(newP, enemy.returnPostion(i), inHand);// Means there is somting in the Way so
-                                                                             // can't move
                 } else {
                     flag = checktheWay(newP, returnPostion(i), inHand);
                 }
@@ -1795,9 +1779,9 @@ public class player2 implements Enumeration {
 
     }
 
-    public boolean kill_to_protect_king(player1 enemy, Point newP) {
+    public boolean kill_to_protect_king(Player2 enemy, Point newP) {
 
-        for (int i = 17; i <= 32; i++) {
+        for (int i = 1; i < 17; i++) {
 
             other = enemy.returnPostion(i);
             if (other.x == newP.x && other.y == newP.y) {
@@ -1811,53 +1795,44 @@ public class player2 implements Enumeration {
         return false;
     }
 
-    public boolean hasMoreElements() {
-        return false;
-    }
-
-    public Object nextElement() {
-
-        return new Object();
-    }
-
     public String Tell_me_About_last_move() {
         switch (inHand) {
-        case 1:
-            return BC1.Tell_me();
-        case 2:
-            return BC2.Tell_me();
-        case 3:
-            return BH1.Tell_me();
-        case 4:
-            return BH2.Tell_me();
-        case 5:
-            return BE1.Tell_me();
-        case 6:
-            return BE2.Tell_me();
-        case 7:
-            return BQ.Tell_me();
-        case 8:
-            return BK.Tell_me();
-        case 9:
-            return BS[0].Tell_me();
-        case 10:
-            return BS[1].Tell_me();
-        case 11:
-            return BS[2].Tell_me();
-        case 12:
-            return BS[3].Tell_me();
-        case 13:
-            return BS[4].Tell_me();
-        case 14:
-            return BS[5].Tell_me();
-        case 15:
-            return BS[6].Tell_me();
-        case 16:
-            return BS[7].Tell_me();
+
+        case 17:
+            return WC1.Tell_me();
+        case 18:
+            return WC2.Tell_me();
+        case 19:
+            return WH1.Tell_me();
+        case 20:
+            return WH2.Tell_me();
+        case 21:
+            return WE1.Tell_me();
+        case 22:
+            return WE2.Tell_me();
+        case 23:
+            return WQ.Tell_me();
+        case 24:
+            return WK.Tell_me();
+        case 25:
+            return WS[0].Tell_me();
+        case 26:
+            return WS[1].Tell_me();
+        case 27:
+            return WS[2].Tell_me();
+        case 28:
+            return WS[3].Tell_me();
+        case 29:
+            return WS[4].Tell_me();
+        case 30:
+            return WS[5].Tell_me();
+        case 31:
+            return WS[6].Tell_me();
+        case 32:
+            return WS[7].Tell_me();
         default:
             break;
         }
         return null;
     }
-
 }

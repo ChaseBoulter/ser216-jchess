@@ -1,5 +1,5 @@
 
-package mainframe.chessframe.players.pieces;
+package pieces;
 
 import java.awt.Image;
 import java.awt.Toolkit;
