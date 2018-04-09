@@ -2,11 +2,6 @@
 package players;
 
 import pieces.*;
-//import MainFrame.ChessFrame.players.Pieces.Bishop;
-//import MainFrame.ChessFrame.players.Pieces.Horse;
-//import MainFrame.ChessFrame.players.Pieces.Queen;
-//import MainFrame.ChessFrame.players.Pieces.Solider;
-//import MainFrame.ChessFrame.players.Pieces.king;
 import java.awt.Image;
 import java.awt.Point;
 import java.util.Enumeration;
