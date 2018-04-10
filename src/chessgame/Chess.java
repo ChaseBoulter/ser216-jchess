@@ -1,3 +1,6 @@
+/**
+ * entry point for Chess.
+ */
 package chessgame;
 
 import mainframe.chessframe.MainFrame;
