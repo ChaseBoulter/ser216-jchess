@@ -2,7 +2,7 @@
 package mainframe.chessframe;
 
 
-import mainframe.chessframe.threadtimer.ThreadTimer;
+import mainframe.chessframe.timer.ThreadTimer;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;

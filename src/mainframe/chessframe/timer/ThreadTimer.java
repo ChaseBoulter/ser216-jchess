@@ -1,5 +1,5 @@
 
-package mainframe.chessframe.threadtimer;
+package mainframe.chessframe.timer;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
