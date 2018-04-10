@@ -1,3 +1,5 @@
+//base template for players to extend from. There is no modularity for all the players.
+//What if they wanted 4 player chess? Etc.
 //package players;
 //
 //import java.awt.Image;
