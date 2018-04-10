@@ -8,10 +8,10 @@ public class PieceIcon {
     private Toolkit kit = Toolkit.getDefaultToolkit();
     private Image image;
 
-    public PieceIcon(String NameIcon) // throws IOException
-    {
+    //throws IO Exception?
+    public PieceIcon(String nameIcon) {
 
-        image = kit.getImage(NameIcon);
+        image = kit.getImage(nameIcon);
     }
 
     public Image returnPieceIcon() {

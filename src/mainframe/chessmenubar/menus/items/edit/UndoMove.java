@@ -1,18 +1,12 @@
-// package mainframe.chessmenubar.menus.items.edit;
+//package mainframe.chessmenubar.menus.items.edit;
 //
+//import javax.swing.JMenuItem;
 //
-// package MainFrame.ChessMenuBar.ChessBar_Menus.Menu_Items.Edit_MenuItems;
+//public class UndoMove extends JMenuItem {
 //
-// import javax.swing.JMenuItem;
+//    /** Creates a new instance of Undo_move */
+//    public Undo_move() {
+//        setText("Undo move");
+//    }
 //
-//
-// public class Undo_move extends JMenuItem
-// {
-//
-// /** Creates a new instance of Undo_move */
-// public Undo_move()
-// {
-// setText("Undo move");
-// }
-//
-// }
+//}

@@ -1,31 +1,23 @@
 
 package pieces;
 
-import java.awt.Image;
 import java.awt.Point;
-import java.io.IOException;
 
 public class Bishop extends Piece {
 
     /** Creates a new instance of Bishop. */
-    public Bishop(String NameIcon, int startX, int startY) {
-
-        pieceIcon = new PieceIcon(NameIcon);
-
-        X = startX;
-        Y = startY;
-        p.x = X;
-        p.y = Y;
+    public Bishop(String nameIcon, int startX, int startY) {
+        super(nameIcon, startX, startY);
     }
 
-    public boolean Canmove(int x, int y) {
+    public boolean canMove(int x, int y) {
 
         int j = y;
         int i = x;
 
-        if ((x - y) == (X - Y)) {
+        if ((x - y) == (nextX - nextY)) {
             return true;
-        } else if ((x + y) == (X + Y)) {
+        } else if ((x + y) == (nextX + nextY)) {
             return true;
 
         } else {
@@ -34,41 +26,39 @@ public class Bishop extends Piece {
 
     }
 
-    public boolean PieceInMYway(int x, int y, Point othersPostion) {
+    public boolean pieceInMyWay(int x, int y, Point othersPostion) {
 
         int j = y;
         int i = x;
 
-        if ((x - y) == (X - Y)) {
-            if (x > X && y > Y) {
-                while ((j != Y + 1) && (i != X + 1)) {
+        if ((x - y) == (nextX - nextY)) {
+            
+            if (x > nextX && y > nextY) {
+                while ((j != nextY + 1) && (i != nextX + 1)) {
                     j--;
                     i--;
-
                     if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
                         return true;
                     }
                 }
             }
 
-            else if (x < X && y < Y)
-
-                while ((j != Y - 1) && (i != X - 1)) {
+            else if (x < nextX && y < nextY) {
+                while ((j != nextY - 1) && (i != nextX - 1)) {
                     j++;
                     i++;
-
                     if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
                         return true;
                     }
-
                 }
+            }
         }
 
-        else if (((x + y)) == ((X + Y))) {
+        else if (((x + y)) == ((nextX + nextY))) {
 
-            if ((X < i) && (Y > j)) {
+            if ((nextX < i) && (nextY > j)) {
 
-                while (((j != Y - 1)) && ((i != X + 1))) {
+                while (((j != nextY - 1)) && ((i != nextX + 1))) {
                     j++;
                     i--;
 
@@ -81,8 +71,8 @@ public class Bishop extends Piece {
 
             }
 
-            else if ((X > i) && (Y < j)) {
-                while ((j != X + 1) && (i != X - 1)) {
+            else if ((nextX > i) && (nextY < j)) {
+                while ((j != nextX + 1) && (i != nextX - 1)) {
                     j--;
                     i++;
 
@@ -102,9 +92,9 @@ public class Bishop extends Piece {
         int j = y;
         int i = x;
 
-        if ((x - y) == (X - Y)) {
-            if (x > X && y > Y) {
-                while ((j != Y) && (i != X)) {
+        if ((x - y) == (nextX - nextY)) {
+            if (x > nextX && y > nextY) {
+                while ((j != nextY) && (i != nextX)) {
                     j--;
                     i--;
 
@@ -114,9 +104,9 @@ public class Bishop extends Piece {
                 }
             }
 
-            else if (x < X && y < Y)
+            else if (x < nextX && y < nextY)
 
-                while ((j != Y) && (i != X)) {
+                while ((j != nextY) && (i != nextX)) {
                     j++;
                     i++;
 
@@ -127,11 +117,11 @@ public class Bishop extends Piece {
                 }
         }
 
-        else if (((x + y)) == ((X + Y))) {
+        else if (((x + y)) == ((nextX + nextY))) {
 
-            if ((X < i) && (Y > j)) {
+            if ((nextX < i) && (nextY > j)) {
 
-                while (((j != Y)) && ((i != X))) {
+                while (((j != nextY)) && ((i != nextX))) {
                     j++;
                     i--;
 
@@ -144,8 +134,8 @@ public class Bishop extends Piece {
 
             }
 
-            else if ((X > i) && (Y < j)) {
-                while ((j != X) && (i != X)) {
+            else if ((nextX > i) && (nextY < j)) {
+                while ((j != nextX) && (i != nextX)) {
                     j--;
                     i++;
 
@@ -160,12 +150,12 @@ public class Bishop extends Piece {
         return false;
     }
 
-    public Point GeneratePossible_Moves() {
+    public Point generatePossibleMoves() {
         return new Point();
     }
 
-    public String Tell_me() {
-        return "Bishop= (" + p.x + ',' + p.y + ")";
+    public String tellMe() {
+        return "Bishop= (" + updatedPosition.x + ',' + updatedPosition.y + ")";
     }
 
 }

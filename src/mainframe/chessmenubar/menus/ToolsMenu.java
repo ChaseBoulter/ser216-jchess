@@ -1,21 +1,19 @@
-//package mainframe.chessmenubar.menus;
+// package mainframe.chessmenubar.menus;
 //
+// import javax.swing.JMenu;
 //
-//package MainFrame.ChessMenuBar.ChessBar_Menus;
+// import
+// MainFrame.ChessMenuBar.ChessBar_Menus.Menu_Items.Tool_MenuItems.Options;
 //
-//import javax.swing.JMenu;
+// public class Tools_Menu extends JMenu
+// {
 //
-//import MainFrame.ChessMenuBar.ChessBar_Menus.Menu_Items.Tool_MenuItems.Options;
+// /** Creates a new instance of Tools_Menu */
+// public Tools_Menu()
+// {
+// setText("Tools");
+// add(GameOptions);
+// }
 //
-//public class Tools_Menu extends JMenu
-//{
-//    
-//    /** Creates a new instance of Tools_Menu */
-//    public Tools_Menu()
-//    {
-//        setText("Tools");
-//        add(GameOptions);
-//    }
-//    
-//    private final Options GameOptions=new Options();
-//}
+// private final Options GameOptions=new Options();
+// }

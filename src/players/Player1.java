@@ -8,10 +8,10 @@ import java.awt.Point;
 public class Player1 {
 
     /** Creates a new instance of Player1 */
-    public Castle WC1;
-    public Castle WC2;
-    public Horse WH1;
-    public Horse WH2;
+    public Rook WC1;
+    public Rook WC2;
+    public Knight WH1;
+    public Knight WH2;
     public Queen WQ;
     public Bishop WE1;
     public Bishop WE2;
@@ -26,13 +26,13 @@ public class Player1 {
 
     public Player1() {
         String fileSeparator = new String(System.getProperty("file.separator"));
-        WC1 = new Castle("src" + fileSeparator + "Icons" + fileSeparator
+        WC1 = new Rook("src" + fileSeparator + "Icons" + fileSeparator
                 + "Player1Icons" + fileSeparator + "wr.gif", 8, 8);
-        WC2 = new Castle("src" + fileSeparator + "Icons" + fileSeparator
+        WC2 = new Rook("src" + fileSeparator + "Icons" + fileSeparator
                 + "Player1Icons" + fileSeparator + "wr.gif", 1, 8);
-        WH1 = new Horse("src" + fileSeparator + "Icons" + fileSeparator
+        WH1 = new Knight("src" + fileSeparator + "Icons" + fileSeparator
                 + "Player1Icons" + fileSeparator + "wn.gif", 2, 8);
-        WH2 = new Horse("src" + fileSeparator + "Icons" + fileSeparator
+        WH2 = new Knight("src" + fileSeparator + "Icons" + fileSeparator
                 + "Player1Icons" + fileSeparator + "wn.gif", 7, 8);
         WE1 = new Bishop("src" + fileSeparator + "Icons" + fileSeparator
                 + "Player1Icons" + fileSeparator + "wb.gif", 3, 8);
@@ -392,37 +392,37 @@ public class Player1 {
         switch (choosenOne) {
 
             case 17:
-                return WC1.Canmove(newP.x, newP.y);
+                return WC1.canMove(newP.x, newP.y);
             case 18:
-                return WC2.Canmove(newP.x, newP.y);
+                return WC2.canMove(newP.x, newP.y);
             case 19:
-                return WH1.Canmove(newP.x, newP.y);
+                return WH1.canMove(newP.x, newP.y);
             case 20:
-                return WH2.Canmove(newP.x, newP.y);
+                return WH2.canMove(newP.x, newP.y);
             case 21:
-                return WE1.Canmove(newP.x, newP.y);
+                return WE1.canMove(newP.x, newP.y);
             case 22:
-                return WE2.Canmove(newP.x, newP.y);
+                return WE2.canMove(newP.x, newP.y);
             case 23:
                 return WQ.Canmove(newP.x, newP.y);
             case 24:
-                return WK.Canmove(newP.x, newP.y);
+                return WK.canMove(newP.x, newP.y);
             case 25:
-                return WS[0].Canmove(newP.x, newP.y, Color);
+                return WS[0].canMove(newP.x, newP.y, Color);
             case 26:
-                return WS[1].Canmove(newP.x, newP.y, Color);
+                return WS[1].canMove(newP.x, newP.y, Color);
             case 27:
-                return WS[2].Canmove(newP.x, newP.y, Color);
+                return WS[2].canMove(newP.x, newP.y, Color);
             case 28:
-                return WS[3].Canmove(newP.x, newP.y, Color);
+                return WS[3].canMove(newP.x, newP.y, Color);
             case 29:
-                return WS[4].Canmove(newP.x, newP.y, Color);
+                return WS[4].canMove(newP.x, newP.y, Color);
             case 30:
-                return WS[5].Canmove(newP.x, newP.y, Color);
+                return WS[5].canMove(newP.x, newP.y, Color);
             case 31:
-                return WS[6].Canmove(newP.x, newP.y, Color);
+                return WS[6].canMove(newP.x, newP.y, Color);
             case 32:
-                return WS[7].Canmove(newP.x, newP.y, Color);
+                return WS[7].canMove(newP.x, newP.y, Color);
             default:
                 break;
         }
@@ -481,31 +481,31 @@ public class Player1 {
         switch (i) {
 
             case 17:
-                return WC1.PieceInMYway(newP.x, newP.y, postionFromOthers);
+                return WC1.pieceInMyWay(newP.x, newP.y, postionFromOthers);
             case 18:
-                return WC2.PieceInMYway(newP.x, newP.y, postionFromOthers);
+                return WC2.pieceInMyWay(newP.x, newP.y, postionFromOthers);
             case 21:
-                return WE1.PieceInMYway(newP.x, newP.y, postionFromOthers);
+                return WE1.pieceInMyWay(newP.x, newP.y, postionFromOthers);
             case 22:
-                return WE2.PieceInMYway(newP.x, newP.y, postionFromOthers);
+                return WE2.pieceInMyWay(newP.x, newP.y, postionFromOthers);
             case 23:
                 return WQ.PieceInMYway(newP.x, newP.y, postionFromOthers);
             case 25:
-                return WS[0].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);
+                return WS[0].pieceInMyWay(newP.x, newP.y, postionFromOthers, Color);
             case 26:
-                return WS[1].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);
+                return WS[1].pieceInMyWay(newP.x, newP.y, postionFromOthers, Color);
             case 27:
-                return WS[2].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);
+                return WS[2].pieceInMyWay(newP.x, newP.y, postionFromOthers, Color);
             case 28:
-                return WS[3].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);
+                return WS[3].pieceInMyWay(newP.x, newP.y, postionFromOthers, Color);
             case 29:
-                return WS[4].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);
+                return WS[4].pieceInMyWay(newP.x, newP.y, postionFromOthers, Color);
             case 30:
-                return WS[5].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);
+                return WS[5].pieceInMyWay(newP.x, newP.y, postionFromOthers, Color);
             case 31:
-                return WS[6].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);
+                return WS[6].pieceInMyWay(newP.x, newP.y, postionFromOthers, Color);
             case 32:
-                return WS[7].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);
+                return WS[7].pieceInMyWay(newP.x, newP.y, postionFromOthers, Color);
             default:
                 break;
 
@@ -579,9 +579,9 @@ public class Player1 {
             case 18:
                 return WC2.checkKing(p1.x, p1.y, p2);
             case 19:
-                return WH1.Canmove(p1.x, p1.y);
+                return WH1.canMove(p1.x, p1.y);
             case 20:
-                return WH2.Canmove(p1.x, p1.y);
+                return WH2.canMove(p1.x, p1.y);
             case 21:
                 return WE1.checkKing(p1.x, p1.y, p2);
             case 22:
@@ -590,21 +590,21 @@ public class Player1 {
                 return WQ.checkKing(p1.x, p1.y, p2);
 
             case 25:
-                return WS[0].Canmove(p1.x, p1.y, Color);
+                return WS[0].canMove(p1.x, p1.y, Color);
             case 26:
-                return WS[1].Canmove(p1.x, p1.y, Color);
+                return WS[1].canMove(p1.x, p1.y, Color);
             case 27:
-                return WS[2].Canmove(p1.x, p1.y, Color);
+                return WS[2].canMove(p1.x, p1.y, Color);
             case 28:
-                return WS[3].Canmove(p1.x, p1.y, Color);
+                return WS[3].canMove(p1.x, p1.y, Color);
             case 29:
-                return WS[4].Canmove(p1.x, p1.y, Color);
+                return WS[4].canMove(p1.x, p1.y, Color);
             case 30:
-                return WS[5].Canmove(p1.x, p1.y, Color);
+                return WS[5].canMove(p1.x, p1.y, Color);
             case 31:
-                return WS[6].Canmove(p1.x, p1.y, Color);
+                return WS[6].canMove(p1.x, p1.y, Color);
             case 32:
-                return WS[7].Canmove(p1.x, p1.y, Color);
+                return WS[7].canMove(p1.x, p1.y, Color);
         default:
             break;
         }
@@ -1051,7 +1051,7 @@ public class Player1 {
 
     }
 
-    public boolean CastleGenerate_moves(Player2 enemy, Castle WC) {
+    public boolean CastleGenerate_moves(Player2 enemy, Rook WC) {
         boolean somthing_killed = false;
         Point Oldp1 = new Point();
 
@@ -1237,7 +1237,7 @@ public class Player1 {
         return true;
     }
 
-    public boolean HosreGenerate_moves(Player2 enemy, Horse WH) {
+    public boolean HosreGenerate_moves(Player2 enemy, Knight WH) {
         Point oldp1 = new Point();
         boolean somthing_killed = false;
         oldp1 = WH.returnPostion();
@@ -1630,7 +1630,7 @@ public class Player1 {
         PlaceCheck.y = Oldp1.y;
 
         if (Oldp1.x != 20) {
-            if (Sold.Canmove(Oldp1.x, Oldp1.y - 2, Color) && Oldp1.y - 2 >= 1) {
+            if (Sold.canMove(Oldp1.x, Oldp1.y - 2, Color) && Oldp1.y - 2 >= 1) {
                 Sold.setY(Oldp1.y - 2);
 
                 PlaceCheck.y = Oldp1.y - 1;
@@ -1646,7 +1646,7 @@ public class Player1 {
                 }
 
             }
-            if (Sold.Canmove(Oldp1.x, Oldp1.y - 1, Color) && Oldp1.y - 1 >= 1) {
+            if (Sold.canMove(Oldp1.x, Oldp1.y - 1, Color) && Oldp1.y - 1 >= 1) {
                 Sold.setY(Oldp1.y - 1);
                 PlaceCheck.y = Oldp1.y - 1;
 
@@ -1737,37 +1737,37 @@ public class Player1 {
         switch (inHand) {
 
         case 17:
-            return WC1.Tell_me();
+            return WC1.tellMe();
         case 18:
-            return WC2.Tell_me();
+            return WC2.tellMe();
         case 19:
-            return WH1.Tell_me();
+            return WH1.tellMe();
         case 20:
-            return WH2.Tell_me();
+            return WH2.tellMe();
         case 21:
-            return WE1.Tell_me();
+            return WE1.tellMe();
         case 22:
-            return WE2.Tell_me();
+            return WE2.tellMe();
         case 23:
-            return WQ.Tell_me();
+            return WQ.tellMe();
         case 24:
-            return WK.Tell_me();
+            return WK.tellMe();
         case 25:
-            return WS[0].Tell_me();
+            return WS[0].tellMe();
         case 26:
-            return WS[1].Tell_me();
+            return WS[1].tellMe();
         case 27:
-            return WS[2].Tell_me();
+            return WS[2].tellMe();
         case 28:
-            return WS[3].Tell_me();
+            return WS[3].tellMe();
         case 29:
-            return WS[4].Tell_me();
+            return WS[4].tellMe();
         case 30:
-            return WS[5].Tell_me();
+            return WS[5].tellMe();
         case 31:
-            return WS[6].Tell_me();
+            return WS[6].tellMe();
         case 32:
-            return WS[7].Tell_me();
+            return WS[7].tellMe();
         default:
             break;
         }

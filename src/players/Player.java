@@ -1,5 +1,4 @@
-//base template for players to extend from. There is no modularity for all the players.
-//What if they wanted 4 player chess? Etc.
+//base template for players to extend from.There is no modularity for all the players.What if they wanted 4 player chess?Etc.
 //package players;
 //
 //import java.awt.Image;
@@ -8,10 +7,10 @@
 //import pieces.*;
 //
 //public class Player {
-//    public Castle WC1;
-//    public Castle WC2;
-//    public Horse WH1;
-//    public Horse WH2;
+//    public Rook WC1;
+//    public Rook WC2;
+//    public Knight WH1;
+//    public Knight WH2;
 //    public Queen WQ;
 //    public Bishop WE1;
 //    public Bishop WE2;
@@ -23,7 +22,6 @@
 //    public String Color = "white";
 //    private Point other;
 //    int ate_to_protect;
-//    
 //
 //    public Point returnposition(int i) {
 //
@@ -1031,7 +1029,7 @@
 //
 //    }
 //
-//    public boolean CastleGenerate_moves(Player enemy, Castle WC) {
+//    public boolean CastleGenerate_moves(Player enemy, Rook WC) {
 //        boolean somthing_killed = false;
 //        Point Oldp1 = new Point();
 //
@@ -1217,7 +1215,7 @@
 //        return true;
 //    }
 //
-//    public boolean HosreGenerate_moves(Player enemy, Horse WH) {
+//    public boolean HosreGenerate_moves(Player enemy, Knight WH) {
 //        Point oldp1 = new Point();
 //        boolean somthing_killed = false;
 //        oldp1 = WH.returnposition();
@@ -1679,20 +1677,21 @@
 //    public boolean Check_The_Way_to_position(Player enemy, Point newP) {
 //        boolean flag = false;
 //
-////        for (int i = 1; i <= 32; i++) {
-////            if (inHand != i)// check if there is peices in the WAY
-////            {
-////                if (i < 17) {
-////                    flag = checktheWay(newP, enemy.returnposition(i), inHand);// Means there is somting in the Way so
-////                } else {
-////                    flag = checktheWay(newP, returnposition(i), inHand);
-////                }
-////
-////                if (flag == true) {
-////                    return false;
-////                } // Means there is a Pice in the Way
-////            }
-////        }
+//        // for (int i = 1; i <= 32; i++) {
+//        // if (inHand != i)// check if there is peices in the WAY
+//        // {
+//        // if (i < 17) {
+//        // flag = checktheWay(newP, enemy.returnposition(i), inHand);// Means there is
+//        // somting in the Way so
+//        // } else {
+//        // flag = checktheWay(newP, returnposition(i), inHand);
+//        // }
+//        //
+//        // if (flag == true) {
+//        // return false;
+//        // } // Means there is a Pice in the Way
+//        // }
+//        // }
 //        return true;
 //
 //    }

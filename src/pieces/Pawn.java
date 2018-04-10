@@ -10,27 +10,22 @@ public class Pawn extends Piece {
     private boolean movedbefore = false;
 
     /** Creates a new instance of Pawn */
-    public Pawn(String NameIcon, int startX, int startY) {
-
-        pieceIcon = new PieceIcon(NameIcon);
-
-        X = startX;
-        Y = startY;
-        p.x = X;
-        p.y = Y;
+    public Pawn(String nameIcon, int startX, int startY) {
+        super(nameIcon, startX, startY);
     }
 
-    public boolean Canmove(int x, int y, String typeColor) {
+    public boolean canMove(int x, int y, String typeColor) {
 
         if ((typeColor.equals("black"))) {
-            if ((((y - 1 == Y) && (x == (X)))) /* &&!Check_Solider_Sees(x,y) */) {
+            if ((((y - 1 == nextY) && (x == (nextX)))) /* &&!Check_Solider_Sees(x,y) */) {
 
                 return true;
 
-            } else if ((((y - 2 == Y) && (x == (X)))) && !movedbefore) {
+            } else if ((((y - 2 == nextY) && (x == (nextX)))) && !movedbefore) {
 
                 return true;
-            } else if ((y - 1 == Y && x + 1 == (X) || (y - 1 == Y && x - 1 == (X))) && myseen) {
+            } else if ((y - 1 == nextY && x + 1 == (nextX)
+                    || (y - 1 == nextY && x - 1 == (nextX))) && myseen) {
                 return true;
             }
 
@@ -39,11 +34,11 @@ public class Pawn extends Piece {
         }
 
         else if (typeColor == "white") {
-            if (((y + 1 == Y) && (x == (X))) /* &&!Check_Solider_Sees(x,y) */) {
+            if (((y + 1 == nextY) && (x == (nextX))) /* &&!Check_Solider_Sees(x,y) */) {
                 return true;
-            } else if ((((y + 2 == Y) && (x == (X)))) && !movedbefore) {
+            } else if ((((y + 2 == nextY) && (x == (nextX)))) && !movedbefore) {
                 return true;
-            } else if ((y + 1 == Y && x + 1 == (X) || (y + 1 == Y && x - 1 == (X))) && myseen) {
+            } else if ((y + 1 == nextY && x + 1 == (nextX) || (y + 1 == nextY && x - 1 == (nextX))) && myseen) {
                 return true;
             }
 
@@ -54,8 +49,8 @@ public class Pawn extends Piece {
 
     }
 
-    public boolean PieceInMYway(int x, int y, Point othersPostion, String typeColor) {
-        if (Y - y == 2 || Y - y == -2) {
+    public boolean pieceInMyWay(int x, int y, Point othersPostion, String typeColor) {
+        if (nextY - y == 2 || nextY - y == -2) {
             if ((typeColor.equals("black"))) {
 
                 if ((((y - 1 == othersPostion.y) && (x == (othersPostion.x)))) && !movedbefore) {
@@ -78,13 +73,6 @@ public class Pawn extends Piece {
         return false;
     }
 
-    public void toOld(Point Old) {
-
-        p.x = Old.x;
-        p.y = Old.y;
-
-    }
-
     public void setMYseen(boolean newBoolean) {
         myseen = newBoolean;
     }
@@ -96,14 +84,16 @@ public class Pawn extends Piece {
     public boolean setSeenbychecking(Point newP, String Color) {
         myseen = false;
         if ((Color.equals("black"))) {
-            if ((newP.y - 1 == Y && newP.x + 1 == (X) || (newP.y - 1 == Y && newP.x - 1 == (X)))) {
+            if ((newP.y - 1 == nextY && newP.x + 1 == (nextX) 
+                    || (newP.y - 1 == nextY && newP.x - 1 == (nextX)))) {
 
                 myseen = true;
                 return true;
             } else
                 return false;
         } else if (Color.equals("white")) {
-            if ((newP.y + 1 == Y && newP.x + 1 == (X) || (newP.y + 1 == Y && newP.x - 1 == (X)))) {
+            if ((newP.y + 1 == nextY && newP.x + 1 == (nextX)
+                    || (newP.y + 1 == nextY && newP.x - 1 == (nextX)))) {
                 myseen = true;
 
                 return true;
@@ -113,12 +103,12 @@ public class Pawn extends Piece {
         return false;
     }
 
-    public Point GeneratePossible_Moves() {
+    public Point generatePossibleMoves() {
         return new Point();
     }
 
-    public String Tell_me() {
-        return "Soldier= (" + p.x + ',' + p.y + ")";
+    public String tellMe() {
+        return "Pawn= (" + updatedPosition.x + ',' + updatedPosition.y + ")";
     }
 
 }

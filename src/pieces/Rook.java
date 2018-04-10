@@ -1,26 +1,19 @@
 
 package pieces;
 
-import java.awt.Image;
 import java.awt.Point;
-import java.io.IOException;
 
-public class Castle extends Piece {
+public class Rook extends Piece {
 
-    public Castle(String NameIcon, int startX, int startY) {
+    public Rook(String nameIcon, int startX, int startY) {
 
-        pieceIcon = new PieceIcon(NameIcon);
-
-        X = startX;
-        Y = startY;
-        p.x = X;
-        p.y = Y;
+        super(nameIcon, startX, startY);
     }
 
-    public boolean Canmove(int x, int y) {
-        if (((y == Y) && (x > (X) || (x < (X))))) {
+    public boolean canMove(int x, int y) {
+        if (((y == nextY) && (x > (nextX) || (x < (nextX))))) {
             return true;
-        } else if ((((y > Y) || (y < Y)) && (x == (X)))) {
+        } else if ((((y > nextY) || (y < nextY)) && (x == (nextX)))) {
             return true;
         } else {
 
@@ -29,14 +22,14 @@ public class Castle extends Piece {
 
     }
 
-    public boolean PieceInMYway(int x, int y, Point othersPostion) {
+    public boolean pieceInMyWay(int x, int y, Point othersPostion) {
         int j = y;
         int i = x;
-        if (((y == Y) && (x > (X) || (x < (X))))) {
+        if (((y == nextY) && (x > (nextX) || (x < (nextX))))) {
 
-            if ((X < i))
+            if ((nextX < i))
 
-                while ((i != X + 1)) {
+                while ((i != nextX + 1)) {
                     i--;
                     if (((othersPostion.y) == j) && ((othersPostion.x == i)))// there Same Color piece
                     {
@@ -44,24 +37,24 @@ public class Castle extends Piece {
                     }
                 }
 
-            else if ((X > i)) {
-                while ((i != X - 1)) {
+            else if ((nextX > i)) {
+                while ((i != nextX - 1)) {
                     i++;
                     if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
                         return true;
                     }
                 }
             }
-        } else if ((((y > Y) || (y < Y)) && (x == (X)))) {
-            if ((Y < j)) {
-                while ((j != Y + 1)) {
+        } else if ((((y > nextY) || (y < nextY)) && (x == (nextX)))) {
+            if ((nextY < j)) {
+                while ((j != nextY + 1)) {
                     j--;
                     if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
                         return true;
                     }
                 }
-            } else if ((Y > j)) {
-                while ((j != Y - 1)) {
+            } else if ((nextY > j)) {
+                while ((j != nextY - 1)) {
                     j++;
 
                     if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
@@ -78,11 +71,11 @@ public class Castle extends Piece {
     public boolean checkKing(int x, int y, Point othersPostion) {
         int j = y;
         int i = x;
-        if (((y == Y) && (x > (X) || (x < (X))))) {
+        if (((y == nextY) && (x > (nextX) || (x < (nextX))))) {
 
-            if ((X < i))
+            if ((nextX < i))
 
-                while ((i != X)) {
+                while ((i != nextX)) {
                     i--;
                     if (((othersPostion.y) == j) && ((othersPostion.x == i)))// there Same Color piece
                     {
@@ -90,24 +83,24 @@ public class Castle extends Piece {
                     }
                 }
 
-            else if ((X > i)) {
-                while ((i != X)) {
+            else if ((nextX > i)) {
+                while ((i != nextX)) {
                     i++;
                     if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
                         return true;
                     }
                 }
             }
-        } else if ((((y > Y) || (y < Y)) && (x == (X)))) {
-            if ((Y < j)) {
-                while ((j != Y)) {
+        } else if ((((y > nextY) || (y < nextY)) && (x == (nextX)))) {
+            if ((nextY < j)) {
+                while ((j != nextY)) {
                     j--;
                     if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
                         return true;
                     }
                 }
-            } else if ((Y > j)) {
-                while ((j != Y)) {
+            } else if ((nextY > j)) {
+                while ((j != nextY)) {
                     j++;
 
                     if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
@@ -121,11 +114,11 @@ public class Castle extends Piece {
 
     }
 
-    public Point GeneratePossible_Moves() {
+    public Point generatePossibleMoves() {
         return new Point();
     }
 
-    public String Tell_me() {
-        return "Castle= (" + p.x + ',' + p.y + ")";
+    public String tellMe() {
+        return "Rook= (" + updatedPosition.x + ',' + updatedPosition.y + ")";
     }
 }

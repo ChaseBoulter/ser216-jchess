@@ -7,10 +7,10 @@ import java.awt.Point;
 import java.util.Enumeration;
 
 public class Player2 implements Enumeration {
-    public Castle BC1;
-    public Castle BC2;
-    public Horse BH1;
-    public Horse BH2;
+    public Rook BC1;
+    public Rook BC2;
+    public Knight BH1;
+    public Knight BH2;
     public Bishop BE1;
     public Bishop BE2;
     public Queen BQ;
@@ -27,13 +27,13 @@ public class Player2 implements Enumeration {
     /** Creates a new instance of Player2 */
     public Player2() {
         String fileSeparator = new String(System.getProperty("file.separator"));
-        BC1 = new Castle("src" + fileSeparator + "Icons" + fileSeparator + "Player2Icons" + fileSeparator + "br.gif", 1,
+        BC1 = new Rook("src" + fileSeparator + "Icons" + fileSeparator + "Player2Icons" + fileSeparator + "br.gif", 1,
                 1);
-        BC2 = new Castle("src" + fileSeparator + "Icons" + fileSeparator + "Player2Icons" + fileSeparator + "br.gif", 8,
+        BC2 = new Rook("src" + fileSeparator + "Icons" + fileSeparator + "Player2Icons" + fileSeparator + "br.gif", 8,
                 1);
-        BH1 = new Horse("src" + fileSeparator + "Icons" + fileSeparator + "Player2Icons" + fileSeparator + "bn.gif", 2,
+        BH1 = new Knight("src" + fileSeparator + "Icons" + fileSeparator + "Player2Icons" + fileSeparator + "bn.gif", 2,
                 1);
-        BH2 = new Horse("src" + fileSeparator + "Icons" + fileSeparator + "Player2Icons" + fileSeparator + "bn.gif", 7,
+        BH2 = new Knight("src" + fileSeparator + "Icons" + fileSeparator + "Player2Icons" + fileSeparator + "bn.gif", 7,
                 1);
         BE1 = new Bishop("src" + fileSeparator + "Icons" + fileSeparator + "Player2Icons" + fileSeparator + "bb.gif",
                 3, 1);
@@ -512,37 +512,37 @@ public class Player2 implements Enumeration {
         switch (choosenOne) {
 
         case 1:
-            return BC1.Canmove(newP.x, newP.y);
+            return BC1.canMove(newP.x, newP.y);
         case 2:
-            return BC2.Canmove(newP.x, newP.y);
+            return BC2.canMove(newP.x, newP.y);
         case 3:
-            return BH1.Canmove(newP.x, newP.y);
+            return BH1.canMove(newP.x, newP.y);
         case 4:
-            return BH2.Canmove(newP.x, newP.y);
+            return BH2.canMove(newP.x, newP.y);
         case 5:
-            return BE1.Canmove(newP.x, newP.y);
+            return BE1.canMove(newP.x, newP.y);
         case 6:
-            return BE2.Canmove(newP.x, newP.y);
+            return BE2.canMove(newP.x, newP.y);
         case 7:
             return BQ.Canmove(newP.x, newP.y);
         case 8:
-            return BK.Canmove(newP.x, newP.y);
+            return BK.canMove(newP.x, newP.y);
         case 9:
-            return BS[0].Canmove(newP.x, newP.y, Color);
+            return BS[0].canMove(newP.x, newP.y, Color);
         case 10:
-            return BS[1].Canmove(newP.x, newP.y, Color);
+            return BS[1].canMove(newP.x, newP.y, Color);
         case 11:
-            return BS[2].Canmove(newP.x, newP.y, Color);
+            return BS[2].canMove(newP.x, newP.y, Color);
         case 12:
-            return BS[3].Canmove(newP.x, newP.y, Color);
+            return BS[3].canMove(newP.x, newP.y, Color);
         case 13:
-            return BS[4].Canmove(newP.x, newP.y, Color);
+            return BS[4].canMove(newP.x, newP.y, Color);
         case 14:
-            return BS[5].Canmove(newP.x, newP.y, Color);
+            return BS[5].canMove(newP.x, newP.y, Color);
         case 15:
-            return BS[6].Canmove(newP.x, newP.y, Color);
+            return BS[6].canMove(newP.x, newP.y, Color);
         case 16:
-            return BS[7].Canmove(newP.x, newP.y, Color);
+            return BS[7].canMove(newP.x, newP.y, Color);
         default:
             break;
         }
@@ -603,31 +603,31 @@ public class Player2 implements Enumeration {
     public boolean checktheWay(Point newP, Point postionFromOthers, int i) {
         switch (i) {
         case 1:
-            return BC1.PieceInMYway(newP.x, newP.y, postionFromOthers);
+            return BC1.pieceInMyWay(newP.x, newP.y, postionFromOthers);
         case 2:
-            return BC2.PieceInMYway(newP.x, newP.y, postionFromOthers);
+            return BC2.pieceInMyWay(newP.x, newP.y, postionFromOthers);
         case 5:
-            return BE1.PieceInMYway(newP.x, newP.y, postionFromOthers);
+            return BE1.pieceInMyWay(newP.x, newP.y, postionFromOthers);
         case 6:
-            return BE2.PieceInMYway(newP.x, newP.y, postionFromOthers);
+            return BE2.pieceInMyWay(newP.x, newP.y, postionFromOthers);
         case 7:
             return BQ.PieceInMYway(newP.x, newP.y, postionFromOthers);
         case 9:
-            return BS[0].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);
+            return BS[0].pieceInMyWay(newP.x, newP.y, postionFromOthers, Color);
         case 10:
-            return BS[1].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);
+            return BS[1].pieceInMyWay(newP.x, newP.y, postionFromOthers, Color);
         case 11:
-            return BS[2].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);
+            return BS[2].pieceInMyWay(newP.x, newP.y, postionFromOthers, Color);
         case 12:
-            return BS[3].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);
+            return BS[3].pieceInMyWay(newP.x, newP.y, postionFromOthers, Color);
         case 13:
-            return BS[4].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);
+            return BS[4].pieceInMyWay(newP.x, newP.y, postionFromOthers, Color);
         case 14:
-            return BS[5].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);
+            return BS[5].pieceInMyWay(newP.x, newP.y, postionFromOthers, Color);
         case 15:
-            return BS[6].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);
+            return BS[6].pieceInMyWay(newP.x, newP.y, postionFromOthers, Color);
         case 16: {
-            return BS[7].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);
+            return BS[7].pieceInMyWay(newP.x, newP.y, postionFromOthers, Color);
         }
         default:
             break;
@@ -644,9 +644,9 @@ public class Player2 implements Enumeration {
         case 2:
             return BC2.checkKing(p1.x, p1.y, p2);
         case 3:
-            return BH1.Canmove(p1.x, p1.y);
+            return BH1.canMove(p1.x, p1.y);
         case 4:
-            return BH2.Canmove(p1.x, p1.y);
+            return BH2.canMove(p1.x, p1.y);
         case 5:
             return BE1.checkKing(p1.x, p1.y, p2);
         case 6:
@@ -655,21 +655,21 @@ public class Player2 implements Enumeration {
             return BQ.checkKing(p1.x, p1.y, p2);
 
         case 9:
-            return BS[0].Canmove(p1.x, p1.y, Color);
+            return BS[0].canMove(p1.x, p1.y, Color);
         case 10:
-            return BS[1].Canmove(p1.x, p1.y, Color);
+            return BS[1].canMove(p1.x, p1.y, Color);
         case 11:
-            return BS[2].Canmove(p1.x, p1.y, Color);
+            return BS[2].canMove(p1.x, p1.y, Color);
         case 12:
-            return BS[3].Canmove(p1.x, p1.y, Color);
+            return BS[3].canMove(p1.x, p1.y, Color);
         case 13:
-            return BS[4].Canmove(p1.x, p1.y, Color);
+            return BS[4].canMove(p1.x, p1.y, Color);
         case 14:
-            return BS[5].Canmove(p1.x, p1.y, Color);
+            return BS[5].canMove(p1.x, p1.y, Color);
         case 15:
-            return BS[6].Canmove(p1.x, p1.y, Color);
+            return BS[6].canMove(p1.x, p1.y, Color);
         case 16:
-            return BS[7].Canmove(p1.x, p1.y, Color);
+            return BS[7].canMove(p1.x, p1.y, Color);
         default:
             break;
         }
@@ -773,13 +773,13 @@ public class Player2 implements Enumeration {
         } else if (!CastleGenerate_moves(Enemy, BC1)) {
 
             inHand = -1;
-            System.out.println("I Killed Castle 2");
+            System.out.println("I Killed Rook 2");
 
             return false;
         } else if (!CastleGenerate_moves(Enemy, BC2)) {
 
             inHand = -1;
-            System.out.println("I Killed Castle 2");
+            System.out.println("I Killed Rook 2");
             return false;
         } else if (!BishopGenerate_moves(Enemy, BE1)) {
 
@@ -795,12 +795,12 @@ public class Player2 implements Enumeration {
         } else if (!HosreGenerate_moves(Enemy, BH1)) {
 
             inHand = -1;
-            System.out.println("I Killed Horse 2");
+            System.out.println("I Killed Knight 2");
             return false;
         } else if (!HosreGenerate_moves(Enemy, BH2)) {
 
             inHand = -1;
-            System.out.println("I Killed Horse 2");
+            System.out.println("I Killed Knight 2");
             return false;
         }
 
@@ -1124,7 +1124,7 @@ public class Player2 implements Enumeration {
 
     }
 
-    public boolean CastleGenerate_moves(Player1 enemy, Castle BC) {
+    public boolean CastleGenerate_moves(Player1 enemy, Rook BC) {
         boolean somthing_killed = false;
         Point Oldp1 = new Point();
 
@@ -1312,7 +1312,7 @@ public class Player2 implements Enumeration {
         return true;
     }
 
-    public boolean HosreGenerate_moves(Player1 enemy, Horse BH) {
+    public boolean HosreGenerate_moves(Player1 enemy, Knight BH) {
         Point oldp1 = new Point();
         boolean somthing_killed = false;
         oldp1 = BH.returnPostion();
@@ -1705,7 +1705,7 @@ public class Player2 implements Enumeration {
         PlaceCheck.y = Oldp1.y;
 
         if (Oldp1.x != 20) {
-            if (Sold.Canmove(Oldp1.x, Oldp1.y + 2, Color) && Oldp1.y + 2 >= 1) {
+            if (Sold.canMove(Oldp1.x, Oldp1.y + 2, Color) && Oldp1.y + 2 >= 1) {
                 Sold.setY(Oldp1.y + 2);
 
                 PlaceCheck.y = Oldp1.y + 2;
@@ -1721,7 +1721,7 @@ public class Player2 implements Enumeration {
                 }
 
             }
-            if (Sold.Canmove(Oldp1.x, Oldp1.y + 1, Color) && Oldp1.y + 1 >= 1) {
+            if (Sold.canMove(Oldp1.x, Oldp1.y + 1, Color) && Oldp1.y + 1 >= 1) {
                 Sold.setY(Oldp1.y + 1);
                 PlaceCheck.y = Oldp1.y + 1;
 
@@ -1818,37 +1818,37 @@ public class Player2 implements Enumeration {
     public String Tell_me_About_last_move() {
         switch (inHand) {
         case 1:
-            return BC1.Tell_me();
+            return BC1.tellMe();
         case 2:
-            return BC2.Tell_me();
+            return BC2.tellMe();
         case 3:
-            return BH1.Tell_me();
+            return BH1.tellMe();
         case 4:
-            return BH2.Tell_me();
+            return BH2.tellMe();
         case 5:
-            return BE1.Tell_me();
+            return BE1.tellMe();
         case 6:
-            return BE2.Tell_me();
+            return BE2.tellMe();
         case 7:
-            return BQ.Tell_me();
+            return BQ.tellMe();
         case 8:
-            return BK.Tell_me();
+            return BK.tellMe();
         case 9:
-            return BS[0].Tell_me();
+            return BS[0].tellMe();
         case 10:
-            return BS[1].Tell_me();
+            return BS[1].tellMe();
         case 11:
-            return BS[2].Tell_me();
+            return BS[2].tellMe();
         case 12:
-            return BS[3].Tell_me();
+            return BS[3].tellMe();
         case 13:
-            return BS[4].Tell_me();
+            return BS[4].tellMe();
         case 14:
-            return BS[5].Tell_me();
+            return BS[5].tellMe();
         case 15:
-            return BS[6].Tell_me();
+            return BS[6].tellMe();
         case 16:
-            return BS[7].Tell_me();
+            return BS[7].tellMe();
         default:
             break;
         }

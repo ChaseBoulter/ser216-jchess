@@ -213,7 +213,7 @@ public class MainPanel extends JPanel {
         for (int i = 0; i < 8; i = i + 2) {
             for (int j = 0; j < 8; j = j + 2) {
 
-                g2.setColor(Color.BLUE);
+                g2.setColor(Color.BLACK);
                 rec = new Rectangle2D.Double(j * iWidth / 8, (1 + i) * iWidth / 8, Divide, Divide);
                 g2.fill(rec);
                 rec = new Rectangle2D.Double((1 + j) * iWidth / 8, i * iWidth / 8, Divide, Divide);
@@ -892,7 +892,7 @@ public class MainPanel extends JPanel {
                     int newY = Integer.parseInt(Box);
 
                     /***
-                     * Operation to Get 1- The # of Pice 2- The Location X 3- The Location Y
+                     * Operation to Get 1- The # of Pice 2- The Location nextX 3- The Location nextY
                      *
                      **/
 
