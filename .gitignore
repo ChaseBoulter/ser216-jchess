@@ -81,6 +81,7 @@ local.properties
 # Gradle:
 .idea/**/gradle.xml
 .idea/**/libraries
+.gradle/
 
 # CMake
 cmake-build-debug/
@@ -160,3 +161,4 @@ nbactions.xml
 
 
 # End of https://www.gitignore.io/api/java,eclipse,netbeans,intellij
+
