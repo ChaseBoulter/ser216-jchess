@@ -10,6 +10,10 @@ import mainframe.chessmenubar.menus.HelpMenu;
 
 public class ChessMainMenuBar extends JMenuBar {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
     /** Creates a new instance of Chess_MainMenuBar. */
     public ChessMainMenuBar(MainFrame ff) {
         fileMenu = new FileMenu(ff);

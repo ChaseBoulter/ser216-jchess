@@ -13,10 +13,13 @@ import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.nio.charset.StandardCharsets;
+
 //import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -29,6 +32,10 @@ import java.lang.String;
 
 public class MainPanel extends JPanel {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
     private Player1 player1 = new Player1();
     private Player2 player2 = new Player2();
     private final int divide = 600 / 8;
@@ -82,8 +89,11 @@ public class MainPanel extends JPanel {
                                 sock = serverSock.accept();
 
                                 receiveChat.listenToChat();
-                                in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
-                                out = new PrintWriter(sock.getOutputStream());
+                                
+                                in = new BufferedReader(new InputStreamReader(sock.getInputStream(), StandardCharsets.UTF_8));
+                                out = new PrintWriter(new OutputStreamWriter(
+                                        sock.getOutputStream(), StandardCharsets.UTF_8), true);
+                                
                                 startServer.setVisible(false);
                                 startServer = null;
                                 receivedFrom.start();
@@ -144,8 +154,10 @@ public class MainPanel extends JPanel {
                 try {
 
                     sock = new Socket(myIPAddress, Integer.parseInt(myPortNumber));
-                    in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
-                    out = new PrintWriter(sock.getOutputStream());
+                    
+                    in = new BufferedReader(new InputStreamReader(sock.getInputStream(), StandardCharsets.UTF_8));
+                    out = new PrintWriter(new OutputStreamWriter(
+                            sock.getOutputStream(), StandardCharsets.UTF_8), true);
 
                     receivedFrom.start();
                     gameStarted = true;
@@ -345,7 +357,7 @@ public class MainPanel extends JPanel {
                                 if (!flag && player1.friendlyPieceAlreadyThere(newP)) {
                                     // (if flag =false this means "The piece able to MOVE as logic""
                                     // So We Check If the New Place Make a Check To Black King !!!
-                                    boolean kin2 = true;
+                                    //boolean kin2 = true;
                                     Point myold = new Point();
                                     Point o = player1.returnPostion(player1.getInHand());
                                     myold.x = o.x;
@@ -478,7 +490,7 @@ public class MainPanel extends JPanel {
                         newP.y /= divide;
                         newP.x++;
                         newP.y++;
-                        boolean kingChecked = false;
+                        //boolean kingChecked = false;
                         Point old = player2.returnOldPostion(player2.getInHand());
                         Point present = player2.returnPostion(player2.getInHand());
 
@@ -529,13 +541,13 @@ public class MainPanel extends JPanel {
 
                                     }
 
-                                    if (flag) {
-                                        break;
-                                    }
+//                                    if (flag) {
+//                                        break;
+//                                    }
                                 }
 
                                 if (!flag) {
-                                    Point kingPostion2 = player2.returnPostion(8);
+                                    //Point kingPostion2 = player2.returnPostion(8);
                                     Point myold = new Point();
                                     Point o = player2.returnPostion(player2.getInHand());
                                     myold.x = o.x;

@@ -6,6 +6,11 @@ import javax.swing.JMenuItem;
 
 public class ExitItem extends JMenuItem {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
     /** Creates a new instance of ExitItem. */
     public ExitItem() {
         setText("Exit");
