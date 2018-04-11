@@ -19,6 +19,10 @@ import mainframe.chessframe.StatusPanel;
 
 public class MainFrame extends JFrame {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
     /** creates Chess Game. **/
     public MainFrame() {
         setTitle("JChess!");

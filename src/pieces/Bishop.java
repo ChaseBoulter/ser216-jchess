@@ -13,8 +13,8 @@ public class Bishop extends Piece {
     /** places Bishop can move to. **/
     public boolean canMove(int x, int y) {
 
-        int j = y;
-        int i = x;
+//        int j = y;
+//        int i = x;
 
         if ((x - y) == (nextX - nextY)) {
             return true;

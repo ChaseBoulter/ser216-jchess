@@ -6,6 +6,10 @@ import mainframe.chessmenubar.menus.items.help.*;
 
 public class HelpMenu extends JMenu {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
     /** Creates a new instance of HelpMenu. */
     public HelpMenu() {
         setText("Help");

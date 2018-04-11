@@ -26,7 +26,7 @@ public class Player1 {
 
     /** constructs Player1 pieces. **/
     public Player1() {
-        String fileSeparator = new String(System.getProperty("file.separator"));
+        String fileSeparator = System.getProperty("file.separator");
         whiteRook1 = new Rook("src" + fileSeparator + "Icons" + fileSeparator
                 + "Player1Icons" + fileSeparator + "wr.gif", 8, 8);
         whiteRook2 = new Rook("src" + fileSeparator + "Icons" + fileSeparator
@@ -644,8 +644,8 @@ public class Player1 {
     }
 
     public boolean kingInCheck(Player2 black) {
-        boolean isCheckmate = false;
-        boolean flag = false;
+//        boolean isCheckmate = false;
+//        boolean flag = false;
 
         return false;
     }

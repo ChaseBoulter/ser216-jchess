@@ -8,6 +8,10 @@ import mainframe.chessmenubar.menus.items.file.*;
 
 public class FileMenu extends JMenu {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
     /** Creates a new instance of FileMenu. */
     public FileMenu(MainFrame ff) {
         newItem = new NewItem(ff);

@@ -14,7 +14,6 @@ public class ThreadTimer extends Thread {
     }
 
     public void run() {
-
         while (true) {
             mytime -= 0.1;
             try {

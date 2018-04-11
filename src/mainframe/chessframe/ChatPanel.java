@@ -8,10 +8,13 @@ import java.awt.event.KeyListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.ServerSocket;
 import java.net.UnknownHostException;
+import java.nio.charset.StandardCharsets;
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -22,6 +25,10 @@ import javax.swing.border.TitledBorder;
 
 public class ChatPanel extends JPanel {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
     /** private fields for class.**/
     private final JTextArea textChatArea = new JTextArea(6, 20);
     private final TitledBorder textBorder = new TitledBorder("Chat History");
@@ -130,8 +137,11 @@ public class ChatPanel extends JPanel {
         isServer = false;
         try {
             sendSocket = new Socket("127.0.0.1", 5002);
-            in2 = new BufferedReader(new InputStreamReader(sendSocket.getInputStream()));
-            out2 = new PrintWriter(sendSocket.getOutputStream());
+            
+            in2 = new BufferedReader(new InputStreamReader(sendSocket.getInputStream(), StandardCharsets.UTF_8));
+            out2 = new PrintWriter(new OutputStreamWriter(
+                    sendSocket.getOutputStream(), StandardCharsets.UTF_8), true);
+            
         } catch (UnknownHostException ex) {
             ex.printStackTrace();
         } catch (IOException ex) {
@@ -168,9 +178,10 @@ public class ChatPanel extends JPanel {
 
             chatSocket = serverChat.accept();
 
-            in1 = new BufferedReader(new InputStreamReader(chatSocket.getInputStream()));
+            in1 = new BufferedReader(new InputStreamReader(chatSocket.getInputStream(), StandardCharsets.UTF_8));
 
-            out1 = new PrintWriter(chatSocket.getOutputStream());
+            out1 = new PrintWriter(new OutputStreamWriter(
+                    chatSocket.getOutputStream(), StandardCharsets.UTF_8), true);
 
             // chatSocket.setSoTimeout(10000);
 

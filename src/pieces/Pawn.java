@@ -30,7 +30,7 @@ public class Pawn extends Piece {
             } else {
                 return false;
             }
-        } else if (typeColor == "white") {
+        } else if (typeColor.equals("white")) {
             if (((y + 1 == nextY) && (x == (nextX))) /* &&!Check_Solider_Sees(x,y) */) {
                 return true;
             } else if ((((y + 2 == nextY) && (x == (nextX)))) && !movedbefore) {

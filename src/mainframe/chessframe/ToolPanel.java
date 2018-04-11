@@ -14,18 +14,22 @@ import mainframe.chessframe.timer.ThreadTimer;
 
 public class ToolPanel extends JPanel {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
     private final JTextField turn1TextField = new JTextField(" P2  Turn ");
     private final JTextField turn2TextField = new JTextField(" P1  Turn ");
     private final JTextField whiteTextField = new JTextField("  White ");
     private final JTextField blackTextField = new JTextField("  Black ");
     private final myHistoryList historyList = new myHistoryList();
-    private final short numberOfTurns = 1;
+    //private final short numberOfTurns = 1;
     private final JScrollPane historyScroll = new JScrollPane(historyList, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
             JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
     private final JLabel screen1 = new JLabel();
     private final JLabel screen2 = new JLabel();
-    private final JLabel timeDesc1 = new JLabel(" Timer 1");
-    private final JLabel timeDesc2 = new JLabel(" Timer 2");
+//    private final JLabel timeDesc1 = new JLabel(" Timer 1");
+//    private final JLabel timeDesc2 = new JLabel(" Timer 2");
     private ThreadTimer timer1;
     private ThreadTimer timer2;
     
@@ -151,6 +155,11 @@ public class ToolPanel extends JPanel {
 }
 
 class myHistoryList extends JList {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
     myHistoryList() {
 
         this.setBackground(Color.ORANGE);
@@ -171,6 +180,11 @@ class myHistoryList extends JList {
 }
 
 class myStatusFileds extends JTextField {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
     myStatusFileds() {
         this.setEnabled(false);
     }

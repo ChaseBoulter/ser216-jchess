@@ -12,6 +12,10 @@ import mainframe.chessmenubar.menus.items.file.newgame.NewGameDialog;
 
 public class NewItem extends JMenu {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
     /** Creates a new instance of NewItem. */
     public NewItem(MainFrame ff) {
         newGameDialog = new NewGameDialog(ff);

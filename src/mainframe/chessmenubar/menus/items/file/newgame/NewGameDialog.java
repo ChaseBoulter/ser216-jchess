@@ -1,10 +1,7 @@
 
 package mainframe.chessmenubar.menus.items.file.newgame;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Container;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,21 +11,19 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import mainframe.chessframe.ChatPanel;
 import mainframe.chessframe.MainFrame;
-import mainframe.chessframe.MainPanel;
-import mainframe.chessframe.StatusPanel;
-import mainframe.chessframe.ToolPanel;
-
-import mainframe.chessmenubar.ChessMainMenuBar;
 
 public class NewGameDialog extends JDialog {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
 
     /** Creates a new instance of NewGameDialog. */
     public NewGameDialog(final MainFrame ff) {
@@ -140,7 +135,7 @@ public class NewGameDialog extends JDialog {
         public void itemStateChanged(ItemEvent e) {
             String selected = ((JComboBox) e.getSource()).getSelectedItem().toString();
 
-            if (selected == "Local") {
+            if (selected.equals("Local")) {
 
                 ipText.setEnabled(false);
                 portText.setEnabled(false);
@@ -150,7 +145,7 @@ public class NewGameDialog extends JDialog {
                 asServer.setEnabled(false);
                 asClient.setEnabled(false);
 
-            } else if (selected == "Via a net") {
+            } else if (selected.equals("Via a net")) {
                 ipText.setEnabled(true);
                 portText.setEnabled(true);
                 myIpAddress.setEnabled(true);

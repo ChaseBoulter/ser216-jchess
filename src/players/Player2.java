@@ -26,7 +26,7 @@ public class Player2 implements Enumeration {
 
     /** Creates a new instance of Player2. */
     public Player2() {
-        String fileSeparator = new String(System.getProperty("file.separator"));
+        String fileSeparator = System.getProperty("file.separator");
         blackRook1 = new Rook("src" + fileSeparator + "Icons"
                 + fileSeparator + "Player2Icons" + fileSeparator + "br.gif", 1, 1);
         
@@ -732,18 +732,18 @@ public class Player2 implements Enumeration {
                                 flag = false;
 
                             }
-                        } else {
-
-                            if (j != 8) {
-                                if (white.checkTheWay(myKingPosition, white.returnPostion(j), i)) {
-
-                                    flag = false;
-                                    // Means there is somting in the Way so can't move'
-
-                                }
-                            }
-
-                        }
+                        } //else {
+//
+//                            if (j != 8) {
+//                                if (white.checkTheWay(myKingPosition, white.returnPostion(j), i)) {
+//
+//                                    flag = false;
+//                                    // Means there is somting in the Way so can't move'
+//
+//                                }
+//                            }
+//
+//                        }
 
                     }
 
