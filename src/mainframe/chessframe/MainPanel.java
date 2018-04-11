@@ -3,12 +3,13 @@ package mainframe.chessframe;
 
 import players.*;
 
-import java.awt.Point;
 import java.awt.Color;
+import java.awt.event.*;
+import java.awt.geom.Rectangle2D;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.geom.Rectangle2D;
+import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -16,16 +17,15 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import javax.swing.BorderFactory;
+//import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import java.awt.event.*;
 import java.lang.String;
-import javax.swing.JScrollPane;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.TitledBorder;
-import javax.net.*;
+//import javax.swing.JScrollPane;
+//import javax.swing.border.BevelBorder;
+//import javax.swing.border.TitledBorder;
+//import javax.net.*;
 
 public class MainPanel extends JPanel {
 
@@ -54,14 +54,14 @@ public class MainPanel extends JPanel {
     private ReceiveThread receivedFrom;
     private ChatPanel receiveChat;
 
-    public void startAsServer(String Ip, String Port, ChatPanel newChat) {
+    public void startAsServer(String myIp, String myPort, ChatPanel newChat) {
 
         receivedFrom = new ReceiveThread();
         receiveChat = newChat;
         gameStarted = false;
 
-        myIPAddress = Ip;
-        myPortNumber = Port;
+        myIPAddress = myIp;
+        myPortNumber = myPort;
 
         startAgain();
         startServer = new JButton(" Start server");
@@ -122,7 +122,7 @@ public class MainPanel extends JPanel {
         repaint();
     }
 
-    public void startAsClient(String Ip, String Port, ChatPanel newChat) {
+    public void startAsClient(String myIp, String myPort, ChatPanel newChat) {
 
         receivedFrom = new ReceiveThread();
 
@@ -131,8 +131,8 @@ public class MainPanel extends JPanel {
         gameStarted = false;
 
         startAgain();
-        myIPAddress = Ip;
-        myPortNumber = Port;
+        myIPAddress = myIp;
+        myPortNumber = myPort;
         local = false;
         startClient = new JButton("Start Client");
         startClient.setSize(150, 25);
@@ -209,7 +209,7 @@ public class MainPanel extends JPanel {
 
         Graphics2D g2 = (Graphics2D) g;
 
-        int iWidth = 600;
+        int paintWidth = 600;
         //int iHeight = 600;
 
         // Drawing the board
@@ -217,9 +217,9 @@ public class MainPanel extends JPanel {
             for (int j = 0; j < 8; j = j + 2) {
 
                 g2.setColor(Color.BLACK);
-                rec = new Rectangle2D.Double(j * iWidth / 8, (1 + i) * iWidth / 8, divide, divide);
+                rec = new Rectangle2D.Double(j * paintWidth / 8, (1 + i) * paintWidth / 8, divide, divide);
                 g2.fill(rec);
-                rec = new Rectangle2D.Double((1 + j) * iWidth / 8, i * iWidth / 8, divide, divide);
+                rec = new Rectangle2D.Double((1 + j) * paintWidth / 8, i * paintWidth / 8, divide, divide);
                 g2.fill(rec);
 
             }
@@ -240,9 +240,7 @@ public class MainPanel extends JPanel {
                 }
                 img = player2.returnIconImage(i);
 
-            }
-
-            else {
+            } else {
 
                 if (i == player1.getInHand()) {
 
@@ -254,13 +252,13 @@ public class MainPanel extends JPanel {
                 img = player1.returnIconImage(i);
             }
 
-            if (i == player1.getInHand())
+            if (i == player1.getInHand()) {
                 g2.drawImage(img, postionPoint.x - 25, postionPoint.y - 25,
                         divide - 40, divide - 12, this);
-            else if (i == player2.getInHand())
+            } else if (i == player2.getInHand()) {
                 g2.drawImage(img, postionPoint.x - 25, postionPoint.y - 25,
                         divide - 40, divide - 12, this);
-            else {
+            } else {
                 postX = rowToX(postionPoint.x);
                 postY = colToY(postionPoint.y);
                 g2.drawImage(img, postX + 20, postY + 4, divide - 40, divide - 12, this);
@@ -312,7 +310,7 @@ public class MainPanel extends JPanel {
                             for (int i = 1; i < 17; i++) {
                                 samePostion = player2.returnPostion(i);
                                 if (samePostion.x == newP.x && samePostion.y == newP.y) {
-                                    if (player1.setSeentoSiliders(player1.getInHand(), samePostion)) {
+                                    if (player1.pawnSeen(player1.getInHand(), samePostion)) {
                                         break;
                                     }
                                 }
@@ -320,33 +318,32 @@ public class MainPanel extends JPanel {
                         }
                         /////////////////////////////////////////////////////////////////////////
                         if (!(newP.x == present.x && newP.y == present.y)/* &&!player1.returncheckKing() */)
-                            if (player1.checkMove(newP, player1.getInHand())) // if the move is illegal
-                            {
+                            // if the move is illegal
+                            if (player1.checkMove(newP, player1.getInHand())) {
 
                                 boolean flag = false;
 
                                 for (int i = 1; i <= 32; i++) {
-                                    if (player1.getInHand() != i)// check if there are pieces in the way
-                                    {
+                                    // check if there are pieces in the way
+                                    if (player1.getInHand() != i) {
                                         if (i < 17) {
                                             flag = player1.checkTheWay(newP, player2.returnPostion(i), player1.getInHand());
-                                        }
-                                        //means there's something in the way, so we can't move.
-                                        else {
+                                        } else {
+                                            //means there's something in the way, so we can't move.
                                             flag = player1.checkTheWay(newP, player1.returnPostion(i), player1.getInHand());
                                         }
 
-                                        if (flag == true)
-                                            break;// Means there is a Pice in the Way
+                                        if (flag == true) {
+                                            break;// Means there is a Piece in the Way
+                                        }
                                     }
 
                                     //
 
                                 }
 
-                                if (!flag && player1.friendlyPieceAlreadyThere(newP))
-                                // (if flag =false this means "The piece able to MOVE as logic""
-                                {
+                                if (!flag && player1.friendlyPieceAlreadyThere(newP)) {
+                                    // (if flag =false this means "The piece able to MOVE as logic""
                                     // So We Check If the New Place Make a Check To Black King !!!
                                     boolean kin2 = true;
                                     Point myold = new Point();
@@ -399,14 +396,14 @@ public class MainPanel extends JPanel {
 
                                     }
 
-                                    if (endMove)
+                                    if (endMove) {
                                         player1.changePostion(newP, player1.getInHand());// Here is the mOve ended
+                                    }
 
                                     player1.checkKing(false);
-                                    if (player1.isKingChecked(player2))
-                                    // if my king will be in check if i move
-                                    // so i can't move and i will return back to old postion'
-                                    {
+                                    if (player1.isKingChecked(player2)) {
+                                        // if my king will be in check if i move
+                                        // so i can't move and i will return back to old postion'                           
                                         player1.changePostion(myold, player1.getInHand());
                                         player1.checkKing(true);
                                         endMove = false;
@@ -418,10 +415,9 @@ public class MainPanel extends JPanel {
 
                                     if (!player1.returncheckKing()) {
 
-                                        if (player2.isKingChecked(player1))
-                                        // if my king will be in check if i move
-                                        // so i can't move and i will return back to old postion'
-                                        {
+                                        if (player2.isKingChecked(player1)) {
+                                            // if my king will be in check if i move
+                                            // so i can't move and i will return back to old postion
 
                                             player2.checkKing(true);
                                             endMove = false;
@@ -430,9 +426,7 @@ public class MainPanel extends JPanel {
                                                 box = Integer.toString(player2.getInHand()) + Integer.toString(newP.x)
                                                         + Integer.toString(newP.y);
                                                 canSend = true;
-                                            }
-
-                                            else {
+                                            } else {
                                                 box = Integer.toString(player1.getInHand()) + Integer.toString(newP.x)
                                                         + Integer.toString(newP.y);
 
@@ -475,9 +469,8 @@ public class MainPanel extends JPanel {
                                     "Game Over", JOptionPane.PLAIN_MESSAGE);
                         }
                     }
-                }
-                ////////////////////////////// Black//////////////////////////////////////////////
-                else if (player2.getInHand() != -1) {
+                    ////////////////////////////// Black//////////////////////////////////////////////
+                } else if (player2.getInHand() != -1) {
 
                     if (isClient || local) {
                         newP = player2.getPixelPoint(player2.getInHand());
@@ -495,7 +488,7 @@ public class MainPanel extends JPanel {
                                 samePostion = player1.returnPostion(i);
 
                                 if (samePostion.x == newP.x && samePostion.y == newP.y) {
-                                    if (player2.setSeentoSiliders(player2.getInHand(), samePostion)) {
+                                    if (player2.pawnSeen(player2.getInHand(), samePostion)) {
 
                                         break;
                                     }
@@ -511,8 +504,7 @@ public class MainPanel extends JPanel {
                                         if (i < 17) {
                                             flag = player2.checkTheWay(newP, 
                                                     player2.returnPostion(i), player2.getInHand());
-                                        }
-                                        else {
+                                        } else {
                                             flag = player2.checkTheWay(newP, 
                                                     player1.returnPostion(i), player2.getInHand());
                                         }
@@ -537,8 +529,9 @@ public class MainPanel extends JPanel {
 
                                     }
 
-                                    if (flag)
+                                    if (flag) {
                                         break;
+                                    }
                                 }
 
                                 if (!flag) {
@@ -588,14 +581,14 @@ public class MainPanel extends JPanel {
 
                                     }
                                     // boolean kin2=true;
-                                    if (endMove)
+                                    if (endMove) {
                                         player2.changePostion(newP, player2.getInHand());
+                                    }
 
                                     player2.checkKing(false);
-                                    if (player2.isKingChecked(player1))
-                                    // if my king will be in check if i move
-                                    // so i can't move and i will return back to old postion'
-                                    {
+                                    if (player2.isKingChecked(player1)) {
+                                        // if my king will be in check if i move
+                                        // so i can't move and i will return back to old position'
                                         player2.changePostion(myold, player2.getInHand());
                                         player2.checkKing(true);
 
@@ -612,10 +605,9 @@ public class MainPanel extends JPanel {
                                     }
 
                                     if (!player2.returncheckKing()) {
-                                        if (player1.isKingChecked(player2))
-                                        // if my king will be in check if i move
-                                        // so i can't move and i will return back to old postion'
-                                        {
+                                        if (player1.isKingChecked(player2)) {
+                                            // if my king will be in check if i move
+                                            // so i can't move and i will return back to old postion'
 
                                             player1.checkKing(true);
                                             endMove = false;
@@ -626,9 +618,7 @@ public class MainPanel extends JPanel {
                                                 gameOver();
 
                                                 canSend = true;
-                                            }
-
-                                            else {
+                                            } else {
                                                 box = Integer.toString(player2.getInHand()) + Integer.toString(newP.x)
                                                         + Integer.toString(newP.y);
                                                 checkStatus();
@@ -658,9 +648,10 @@ public class MainPanel extends JPanel {
                             /// receivedFrom.resume();
 
                         }
-                        if (gameOver)
+                        if (gameOver) {
                             JOptionPane.showConfirmDialog(null, "Check Mate\n Black won the game", "Game Over",
                                     JOptionPane.DEFAULT_OPTION);
+                        }
 
                     }
                 }
@@ -678,6 +669,7 @@ public class MainPanel extends JPanel {
     }
 
     //////// *---------------Mohamed Sami ------------------*//////////////////
+    /** TODO: enter stuff.**/
     public boolean getBoardPosition(int x, int y) {
         if (!gameOver && gameStarted) {
             if ((isServer && playersTurn == 1) || (local) || (isClient && playersTurn == 2)) {
@@ -703,9 +695,8 @@ public class MainPanel extends JPanel {
                             return true;
                         }
                     }
-                } 
                 // Player 2
-                else if (playersTurn == 2 && player2.getInHand() == -1) {
+                } else if (playersTurn == 2 && player2.getInHand() == -1) {
                     for (int i = 1; i <= 16; i++) {
                         Point p = player2.returnPostion(i);
                         if (p.x == newX && p.y == newY) {
@@ -714,15 +705,12 @@ public class MainPanel extends JPanel {
                             return true;
                         }
                     }
-                }
-
                 // Player 1
-                else if (playersTurn == 1 && player1.getInHand() != -1) {
+                } else if (playersTurn == 1 && player1.getInHand() != -1) {
                     whenHandleAndPiece(x, y);
                     return true;
-                } 
                 // Player 2
-                else if (playersTurn == 2 && player2.getInHand() != -1) {
+                } else if (playersTurn == 2 && player2.getInHand() != -1) {
                     whenHandleAndPiece(x, y);
                     return true;
                 }
@@ -737,7 +725,6 @@ public class MainPanel extends JPanel {
     }
 
     public boolean whenHandleAndPiece(int x, int y) {
-
         if (playersTurn == 1 && player1.getInHand() != -1) {
             player1.changePixel(x, y, player1.getInHand());
             return true;
@@ -750,15 +737,15 @@ public class MainPanel extends JPanel {
 
     private int rowToX(int r) {
         int myx;
-        int iHeight = this.getHeight();
-        myx = (r * iHeight / 8) - divide;
+        int height = this.getHeight();
+        myx = (r * height / 8) - divide;
         return myx;
     }
 
     private int colToY(int c) {
         int myy;
-        int iWidth = getWidth();
-        myy = (c * iWidth / 8) - divide;
+        int width = getWidth();
+        myy = (c * width / 8) - divide;
         return myy;
     }
 
@@ -781,7 +768,6 @@ public class MainPanel extends JPanel {
     }
 
     public boolean controlGameType(int x, int y) {
-
         if (isServer == true || isClient == true && gameStarted) {
             if (isServer && playersTurn == 1) {
                 return getBoardPosition(x, y);
@@ -803,9 +789,7 @@ public class MainPanel extends JPanel {
             myTool.add_to_History("White : " + player1.lastMove());
             myStatus.changeStatus(" Black player turn");
             myTool.change_to_Timer2();
-        }
-
-        else if (playersTurn == 2) {
+        } else if (playersTurn == 2) {
             playersTurn = 1;
             myTool.add_to_History("Black : " + player2.lastMove());
             myTool.change_to_Timer1();
@@ -820,9 +804,7 @@ public class MainPanel extends JPanel {
             myTool.add_to_History("White : " + player1.lastMove());
             myStatus.changeStatus(" Black player turn");
             myTool.change_to_Timer2();
-        }
-
-        else if (playersTurn == 1) {
+        } else if (playersTurn == 1) {
 
             myTool.add_to_History("Black : " + player2.lastMove());
             myTool.change_to_Timer1();
@@ -939,10 +921,9 @@ public class MainPanel extends JPanel {
                         playersTurn = 1;
 
                         player1.checkKing(false);
-                        if (player1.isKingChecked(player2))
                         // if my king will be in check if i move
                         // so i can't move and i will return back to old postion'
-                        {
+                        if (player1.isKingChecked(player2)) {
 
                             player1.checkKing(true);
 
@@ -951,15 +932,12 @@ public class MainPanel extends JPanel {
                                 System.out.println("mate");
                                 gameOver();
 
-                            }
-
-                            else {
-
+                            } else {
                                 netGameCheckStatus();
-
                             }
-                        } else
+                        } else {
                             netChangeTurn();
+                        }
 
                         player2.setInHand(-1);
                     }

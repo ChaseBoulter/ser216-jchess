@@ -27,23 +27,17 @@ public class Pawn extends Piece {
             } else if ((y - 1 == nextY && x + 1 == (nextX)
                     || (y - 1 == nextY && x - 1 == (nextX))) && myseen) {
                 return true;
-            }
-
-            else {
+            } else {
                 return false;
             }
-        }
-
-        else if (typeColor == "white") {
+        } else if (typeColor == "white") {
             if (((y + 1 == nextY) && (x == (nextX))) /* &&!Check_Solider_Sees(x,y) */) {
                 return true;
             } else if ((((y + 2 == nextY) && (x == (nextX)))) && !movedbefore) {
                 return true;
             } else if ((y + 1 == nextY && x + 1 == (nextX) || (y + 1 == nextY && x - 1 == (nextX))) && myseen) {
                 return true;
-            }
-
-            else {
+            } else {
                 return false;
             }
         }
@@ -60,9 +54,7 @@ public class Pawn extends Piece {
                 } else {
                     return false;
                 }
-            }
-
-            else if (typeColor.equals("white")) {
+            } else if (typeColor.equals("white")) {
 
                 if (((y + 1 == othersPostion.y) && (x == (othersPostion.x)) && !movedbefore)) {
 
@@ -85,9 +77,9 @@ public class Pawn extends Piece {
         return myseen;
     }
 
-    public boolean setSeenByChecking(Point newP, String Color) {
+    public boolean setSeenByChecking(Point newP, String color) {
         myseen = false;
-        if ((Color.equals("black"))) {
+        if ((color.equals("black"))) {
             if ((newP.y - 1 == nextY && newP.x + 1 == (nextX) 
                     || (newP.y - 1 == nextY && newP.x - 1 == (nextX)))) {
 
@@ -96,7 +88,7 @@ public class Pawn extends Piece {
             } else {
                 return false;
             }
-        } else if (Color.equals("white")) {
+        } else if (color.equals("white")) {
             if ((newP.y + 1 == nextY && newP.x + 1 == (nextX)
                     || (newP.y + 1 == nextY && newP.x - 1 == (nextX)))) {
                 myseen = true;

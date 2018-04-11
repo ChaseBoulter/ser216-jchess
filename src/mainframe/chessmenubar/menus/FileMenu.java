@@ -10,10 +10,10 @@ public class FileMenu extends JMenu {
 
     /** Creates a new instance of FileMenu. */
     public FileMenu(MainFrame ff) {
-        nItem = new NewItem(ff);
+        newItem = new NewItem(ff);
         setText("File");
 
-        add(nItem);
+        add(newItem);
         addSeparator();
         add(saveItem);
         add(loadItem);
@@ -22,14 +22,14 @@ public class FileMenu extends JMenu {
     }
 
     public String getIPaddress() {
-        return nItem.getIpAddress();
+        return newItem.getIpAddress();
     }
 
     public String getportNumber() {
-        return nItem.getportNumber();
+        return newItem.getportNumber();
     }
 
-    private final NewItem nItem;
+    private final NewItem newItem;
     private final SaveItem saveItem = new SaveItem();
     private final LoadItem loadItem = new LoadItem();
     private final ExitItem exitItem = new ExitItem();

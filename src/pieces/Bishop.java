@@ -96,9 +96,7 @@ public class Bishop extends Piece {
                         return true;
                     }
                 }
-            }
-
-            else if (x < nextX && y < nextY) {
+            } else if (x < nextX && y < nextY) {
 
                 while ((j != nextY) && (i != nextX)) {
                     j++;
@@ -110,9 +108,7 @@ public class Bishop extends Piece {
 
                 }
             }
-        }
-
-        else if (((x + y)) == ((nextX + nextY))) {
+        } else if (((x + y)) == ((nextX + nextY))) {
 
             if ((nextX < i) && (nextY > j)) {
 
@@ -127,9 +123,7 @@ public class Bishop extends Piece {
 
                 }
 
-            }
-
-            else if ((nextX > i) && (nextY < j)) {
+            } else if ((nextX > i) && (nextY < j)) {
                 while ((j != nextX) && (i != nextX)) {
                     j--;
                     i++;

@@ -15,7 +15,7 @@ public class King extends Piece {
 
     /** places King can move to. **/
     public boolean canMove(int x, int y) {
-        return((y == nextY) && (x == (nextX - 1))) || ((y == nextY - 1) && (x == (nextX + 1)))
+        return ((y == nextY) && (x == (nextX - 1))) || ((y == nextY - 1) && (x == (nextX + 1)))
                 || ((y == nextY - 1) && (x == (nextX - 1))) || ((y == nextY + 1)
                 && (x == (nextX + 1))) || (((y == nextY + 1) && x == (nextX - 1)))
                 || ((y == nextY) && (x == (nextX + 1)))

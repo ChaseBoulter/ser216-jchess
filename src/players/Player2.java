@@ -303,6 +303,63 @@ public class Player2 implements Enumeration {
         }
 
     }
+    
+    public void changePixel(int newPixelX, int newPixelY, int i) {
+        choosenOne = i;
+        switch (choosenOne) {
+            case 1:
+                blackRook1.setPixels(newPixelX, newPixelY);
+                break;
+            case 2:
+                blackRook2.setPixels(newPixelX, newPixelY);
+                break;
+            case 3:
+                blackKnight1.setPixels(newPixelX, newPixelY);
+                break;
+            case 4:
+                blackKnight2.setPixels(newPixelX, newPixelY);
+                break;
+            case 5:
+                blackBishop1.setPixels(newPixelX, newPixelY);
+                break;
+            case 6:
+                blackBishop2.setPixels(newPixelX, newPixelY);
+                break;
+            case 7:
+                blackQueen.setPixels(newPixelX, newPixelY);
+                break;
+            case 8:
+                blackKing.setPixels(newPixelX, newPixelY);
+                break;
+            case 9:
+                blackPawns[0].setPixels(newPixelX, newPixelY);
+                break;
+            case 10:
+                blackPawns[1].setPixels(newPixelX, newPixelY);
+                break;
+            case 11:
+                blackPawns[2].setPixels(newPixelX, newPixelY);
+                break;
+            case 12:
+                blackPawns[3].setPixels(newPixelX, newPixelY);
+                break;
+            case 13:
+                blackPawns[4].setPixels(newPixelX, newPixelY);
+                break;
+            case 14:
+                blackPawns[5].setPixels(newPixelX, newPixelY);
+                break;
+            case 15:
+                blackPawns[6].setPixels(newPixelX, newPixelY);
+                break;
+            case 16:
+                blackPawns[7].setPixels(newPixelX, newPixelY);
+                break;
+            default:
+                break;
+
+        }
+    }
 
     public void changePixel(int newPixelX, int newPixelY) {
         switch (choosenOne) {
@@ -400,63 +457,6 @@ public class Player2 implements Enumeration {
 
         }
         return null;
-    }
-
-    public void changePixel(int newPixelX, int newPixelY, int i) {
-        choosenOne = i;
-        switch (choosenOne) {
-            case 1:
-                blackRook1.setPixels(newPixelX, newPixelY);
-                break;
-            case 2:
-                blackRook2.setPixels(newPixelX, newPixelY);
-                break;
-            case 3:
-                blackKnight1.setPixels(newPixelX, newPixelY);
-                break;
-            case 4:
-                blackKnight2.setPixels(newPixelX, newPixelY);
-                break;
-            case 5:
-                blackBishop1.setPixels(newPixelX, newPixelY);
-                break;
-            case 6:
-                blackBishop2.setPixels(newPixelX, newPixelY);
-                break;
-            case 7:
-                blackQueen.setPixels(newPixelX, newPixelY);
-                break;
-            case 8:
-                blackKing.setPixels(newPixelX, newPixelY);
-                break;
-            case 9:
-                blackPawns[0].setPixels(newPixelX, newPixelY);
-                break;
-            case 10:
-                blackPawns[1].setPixels(newPixelX, newPixelY);
-                break;
-            case 11:
-                blackPawns[2].setPixels(newPixelX, newPixelY);
-                break;
-            case 12:
-                blackPawns[3].setPixels(newPixelX, newPixelY);
-                break;
-            case 13:
-                blackPawns[4].setPixels(newPixelX, newPixelY);
-                break;
-            case 14:
-                blackPawns[5].setPixels(newPixelX, newPixelY);
-                break;
-            case 15:
-                blackPawns[6].setPixels(newPixelX, newPixelY);
-                break;
-            case 16:
-                blackPawns[7].setPixels(newPixelX, newPixelY);
-                break;
-            default:
-                break;
-
-        }
     }
 
     public boolean killedPiece(int i) {
@@ -558,25 +558,25 @@ public class Player2 implements Enumeration {
     }
 
     //TODO: find out what this means.
-    public boolean setSeentoSiliders(int i, Point P) {
+    public boolean pawnSeen(int i, Point myPoint) {
 
         switch (i) {
             case 9:
-                return blackPawns[0].setSeenByChecking(P, "black");
+                return blackPawns[0].setSeenByChecking(myPoint, "black");
             case 10:
-                return blackPawns[1].setSeenByChecking(P, "black");
+                return blackPawns[1].setSeenByChecking(myPoint, "black");
             case 11:
-                return blackPawns[2].setSeenByChecking(P, "black");
+                return blackPawns[2].setSeenByChecking(myPoint, "black");
             case 12:
-                return blackPawns[3].setSeenByChecking(P, "black");
+                return blackPawns[3].setSeenByChecking(myPoint, "black");
             case 13:
-                return blackPawns[4].setSeenByChecking(P, "black");
+                return blackPawns[4].setSeenByChecking(myPoint, "black");
             case 14:
-                return blackPawns[5].setSeenByChecking(P, "black");
+                return blackPawns[5].setSeenByChecking(myPoint, "black");
             case 15:
-                return blackPawns[6].setSeenByChecking(P, "black");
+                return blackPawns[6].setSeenByChecking(myPoint, "black");
             case 16:
-                return blackPawns[7].setSeenByChecking(P, "black");
+                return blackPawns[7].setSeenByChecking(myPoint, "black");
             default:
                 break;
         }
@@ -646,6 +646,10 @@ public class Player2 implements Enumeration {
         return false;
     }
 
+    public void checkKing(boolean newkingcheck) {
+        kingischeck = newkingcheck;
+    }
+    
     public boolean checkKing(Point p1, Point p2, int i) {
         switch (i) {
 
@@ -702,15 +706,12 @@ public class Player2 implements Enumeration {
         return true;
     }
 
-    public void checkKing(boolean newkingcheck) {
-        kingischeck = newkingcheck;
-    }
 
     public boolean returncheckKing() {
         return kingischeck;
     }
 
-    public boolean isKingChecked(Player1 White) {
+    public boolean isKingChecked(Player1 white) {
 
         Point myKingPosition = blackKing.returnPostion();
         boolean flag = false;
@@ -718,14 +719,14 @@ public class Player2 implements Enumeration {
         ////////// Start Checking the King ////////////
         for (int i = 17; i < 33; i++) {
             if (i < 25) {
-                if (White.checkMove(myKingPosition, i)) {
+                if (white.checkMove(myKingPosition, i)) {
 
                     flag = true;
                     for (int j = 1; j < 33; j++) {
 
                         if (j < 17) {
 
-                            if (White.checkTheWay(myKingPosition, returnPostion(j), i)) {
+                            if (white.checkTheWay(myKingPosition, returnPostion(j), i)) {
                                 // Means there is somting in the Way so can't move'
 
                                 flag = false;
@@ -734,7 +735,7 @@ public class Player2 implements Enumeration {
                         } else {
 
                             if (j != 8) {
-                                if (White.checkTheWay(myKingPosition, White.returnPostion(j), i)) {
+                                if (white.checkTheWay(myKingPosition, white.returnPostion(j), i)) {
 
                                     flag = false;
                                     // Means there is somting in the Way so can't move'
@@ -753,7 +754,7 @@ public class Player2 implements Enumeration {
                 }
             } else {
                 // For pawns
-                if (White.setSeentoSiliders(i, myKingPosition)) {
+                if (white.pawnSeen(i, myKingPosition)) {
 
                     break;
 
@@ -769,47 +770,47 @@ public class Player2 implements Enumeration {
         return true;
     }
 
-    public boolean checkMateGameOver(Player1 Enemy) {
+    public boolean checkMateGameOver(Player1 enemy) {
 
-        if (!generateKingMoves(Enemy)) {
+        if (!generateKingMoves(enemy)) {
 
             inHand = -1;
             System.out.println("I Killed King  2");
 
             return false;
-        } else if (!generateCastleMoves(Enemy, blackRook1)) {
+        } else if (!generateCastleMoves(enemy, blackRook1)) {
 
             inHand = -1;
             System.out.println("I Killed Rook 2");
 
             return false;
-        } else if (!generateCastleMoves(Enemy, blackRook2)) {
+        } else if (!generateCastleMoves(enemy, blackRook2)) {
 
             inHand = -1;
             System.out.println("I Killed Rook 2");
             return false;
-        } else if (!generateBishopMoves(Enemy, blackBishop1)) {
+        } else if (!generateBishopMoves(enemy, blackBishop1)) {
 
             inHand = -1;
             System.out.println("I Killed Bishop2");
             return false;
-        } else if (!generateBishopMoves(Enemy, blackBishop2)) {
+        } else if (!generateBishopMoves(enemy, blackBishop2)) {
 
             inHand = -1;
             System.out.println("I Killed Bishop2");
 
             return false;
-        } else if (!generateKnightMoves(Enemy, blackKnight1)) {
+        } else if (!generateKnightMoves(enemy, blackKnight1)) {
 
             inHand = -1;
             System.out.println("I Killed Knight 2");
             return false;
-        } else if (!generateKnightMoves(Enemy, blackKnight2)) {
+        } else if (!generateKnightMoves(enemy, blackKnight2)) {
 
             inHand = -1;
             System.out.println("I Killed Knight 2");
             return false;
-        } else if (!generateQueenMoves(Enemy)) {
+        } else if (!generateQueenMoves(enemy)) {
 
             inHand = -1;
             System.out.println("I Killed Queen 2");
@@ -818,7 +819,7 @@ public class Player2 implements Enumeration {
 
         for (int i = 0; i <= 7; i++) {
             inHand = 9 + i;
-            if (!generatePawnMoves(Enemy, blackPawns[i])) {
+            if (!generatePawnMoves(enemy, blackPawns[i])) {
 
                 inHand = -1;
 

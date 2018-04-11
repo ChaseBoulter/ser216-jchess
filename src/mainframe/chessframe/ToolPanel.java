@@ -13,6 +13,21 @@ import javax.swing.JTextField;
 import mainframe.chessframe.timer.ThreadTimer;
 
 public class ToolPanel extends JPanel {
+
+    private final JTextField turn1TextField = new JTextField(" P2  Turn ");
+    private final JTextField turn2TextField = new JTextField(" P1  Turn ");
+    private final JTextField whiteTextField = new JTextField("  White ");
+    private final JTextField blackTextField = new JTextField("  Black ");
+    private final myHistoryList historyList = new myHistoryList();
+    private final short numberOfTurns = 1;
+    private final JScrollPane historyScroll = new JScrollPane(historyList, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+            JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+    private final JLabel screen1 = new JLabel();
+    private final JLabel screen2 = new JLabel();
+    private final JLabel timeDesc1 = new JLabel(" Timer 1");
+    private final JLabel timeDesc2 = new JLabel(" Timer 2");
+    private ThreadTimer timer1;
+    private ThreadTimer timer2;
     
     /** Creates a new instance of ToolPanel. */
     public void paintComponent(Graphics g) {
@@ -44,45 +59,45 @@ public class ToolPanel extends JPanel {
         setLocation(600, 0);
         setLayout(null);
 
-        JLturn1.setSize(60, 25);
-        JLturn1.setLocation(20, 10);
+        turn1TextField.setSize(60, 25);
+        turn1TextField.setLocation(20, 10);
         screen1.setSize(100, 25);
         screen1.setLocation(90, 25);
 
-        JLblack.setSize(60, 25);
-        JLblack.setLocation(20, 34);
+        blackTextField.setSize(60, 25);
+        blackTextField.setLocation(20, 34);
 
-        JLturn1.setEnabled(false);
-        JLturn1.setBackground(Color.ORANGE);
-        JLturn1.setDisabledTextColor(Color.BLACK);
-        JLturn1.setFont(new Font("Arial", Font.BOLD, 12));
+        turn1TextField.setEnabled(false);
+        turn1TextField.setBackground(Color.ORANGE);
+        turn1TextField.setDisabledTextColor(Color.BLACK);
+        turn1TextField.setFont(new Font("Arial", Font.BOLD, 12));
 
-        JLblack.setEnabled(false);
-        JLblack.setBackground(new Color(230, 12, 0));
-        JLblack.setFont(new Font("Arial", Font.BOLD, 12));
-        JLblack.setDisabledTextColor(Color.BLACK);
+        blackTextField.setEnabled(false);
+        blackTextField.setBackground(new Color(230, 12, 0));
+        blackTextField.setFont(new Font("Arial", Font.BOLD, 12));
+        blackTextField.setDisabledTextColor(Color.BLACK);
 
-        JLturn2.setSize(60, 25);
-        JLturn2.setLocation(20, 254);
+        turn2TextField.setSize(60, 25);
+        turn2TextField.setLocation(20, 254);
         screen2.setSize(100, 25);
         screen2.setLocation(90, 254);
-        JLwhite.setSize(60, 25);
-        JLwhite.setLocation(20, 230);
+        whiteTextField.setSize(60, 25);
+        whiteTextField.setLocation(20, 230);
 
-        JLturn2.setEnabled(false);
-        JLturn2.setBackground(Color.ORANGE);
-        JLturn2.setDisabledTextColor(Color.BLACK);
-        JLturn2.setFont(new Font("Arial", Font.BOLD, 12));
+        turn2TextField.setEnabled(false);
+        turn2TextField.setBackground(Color.ORANGE);
+        turn2TextField.setDisabledTextColor(Color.BLACK);
+        turn2TextField.setFont(new Font("Arial", Font.BOLD, 12));
 
-        JLwhite.setEnabled(false);
-        JLwhite.setBackground(new Color(230, 12, 0));
-        JLwhite.setFont(new Font("Arial", Font.BOLD, 12));
-        JLwhite.setDisabledTextColor(Color.BLACK);
+        whiteTextField.setEnabled(false);
+        whiteTextField.setBackground(new Color(230, 12, 0));
+        whiteTextField.setFont(new Font("Arial", Font.BOLD, 12));
+        whiteTextField.setDisabledTextColor(Color.BLACK);
 
-        add(JLturn1);
-        add(JLblack);
-        add(JLturn2);
-        add(JLwhite);
+        add(turn1TextField);
+        add(blackTextField);
+        add(turn2TextField);
+        add(whiteTextField);
         add(screen1);
         add(screen2);
 
@@ -114,21 +129,6 @@ public class ToolPanel extends JPanel {
         timer1.stop();
         timer2.stop();
     }
-
-    private final JTextField JLturn1 = new JTextField(" P2  Turn ");
-    private final JTextField JLturn2 = new JTextField(" P1  Turn ");
-    private final JTextField JLwhite = new JTextField("  White ");
-    private final JTextField JLblack = new JTextField("  Black ");
-    private final myHistoryList historyList = new myHistoryList();
-    private final short numberOfTurns = 1;
-    private final JScrollPane historyScroll = new JScrollPane(historyList, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-            JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-    private final JLabel screen1 = new JLabel();
-    private final JLabel screen2 = new JLabel();
-    private final JLabel timeDesc1 = new JLabel(" Timer 1");
-    private final JLabel timeDesc2 = new JLabel(" Timer 2");
-    private ThreadTimer timer1;
-    private ThreadTimer timer2;
 
     public void startAgain() {
         if (timer1 != null) {

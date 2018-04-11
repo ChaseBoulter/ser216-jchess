@@ -16,7 +16,6 @@ import javax.swing.JFrame;
 import mainframe.chessframe.ChatPanel;
 import mainframe.chessmenubar.ChessMainMenuBar;
 import mainframe.chessframe.StatusPanel;
-import javax.swing.JScrollPane;
 
 public class MainFrame extends JFrame {
 
@@ -42,7 +41,6 @@ public class MainFrame extends JFrame {
 
     }
 
-    /** starts game again? **/
     public void startAgain() {
         myMainPanel.startAgain();
 

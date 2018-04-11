@@ -433,24 +433,25 @@ public class Player1 {
         return false;
     }
 
-    public boolean setSeentoSiliders(int i, Point P) {
+    /** originally named setSeenToSiliders, so I have no idea what this does. **/
+    public boolean pawnSeen(int i, Point myPoint) {
         switch (i) {
             case 25:
-                return whitePawns[0].setSeenByChecking(P, "white");
+                return whitePawns[0].setSeenByChecking(myPoint, "white");
             case 26:
-                return whitePawns[1].setSeenByChecking(P, "white");
+                return whitePawns[1].setSeenByChecking(myPoint, "white");
             case 27:
-                return whitePawns[2].setSeenByChecking(P, "white");
+                return whitePawns[2].setSeenByChecking(myPoint, "white");
             case 28:
-                return whitePawns[3].setSeenByChecking(P, "white");
+                return whitePawns[3].setSeenByChecking(myPoint, "white");
             case 29:
-                return whitePawns[4].setSeenByChecking(P, "white");
+                return whitePawns[4].setSeenByChecking(myPoint, "white");
             case 30:
-                return whitePawns[5].setSeenByChecking(P, "white");
+                return whitePawns[5].setSeenByChecking(myPoint, "white");
             case 31:
-                return whitePawns[6].setSeenByChecking(P, "white");
+                return whitePawns[6].setSeenByChecking(myPoint, "white");
             case 32:
-                return whitePawns[7].setSeenByChecking(P, "white");
+                return whitePawns[7].setSeenByChecking(myPoint, "white");
             default:
                 break;
         }
@@ -574,6 +575,11 @@ public class Player1 {
 
         return false;
     }
+    
+
+    public void checkKing(boolean newkingcheck) {
+        kingischeck = newkingcheck;
+    }
 
     public boolean checkKing(Point p1, Point p2, int i) {
         switch (i) {
@@ -631,53 +637,50 @@ public class Player1 {
         return true;
     }
 
-    public void checkKing(boolean newkingcheck) {
-        kingischeck = newkingcheck;
-    }
 
     public boolean returncheckKing() {
 
         return kingischeck;
     }
 
-    public boolean kingInCheck(Player2 Black) {
+    public boolean kingInCheck(Player2 black) {
         boolean isCheckmate = false;
         boolean flag = false;
 
         return false;
     }
 
-    public boolean checkMate(Player2 Enemy) {
+    public boolean checkMate(Player2 enemy) {
 
-        if (!generateKingMoves(Enemy)) {
-
-            inHand = -1;
-            return false;
-        } else if (!generateCastleMoves(Enemy, whiteRook1)) {
+        if (!generateKingMoves(enemy)) {
 
             inHand = -1;
             return false;
-        } else if (!generateCastleMoves(Enemy, whiteRook2)) {
+        } else if (!generateCastleMoves(enemy, whiteRook1)) {
 
             inHand = -1;
             return false;
-        } else if (!generateBishopMoves(Enemy, whiteBishop1)) {
+        } else if (!generateCastleMoves(enemy, whiteRook2)) {
 
             inHand = -1;
             return false;
-        } else if (!generateBishopMoves(Enemy, whiteBishop2)) {
+        } else if (!generateBishopMoves(enemy, whiteBishop1)) {
 
             inHand = -1;
             return false;
-        } else if (!generateHorseMoves(Enemy, whiteKnight1)) {
+        } else if (!generateBishopMoves(enemy, whiteBishop2)) {
 
             inHand = -1;
             return false;
-        } else if (!generateHorseMoves(Enemy, whiteKnight2)) {
+        } else if (!generateHorseMoves(enemy, whiteKnight1)) {
 
             inHand = -1;
             return false;
-        } else if (!generateMoves(Enemy)) {
+        } else if (!generateHorseMoves(enemy, whiteKnight2)) {
+
+            inHand = -1;
+            return false;
+        } else if (!generateMoves(enemy)) {
 
             inHand = -1;
             return false;
@@ -685,7 +688,7 @@ public class Player1 {
 
         for (int i = 0; i <= 7; i++) {
             inHand = 25 + i;
-            if (!generatePawnMoves(Enemy, whitePawns[i])) {
+            if (!generatePawnMoves(enemy, whitePawns[i])) {
 
                 inHand = -1;
                 System.out.println("I Killed Solider 1");
@@ -698,7 +701,7 @@ public class Player1 {
 
     }
 
-    public boolean isKingChecked(Player2 Black) {
+    public boolean isKingChecked(Player2 black) {
 
         Point myKingPosition = whiteKing.returnPostion();
         boolean flag = false;
@@ -706,20 +709,20 @@ public class Player1 {
         ////////// Start Checking the King ////////////
         for (int i = 1; i < 17; i++) {
             if (i < 9) {
-                if (Black.checkTheMove(myKingPosition, i)) {
+                if (black.checkTheMove(myKingPosition, i)) {
 
                     flag = true;
                     for (int j = 1; j < 33; j++) {
 
                         if (j < 17) {
 
-                            if (Black.checkTheWay(myKingPosition, Black.returnPostion(j), i)) {
+                            if (black.checkTheWay(myKingPosition, black.returnPostion(j), i)) {
                                 // Means there is something in the Way so can't move
                                 flag = false;
                             }
                         } else {
                             if (j != 24) {
-                                if (Black.checkTheWay(myKingPosition, returnPostion(j), i)) {
+                                if (black.checkTheWay(myKingPosition, returnPostion(j), i)) {
 
                                     flag = false;
                                     // Means there is something in the Way so can't move'
@@ -739,7 +742,7 @@ public class Player1 {
                 }
             } else {
                 // For pawns
-                if (Black.setSeentoSiliders(i, myKingPosition)) {
+                if (black.pawnSeen(i, myKingPosition)) {
 
                     break;
 
@@ -1236,14 +1239,14 @@ public class Player1 {
         return true;
     }
 
-    public boolean generateHorseMoves(Player2 enemy, Knight WhiteKnight) {
+    public boolean generateHorseMoves(Player2 enemy, Knight whiteKnight) {
         Point oldp1 = new Point();
         boolean killedSomething = false;
-        oldp1 = WhiteKnight.returnPostion();
+        oldp1 = whiteKnight.returnPostion();
 
         Point checkPlace = new Point();
 
-        if (WhiteKnight == whiteKnight1) {
+        if (whiteKnight == whiteKnight1) {
             inHand = 19;
         } else {
             inHand = 20;
@@ -1255,8 +1258,8 @@ public class Player1 {
         if (x != 20) {
 
             if (x + 1 <= 8 && y + 1 <= 8) {
-                WhiteKnight.setX(x + 1);
-                WhiteKnight.setY(y + 2);
+                whiteKnight.setX(x + 1);
+                whiteKnight.setY(y + 2);
                 checkPlace.x = x + 1;
                 checkPlace.y = y + 2;
 
@@ -1266,7 +1269,7 @@ public class Player1 {
 
                 if (friendlyPieceAlreadyThere(checkPlace)) {
                     if (!isKingChecked(enemy)) {
-                        WhiteKnight.setPoint(oldp1);
+                        whiteKnight.setPoint(oldp1);
 
                         if (killedSomething) {
                             enemy.changePostion(other, killToProtect);
@@ -1283,8 +1286,8 @@ public class Player1 {
             }
 
             if (x + 1 <= 8 && y - 2 >= 1) {
-                WhiteKnight.setX(x + 1);
-                WhiteKnight.setY(y - 2);
+                whiteKnight.setX(x + 1);
+                whiteKnight.setY(y - 2);
                 checkPlace.x = x + 1;
                 checkPlace.y = y - 2;
                 if (killToProtectKing(enemy, returnPostion(inHand))) {
@@ -1297,7 +1300,7 @@ public class Player1 {
                             enemy.changePostion(other, killToProtect);
                             killedSomething = false;
                         }
-                        WhiteKnight.setPoint(oldp1);
+                        whiteKnight.setPoint(oldp1);
                         return false;
                     }
                 }
@@ -1308,8 +1311,8 @@ public class Player1 {
             }
 
             if (x + 2 <= 8 && y + 1 <= 8) {
-                WhiteKnight.setX(x + 2);
-                WhiteKnight.setY(y + 1);
+                whiteKnight.setX(x + 2);
+                whiteKnight.setY(y + 1);
                 checkPlace.x = x + 2;
                 checkPlace.y = y + 1;
 
@@ -1323,7 +1326,7 @@ public class Player1 {
                             enemy.changePostion(other, killToProtect);
                             killedSomething = false;
                         }
-                        WhiteKnight.setPoint(oldp1);
+                        whiteKnight.setPoint(oldp1);
                         return false;
                     }
                 }
@@ -1334,8 +1337,8 @@ public class Player1 {
                 killedSomething = false;
             }
             if (x + 2 <= 8 && y - 1 >= 1) {
-                WhiteKnight.setX(x + 2);
-                WhiteKnight.setY(y - 1);
+                whiteKnight.setX(x + 2);
+                whiteKnight.setY(y - 1);
                 checkPlace.x = x + 2;
                 checkPlace.y = y - 1;
                 if (killToProtectKing(enemy, returnPostion(inHand))) {
@@ -1348,7 +1351,7 @@ public class Player1 {
                             enemy.changePostion(other, killToProtect);
                             killedSomething = false;
                         }
-                        WhiteKnight.setPoint(oldp1);
+                        whiteKnight.setPoint(oldp1);
                         return false;
                     }
                 }
@@ -1359,8 +1362,8 @@ public class Player1 {
             }
 
             if (x - 1 >= 1 && y + 2 <= 8) {
-                WhiteKnight.setX(x - 1);
-                WhiteKnight.setY(y + 2);
+                whiteKnight.setX(x - 1);
+                whiteKnight.setY(y + 2);
                 checkPlace.x = x - 1;
                 checkPlace.y = y + 2;
 
@@ -1374,7 +1377,7 @@ public class Player1 {
                             enemy.changePostion(other, killToProtect);
                             killedSomething = false;
                         }
-                        WhiteKnight.setPoint(oldp1);
+                        whiteKnight.setPoint(oldp1);
                         return false;
                     }
                 }
@@ -1385,8 +1388,8 @@ public class Player1 {
             }
 
             if (x - 1 >= 1 && y - 2 >= 1) {
-                WhiteKnight.setX(x - 1);
-                WhiteKnight.setY(y - 2);
+                whiteKnight.setX(x - 1);
+                whiteKnight.setY(y - 2);
                 checkPlace.x = x - 1;
                 checkPlace.y = y - 2;
                 if (killToProtectKing(enemy, returnPostion(inHand))) {
@@ -1399,7 +1402,7 @@ public class Player1 {
                             enemy.changePostion(other, killToProtect);
                             killedSomething = false;
                         }
-                        WhiteKnight.setPoint(oldp1);
+                        whiteKnight.setPoint(oldp1);
                         return false;
                     }
                 }
@@ -1410,8 +1413,8 @@ public class Player1 {
             }
 
             if (x - 2 >= 1 && y + 1 <= 8) {
-                WhiteKnight.setX(x - 2);
-                WhiteKnight.setY(y + 1);
+                whiteKnight.setX(x - 2);
+                whiteKnight.setY(y + 1);
                 checkPlace.x = x - 2;
                 checkPlace.y = y + 1;
 
@@ -1424,7 +1427,7 @@ public class Player1 {
                             enemy.changePostion(other, killToProtect);
                             killedSomething = false;
                         }
-                        WhiteKnight.setPoint(oldp1);
+                        whiteKnight.setPoint(oldp1);
                         return false;
                     }
                 }
@@ -1436,8 +1439,8 @@ public class Player1 {
             }
 
             if (x - 2 >= 1 && y - 1 >= 1) {
-                WhiteKnight.setX(x - 2);
-                WhiteKnight.setY(y - 1);
+                whiteKnight.setX(x - 2);
+                whiteKnight.setY(y - 1);
                 checkPlace.x = x - 2;
                 checkPlace.y = y - 1;
 
@@ -1451,7 +1454,7 @@ public class Player1 {
                             enemy.changePostion(other, killToProtect);
                             killedSomething = false;
                         }
-                        WhiteKnight.setPoint(oldp1);
+                        whiteKnight.setPoint(oldp1);
                         return false;
                     }
                 }
@@ -1462,7 +1465,7 @@ public class Player1 {
             }
 
         }
-        WhiteKnight.setPoint(oldp1);
+        whiteKnight.setPoint(oldp1);
 
         return true;
     }

@@ -50,9 +50,7 @@ public class Queen extends Piece {
                     }
                 }
             }
-        }
-
-        else if ((((y > nextY) || (y < nextY)) && (x == (nextX)))) {
+        }else if ((((y > nextY) || (y < nextY)) && (x == (nextX)))) {
             if ((nextY < j)) {
                 while ((j != nextY + 1)) {
                     j--;
@@ -79,9 +77,7 @@ public class Queen extends Piece {
                         return true;
                     }
                 }
-            }
-
-            else if (x < nextX && y < nextY) {
+            } else if (x < nextX && y < nextY) {
                 while ((j != nextY - 1) && (i != nextX - 1)) {
                     j++;
                     i++;
@@ -92,9 +88,7 @@ public class Queen extends Piece {
 
                 }
             }
-        }
-
-        else if ((x + y) == (nextX + nextY)) {
+        } else if ((x + y) == (nextX + nextY)) {
 
             if ((nextX < i) && (nextY > j)) {
                 while ((j != nextY - 1) && (i != nextX + 1)) {
@@ -107,9 +101,7 @@ public class Queen extends Piece {
 
                 }
 
-            }
-
-            else if ((nextX > i) && (nextY < j)) {
+            } else if ((nextX > i) && (nextY < j)) {
                 while ((j != nextY + 1) && (i != nextX - 1)) {
                     j--;
                     i++;

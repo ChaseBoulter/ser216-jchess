@@ -407,7 +407,7 @@
 //        return false;
 //    }
 //
-//    public boolean setSeentoSiliders(int i, Point P) {
+//    public boolean pawnSeen(int i, Point P) {
 //        switch (i) {
 //        case 25:
 //            return whitePawns[0].setSeenbychecking(P, color);
@@ -720,7 +720,7 @@
 //                }
 //            } else {
 //                // For soliders
-//                if (Black.setSeentoSiliders(i, My_King_position)) {
+//                if (Black.pawnSeen(i, My_King_position)) {
 //
 //                    break;
 //

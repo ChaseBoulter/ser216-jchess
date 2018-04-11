@@ -20,7 +20,7 @@
     <property name="fileExtensions" value="java, properties, xml"/>
     <!-- Checks for whitespace                               -->
     <!-- See http://checkstyle.sf.net/config_whitespace.html -->
-    <module name="FileTablackRookharacter">
+    <module name="FileTabCharacter">
         <property name="eachLine" value="true"/>
     </module>
 
@@ -216,7 +216,7 @@
             <property name="allowMissingReturnTag" value="true"/>
             <property name="minLineCount" value="2"/>
             <property name="allowedAnnotations" value="Override, Test"/>
-            <property name="allowThrowsTagsForSublackRooklasses" value="true"/>
+            <property name="allowThrowsTagsForSubclasses" value="true"/>
         </module>
         <module name="MethodName">
             <property name="format" value="^[a-z][a-z0-9][a-zA-Z0-9_]*$"/>

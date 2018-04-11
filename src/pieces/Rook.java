@@ -31,8 +31,8 @@ public class Rook extends Piece {
 
                 while ((i != nextX + 1)) {
                     i--;
-                    if (((othersPostion.y) == j) && ((othersPostion.x == i)))// same color
-                    {
+                    // same color
+                    if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
                         return true;
                     }
                 }
@@ -77,8 +77,8 @@ public class Rook extends Piece {
 
                 while ((i != nextX)) {
                     i--;
-                    if (((othersPostion.y) == j) && ((othersPostion.x == i)))// same color
-                    {
+                    // same color
+                    if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
                         return true;
                     }
                 }

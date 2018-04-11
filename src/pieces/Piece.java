@@ -15,9 +15,9 @@ public class Piece {
     protected Point updatedPosition = new Point();
     protected Point old = new Point();
 
-    public Piece(String NameIcon, int startX, int startY) {
+    public Piece(String nameIcon, int startX, int startY) {
 
-        pieceIcon = new PieceIcon(NameIcon);
+        pieceIcon = new PieceIcon(nameIcon);
 
         nextX = startX;
         nextY = startY;
@@ -84,10 +84,10 @@ public class Piece {
         updatedPosition.y = nextY;
     }
 
-    public void toOld(Point Old) {
+    public void toOld(Point old) {
 
-        updatedPosition.x = Old.x;
-        updatedPosition.y = Old.y;
+        updatedPosition.x = old.x;
+        updatedPosition.y = old.y;
 
     }
 
@@ -95,7 +95,7 @@ public class Piece {
         return havelife;
     }
 
-    public boolean Inthispostion(int x, int y) {
+    public boolean inThisPosition(int x, int y) {
         if (updatedPosition.x == x && updatedPosition.y == y) {
             return true;
         }

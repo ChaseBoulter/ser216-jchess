@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 
 public class ThreadTimer extends Thread {
 
-    /** Creates a new instance of ThreadTimer */
+    /** Creates a new instance of ThreadTimer. */
 
     public ThreadTimer(JLabel mynewScreen) {
         myScreen = mynewScreen;
