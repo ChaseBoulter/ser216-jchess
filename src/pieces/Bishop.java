@@ -10,6 +10,7 @@ public class Bishop extends Piece {
         super(nameIcon, startX, startY);
     }
 
+    /** places Bishop can move to. **/
     public boolean canMove(int x, int y) {
 
         int j = y;
@@ -27,7 +28,6 @@ public class Bishop extends Piece {
     }
 
     public boolean pieceInMyWay(int x, int y, Point othersPostion) {
-
         int j = y;
         int i = x;
 
@@ -41,9 +41,7 @@ public class Bishop extends Piece {
                         return true;
                     }
                 }
-            }
-
-            else if (x < nextX && y < nextY) {
+            } else if (x < nextX && y < nextY) {
                 while ((j != nextY - 1) && (i != nextX - 1)) {
                     j++;
                     i++;
@@ -52,9 +50,7 @@ public class Bishop extends Piece {
                     }
                 }
             }
-        }
-
-        else if (((x + y)) == ((nextX + nextY))) {
+        } else if (((x + y)) == ((nextX + nextY))) {
 
             if ((nextX < i) && (nextY > j)) {
 
@@ -69,9 +65,7 @@ public class Bishop extends Piece {
 
                 }
 
-            }
-
-            else if ((nextX > i) && (nextY < j)) {
+            } else if ((nextX > i) && (nextY < j)) {
                 while ((j != nextX + 1) && (i != nextX - 1)) {
                     j--;
                     i++;
@@ -104,7 +98,7 @@ public class Bishop extends Piece {
                 }
             }
 
-            else if (x < nextX && y < nextY)
+            else if (x < nextX && y < nextY) {
 
                 while ((j != nextY) && (i != nextX)) {
                     j++;
@@ -115,6 +109,7 @@ public class Bishop extends Piece {
                     }
 
                 }
+            }
         }
 
         else if (((x + y)) == ((nextX + nextY))) {

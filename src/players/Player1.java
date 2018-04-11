@@ -1,174 +1,178 @@
 
 package players;
 
-import pieces.*;
 import java.awt.Image;
 import java.awt.Point;
+import pieces.*;
 
 public class Player1 {
 
-    /** Creates a new instance of Player1 */
-    public Rook WC1;
-    public Rook WC2;
-    public Knight WH1;
-    public Knight WH2;
-    public Queen WQ;
-    public Bishop WE1;
-    public Bishop WE2;
-    public Pawn[] WS = new Pawn[8];
-    public King WK;
+    /** Creates a new instance of Player1. */
+    public Rook whiteRook1;
+    public Rook whiteRook2;
+    public Knight whiteKnight1;
+    public Knight whiteKnight2;
+    public Queen whiteQueen;
+    public Bishop whiteBishop1;
+    public Bishop whiteBishop2;
+    public Pawn[] whitePawns = new Pawn[8];
+    public King whiteKing;
     private int inHand = -1;
     private boolean kingischeck = false;
     private int choosenOne;
-    String Color = "white";
+    String color = "white";
     private Point other;
-    int ate_to_protect;
+    int killToProtect;
 
+    /** constructs Player1 pieces. **/
     public Player1() {
         String fileSeparator = new String(System.getProperty("file.separator"));
-        WC1 = new Rook("src" + fileSeparator + "Icons" + fileSeparator
+        whiteRook1 = new Rook("src" + fileSeparator + "Icons" + fileSeparator
                 + "Player1Icons" + fileSeparator + "wr.gif", 8, 8);
-        WC2 = new Rook("src" + fileSeparator + "Icons" + fileSeparator
+        whiteRook2 = new Rook("src" + fileSeparator + "Icons" + fileSeparator
                 + "Player1Icons" + fileSeparator + "wr.gif", 1, 8);
-        WH1 = new Knight("src" + fileSeparator + "Icons" + fileSeparator
+        whiteKnight1 = new Knight("src" + fileSeparator + "Icons" + fileSeparator
                 + "Player1Icons" + fileSeparator + "wn.gif", 2, 8);
-        WH2 = new Knight("src" + fileSeparator + "Icons" + fileSeparator
+        whiteKnight2 = new Knight("src" + fileSeparator + "Icons" + fileSeparator
                 + "Player1Icons" + fileSeparator + "wn.gif", 7, 8);
-        WE1 = new Bishop("src" + fileSeparator + "Icons" + fileSeparator
+        whiteBishop1 = new Bishop("src" + fileSeparator + "Icons" + fileSeparator
                 + "Player1Icons" + fileSeparator + "wb.gif", 3, 8);
-        WE2 = new Bishop("src" + fileSeparator + "Icons" + fileSeparator
+        whiteBishop2 = new Bishop("src" + fileSeparator + "Icons" + fileSeparator
                 + "Player1Icons" + fileSeparator + "wb.gif", 6, 8);
-        WQ = new Queen("src" + fileSeparator + "Icons" + fileSeparator
+        whiteQueen = new Queen("src" + fileSeparator + "Icons" + fileSeparator
                 + "Player1Icons" + fileSeparator + "wq.gif", 4, 8);
-        WK = new King("src" + fileSeparator + "Icons" + fileSeparator
+        whiteKing = new King("src" + fileSeparator + "Icons" + fileSeparator
                 + "Player1Icons" + fileSeparator + "wk.gif", 5, 8);
         int j = 1;
         for (int i = 0; i <= 7; i++, j++) {
-            WS[i] = new Pawn(
-                    "src" + fileSeparator + "Icons" + fileSeparator + "Player1Icons" + fileSeparator + "wp.gif", j, 7);
+            whitePawns[i] = new Pawn("src" + fileSeparator + "Icons" 
+                    + fileSeparator + "Player1Icons" + fileSeparator + "wp.gif", j, 7);
         }
     }
 
+    /** returns position of each piece wrapped all in a switch case. **/
     public Point returnPostion(int i) {
 
         switch (i) {
 
             case 17:
-                return WC1.returnPostion();
+                return whiteRook1.returnPostion();
             case 18:
-                return WC2.returnPostion();
+                return whiteRook2.returnPostion();
             case 19:
-                return WH1.returnPostion();
+                return whiteKnight1.returnPostion();
             case 20:
-                return WH2.returnPostion();
+                return whiteKnight2.returnPostion();
             case 21:
-                return WE1.returnPostion();
+                return whiteBishop1.returnPostion();
             case 22:
-                return WE2.returnPostion();
+                return whiteBishop2.returnPostion();
             case 23:
-                return WQ.returnPostion();
+                return whiteQueen.returnPostion();
             case 24:
-                return WK.returnPostion();
+                return whiteKing.returnPostion();
             case 25:
-                return WS[0].returnPostion();
+                return whitePawns[0].returnPostion();
             case 26:
-                return WS[1].returnPostion();
+                return whitePawns[1].returnPostion();
             case 27:
-                return WS[2].returnPostion();
+                return whitePawns[2].returnPostion();
             case 28:
-                return WS[3].returnPostion();
+                return whitePawns[3].returnPostion();
             case 29:
-                return WS[4].returnPostion();
+                return whitePawns[4].returnPostion();
             case 30:
-                return WS[5].returnPostion();
+                return whitePawns[5].returnPostion();
             case 31:
-                return WS[6].returnPostion();
+                return whitePawns[6].returnPostion();
             case 32:
-                return WS[7].returnPostion();
+                return whitePawns[7].returnPostion();
             default:
                 break;
         }
         return new Point(-1, -1);
     }
 
+    /** returns position of each old piece wrapped all in a switch case. **/
     public Point returnOldPostion(int i) {
 
         switch (i) {
 
             case 17:
-                return WC1.returnOld();
+                return whiteRook1.returnOld();
             case 18:
-                return WC2.returnOld();
+                return whiteRook2.returnOld();
             case 19:
-                return WH1.returnOld();
+                return whiteKnight1.returnOld();
             case 20:
-                return WH2.returnOld();
+                return whiteKnight2.returnOld();
             case 21:
-                return WE1.returnOld();
+                return whiteBishop1.returnOld();
             case 22:
-                return WE2.returnOld();
+                return whiteBishop2.returnOld();
             case 23:
-                return WQ.returnOld();
+                return whiteQueen.returnOld();
             case 24:
-                return WK.returnOld();
+                return whiteKing.returnOld();
             case 25:
-                return WS[0].returnOld();
+                return whitePawns[0].returnOld();
             case 26:
-                return WS[1].returnOld();
+                return whitePawns[1].returnOld();
             case 27:
-                return WS[2].returnOld();
+                return whitePawns[2].returnOld();
             case 28:
-                return WS[3].returnOld();
+                return whitePawns[3].returnOld();
             case 29:
-                return WS[4].returnOld();
+                return whitePawns[4].returnOld();
             case 30:
-                return WS[5].returnOld();
+                return whitePawns[5].returnOld();
             case 31:
-                return WS[6].returnOld();
+                return whitePawns[6].returnOld();
             case 32:
-                return WS[7].returnOld();
+                return whitePawns[7].returnOld();
             default:
                 break;
         }
         return new Point(-1, -1);
     }
 
+    /** returns position of each image wrapped all in a switch case. **/
     public Image returnIconImage(int i) {
 
         switch (i) {
     
             case 17:
-                return WC1.returnPieceImage();
+                return whiteRook1.returnPieceImage();
             case 18:
-                return WC2.returnPieceImage();
+                return whiteRook2.returnPieceImage();
             case 19:
-                return WH1.returnPieceImage();
+                return whiteKnight1.returnPieceImage();
             case 20:
-                return WH2.returnPieceImage();
+                return whiteKnight2.returnPieceImage();
             case 21:
-                return WE1.returnPieceImage();
+                return whiteBishop1.returnPieceImage();
             case 22:
-                return WE2.returnPieceImage();
+                return whiteBishop2.returnPieceImage();
             case 23:
-                return WQ.returnPieceImage();
+                return whiteQueen.returnPieceImage();
             case 24:
-                return WK.returnPieceImage();
+                return whiteKing.returnPieceImage();
             case 25:
-                return WS[0].returnPieceImage();
+                return whitePawns[0].returnPieceImage();
             case 26:
-                return WS[1].returnPieceImage();
+                return whitePawns[1].returnPieceImage();
             case 27:
-                return WS[2].returnPieceImage();
+                return whitePawns[2].returnPieceImage();
             case 28:
-                return WS[3].returnPieceImage();
+                return whitePawns[3].returnPieceImage();
             case 29:
-                return WS[4].returnPieceImage();
+                return whitePawns[4].returnPieceImage();
             case 30:
-                return WS[5].returnPieceImage();
+                return whitePawns[5].returnPieceImage();
             case 31:
-                return WS[6].returnPieceImage();
+                return whitePawns[6].returnPieceImage();
             case 32:
-                return WS[7].returnPieceImage();
+                return whitePawns[7].returnPieceImage();
             default:
                 break;
         }
@@ -179,52 +183,52 @@ public class Player1 {
         switch (i) {
 
             case 17:
-                WC1.setPoint(newPoint);
+                whiteRook1.setPoint(newPoint);
                 break;
             case 18:
-                WC2.setPoint(newPoint);
+                whiteRook2.setPoint(newPoint);
                 break;
             case 19:
-                WH1.setPoint(newPoint);
+                whiteKnight1.setPoint(newPoint);
                 break;
             case 20:
-                WH2.setPoint(newPoint);
+                whiteKnight2.setPoint(newPoint);
                 break;
             case 21:
-                WE1.setPoint(newPoint);
+                whiteBishop1.setPoint(newPoint);
                 break;
             case 22:
-                WE2.setPoint(newPoint);
+                whiteBishop2.setPoint(newPoint);
                 break;
             case 23:
-                WQ.setPoint(newPoint);
+                whiteQueen.setPoint(newPoint);
                 break;
             case 24:
-                WK.setPoint(newPoint);
+                whiteKing.setPoint(newPoint);
                 break;
             case 25:
-                WS[0].setPoint(newPoint);
+                whitePawns[0].setPoint(newPoint);
                 break;
             case 26:
-                WS[1].setPoint(newPoint);
+                whitePawns[1].setPoint(newPoint);
                 break;
             case 27:
-                WS[2].setPoint(newPoint);
+                whitePawns[2].setPoint(newPoint);
                 break;
             case 28:
-                WS[3].setPoint(newPoint);
+                whitePawns[3].setPoint(newPoint);
                 break;
             case 29:
-                WS[4].setPoint(newPoint);
+                whitePawns[4].setPoint(newPoint);
                 break;
             case 30:
-                WS[5].setPoint(newPoint);
+                whitePawns[5].setPoint(newPoint);
                 break;
             case 31:
-                WS[6].setPoint(newPoint);
+                whitePawns[6].setPoint(newPoint);
                 break;
             case 32:
-                WS[7].setPoint(newPoint);
+                whitePawns[7].setPoint(newPoint);
                 break;
             default:
                 break;
@@ -236,52 +240,52 @@ public class Player1 {
         switch (i) {
 
             case 17:
-                WC1.toOld(newPoint);
+                whiteRook1.toOld(newPoint);
                 break;
             case 18:
-                WC2.toOld(newPoint);
+                whiteRook2.toOld(newPoint);
                 break;
             case 19:
-                WH1.toOld(newPoint);
+                whiteKnight1.toOld(newPoint);
                 break;
             case 20:
-                WH2.toOld(newPoint);
+                whiteKnight2.toOld(newPoint);
                 break;
             case 21:
-                WE1.toOld(newPoint);
+                whiteBishop1.toOld(newPoint);
                 break;
             case 22:
-                WE2.toOld(newPoint);
+                whiteBishop2.toOld(newPoint);
                 break;
             case 23:
-                WQ.toOld(newPoint);
+                whiteQueen.toOld(newPoint);
                 break;
             case 24:
-                WK.toOld(newPoint);
+                whiteKing.toOld(newPoint);
                 break;
             case 25:
-                WS[0].toOld(newPoint);
+                whitePawns[0].toOld(newPoint);
                 break;
             case 26:
-                WS[1].toOld(newPoint);
+                whitePawns[1].toOld(newPoint);
                 break;
             case 27:
-                WS[2].toOld(newPoint);
+                whitePawns[2].toOld(newPoint);
                 break;
             case 28:
-                WS[3].toOld(newPoint);
+                whitePawns[3].toOld(newPoint);
                 break;
             case 29:
-                WS[4].toOld(newPoint);
+                whitePawns[4].toOld(newPoint);
                 break;
             case 30:
-                WS[5].toOld(newPoint);
+                whitePawns[5].toOld(newPoint);
                 break;
             case 31:
-                WS[6].toOld(newPoint);
+                whitePawns[6].toOld(newPoint);
                 break;
             case 32:
-                WS[7].toOld(newPoint);
+                whitePawns[7].toOld(newPoint);
                 break;
             default:
                 break;
@@ -293,52 +297,52 @@ public class Player1 {
         switch (choosenOne) {
 
             case 17:
-                WC1.setPixels(newPixelX, newPixelY);
+                whiteRook1.setPixels(newPixelX, newPixelY);
                 break;
             case 18:
-                WC2.setPixels(newPixelX, newPixelY);
+                whiteRook2.setPixels(newPixelX, newPixelY);
                 break;
             case 19:
-                WH1.setPixels(newPixelX, newPixelY);
+                whiteKnight1.setPixels(newPixelX, newPixelY);
                 break;
             case 20:
-                WH2.setPixels(newPixelX, newPixelY);
+                whiteKnight2.setPixels(newPixelX, newPixelY);
                 break;
             case 21:
-                WE1.setPixels(newPixelX, newPixelY);
+                whiteBishop1.setPixels(newPixelX, newPixelY);
                 break;
             case 22:
-                WE2.setPixels(newPixelX, newPixelY);
+                whiteBishop2.setPixels(newPixelX, newPixelY);
                 break;
             case 23:
-                WQ.setPixels(newPixelX, newPixelY);
+                whiteQueen.setPixels(newPixelX, newPixelY);
                 break;
             case 24:
-                WK.setPixels(newPixelX, newPixelY);
+                whiteKing.setPixels(newPixelX, newPixelY);
                 break;
             case 25:
-                WS[0].setPixels(newPixelX, newPixelY);
+                whitePawns[0].setPixels(newPixelX, newPixelY);
                 break;
             case 26:
-                WS[1].setPixels(newPixelX, newPixelY);
+                whitePawns[1].setPixels(newPixelX, newPixelY);
                 break;
             case 27:
-                WS[2].setPixels(newPixelX, newPixelY);
+                whitePawns[2].setPixels(newPixelX, newPixelY);
                 break;
             case 28:
-                WS[3].setPixels(newPixelX, newPixelY);
+                whitePawns[3].setPixels(newPixelX, newPixelY);
                 break;
             case 29:
-                WS[4].setPixels(newPixelX, newPixelY);
+                whitePawns[4].setPixels(newPixelX, newPixelY);
                 break;
             case 30:
-                WS[5].setPixels(newPixelX, newPixelY);
+                whitePawns[5].setPixels(newPixelX, newPixelY);
                 break;
             case 31:
-                WS[6].setPixels(newPixelX, newPixelY);
+                whitePawns[6].setPixels(newPixelX, newPixelY);
                 break;
             case 32:
-                WS[7].setPixels(newPixelX, newPixelY);
+                whitePawns[7].setPixels(newPixelX, newPixelY);
                 break;
             default:
                 break;
@@ -350,79 +354,79 @@ public class Player1 {
         switch (choosenOne) {
 
             case 17:
-                return WC1.getpixelPoint();
+                return whiteRook1.getpixelPoint();
             case 18:
-                return WC2.getpixelPoint();
+                return whiteRook2.getpixelPoint();
             case 19:
-                return WH1.getpixelPoint();
+                return whiteKnight1.getpixelPoint();
             case 20:
-                return WH2.getpixelPoint();
+                return whiteKnight2.getpixelPoint();
             case 21:
-                return WE1.getpixelPoint();
+                return whiteBishop1.getpixelPoint();
             case 22:
-                return WE2.getpixelPoint();
+                return whiteBishop2.getpixelPoint();
             case 23:
-                return WQ.getpixelPoint();
+                return whiteQueen.getpixelPoint();
             case 24:
-                return WK.getpixelPoint();
+                return whiteKing.getpixelPoint();
             case 25:
-                return WS[0].getpixelPoint();
+                return whitePawns[0].getpixelPoint();
             case 26:
-                return WS[1].getpixelPoint();
+                return whitePawns[1].getpixelPoint();
             case 27:
-                return WS[2].getpixelPoint();
+                return whitePawns[2].getpixelPoint();
             case 28:
-                return WS[3].getpixelPoint();
+                return whitePawns[3].getpixelPoint();
             case 29:
-                return WS[4].getpixelPoint();
+                return whitePawns[4].getpixelPoint();
             case 30:
-                return WS[5].getpixelPoint();
+                return whitePawns[5].getpixelPoint();
             case 31:
-                return WS[6].getpixelPoint();
+                return whitePawns[6].getpixelPoint();
             case 32:
-                return WS[7].getpixelPoint();
+                return whitePawns[7].getpixelPoint();
             default:
                 break;
         }
         return null;
     }
 
-    public boolean checkthemove(Point newP, int i) {
+    public boolean checkMove(Point newP, int i) {
         choosenOne = i;
         switch (choosenOne) {
 
             case 17:
-                return WC1.canMove(newP.x, newP.y);
+                return whiteRook1.canMove(newP.x, newP.y);
             case 18:
-                return WC2.canMove(newP.x, newP.y);
+                return whiteRook2.canMove(newP.x, newP.y);
             case 19:
-                return WH1.canMove(newP.x, newP.y);
+                return whiteKnight1.canMove(newP.x, newP.y);
             case 20:
-                return WH2.canMove(newP.x, newP.y);
+                return whiteKnight2.canMove(newP.x, newP.y);
             case 21:
-                return WE1.canMove(newP.x, newP.y);
+                return whiteBishop1.canMove(newP.x, newP.y);
             case 22:
-                return WE2.canMove(newP.x, newP.y);
+                return whiteBishop2.canMove(newP.x, newP.y);
             case 23:
-                return WQ.Canmove(newP.x, newP.y);
+                return whiteQueen.canMove(newP.x, newP.y);
             case 24:
-                return WK.canMove(newP.x, newP.y);
+                return whiteKing.canMove(newP.x, newP.y);
             case 25:
-                return WS[0].canMove(newP.x, newP.y, Color);
+                return whitePawns[0].canMove(newP.x, newP.y, color);
             case 26:
-                return WS[1].canMove(newP.x, newP.y, Color);
+                return whitePawns[1].canMove(newP.x, newP.y, color);
             case 27:
-                return WS[2].canMove(newP.x, newP.y, Color);
+                return whitePawns[2].canMove(newP.x, newP.y, color);
             case 28:
-                return WS[3].canMove(newP.x, newP.y, Color);
+                return whitePawns[3].canMove(newP.x, newP.y, color);
             case 29:
-                return WS[4].canMove(newP.x, newP.y, Color);
+                return whitePawns[4].canMove(newP.x, newP.y, color);
             case 30:
-                return WS[5].canMove(newP.x, newP.y, Color);
+                return whitePawns[5].canMove(newP.x, newP.y, color);
             case 31:
-                return WS[6].canMove(newP.x, newP.y, Color);
+                return whitePawns[6].canMove(newP.x, newP.y, color);
             case 32:
-                return WS[7].canMove(newP.x, newP.y, Color);
+                return whitePawns[7].canMove(newP.x, newP.y, color);
             default:
                 break;
         }
@@ -432,80 +436,80 @@ public class Player1 {
     public boolean setSeentoSiliders(int i, Point P) {
         switch (i) {
             case 25:
-                return WS[0].setSeenbychecking(P, "white");
+                return whitePawns[0].setSeenByChecking(P, "white");
             case 26:
-                return WS[1].setSeenbychecking(P, "white");
+                return whitePawns[1].setSeenByChecking(P, "white");
             case 27:
-                return WS[2].setSeenbychecking(P, "white");
+                return whitePawns[2].setSeenByChecking(P, "white");
             case 28:
-                return WS[3].setSeenbychecking(P, "white");
+                return whitePawns[3].setSeenByChecking(P, "white");
             case 29:
-                return WS[4].setSeenbychecking(P, "white");
+                return whitePawns[4].setSeenByChecking(P, "white");
             case 30:
-                return WS[5].setSeenbychecking(P, "white");
+                return whitePawns[5].setSeenByChecking(P, "white");
             case 31:
-                return WS[6].setSeenbychecking(P, "white");
+                return whitePawns[6].setSeenByChecking(P, "white");
             case 32:
-                return WS[7].setSeenbychecking(P, "white");
+                return whitePawns[7].setSeenByChecking(P, "white");
             default:
                 break;
         }
         return false;
     }
 
-    public boolean returnsoliderSeen(int i) {
+    public boolean returnPawnPosition(int i) {
         switch (i) {
             case 25:
-                return WS[0].returnMyseen();
+                return whitePawns[0].returnMyseen();
             case 26:
-                return WS[1].returnMyseen();
+                return whitePawns[1].returnMyseen();
             case 27:
-                return WS[2].returnMyseen();
+                return whitePawns[2].returnMyseen();
             case 28:
-                return WS[3].returnMyseen();
+                return whitePawns[3].returnMyseen();
             case 29:
-                return WS[4].returnMyseen();
+                return whitePawns[4].returnMyseen();
             case 30:
-                return WS[5].returnMyseen();
+                return whitePawns[5].returnMyseen();
             case 31:
-                return WS[6].returnMyseen();
+                return whitePawns[6].returnMyseen();
             case 32:
-                return WS[7].returnMyseen();
+                return whitePawns[7].returnMyseen();
             default:
                 break;
         }
         return false;
     }
 
-    public boolean checktheWay(Point newP, Point postionFromOthers, int i) {
+    public boolean checkTheWay(Point newP, Point postionFromOthers, int i) {
         switch (i) {
 
             case 17:
-                return WC1.pieceInMyWay(newP.x, newP.y, postionFromOthers);
+                return whiteRook1.pieceInMyWay(newP.x, newP.y, postionFromOthers);
             case 18:
-                return WC2.pieceInMyWay(newP.x, newP.y, postionFromOthers);
+                return whiteRook2.pieceInMyWay(newP.x, newP.y, postionFromOthers);
             case 21:
-                return WE1.pieceInMyWay(newP.x, newP.y, postionFromOthers);
+                return whiteBishop1.pieceInMyWay(newP.x, newP.y, postionFromOthers);
             case 22:
-                return WE2.pieceInMyWay(newP.x, newP.y, postionFromOthers);
+                return whiteBishop2.pieceInMyWay(newP.x, newP.y, postionFromOthers);
             case 23:
-                return WQ.PieceInMYway(newP.x, newP.y, postionFromOthers);
+                return whiteQueen.pieceInMyWay(newP.x, newP.y, postionFromOthers);
             case 25:
-                return WS[0].pieceInMyWay(newP.x, newP.y, postionFromOthers, Color);
+                return whitePawns[0].pieceInMyWay(newP.x, newP.y, postionFromOthers, color);
             case 26:
-                return WS[1].pieceInMyWay(newP.x, newP.y, postionFromOthers, Color);
+                return whitePawns[1].pieceInMyWay(newP.x, newP.y, postionFromOthers, color);
             case 27:
-                return WS[2].pieceInMyWay(newP.x, newP.y, postionFromOthers, Color);
+                return whitePawns[2].pieceInMyWay(newP.x, newP.y, postionFromOthers, color);
             case 28:
-                return WS[3].pieceInMyWay(newP.x, newP.y, postionFromOthers, Color);
+                return whitePawns[3].pieceInMyWay(newP.x, newP.y, postionFromOthers, color);
             case 29:
-                return WS[4].pieceInMyWay(newP.x, newP.y, postionFromOthers, Color);
+                return whitePawns[4].pieceInMyWay(newP.x, newP.y, postionFromOthers, color);
             case 30:
-                return WS[5].pieceInMyWay(newP.x, newP.y, postionFromOthers, Color);
+                return whitePawns[5].pieceInMyWay(newP.x, newP.y, postionFromOthers, color);
             case 31:
-                return WS[6].pieceInMyWay(newP.x, newP.y, postionFromOthers, Color);
+                return whitePawns[6].pieceInMyWay(newP.x, newP.y, postionFromOthers, color);
             case 32:
-                return WS[7].pieceInMyWay(newP.x, newP.y, postionFromOthers, Color);
+                return whitePawns[7].pieceInMyWay(newP.x, newP.y, postionFromOthers, color);
             default:
                 break;
 
@@ -513,56 +517,56 @@ public class Player1 {
         return false;
     }
 
-    public boolean Killedpiec(int i) {
+    public boolean killedPiece(int i) {
         Point out = new Point(13, 13);
         switch (i) {
 
             case 17:
-                WC1.setPoint(out);
+                whiteRook1.setPoint(out);
                 return true;
             case 18:
-                WC2.setPoint(out);
+                whiteRook2.setPoint(out);
                 return true;
             case 19:
-                WH1.setPoint(out);
+                whiteKnight1.setPoint(out);
                 return true;
             case 20:
-                WH2.setPoint(out);
+                whiteKnight2.setPoint(out);
                 return true;
             case 21:
-                WE1.setPoint(out);
+                whiteBishop1.setPoint(out);
                 return true;
             case 22:
-                WE2.setPoint(out);
+                whiteBishop2.setPoint(out);
                 return true;
             case 23:
-                WQ.setPoint(out);
+                whiteQueen.setPoint(out);
                 return true;
             case 24:
                 return false;
             case 25:
-                WS[0].setPoint(out);
+                whitePawns[0].setPoint(out);
                 return true;
             case 26:
-                WS[1].setPoint(out);
+                whitePawns[1].setPoint(out);
                 return true;
             case 27:
-                WS[2].setPoint(out);
+                whitePawns[2].setPoint(out);
                 return true;
             case 28:
-                WS[3].setPoint(out);
+                whitePawns[3].setPoint(out);
                 return true;
             case 29:
-                WS[4].setPoint(out);
+                whitePawns[4].setPoint(out);
                 return true;
             case 30:
-                WS[5].setPoint(out);
+                whitePawns[5].setPoint(out);
                 return true;
             case 31:
-                WS[6].setPoint(out);
+                whitePawns[6].setPoint(out);
                 return true;
             case 32:
-                WS[7].setPoint(out);
+                whitePawns[7].setPoint(out);
                 return true;
             default:
                 break;
@@ -571,42 +575,42 @@ public class Player1 {
         return false;
     }
 
-    public boolean checKing(Point p1, Point p2, int i) {
+    public boolean checkKing(Point p1, Point p2, int i) {
         switch (i) {
 
             case 17:
-                return WC1.checkKing(p1.x, p1.y, p2);
+                return whiteRook1.checkKing(p1.x, p1.y, p2);
             case 18:
-                return WC2.checkKing(p1.x, p1.y, p2);
+                return whiteRook2.checkKing(p1.x, p1.y, p2);
             case 19:
-                return WH1.canMove(p1.x, p1.y);
+                return whiteKnight1.canMove(p1.x, p1.y);
             case 20:
-                return WH2.canMove(p1.x, p1.y);
+                return whiteKnight2.canMove(p1.x, p1.y);
             case 21:
-                return WE1.checkKing(p1.x, p1.y, p2);
+                return whiteBishop1.checkKing(p1.x, p1.y, p2);
             case 22:
-                return WE2.checkKing(p1.x, p1.y, p2);
+                return whiteBishop2.checkKing(p1.x, p1.y, p2);
             case 23:
-                return WQ.checkKing(p1.x, p1.y, p2);
+                return whiteQueen.checkKing(p1.x, p1.y, p2);
 
             case 25:
-                return WS[0].canMove(p1.x, p1.y, Color);
+                return whitePawns[0].canMove(p1.x, p1.y, color);
             case 26:
-                return WS[1].canMove(p1.x, p1.y, Color);
+                return whitePawns[1].canMove(p1.x, p1.y, color);
             case 27:
-                return WS[2].canMove(p1.x, p1.y, Color);
+                return whitePawns[2].canMove(p1.x, p1.y, color);
             case 28:
-                return WS[3].canMove(p1.x, p1.y, Color);
+                return whitePawns[3].canMove(p1.x, p1.y, color);
             case 29:
-                return WS[4].canMove(p1.x, p1.y, Color);
+                return whitePawns[4].canMove(p1.x, p1.y, color);
             case 30:
-                return WS[5].canMove(p1.x, p1.y, Color);
+                return whitePawns[5].canMove(p1.x, p1.y, color);
             case 31:
-                return WS[6].canMove(p1.x, p1.y, Color);
+                return whitePawns[6].canMove(p1.x, p1.y, color);
             case 32:
-                return WS[7].canMove(p1.x, p1.y, Color);
-        default:
-            break;
+                return whitePawns[7].canMove(p1.x, p1.y, color);
+            default:
+                break;
         }
         return false;
     }
@@ -615,15 +619,15 @@ public class Player1 {
         return choosenOne;
     }
 
-    public void SetInhand(int i) {
+    public void setInHand(int i) {
         inHand = i;
     }
 
-    public int GetInhand() {
+    public int getInHand() {
         return inHand;
     }
 
-    public boolean CanMove(int x, int y) {
+    public boolean canMove(int x, int y) {
         return true;
     }
 
@@ -636,46 +640,44 @@ public class Player1 {
         return kingischeck;
     }
 
-    public boolean if_MyKing_In_check(Player2 Black) {
+    public boolean kingInCheck(Player2 Black) {
         boolean isCheckmate = false;
         boolean flag = false;
 
         return false;
     }
 
-    public boolean Check_Mate_GameOver(Player2 Enemy) {
+    public boolean checkMate(Player2 Enemy) {
 
-        if (!KingGenerate_moves(Enemy)) {
-
-            inHand = -1;
-            return false;
-        } else if (!CastleGenerate_moves(Enemy, WC1)) {
+        if (!generateKingMoves(Enemy)) {
 
             inHand = -1;
             return false;
-        } else if (!CastleGenerate_moves(Enemy, WC2)) {
+        } else if (!generateCastleMoves(Enemy, whiteRook1)) {
 
             inHand = -1;
             return false;
-        } else if (!BishopGenerate_moves(Enemy, WE1)) {
+        } else if (!generateCastleMoves(Enemy, whiteRook2)) {
 
             inHand = -1;
             return false;
-        } else if (!BishopGenerate_moves(Enemy, WE2)) {
+        } else if (!generateBishopMoves(Enemy, whiteBishop1)) {
 
             inHand = -1;
             return false;
-        } else if (!HosreGenerate_moves(Enemy, WH1)) {
+        } else if (!generateBishopMoves(Enemy, whiteBishop2)) {
 
             inHand = -1;
             return false;
-        } else if (!HosreGenerate_moves(Enemy, WH2)) {
+        } else if (!generateHorseMoves(Enemy, whiteKnight1)) {
 
             inHand = -1;
             return false;
-        }
+        } else if (!generateHorseMoves(Enemy, whiteKnight2)) {
 
-        else if (!QueenGenerate_moves(Enemy)) {
+            inHand = -1;
+            return false;
+        } else if (!generateMoves(Enemy)) {
 
             inHand = -1;
             return false;
@@ -683,7 +685,7 @@ public class Player1 {
 
         for (int i = 0; i <= 7; i++) {
             inHand = 25 + i;
-            if (!SoliderGenerate_moves(Enemy, WS[i])) {
+            if (!generatePawnMoves(Enemy, whitePawns[i])) {
 
                 inHand = -1;
                 System.out.println("I Killed Solider 1");
@@ -696,33 +698,28 @@ public class Player1 {
 
     }
 
-    public boolean see_king_Check(Player2 Black) {
+    public boolean isKingChecked(Player2 Black) {
 
-        Point My_King_Postion = WK.returnPostion();
+        Point myKingPosition = whiteKing.returnPostion();
         boolean flag = false;
 
         ////////// Start Checking the King ////////////
         for (int i = 1; i < 17; i++) {
             if (i < 9) {
-                if (Black.checkthemove(My_King_Postion, i)) {
+                if (Black.checkTheMove(myKingPosition, i)) {
 
                     flag = true;
                     for (int j = 1; j < 33; j++) {
 
                         if (j < 17) {
 
-                            if (Black.checktheWay(My_King_Postion, Black.returnPostion(j), i)) {
-                                // Means there is something in the Way so can't move'
-
+                            if (Black.checkTheWay(myKingPosition, Black.returnPostion(j), i)) {
+                                // Means there is something in the Way so can't move
                                 flag = false;
-
                             }
-                        }
-
-                        else {
-
+                        } else {
                             if (j != 24) {
-                                if (Black.checktheWay(My_King_Postion, returnPostion(j), i)) {
+                                if (Black.checkTheWay(myKingPosition, returnPostion(j), i)) {
 
                                     flag = false;
                                     // Means there is something in the Way so can't move'
@@ -741,8 +738,8 @@ public class Player1 {
 
                 }
             } else {
-                // For soliders
-                if (Black.setSeentoSiliders(i, My_King_Postion)) {
+                // For pawns
+                if (Black.setSeentoSiliders(i, myKingPosition)) {
 
                     break;
 
@@ -758,14 +755,15 @@ public class Player1 {
         return true;
     }
 
-    public boolean Pice_already_there(Point newP) {
+    //TODO: combine friendlyPiece and enemyPiece together?
+    public boolean friendlyPieceAlreadyThere(Point newP) {
         Point samePostion;
         for (int i = 17; i <= 32; i++) {
-            if (GetInhand() != i)// There is no need to check the inHand pice
-            {
+            // There is no need to check the inHand pice
+            if (getInHand() != i) {
 
                 // Check if there is White Pices in the new Point
-                // If so we Can't move (Same Color)!!
+                // If so we Can't move (Same color)!!
 
                 samePostion = returnPostion(i);
                 if (newP.x == samePostion.x && newP.y == samePostion.y) {
@@ -779,7 +777,7 @@ public class Player1 {
         return true;
     }
 
-    public boolean Pice_already_there_from_enemy(Point newP, Player2 enemy) {
+    public boolean enemyPieceAlreadyThere(Point newP, Player2 enemy) {
         Point samePostion;
         for (int i = 1; i <= 16; i++) {
             samePostion = enemy.returnPostion(i);
@@ -793,7 +791,8 @@ public class Player1 {
         return true;
     }
 
-    public int Get_Pice_already_there_from_enemy(Point newP, Player2 enemy) {
+    //TODO: why does this return int?
+    public int getEnemyPieceLocationInt(Point newP, Player2 enemy) {
         Point samePostion;
         for (int i = 1; i <= 16; i++) {
             samePostion = enemy.returnPostion(i);
@@ -807,62 +806,62 @@ public class Player1 {
         return -1;
     }
 
-    public boolean KingGenerate_moves(Player2 enemy) {
-        boolean somthing_killed = false;
-        Point Oldp = new Point();
+    public boolean generateKingMoves(Player2 enemy) {
+        boolean killedSomething = false;
+        Point oldP = new Point();
 
-        Point PlaceCheck = new Point();
+        Point checkPlace = new Point();
         inHand = 24;
 
-        int x = WK.returnX();
-        int y = WK.returnY();
-        Oldp.x = x;
-        Oldp.y = y;
+        int x = whiteKing.returnX();
+        int y = whiteKing.returnY();
+        oldP.x = x;
+        oldP.y = y;
 
         if (x + 1 <= 8) {
 
-            WK.setX(x + 1);
-            WK.setY(y);
-            PlaceCheck.x = x + 1;
-            PlaceCheck.y = y;
+            whiteKing.setX(x + 1);
+            whiteKing.setY(y);
+            checkPlace.x = x + 1;
+            checkPlace.y = y;
 
-            if (kill_to_protect_king(enemy, returnPostion(inHand))) {
-                somthing_killed = true;
+            if (killToProtectKing(enemy, returnPostion(inHand))) {
+                killedSomething = true;
             }
-            if (Pice_already_there(PlaceCheck)) {
-                if (!see_king_Check(enemy)) {
+            if (friendlyPieceAlreadyThere(checkPlace)) {
+                if (!isKingChecked(enemy)) {
 
-                    WK.setPoint(Oldp);
-                    if (somthing_killed) {
-                        enemy.changePostion(other, ate_to_protect);
-                        somthing_killed = false;
+                    whiteKing.setPoint(oldP);
+                    if (killedSomething) {
+                        enemy.changePostion(other, killToProtect);
+                        killedSomething = false;
                     }
                     return false;
                 }
             }
 
         }
-        WK.setPoint(Oldp);
-        if (somthing_killed) {
-            enemy.changePostion(other, ate_to_protect);
-            somthing_killed = false;
+        whiteKing.setPoint(oldP);
+        if (killedSomething) {
+            enemy.changePostion(other, killToProtect);
+            killedSomething = false;
         }
         if (y + 1 <= 8) {
 
-            WK.setX(x);
-            WK.setY(y + 1);
-            PlaceCheck.x = x;
-            PlaceCheck.y = y + 1;
-            if (kill_to_protect_king(enemy, returnPostion(inHand))) {
-                somthing_killed = true;
+            whiteKing.setX(x);
+            whiteKing.setY(y + 1);
+            checkPlace.x = x;
+            checkPlace.y = y + 1;
+            if (killToProtectKing(enemy, returnPostion(inHand))) {
+                killedSomething = true;
             }
-            if (Pice_already_there(PlaceCheck)) {
-                if (!see_king_Check(enemy)) {
+            if (friendlyPieceAlreadyThere(checkPlace)) {
+                if (!isKingChecked(enemy)) {
 
-                    WK.setPoint(Oldp);
-                    if (somthing_killed) {
-                        enemy.changePostion(other, ate_to_protect);
-                        somthing_killed = false;
+                    whiteKing.setPoint(oldP);
+                    if (killedSomething) {
+                        enemy.changePostion(other, killToProtect);
+                        killedSomething = false;
                     }
                     return false;
 
@@ -870,31 +869,31 @@ public class Player1 {
             }
 
         }
-        WK.setPoint(Oldp);
-        if (somthing_killed) {
-            enemy.changePostion(other, ate_to_protect);
-            somthing_killed = false;
+        whiteKing.setPoint(oldP);
+        if (killedSomething) {
+            enemy.changePostion(other, killToProtect);
+            killedSomething = false;
         }
 
         if (y - 1 > 0) {
 
-            WK.setX(x);
-            WK.setY(y - 1);
+            whiteKing.setX(x);
+            whiteKing.setY(y - 1);
 
-            PlaceCheck.x = x;
-            PlaceCheck.y = y - 1;
+            checkPlace.x = x;
+            checkPlace.y = y - 1;
 
-            if (kill_to_protect_king(enemy, returnPostion(inHand))) {
-                somthing_killed = true;
+            if (killToProtectKing(enemy, returnPostion(inHand))) {
+                killedSomething = true;
             }
 
-            if (Pice_already_there(PlaceCheck)) {
-                if (!see_king_Check(enemy)) {
+            if (friendlyPieceAlreadyThere(checkPlace)) {
+                if (!isKingChecked(enemy)) {
 
-                    WK.setPoint(Oldp);
-                    if (somthing_killed) {
-                        enemy.changePostion(other, ate_to_protect);
-                        somthing_killed = false;
+                    whiteKing.setPoint(oldP);
+                    if (killedSomething) {
+                        enemy.changePostion(other, killToProtect);
+                        killedSomething = false;
                     }
 
                     return false;
@@ -902,349 +901,349 @@ public class Player1 {
             }
 
         }
-        WK.setPoint(Oldp);
-        if (somthing_killed) {
-            enemy.changePostion(other, ate_to_protect);
-            somthing_killed = false;
+        whiteKing.setPoint(oldP);
+        if (killedSomething) {
+            enemy.changePostion(other, killToProtect);
+            killedSomething = false;
         }
         if (x - 1 > 0) {
 
-            WK.setX(x - 1);
-            WK.setY(y);
+            whiteKing.setX(x - 1);
+            whiteKing.setY(y);
 
-            PlaceCheck.x = x - 1;
-            PlaceCheck.y = y;
-            if (kill_to_protect_king(enemy, returnPostion(inHand))) {
-                somthing_killed = true;
+            checkPlace.x = x - 1;
+            checkPlace.y = y;
+            if (killToProtectKing(enemy, returnPostion(inHand))) {
+                killedSomething = true;
             }
-            if (Pice_already_there(PlaceCheck)) {
-                if (!see_king_Check(enemy)) {
-                    if (somthing_killed) {
-                        enemy.changePostion(other, ate_to_protect);
-                        somthing_killed = false;
+            if (friendlyPieceAlreadyThere(checkPlace)) {
+                if (!isKingChecked(enemy)) {
+                    if (killedSomething) {
+                        enemy.changePostion(other, killToProtect);
+                        killedSomething = false;
                     }
-                    WK.setPoint(Oldp);
+                    whiteKing.setPoint(oldP);
                     return false;
                 }
             }
 
         }
-        WK.setPoint(Oldp);
-        if (somthing_killed) {
-            enemy.changePostion(other, ate_to_protect);
-            somthing_killed = false;
+        whiteKing.setPoint(oldP);
+        if (killedSomething) {
+            enemy.changePostion(other, killToProtect);
+            killedSomething = false;
         }
         if (y - 1 > 0 && x - 1 > 0) {
 
-            WK.setX(x - 1);
-            WK.setY(y - 1);
+            whiteKing.setX(x - 1);
+            whiteKing.setY(y - 1);
 
-            PlaceCheck.x = x - 1;
-            PlaceCheck.y = y - 1;
+            checkPlace.x = x - 1;
+            checkPlace.y = y - 1;
 
-            if (kill_to_protect_king(enemy, returnPostion(inHand))) {
-                somthing_killed = true;
+            if (killToProtectKing(enemy, returnPostion(inHand))) {
+                killedSomething = true;
             }
-            if (Pice_already_there(PlaceCheck)) {
-                if (!see_king_Check(enemy)) {
+            if (friendlyPieceAlreadyThere(checkPlace)) {
+                if (!isKingChecked(enemy)) {
 
-                    if (somthing_killed) {
-                        enemy.changePostion(other, ate_to_protect);
-                        somthing_killed = false;
+                    if (killedSomething) {
+                        enemy.changePostion(other, killToProtect);
+                        killedSomething = false;
                     }
-                    WK.setPoint(Oldp);
+                    whiteKing.setPoint(oldP);
                     return false;
                 }
             }
 
         }
-        WK.setPoint(Oldp);
-        if (somthing_killed) {
-            enemy.changePostion(other, ate_to_protect);
-            somthing_killed = false;
+        whiteKing.setPoint(oldP);
+        if (killedSomething) {
+            enemy.changePostion(other, killToProtect);
+            killedSomething = false;
         }
         if (y + 1 <= 8 && x + 1 <= 8) {
 
-            WK.setX(x + 1);
-            WK.setY(y + 1);
+            whiteKing.setX(x + 1);
+            whiteKing.setY(y + 1);
 
-            PlaceCheck.x = x + 1;
-            PlaceCheck.y = y + 1;
-            if (kill_to_protect_king(enemy, returnPostion(inHand))) {
-                somthing_killed = true;
+            checkPlace.x = x + 1;
+            checkPlace.y = y + 1;
+            if (killToProtectKing(enemy, returnPostion(inHand))) {
+                killedSomething = true;
             }
-            if (Pice_already_there(PlaceCheck)) {
-                if (!see_king_Check(enemy)) {
+            if (friendlyPieceAlreadyThere(checkPlace)) {
+                if (!isKingChecked(enemy)) {
 
-                    if (somthing_killed) {
-                        enemy.changePostion(other, ate_to_protect);
-                        somthing_killed = false;
+                    if (killedSomething) {
+                        enemy.changePostion(other, killToProtect);
+                        killedSomething = false;
                     }
-                    WK.setPoint(Oldp);
+                    whiteKing.setPoint(oldP);
                     return false;
                 }
             }
 
         }
-        WK.setPoint(Oldp);
-        if (somthing_killed) {
-            enemy.changePostion(other, ate_to_protect);
-            somthing_killed = false;
+        whiteKing.setPoint(oldP);
+        if (killedSomething) {
+            enemy.changePostion(other, killToProtect);
+            killedSomething = false;
         }
         if (y - 1 > 0 && x + 1 <= 8) {
 
-            WK.setX(x + 1);
-            WK.setY(y - 1);
+            whiteKing.setX(x + 1);
+            whiteKing.setY(y - 1);
 
-            PlaceCheck.x = x + 1;
-            PlaceCheck.y = y - 1;
-            if (kill_to_protect_king(enemy, returnPostion(inHand))) {
-                somthing_killed = true;
+            checkPlace.x = x + 1;
+            checkPlace.y = y - 1;
+            if (killToProtectKing(enemy, returnPostion(inHand))) {
+                killedSomething = true;
             }
-            if (Pice_already_there(PlaceCheck)) {
-                if (!see_king_Check(enemy)) {
-                    if (somthing_killed) {
-                        enemy.changePostion(other, ate_to_protect);
-                        somthing_killed = false;
+            if (friendlyPieceAlreadyThere(checkPlace)) {
+                if (!isKingChecked(enemy)) {
+                    if (killedSomething) {
+                        enemy.changePostion(other, killToProtect);
+                        killedSomething = false;
                     }
-                    WK.setPoint(Oldp);
+                    whiteKing.setPoint(oldP);
                     return false;
                 }
             }
 
         }
-        WK.setPoint(Oldp);
-        if (somthing_killed) {
-            enemy.changePostion(other, ate_to_protect);
-            somthing_killed = false;
+        whiteKing.setPoint(oldP);
+        if (killedSomething) {
+            enemy.changePostion(other, killToProtect);
+            killedSomething = false;
         }
         if (y + 1 <= 8 && x - 1 > 0) {
 
-            WK.setX(x - 1);
-            WK.setY(y + 1);
+            whiteKing.setX(x - 1);
+            whiteKing.setY(y + 1);
 
-            PlaceCheck.x = x - 1;
-            PlaceCheck.y = y + 1;
-            if (kill_to_protect_king(enemy, returnPostion(inHand))) {
-                somthing_killed = true;
+            checkPlace.x = x - 1;
+            checkPlace.y = y + 1;
+            if (killToProtectKing(enemy, returnPostion(inHand))) {
+                killedSomething = true;
             }
-            if (Pice_already_there(PlaceCheck)) {
-                if (!see_king_Check(enemy)) {
-                    if (somthing_killed) {
-                        enemy.changePostion(other, ate_to_protect);
-                        somthing_killed = false;
+            if (friendlyPieceAlreadyThere(checkPlace)) {
+                if (!isKingChecked(enemy)) {
+                    if (killedSomething) {
+                        enemy.changePostion(other, killToProtect);
+                        killedSomething = false;
                     }
-                    WK.setPoint(Oldp);
+                    whiteKing.setPoint(oldP);
                     return false;
                 }
             }
 
         }
 
-        if (somthing_killed) {
-            enemy.changePostion(other, ate_to_protect);
-            somthing_killed = false;
+        if (killedSomething) {
+            enemy.changePostion(other, killToProtect);
+            killedSomething = false;
         }
 
-        WK.setPoint(Oldp);
+        whiteKing.setPoint(oldP);
         return true;
 
     }
 
-    public boolean CastleGenerate_moves(Player2 enemy, Rook WC) {
-        boolean somthing_killed = false;
-        Point Oldp1 = new Point();
+    public boolean generateCastleMoves(Player2 enemy, Rook whiteRook) {
+        boolean killedSomething = false;
+        Point oldp1 = new Point();
 
-        Point PlaceCheck = new Point();
-        int x1 = WC.returnX();
-        int y1 = WC.returnY();
+        Point checkPlace = new Point();
+        int x1 = whiteRook.returnX();
+        int y1 = whiteRook.returnY();
 
-        if (WC == WC1) {
+        if (whiteRook == whiteRook1) {
             inHand = 17;
         } else {
             inHand = 18;
         }
         /////////////////////
 
-        Oldp1.x = x1;
-        Oldp1.y = y1;
+        oldp1.x = x1;
+        oldp1.y = y1;
 
-        PlaceCheck.y = y1;
+        checkPlace.y = y1;
 
         if (x1 != 20) {
             for (int i = 1; i <= 8; i++) {
-                WC.setX(i);
-                PlaceCheck.x = i;
+                whiteRook.setX(i);
+                checkPlace.x = i;
 
-                if (Check_The_Way_to_Postion(enemy, Oldp1)) {
-                    if (kill_to_protect_king(enemy, returnPostion(inHand))) {
-                        somthing_killed = true;
+                if (checkWayToPosition(enemy, oldp1)) {
+                    if (killToProtectKing(enemy, returnPostion(inHand))) {
+                        killedSomething = true;
                     }
-                    if (Pice_already_there(PlaceCheck)) {
-                        if (!see_king_Check(enemy)) {
-                            WC.setX(Oldp1.x);
-                            WC.setY(Oldp1.y);
+                    if (friendlyPieceAlreadyThere(checkPlace)) {
+                        if (!isKingChecked(enemy)) {
+                            whiteRook.setX(oldp1.x);
+                            whiteRook.setY(oldp1.y);
 
-                            if (somthing_killed) {
-                                enemy.changePostion(other, ate_to_protect);
-                                somthing_killed = false;
+                            if (killedSomething) {
+                                enemy.changePostion(other, killToProtect);
+                                killedSomething = false;
                             }
                             return false;
                         }
                     }
                 }
 
-                if (somthing_killed) {
-                    enemy.changePostion(other, ate_to_protect);
-                    somthing_killed = false;
+                if (killedSomething) {
+                    enemy.changePostion(other, killToProtect);
+                    killedSomething = false;
                 }
 
             }
-            WC.setX(Oldp1.x);
-            PlaceCheck.x = Oldp1.x;
+            whiteRook.setX(oldp1.x);
+            checkPlace.x = oldp1.x;
 
-            if (somthing_killed) {
-                enemy.changePostion(other, ate_to_protect);
-                somthing_killed = false;
+            if (killedSomething) {
+                enemy.changePostion(other, killToProtect);
+                killedSomething = false;
             }
             for (int i = 1; i <= 8; i++) {
-                WC.setY(i);
-                PlaceCheck.y = i;
-                if (Check_The_Way_to_Postion(enemy, Oldp1)) {
-                    if (kill_to_protect_king(enemy, returnPostion(inHand))) {
-                        somthing_killed = true;
+                whiteRook.setY(i);
+                checkPlace.y = i;
+                if (checkWayToPosition(enemy, oldp1)) {
+                    if (killToProtectKing(enemy, returnPostion(inHand))) {
+                        killedSomething = true;
                     }
-                    if (Pice_already_there(PlaceCheck)) {
-                        if (!see_king_Check(enemy)) {
-                            WC.setX(Oldp1.x);
-                            WC.setY(Oldp1.y);
+                    if (friendlyPieceAlreadyThere(checkPlace)) {
+                        if (!isKingChecked(enemy)) {
+                            whiteRook.setX(oldp1.x);
+                            whiteRook.setY(oldp1.y);
 
-                            if (somthing_killed) {
-                                enemy.changePostion(other, ate_to_protect);
-                                somthing_killed = false;
+                            if (killedSomething) {
+                                enemy.changePostion(other, killToProtect);
+                                killedSomething = false;
                             }
                             return false;
                         }
                     }
                 }
 
-                if (somthing_killed) {
-                    enemy.changePostion(other, ate_to_protect);
-                    somthing_killed = false;
+                if (killedSomething) {
+                    enemy.changePostion(other, killToProtect);
+                    killedSomething = false;
                 }
 
             }
-            WC.setY(Oldp1.y);
+            whiteRook.setY(oldp1.y);
         }
         //////////////////////////////////////////
         ///////////////////////////
 
-        if (somthing_killed) {
-            enemy.changePostion(other, ate_to_protect);
-            somthing_killed = false;
+        if (killedSomething) {
+            enemy.changePostion(other, killToProtect);
+            killedSomething = false;
         }
-        WC.setX(Oldp1.x);
-        WC.setY(Oldp1.y);
+        whiteRook.setX(oldp1.x);
+        whiteRook.setY(oldp1.y);
         return true;
     }
 
-    public boolean BishopGenerate_moves(Player2 enemy, Bishop WE) {
-        boolean somthing_killed = false;
-        Point Oldp1 = new Point();
-        Point PlaceCheck = new Point();
+    public boolean generateBishopMoves(Player2 enemy, Bishop whiteBishop) {
+        boolean killedSomething = false;
+        Point oldP1 = new Point();
+        Point checkPlace = new Point();
 
-        Oldp1 = WE.returnPostion();
+        oldP1 = whiteBishop.returnPostion();
 
-        if (WE == WE1) {
+        if (whiteBishop == whiteBishop1) {
             inHand = 21;
         } else {
             inHand = 22;
         }
 
-        if (Oldp1.x != 20) {
-            for (int x = Oldp1.x, y = Oldp1.y; x >= 1 && y <= 8; x--, y++) {
+        if (oldP1.x != 20) {
+            for (int x = oldP1.x, y = oldP1.y; x >= 1 && y <= 8; x--, y++) {
 
-                WE.setX(x);
-                WE.setY(y);
-                PlaceCheck.x = x;
-                PlaceCheck.y = y;
-                if (Check_The_Way_to_Postion(enemy, Oldp1)) {
-                    if (kill_to_protect_king(enemy, returnPostion(inHand))) {
-                        somthing_killed = true;
+                whiteBishop.setX(x);
+                whiteBishop.setY(y);
+                checkPlace.x = x;
+                checkPlace.y = y;
+                if (checkWayToPosition(enemy, oldP1)) {
+                    if (killToProtectKing(enemy, returnPostion(inHand))) {
+                        killedSomething = true;
                     }
-                    if (Pice_already_there(PlaceCheck)) {
-                        if (!see_king_Check(enemy)) {
+                    if (friendlyPieceAlreadyThere(checkPlace)) {
+                        if (!isKingChecked(enemy)) {
 
-                            if (somthing_killed) {
-                                enemy.changePostion(other, ate_to_protect);
-                                somthing_killed = false;
+                            if (killedSomething) {
+                                enemy.changePostion(other, killToProtect);
+                                killedSomething = false;
                             }
-                            WE.setPoint(Oldp1);
+                            whiteBishop.setPoint(oldP1);
                             return false;
                         }
                     }
                 }
 
-                if (somthing_killed) {
-                    enemy.changePostion(other, ate_to_protect);
-                    somthing_killed = false;
+                if (killedSomething) {
+                    enemy.changePostion(other, killToProtect);
+                    killedSomething = false;
                 }
 
             }
-            if (somthing_killed) {
-                enemy.changePostion(other, ate_to_protect);
-                somthing_killed = false;
+            if (killedSomething) {
+                enemy.changePostion(other, killToProtect);
+                killedSomething = false;
             }
-            for (int x = Oldp1.x, y = Oldp1.y; y >= 1 && x <= 8; x++, y--) {
+            for (int x = oldP1.x, y = oldP1.y; y >= 1 && x <= 8; x++, y--) {
 
-                WE.setX(x);
-                WE.setY(y);
-                PlaceCheck.x = x;
-                PlaceCheck.y = y;
-                if (Check_The_Way_to_Postion(enemy, Oldp1)) {
-                    if (kill_to_protect_king(enemy, returnPostion(inHand))) {
-                        somthing_killed = true;
+                whiteBishop.setX(x);
+                whiteBishop.setY(y);
+                checkPlace.x = x;
+                checkPlace.y = y;
+                if (checkWayToPosition(enemy, oldP1)) {
+                    if (killToProtectKing(enemy, returnPostion(inHand))) {
+                        killedSomething = true;
                     }
-                    if (Pice_already_there(PlaceCheck)) {
-                        if (!see_king_Check(enemy)) {
-                            if (somthing_killed) {
-                                enemy.changePostion(other, ate_to_protect);
-                                somthing_killed = false;
+                    if (friendlyPieceAlreadyThere(checkPlace)) {
+                        if (!isKingChecked(enemy)) {
+                            if (killedSomething) {
+                                enemy.changePostion(other, killToProtect);
+                                killedSomething = false;
                             }
-                            WE.setPoint(Oldp1);
+                            whiteBishop.setPoint(oldP1);
                             return false;
                         }
                     }
                 }
 
-                if (somthing_killed) {
-                    enemy.changePostion(other, ate_to_protect);
-                    somthing_killed = false;
+                if (killedSomething) {
+                    enemy.changePostion(other, killToProtect);
+                    killedSomething = false;
                 }
 
             }
-            WE.setPoint(Oldp1);
+            whiteBishop.setPoint(oldP1);
 
         }
 
-        WE.setPoint(Oldp1);
+        whiteBishop.setPoint(oldP1);
 
-        if (somthing_killed) {
-            enemy.changePostion(other, ate_to_protect);
-            somthing_killed = false;
+        if (killedSomething) {
+            enemy.changePostion(other, killToProtect);
+            killedSomething = false;
         }
 
         return true;
     }
 
-    public boolean HosreGenerate_moves(Player2 enemy, Knight WH) {
+    public boolean generateHorseMoves(Player2 enemy, Knight WhiteKnight) {
         Point oldp1 = new Point();
-        boolean somthing_killed = false;
-        oldp1 = WH.returnPostion();
+        boolean killedSomething = false;
+        oldp1 = WhiteKnight.returnPostion();
 
-        Point PlaceCheck = new Point();
+        Point checkPlace = new Point();
 
-        if (WH == WH1) {
+        if (WhiteKnight == whiteKnight1) {
             inHand = 19;
         } else {
             inHand = 20;
@@ -1256,405 +1255,405 @@ public class Player1 {
         if (x != 20) {
 
             if (x + 1 <= 8 && y + 1 <= 8) {
-                WH.setX(x + 1);
-                WH.setY(y + 2);
-                PlaceCheck.x = x + 1;
-                PlaceCheck.y = y + 2;
+                WhiteKnight.setX(x + 1);
+                WhiteKnight.setY(y + 2);
+                checkPlace.x = x + 1;
+                checkPlace.y = y + 2;
 
-                if (kill_to_protect_king(enemy, returnPostion(inHand))) {
-                    somthing_killed = true;
+                if (killToProtectKing(enemy, returnPostion(inHand))) {
+                    killedSomething = true;
                 }
 
-                if (Pice_already_there(PlaceCheck)) {
-                    if (!see_king_Check(enemy)) {
-                        WH.setPoint(oldp1);
+                if (friendlyPieceAlreadyThere(checkPlace)) {
+                    if (!isKingChecked(enemy)) {
+                        WhiteKnight.setPoint(oldp1);
 
-                        if (somthing_killed) {
-                            enemy.changePostion(other, ate_to_protect);
-                            somthing_killed = false;
+                        if (killedSomething) {
+                            enemy.changePostion(other, killToProtect);
+                            killedSomething = false;
                         }
 
                         return false;
                     }
                 }
             }
-            if (somthing_killed) {
-                enemy.changePostion(other, ate_to_protect);
-                somthing_killed = false;
+            if (killedSomething) {
+                enemy.changePostion(other, killToProtect);
+                killedSomething = false;
             }
 
             if (x + 1 <= 8 && y - 2 >= 1) {
-                WH.setX(x + 1);
-                WH.setY(y - 2);
-                PlaceCheck.x = x + 1;
-                PlaceCheck.y = y - 2;
-                if (kill_to_protect_king(enemy, returnPostion(inHand))) {
-                    somthing_killed = true;
+                WhiteKnight.setX(x + 1);
+                WhiteKnight.setY(y - 2);
+                checkPlace.x = x + 1;
+                checkPlace.y = y - 2;
+                if (killToProtectKing(enemy, returnPostion(inHand))) {
+                    killedSomething = true;
                 }
 
-                if (Pice_already_there(PlaceCheck)) {
-                    if (!see_king_Check(enemy)) {
-                        if (somthing_killed) {
-                            enemy.changePostion(other, ate_to_protect);
-                            somthing_killed = false;
+                if (friendlyPieceAlreadyThere(checkPlace)) {
+                    if (!isKingChecked(enemy)) {
+                        if (killedSomething) {
+                            enemy.changePostion(other, killToProtect);
+                            killedSomething = false;
                         }
-                        WH.setPoint(oldp1);
+                        WhiteKnight.setPoint(oldp1);
                         return false;
                     }
                 }
             }
-            if (somthing_killed) {
-                enemy.changePostion(other, ate_to_protect);
-                somthing_killed = false;
+            if (killedSomething) {
+                enemy.changePostion(other, killToProtect);
+                killedSomething = false;
             }
 
             if (x + 2 <= 8 && y + 1 <= 8) {
-                WH.setX(x + 2);
-                WH.setY(y + 1);
-                PlaceCheck.x = x + 2;
-                PlaceCheck.y = y + 1;
+                WhiteKnight.setX(x + 2);
+                WhiteKnight.setY(y + 1);
+                checkPlace.x = x + 2;
+                checkPlace.y = y + 1;
 
-                if (kill_to_protect_king(enemy, returnPostion(inHand))) {
-                    somthing_killed = true;
+                if (killToProtectKing(enemy, returnPostion(inHand))) {
+                    killedSomething = true;
                 }
 
-                if (Pice_already_there(PlaceCheck)) {
-                    if (!see_king_Check(enemy)) {
-                        if (somthing_killed) {
-                            enemy.changePostion(other, ate_to_protect);
-                            somthing_killed = false;
+                if (friendlyPieceAlreadyThere(checkPlace)) {
+                    if (!isKingChecked(enemy)) {
+                        if (killedSomething) {
+                            enemy.changePostion(other, killToProtect);
+                            killedSomething = false;
                         }
-                        WH.setPoint(oldp1);
+                        WhiteKnight.setPoint(oldp1);
                         return false;
                     }
                 }
             }
 
-            if (somthing_killed) {
-                enemy.changePostion(other, ate_to_protect);
-                somthing_killed = false;
+            if (killedSomething) {
+                enemy.changePostion(other, killToProtect);
+                killedSomething = false;
             }
             if (x + 2 <= 8 && y - 1 >= 1) {
-                WH.setX(x + 2);
-                WH.setY(y - 1);
-                PlaceCheck.x = x + 2;
-                PlaceCheck.y = y - 1;
-                if (kill_to_protect_king(enemy, returnPostion(inHand))) {
-                    somthing_killed = true;
+                WhiteKnight.setX(x + 2);
+                WhiteKnight.setY(y - 1);
+                checkPlace.x = x + 2;
+                checkPlace.y = y - 1;
+                if (killToProtectKing(enemy, returnPostion(inHand))) {
+                    killedSomething = true;
                 }
 
-                if (Pice_already_there(PlaceCheck)) {
-                    if (!see_king_Check(enemy)) {
-                        if (somthing_killed) {
-                            enemy.changePostion(other, ate_to_protect);
-                            somthing_killed = false;
+                if (friendlyPieceAlreadyThere(checkPlace)) {
+                    if (!isKingChecked(enemy)) {
+                        if (killedSomething) {
+                            enemy.changePostion(other, killToProtect);
+                            killedSomething = false;
                         }
-                        WH.setPoint(oldp1);
+                        WhiteKnight.setPoint(oldp1);
                         return false;
                     }
                 }
             }
-            if (somthing_killed) {
-                enemy.changePostion(other, ate_to_protect);
-                somthing_killed = false;
+            if (killedSomething) {
+                enemy.changePostion(other, killToProtect);
+                killedSomething = false;
             }
 
             if (x - 1 >= 1 && y + 2 <= 8) {
-                WH.setX(x - 1);
-                WH.setY(y + 2);
-                PlaceCheck.x = x - 1;
-                PlaceCheck.y = y + 2;
+                WhiteKnight.setX(x - 1);
+                WhiteKnight.setY(y + 2);
+                checkPlace.x = x - 1;
+                checkPlace.y = y + 2;
 
-                if (kill_to_protect_king(enemy, returnPostion(inHand))) {
-                    somthing_killed = true;
+                if (killToProtectKing(enemy, returnPostion(inHand))) {
+                    killedSomething = true;
                 }
 
-                if (Pice_already_there(PlaceCheck)) {
-                    if (!see_king_Check(enemy)) {
-                        if (somthing_killed) {
-                            enemy.changePostion(other, ate_to_protect);
-                            somthing_killed = false;
+                if (friendlyPieceAlreadyThere(checkPlace)) {
+                    if (!isKingChecked(enemy)) {
+                        if (killedSomething) {
+                            enemy.changePostion(other, killToProtect);
+                            killedSomething = false;
                         }
-                        WH.setPoint(oldp1);
+                        WhiteKnight.setPoint(oldp1);
                         return false;
                     }
                 }
             }
-            if (somthing_killed) {
-                enemy.changePostion(other, ate_to_protect);
-                somthing_killed = false;
+            if (killedSomething) {
+                enemy.changePostion(other, killToProtect);
+                killedSomething = false;
             }
 
             if (x - 1 >= 1 && y - 2 >= 1) {
-                WH.setX(x - 1);
-                WH.setY(y - 2);
-                PlaceCheck.x = x - 1;
-                PlaceCheck.y = y - 2;
-                if (kill_to_protect_king(enemy, returnPostion(inHand))) {
-                    somthing_killed = true;
+                WhiteKnight.setX(x - 1);
+                WhiteKnight.setY(y - 2);
+                checkPlace.x = x - 1;
+                checkPlace.y = y - 2;
+                if (killToProtectKing(enemy, returnPostion(inHand))) {
+                    killedSomething = true;
                 }
 
-                if (Pice_already_there(PlaceCheck)) {
-                    if (!see_king_Check(enemy)) {
-                        if (somthing_killed) {
-                            enemy.changePostion(other, ate_to_protect);
-                            somthing_killed = false;
+                if (friendlyPieceAlreadyThere(checkPlace)) {
+                    if (!isKingChecked(enemy)) {
+                        if (killedSomething) {
+                            enemy.changePostion(other, killToProtect);
+                            killedSomething = false;
                         }
-                        WH.setPoint(oldp1);
+                        WhiteKnight.setPoint(oldp1);
                         return false;
                     }
                 }
             }
-            if (somthing_killed) {
-                enemy.changePostion(other, ate_to_protect);
-                somthing_killed = false;
+            if (killedSomething) {
+                enemy.changePostion(other, killToProtect);
+                killedSomething = false;
             }
 
             if (x - 2 >= 1 && y + 1 <= 8) {
-                WH.setX(x - 2);
-                WH.setY(y + 1);
-                PlaceCheck.x = x - 2;
-                PlaceCheck.y = y + 1;
+                WhiteKnight.setX(x - 2);
+                WhiteKnight.setY(y + 1);
+                checkPlace.x = x - 2;
+                checkPlace.y = y + 1;
 
-                if (kill_to_protect_king(enemy, returnPostion(inHand))) {
-                    somthing_killed = true;
+                if (killToProtectKing(enemy, returnPostion(inHand))) {
+                    killedSomething = true;
                 }
-                if (Pice_already_there(PlaceCheck)) {
-                    if (!see_king_Check(enemy)) {
-                        if (somthing_killed) {
-                            enemy.changePostion(other, ate_to_protect);
-                            somthing_killed = false;
+                if (friendlyPieceAlreadyThere(checkPlace)) {
+                    if (!isKingChecked(enemy)) {
+                        if (killedSomething) {
+                            enemy.changePostion(other, killToProtect);
+                            killedSomething = false;
                         }
-                        WH.setPoint(oldp1);
+                        WhiteKnight.setPoint(oldp1);
                         return false;
                     }
                 }
             }
 
-            if (somthing_killed) {
-                enemy.changePostion(other, ate_to_protect);
-                somthing_killed = false;
+            if (killedSomething) {
+                enemy.changePostion(other, killToProtect);
+                killedSomething = false;
             }
 
             if (x - 2 >= 1 && y - 1 >= 1) {
-                WH.setX(x - 2);
-                WH.setY(y - 1);
-                PlaceCheck.x = x - 2;
-                PlaceCheck.y = y - 1;
+                WhiteKnight.setX(x - 2);
+                WhiteKnight.setY(y - 1);
+                checkPlace.x = x - 2;
+                checkPlace.y = y - 1;
 
-                if (kill_to_protect_king(enemy, returnPostion(inHand))) {
-                    somthing_killed = true;
+                if (killToProtectKing(enemy, returnPostion(inHand))) {
+                    killedSomething = true;
                 }
 
-                if (Pice_already_there(PlaceCheck)) {
-                    if (!see_king_Check(enemy)) {
-                        if (somthing_killed) {
-                            enemy.changePostion(other, ate_to_protect);
-                            somthing_killed = false;
+                if (friendlyPieceAlreadyThere(checkPlace)) {
+                    if (!isKingChecked(enemy)) {
+                        if (killedSomething) {
+                            enemy.changePostion(other, killToProtect);
+                            killedSomething = false;
                         }
-                        WH.setPoint(oldp1);
+                        WhiteKnight.setPoint(oldp1);
                         return false;
                     }
                 }
             }
-            if (somthing_killed) {
-                enemy.changePostion(other, ate_to_protect);
-                somthing_killed = false;
+            if (killedSomething) {
+                enemy.changePostion(other, killToProtect);
+                killedSomething = false;
             }
 
         }
-        WH.setPoint(oldp1);
+        WhiteKnight.setPoint(oldp1);
 
         return true;
     }
 
-    public boolean QueenGenerate_moves(Player2 enemy) {
-        boolean somthing_killed = false;
+    public boolean generateMoves(Player2 enemy) {
+        boolean killedSomething = false;
 
-        Point Oldp1 = new Point();
+        Point oldp1 = new Point();
 
-        Oldp1 = WQ.returnPostion();
+        oldp1 = whiteQueen.returnPostion();
 
-        Point PlaceCheck = new Point();
+        Point checkPlace = new Point();
 
         inHand = 23;
 
-        if (Oldp1.x != 20) {
-            for (int x = Oldp1.x, y = Oldp1.y; x >= 1 && y <= 8; x--, y++) {
+        if (oldp1.x != 20) {
+            for (int x = oldp1.x, y = oldp1.y; x >= 1 && y <= 8; x--, y++) {
 
-                WQ.setX(x);
-                WQ.setY(y);
-                PlaceCheck.x = x;
-                PlaceCheck.y = y;
-                if (Check_The_Way_to_Postion(enemy, Oldp1)) {
-                    if (kill_to_protect_king(enemy, returnPostion(inHand))) {
-                        somthing_killed = true;
+                whiteQueen.setX(x);
+                whiteQueen.setY(y);
+                checkPlace.x = x;
+                checkPlace.y = y;
+                if (checkWayToPosition(enemy, oldp1)) {
+                    if (killToProtectKing(enemy, returnPostion(inHand))) {
+                        killedSomething = true;
                     }
 
-                    if (Pice_already_there(PlaceCheck)) {
-                        if (!see_king_Check(enemy)) {
-                            WQ.setPoint(Oldp1);
+                    if (friendlyPieceAlreadyThere(checkPlace)) {
+                        if (!isKingChecked(enemy)) {
+                            whiteQueen.setPoint(oldp1);
 
-                            if (somthing_killed) {
-                                enemy.changePostion(other, ate_to_protect);
-                                somthing_killed = false;
+                            if (killedSomething) {
+                                enemy.changePostion(other, killToProtect);
+                                killedSomething = false;
                             }
                             return false;
                         }
                     }
                 }
 
-                if (somthing_killed) {
-                    enemy.changePostion(other, ate_to_protect);
-                    somthing_killed = false;
+                if (killedSomething) {
+                    enemy.changePostion(other, killToProtect);
+                    killedSomething = false;
                 }
 
             }
-            if (somthing_killed) {
-                enemy.changePostion(other, ate_to_protect);
-                somthing_killed = false;
+            if (killedSomething) {
+                enemy.changePostion(other, killToProtect);
+                killedSomething = false;
             }
-            for (int x = Oldp1.x, y = Oldp1.y; y >= 1 && x <= 8; x++, y--) {
+            for (int x = oldp1.x, y = oldp1.y; y >= 1 && x <= 8; x++, y--) {
 
-                WQ.setX(x);
-                WQ.setY(y);
-                PlaceCheck.x = x;
-                PlaceCheck.y = y;
-                if (Check_The_Way_to_Postion(enemy, Oldp1)) {
-                    if (kill_to_protect_king(enemy, returnPostion(inHand))) {
-                        somthing_killed = true;
+                whiteQueen.setX(x);
+                whiteQueen.setY(y);
+                checkPlace.x = x;
+                checkPlace.y = y;
+                if (checkWayToPosition(enemy, oldp1)) {
+                    if (killToProtectKing(enemy, returnPostion(inHand))) {
+                        killedSomething = true;
                     }
-                    if (Pice_already_there(PlaceCheck)) {
-                        if (!see_king_Check(enemy)) {
-                            WQ.setPoint(Oldp1);
-                            if (somthing_killed) {
-                                enemy.changePostion(other, ate_to_protect);
-                                somthing_killed = false;
+                    if (friendlyPieceAlreadyThere(checkPlace)) {
+                        if (!isKingChecked(enemy)) {
+                            whiteQueen.setPoint(oldp1);
+                            if (killedSomething) {
+                                enemy.changePostion(other, killToProtect);
+                                killedSomething = false;
                             }
                             return false;
                         }
                     }
                 }
 
-                if (somthing_killed) {
-                    enemy.changePostion(other, ate_to_protect);
-                    somthing_killed = false;
+                if (killedSomething) {
+                    enemy.changePostion(other, killToProtect);
+                    killedSomething = false;
                 }
 
             }
-            WQ.setPoint(Oldp1);
-            PlaceCheck.x = Oldp1.x;
-            PlaceCheck.y = Oldp1.y;
+            whiteQueen.setPoint(oldp1);
+            checkPlace.x = oldp1.x;
+            checkPlace.y = oldp1.y;
 
-            if (somthing_killed) {
-                enemy.changePostion(other, ate_to_protect);
-                somthing_killed = false;
+            if (killedSomething) {
+                enemy.changePostion(other, killToProtect);
+                killedSomething = false;
             }
 
             for (int i = 1; i <= 8; i++) {
-                WQ.setX(i);
+                whiteQueen.setX(i);
 
-                PlaceCheck.x = i;
-                if (Check_The_Way_to_Postion(enemy, Oldp1)) {
-                    if (kill_to_protect_king(enemy, returnPostion(inHand))) {
-                        somthing_killed = true;
+                checkPlace.x = i;
+                if (checkWayToPosition(enemy, oldp1)) {
+                    if (killToProtectKing(enemy, returnPostion(inHand))) {
+                        killedSomething = true;
                     }
-                    if (Pice_already_there(PlaceCheck)) {
-                        if (!see_king_Check(enemy)) {
-                            WQ.setX(Oldp1.x);
-                            if (somthing_killed) {
-                                enemy.changePostion(other, ate_to_protect);
-                                somthing_killed = false;
+                    if (friendlyPieceAlreadyThere(checkPlace)) {
+                        if (!isKingChecked(enemy)) {
+                            whiteQueen.setX(oldp1.x);
+                            if (killedSomething) {
+                                enemy.changePostion(other, killToProtect);
+                                killedSomething = false;
                             }
                             return false;
                         }
                     }
                 }
 
-                if (somthing_killed) {
-                    enemy.changePostion(other, ate_to_protect);
-                    somthing_killed = false;
+                if (killedSomething) {
+                    enemy.changePostion(other, killToProtect);
+                    killedSomething = false;
                 }
 
             }
-            WQ.setX(Oldp1.x);
-            PlaceCheck.x = Oldp1.x;
+            whiteQueen.setX(oldp1.x);
+            checkPlace.x = oldp1.x;
 
-            if (somthing_killed) {
-                enemy.changePostion(other, ate_to_protect);
-                somthing_killed = false;
+            if (killedSomething) {
+                enemy.changePostion(other, killToProtect);
+                killedSomething = false;
             }
 
             for (int i = 1; i <= 8; i++) {
-                WQ.setY(i);
-                PlaceCheck.y = i;
-                if (Check_The_Way_to_Postion(enemy, Oldp1)) {
-                    if (kill_to_protect_king(enemy, returnPostion(inHand))) {
-                        somthing_killed = true;
+                whiteQueen.setY(i);
+                checkPlace.y = i;
+                if (checkWayToPosition(enemy, oldp1)) {
+                    if (killToProtectKing(enemy, returnPostion(inHand))) {
+                        killedSomething = true;
                     }
-                    if (Pice_already_there(PlaceCheck)) {
-                        if (!see_king_Check(enemy)) {
-                            WQ.setY(Oldp1.y);
-                            if (somthing_killed) {
-                                enemy.changePostion(other, ate_to_protect);
-                                somthing_killed = false;
+                    if (friendlyPieceAlreadyThere(checkPlace)) {
+                        if (!isKingChecked(enemy)) {
+                            whiteQueen.setY(oldp1.y);
+                            if (killedSomething) {
+                                enemy.changePostion(other, killToProtect);
+                                killedSomething = false;
                             }
                             return false;
                         }
                     }
                 }
 
-                if (somthing_killed) {
-                    enemy.changePostion(other, ate_to_protect);
-                    somthing_killed = false;
+                if (killedSomething) {
+                    enemy.changePostion(other, killToProtect);
+                    killedSomething = false;
                 }
 
             }
-            WQ.setY(Oldp1.y);
+            whiteQueen.setY(oldp1.y);
         }
 
-        if (somthing_killed) {
-            enemy.changePostion(other, ate_to_protect);
-            somthing_killed = false;
+        if (killedSomething) {
+            enemy.changePostion(other, killToProtect);
+            killedSomething = false;
         }
 
         return true;
 
     }
 
-    public boolean SoliderGenerate_moves(Player2 enemy, Pawn Sold) {
-        Point Oldp1 = new Point();
-        Oldp1 = Sold.returnPostion();
-        Point PlaceCheck = new Point();
-        PlaceCheck.x = Oldp1.x;
-        PlaceCheck.y = Oldp1.y;
+    public boolean generatePawnMoves(Player2 enemy, Pawn myPawn) {
+        Point oldp1 = new Point();
+        oldp1 = myPawn.returnPostion();
+        Point checkPlace = new Point();
+        checkPlace.x = oldp1.x;
+        checkPlace.y = oldp1.y;
 
-        if (Oldp1.x != 20) {
-            if (Sold.canMove(Oldp1.x, Oldp1.y - 2, Color) && Oldp1.y - 2 >= 1) {
-                Sold.setY(Oldp1.y - 2);
+        if (oldp1.x != 20) {
+            if (myPawn.canMove(oldp1.x, oldp1.y - 2, color) && oldp1.y - 2 >= 1) {
+                myPawn.setY(oldp1.y - 2);
 
-                PlaceCheck.y = Oldp1.y - 1;
+                checkPlace.y = oldp1.y - 1;
 
-                if (Pice_already_there(PlaceCheck)) {
-                    if (Pice_already_there_from_enemy(PlaceCheck, enemy)) {
-                        if (!see_king_Check(enemy)) {
+                if (friendlyPieceAlreadyThere(checkPlace)) {
+                    if (enemyPieceAlreadyThere(checkPlace, enemy)) {
+                        if (!isKingChecked(enemy)) {
 
-                            Sold.setPoint(Oldp1);
+                            myPawn.setPoint(oldp1);
                             return false;
                         }
                     }
                 }
 
             }
-            if (Sold.canMove(Oldp1.x, Oldp1.y - 1, Color) && Oldp1.y - 1 >= 1) {
-                Sold.setY(Oldp1.y - 1);
-                PlaceCheck.y = Oldp1.y - 1;
+            if (myPawn.canMove(oldp1.x, oldp1.y - 1, color) && oldp1.y - 1 >= 1) {
+                myPawn.setY(oldp1.y - 1);
+                checkPlace.y = oldp1.y - 1;
 
-                if (Pice_already_there(PlaceCheck)) {
-                    if (Pice_already_there_from_enemy(PlaceCheck, enemy)) {
+                if (friendlyPieceAlreadyThere(checkPlace)) {
+                    if (enemyPieceAlreadyThere(checkPlace, enemy)) {
 
-                        if (!see_king_Check(enemy)) {
-                            Sold.setPoint(Oldp1);
+                        if (!isKingChecked(enemy)) {
+                            myPawn.setPoint(oldp1);
                             System.out.println("dff");
                             System.out.println("dff");
                             System.out.println("dff");
@@ -1664,48 +1663,49 @@ public class Player1 {
                 }
             }
 
-            if (!Pice_already_there_from_enemy(new Point(Oldp1.x - 1, Oldp1.y - 1), enemy)) {
-                if (kill_to_protect_king(enemy, new Point(Oldp1.x - 1, Oldp1.y - 1))) {
+            if (!enemyPieceAlreadyThere(new Point(oldp1.x - 1, oldp1.y - 1), enemy)) {
+                if (killToProtectKing(enemy, new Point(oldp1.x - 1, oldp1.y - 1))) {
 
-                    if (!see_king_Check(enemy)) {
-                        enemy.changePostion(other, ate_to_protect);
-                        Sold.setPoint(Oldp1);
+                    if (!isKingChecked(enemy)) {
+                        enemy.changePostion(other, killToProtect);
+                        myPawn.setPoint(oldp1);
 
                         return false;
                     }
-                    enemy.changePostion(other, ate_to_protect);
+                    enemy.changePostion(other, killToProtect);
                 }
             }
 
-            if (!Pice_already_there_from_enemy(new Point(Oldp1.x + 1, Oldp1.y - 1), enemy)) {
-                if (kill_to_protect_king(enemy, new Point(Oldp1.x + 1, Oldp1.y - 1))) {
-                    if (!see_king_Check(enemy)) {
-                        enemy.changePostion(other, ate_to_protect);
-                        Sold.setPoint(Oldp1);
+            if (!enemyPieceAlreadyThere(new Point(oldp1.x + 1, oldp1.y - 1), enemy)) {
+                if (killToProtectKing(enemy, new Point(oldp1.x + 1, oldp1.y - 1))) {
+                    if (!isKingChecked(enemy)) {
+                        enemy.changePostion(other, killToProtect);
+                        myPawn.setPoint(oldp1);
 
                         return false;
                     }
-                    enemy.changePostion(other, ate_to_protect);
+                    enemy.changePostion(other, killToProtect);
 
                 }
             }
 
         }
 
-        Sold.setPoint(Oldp1);
+        myPawn.setPoint(oldp1);
         return true;
     }
 
-    public boolean Check_The_Way_to_Postion(Player2 enemy, Point newP) {
+    public boolean checkWayToPosition(Player2 enemy, Point newP) {
         boolean flag = false;
 
         for (int i = 1; i <= 32; i++) {
-            if (inHand != i)// check if there is peices in the WAY
-            {
+            // check if there is peices in the WAY
+            if (inHand != i) {
                 if (i < 17) {
-                    flag = checktheWay(newP, enemy.returnPostion(i), inHand);// Means there is somting in the Way so
+                    // Means there is something in the way
+                    flag = checkTheWay(newP, enemy.returnPostion(i), inHand);
                 } else {
-                    flag = checktheWay(newP, returnPostion(i), inHand);
+                    flag = checkTheWay(newP, returnPostion(i), inHand);
                 }
 
                 if (flag == true) {
@@ -1717,15 +1717,15 @@ public class Player1 {
 
     }
 
-    public boolean kill_to_protect_king(Player2 enemy, Point newP) {
+    public boolean killToProtectKing(Player2 enemy, Point newP) {
 
         for (int i = 1; i < 17; i++) {
 
             other = enemy.returnPostion(i);
             if (other.x == newP.x && other.y == newP.y) {
-                ate_to_protect = i;
+                killToProtect = i;
 
-                enemy.Killedpiec(i);
+                enemy.killedPiece(i);
                 return true;
             }
         }
@@ -1733,43 +1733,44 @@ public class Player1 {
         return false;
     }
 
-    public String Tell_me_About_last_move() {
+    /** tells user about last move. Previously named "Tell_Me_About_Last_Move"**/
+    public String lastMove() {
         switch (inHand) {
 
-        case 17:
-            return WC1.tellMe();
-        case 18:
-            return WC2.tellMe();
-        case 19:
-            return WH1.tellMe();
-        case 20:
-            return WH2.tellMe();
-        case 21:
-            return WE1.tellMe();
-        case 22:
-            return WE2.tellMe();
-        case 23:
-            return WQ.tellMe();
-        case 24:
-            return WK.tellMe();
-        case 25:
-            return WS[0].tellMe();
-        case 26:
-            return WS[1].tellMe();
-        case 27:
-            return WS[2].tellMe();
-        case 28:
-            return WS[3].tellMe();
-        case 29:
-            return WS[4].tellMe();
-        case 30:
-            return WS[5].tellMe();
-        case 31:
-            return WS[6].tellMe();
-        case 32:
-            return WS[7].tellMe();
-        default:
-            break;
+            case 17:
+                return whiteRook1.tellMe();
+            case 18:
+                return whiteRook2.tellMe();
+            case 19:
+                return whiteKnight1.tellMe();
+            case 20:
+                return whiteKnight2.tellMe();
+            case 21:
+                return whiteBishop1.tellMe();
+            case 22:
+                return whiteBishop2.tellMe();
+            case 23:
+                return whiteQueen.tellMe();
+            case 24:
+                return whiteKing.tellMe();
+            case 25:
+                return whitePawns[0].tellMe();
+            case 26:
+                return whitePawns[1].tellMe();
+            case 27:
+                return whitePawns[2].tellMe();
+            case 28:
+                return whitePawns[3].tellMe();
+            case 29:
+                return whitePawns[4].tellMe();
+            case 30:
+                return whitePawns[5].tellMe();
+            case 31:
+                return whitePawns[6].tellMe();
+            case 32:
+                return whitePawns[7].tellMe();
+            default:
+                break;
         }
         return null;
     }

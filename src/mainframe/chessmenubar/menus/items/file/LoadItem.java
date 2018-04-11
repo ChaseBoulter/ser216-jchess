@@ -8,15 +8,15 @@ import javax.swing.JMenuItem;
 
 public class LoadItem extends JMenuItem {
 
-    /** Creates a new instance of LoadItem */
+    /** Creates a new instance of LoadItem. */
     public LoadItem() {
         setText("Load Game");
         addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                LoadFile.showOpenDialog(null);
+                loadFile.showOpenDialog(null);
             }
         });
     }
 
-    private final JFileChooser LoadFile = new JFileChooser();
+    private final JFileChooser loadFile = new JFileChooser();
 }

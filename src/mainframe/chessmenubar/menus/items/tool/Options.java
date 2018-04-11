@@ -5,7 +5,7 @@ import javax.swing.JMenuItem;
 
 public class Options extends JMenuItem {
 
-    /** Creates a new instance of Options */
+    /** Creates a new instance of Options. */
     public Options() {
         setText("Options");
     }

@@ -7,58 +7,58 @@
 //import pieces.*;
 //
 //public class Player {
-//    public Rook WC1;
-//    public Rook WC2;
-//    public Knight WH1;
-//    public Knight WH2;
-//    public Queen WQ;
-//    public Bishop WE1;
-//    public Bishop WE2;
-//    public Pawn[] WS = new Pawn[8];
-//    public King WK;
+//    public Rook whiteRook1;
+//    public Rook whiteRook2;
+//    public Knight whiteKnight1;
+//    public Knight whiteKnight2;
+//    public Queen whiteQueen;
+//    public Bishop whiteBishop1;
+//    public Bishop whiteBishop2;
+//    public Pawn[] whitePawns = new Pawn[8];
+//    public King whiteKing;
 //    private int inHand = -1;
 //    private boolean kingischeck = false;
 //    private int choosenOne;
-//    public String Color = "white";
+//    public String color = "white";
 //    private Point other;
-//    int ate_to_protect;
+//    int killToProtect;
 //
 //    public Point returnposition(int i) {
 //
 //        switch (i) {
 //
 //        case 17:
-//            return WC1.returnposition();
+//            return whiteRook1.returnposition();
 //        case 18:
-//            return WC2.returnposition();
+//            return whiteRook2.returnposition();
 //        case 19:
-//            return WH1.returnposition();
+//            return whiteKnight1.returnposition();
 //        case 20:
-//            return WH2.returnposition();
+//            return whiteKnight2.returnposition();
 //        case 21:
-//            return WE1.returnposition();
+//            return whiteBishop1.returnposition();
 //        case 22:
-//            return WE2.returnposition();
+//            return whiteBishop2.returnposition();
 //        case 23:
-//            return WQ.returnposition();
+//            return whiteQueen.returnposition();
 //        case 24:
-//            return WK.returnposition();
+//            return whiteKing.returnposition();
 //        case 25:
-//            return WS[0].returnposition();
+//            return whitePawns[0].returnposition();
 //        case 26:
-//            return WS[1].returnposition();
+//            return whitePawns[1].returnposition();
 //        case 27:
-//            return WS[2].returnposition();
+//            return whitePawns[2].returnposition();
 //        case 28:
-//            return WS[3].returnposition();
+//            return whitePawns[3].returnposition();
 //        case 29:
-//            return WS[4].returnposition();
+//            return whitePawns[4].returnposition();
 //        case 30:
-//            return WS[5].returnposition();
+//            return whitePawns[5].returnposition();
 //        case 31:
-//            return WS[6].returnposition();
+//            return whitePawns[6].returnposition();
 //        case 32:
-//            return WS[7].returnposition();
+//            return whitePawns[7].returnposition();
 //        default:
 //            break;
 //        }
@@ -70,37 +70,37 @@
 //        switch (i) {
 //
 //        case 17:
-//            return WC1.returnOld();
+//            return whiteRook1.returnOld();
 //        case 18:
-//            return WC2.returnOld();
+//            return whiteRook2.returnOld();
 //        case 19:
-//            return WH1.returnOld();
+//            return whiteKnight1.returnOld();
 //        case 20:
-//            return WH2.returnOld();
+//            return whiteKnight2.returnOld();
 //        case 21:
-//            return WE1.returnOld();
+//            return whiteBishop1.returnOld();
 //        case 22:
-//            return WE2.returnOld();
+//            return whiteBishop2.returnOld();
 //        case 23:
-//            return WQ.returnOld();
+//            return whiteQueen.returnOld();
 //        case 24:
-//            return WK.returnOld();
+//            return whiteKing.returnOld();
 //        case 25:
-//            return WS[0].returnOld();
+//            return whitePawns[0].returnOld();
 //        case 26:
-//            return WS[1].returnOld();
+//            return whitePawns[1].returnOld();
 //        case 27:
-//            return WS[2].returnOld();
+//            return whitePawns[2].returnOld();
 //        case 28:
-//            return WS[3].returnOld();
+//            return whitePawns[3].returnOld();
 //        case 29:
-//            return WS[4].returnOld();
+//            return whitePawns[4].returnOld();
 //        case 30:
-//            return WS[5].returnOld();
+//            return whitePawns[5].returnOld();
 //        case 31:
-//            return WS[6].returnOld();
+//            return whitePawns[6].returnOld();
 //        case 32:
-//            return WS[7].returnOld();
+//            return whitePawns[7].returnOld();
 //        default:
 //            break;
 //        }
@@ -111,40 +111,40 @@
 //
 //        switch (i) {
 //        case 1:
-//            return WC1.returnPieceImage();
+//            return whiteRook1.returnPieceImage();
 //
 //        case 17:
-//            return WC1.returnPieceImage();
+//            return whiteRook1.returnPieceImage();
 //        case 18:
-//            return WC2.returnPieceImage();
+//            return whiteRook2.returnPieceImage();
 //        case 19:
-//            return WH1.returnPieceImage();
+//            return whiteKnight1.returnPieceImage();
 //        case 20:
-//            return WH2.returnPieceImage();
+//            return whiteKnight2.returnPieceImage();
 //        case 21:
-//            return WE1.returnPieceImage();
+//            return whiteBishop1.returnPieceImage();
 //        case 22:
-//            return WE2.returnPieceImage();
+//            return whiteBishop2.returnPieceImage();
 //        case 23:
-//            return WQ.returnPieceImage();
+//            return whiteQueen.returnPieceImage();
 //        case 24:
-//            return WK.returnPieceImage();
+//            return whiteKing.returnPieceImage();
 //        case 25:
-//            return WS[0].returnPieceImage();
+//            return whitePawns[0].returnPieceImage();
 //        case 26:
-//            return WS[1].returnPieceImage();
+//            return whitePawns[1].returnPieceImage();
 //        case 27:
-//            return WS[2].returnPieceImage();
+//            return whitePawns[2].returnPieceImage();
 //        case 28:
-//            return WS[3].returnPieceImage();
+//            return whitePawns[3].returnPieceImage();
 //        case 29:
-//            return WS[4].returnPieceImage();
+//            return whitePawns[4].returnPieceImage();
 //        case 30:
-//            return WS[5].returnPieceImage();
+//            return whitePawns[5].returnPieceImage();
 //        case 31:
-//            return WS[6].returnPieceImage();
+//            return whitePawns[6].returnPieceImage();
 //        case 32:
-//            return WS[7].returnPieceImage();
+//            return whitePawns[7].returnPieceImage();
 //        default:
 //            break;
 //        }
@@ -155,52 +155,52 @@
 //        switch (i) {
 //
 //        case 17:
-//            WC1.setPoint(newPoint);
+//            whiteRook1.setPoint(newPoint);
 //            break;
 //        case 18:
-//            WC2.setPoint(newPoint);
+//            whiteRook2.setPoint(newPoint);
 //            break;
 //        case 19:
-//            WH1.setPoint(newPoint);
+//            whiteKnight1.setPoint(newPoint);
 //            break;
 //        case 20:
-//            WH2.setPoint(newPoint);
+//            whiteKnight2.setPoint(newPoint);
 //            break;
 //        case 21:
-//            WE1.setPoint(newPoint);
+//            whiteBishop1.setPoint(newPoint);
 //            break;
 //        case 22:
-//            WE2.setPoint(newPoint);
+//            whiteBishop2.setPoint(newPoint);
 //            break;
 //        case 23:
-//            WQ.setPoint(newPoint);
+//            whiteQueen.setPoint(newPoint);
 //            break;
 //        case 24:
-//            WK.setPoint(newPoint);
+//            whiteKing.setPoint(newPoint);
 //            break;
 //        case 25:
-//            WS[0].setPoint(newPoint);
+//            whitePawns[0].setPoint(newPoint);
 //            break;
 //        case 26:
-//            WS[1].setPoint(newPoint);
+//            whitePawns[1].setPoint(newPoint);
 //            break;
 //        case 27:
-//            WS[2].setPoint(newPoint);
+//            whitePawns[2].setPoint(newPoint);
 //            break;
 //        case 28:
-//            WS[3].setPoint(newPoint);
+//            whitePawns[3].setPoint(newPoint);
 //            break;
 //        case 29:
-//            WS[4].setPoint(newPoint);
+//            whitePawns[4].setPoint(newPoint);
 //            break;
 //        case 30:
-//            WS[5].setPoint(newPoint);
+//            whitePawns[5].setPoint(newPoint);
 //            break;
 //        case 31:
-//            WS[6].setPoint(newPoint);
+//            whitePawns[6].setPoint(newPoint);
 //            break;
 //        case 32:
-//            WS[7].setPoint(newPoint);
+//            whitePawns[7].setPoint(newPoint);
 //            break;
 //        default:
 //            break;
@@ -212,52 +212,52 @@
 //        switch (i) {
 //
 //        case 17:
-//            WC1.toOld(newPoint);
+//            whiteRook1.toOld(newPoint);
 //            break;
 //        case 18:
-//            WC2.toOld(newPoint);
+//            whiteRook2.toOld(newPoint);
 //            break;
 //        case 19:
-//            WH1.toOld(newPoint);
+//            whiteKnight1.toOld(newPoint);
 //            break;
 //        case 20:
-//            WH2.toOld(newPoint);
+//            whiteKnight2.toOld(newPoint);
 //            break;
 //        case 21:
-//            WE1.toOld(newPoint);
+//            whiteBishop1.toOld(newPoint);
 //            break;
 //        case 22:
-//            WE2.toOld(newPoint);
+//            whiteBishop2.toOld(newPoint);
 //            break;
 //        case 23:
-//            WQ.toOld(newPoint);
+//            whiteQueen.toOld(newPoint);
 //            break;
 //        case 24:
-//            WK.toOld(newPoint);
+//            whiteKing.toOld(newPoint);
 //            break;
 //        case 25:
-//            WS[0].toOld(newPoint);
+//            whitePawns[0].toOld(newPoint);
 //            break;
 //        case 26:
-//            WS[1].toOld(newPoint);
+//            whitePawns[1].toOld(newPoint);
 //            break;
 //        case 27:
-//            WS[2].toOld(newPoint);
+//            whitePawns[2].toOld(newPoint);
 //            break;
 //        case 28:
-//            WS[3].toOld(newPoint);
+//            whitePawns[3].toOld(newPoint);
 //            break;
 //        case 29:
-//            WS[4].toOld(newPoint);
+//            whitePawns[4].toOld(newPoint);
 //            break;
 //        case 30:
-//            WS[5].toOld(newPoint);
+//            whitePawns[5].toOld(newPoint);
 //            break;
 //        case 31:
-//            WS[6].toOld(newPoint);
+//            whitePawns[6].toOld(newPoint);
 //            break;
 //        case 32:
-//            WS[7].toOld(newPoint);
+//            whitePawns[7].toOld(newPoint);
 //            break;
 //        default:
 //            break;
@@ -269,52 +269,52 @@
 //        switch (choosenOne) {
 //
 //        case 17:
-//            WC1.setPixels(newPixelX, newPixelY);
+//            whiteRook1.setPixels(newPixelX, newPixelY);
 //            break;
 //        case 18:
-//            WC2.setPixels(newPixelX, newPixelY);
+//            whiteRook2.setPixels(newPixelX, newPixelY);
 //            break;
 //        case 19:
-//            WH1.setPixels(newPixelX, newPixelY);
+//            whiteKnight1.setPixels(newPixelX, newPixelY);
 //            break;
 //        case 20:
-//            WH2.setPixels(newPixelX, newPixelY);
+//            whiteKnight2.setPixels(newPixelX, newPixelY);
 //            break;
 //        case 21:
-//            WE1.setPixels(newPixelX, newPixelY);
+//            whiteBishop1.setPixels(newPixelX, newPixelY);
 //            break;
 //        case 22:
-//            WE2.setPixels(newPixelX, newPixelY);
+//            whiteBishop2.setPixels(newPixelX, newPixelY);
 //            break;
 //        case 23:
-//            WQ.setPixels(newPixelX, newPixelY);
+//            whiteQueen.setPixels(newPixelX, newPixelY);
 //            break;
 //        case 24:
-//            WK.setPixels(newPixelX, newPixelY);
+//            whiteKing.setPixels(newPixelX, newPixelY);
 //            break;
 //        case 25:
-//            WS[0].setPixels(newPixelX, newPixelY);
+//            whitePawns[0].setPixels(newPixelX, newPixelY);
 //            break;
 //        case 26:
-//            WS[1].setPixels(newPixelX, newPixelY);
+//            whitePawns[1].setPixels(newPixelX, newPixelY);
 //            break;
 //        case 27:
-//            WS[2].setPixels(newPixelX, newPixelY);
+//            whitePawns[2].setPixels(newPixelX, newPixelY);
 //            break;
 //        case 28:
-//            WS[3].setPixels(newPixelX, newPixelY);
+//            whitePawns[3].setPixels(newPixelX, newPixelY);
 //            break;
 //        case 29:
-//            WS[4].setPixels(newPixelX, newPixelY);
+//            whitePawns[4].setPixels(newPixelX, newPixelY);
 //            break;
 //        case 30:
-//            WS[5].setPixels(newPixelX, newPixelY);
+//            whitePawns[5].setPixels(newPixelX, newPixelY);
 //            break;
 //        case 31:
-//            WS[6].setPixels(newPixelX, newPixelY);
+//            whitePawns[6].setPixels(newPixelX, newPixelY);
 //            break;
 //        case 32:
-//            WS[7].setPixels(newPixelX, newPixelY);
+//            whitePawns[7].setPixels(newPixelX, newPixelY);
 //            break;
 //        default:
 //            break;
@@ -325,40 +325,40 @@
 //        choosenOne = i;
 //        switch (choosenOne) {
 //        case 1:
-//            return WC1.getpixelPoint();
+//            return whiteRook1.getpixelPoint();
 //
 //        case 17:
-//            return WC1.getpixelPoint();
+//            return whiteRook1.getpixelPoint();
 //        case 18:
-//            return WC2.getpixelPoint();
+//            return whiteRook2.getpixelPoint();
 //        case 19:
-//            return WH1.getpixelPoint();
+//            return whiteKnight1.getpixelPoint();
 //        case 20:
-//            return WH2.getpixelPoint();
+//            return whiteKnight2.getpixelPoint();
 //        case 21:
-//            return WE1.getpixelPoint();
+//            return whiteBishop1.getpixelPoint();
 //        case 22:
-//            return WE2.getpixelPoint();
+//            return whiteBishop2.getpixelPoint();
 //        case 23:
-//            return WQ.getpixelPoint();
+//            return whiteQueen.getpixelPoint();
 //        case 24:
-//            return WK.getpixelPoint();
+//            return whiteKing.getpixelPoint();
 //        case 25:
-//            return WS[0].getpixelPoint();
+//            return whitePawns[0].getpixelPoint();
 //        case 26:
-//            return WS[1].getpixelPoint();
+//            return whitePawns[1].getpixelPoint();
 //        case 27:
-//            return WS[2].getpixelPoint();
+//            return whitePawns[2].getpixelPoint();
 //        case 28:
-//            return WS[3].getpixelPoint();
+//            return whitePawns[3].getpixelPoint();
 //        case 29:
-//            return WS[4].getpixelPoint();
+//            return whitePawns[4].getpixelPoint();
 //        case 30:
-//            return WS[5].getpixelPoint();
+//            return whitePawns[5].getpixelPoint();
 //        case 31:
-//            return WS[6].getpixelPoint();
+//            return whitePawns[6].getpixelPoint();
 //        case 32:
-//            return WS[7].getpixelPoint();
+//            return whitePawns[7].getpixelPoint();
 //        default:
 //            break;
 //        }
@@ -370,37 +370,37 @@
 //        switch (choosenOne) {
 //
 //        case 17:
-//            return WC1.Canmove(newP.x, newP.y);
+//            return whiteRook1.Canmove(newP.x, newP.y);
 //        case 18:
-//            return WC2.Canmove(newP.x, newP.y);
+//            return whiteRook2.Canmove(newP.x, newP.y);
 //        case 19:
-//            return WH1.Canmove(newP.x, newP.y);
+//            return whiteKnight1.Canmove(newP.x, newP.y);
 //        case 20:
-//            return WH2.Canmove(newP.x, newP.y);
+//            return whiteKnight2.Canmove(newP.x, newP.y);
 //        case 21:
-//            return WE1.Canmove(newP.x, newP.y);
+//            return whiteBishop1.Canmove(newP.x, newP.y);
 //        case 22:
-//            return WE2.Canmove(newP.x, newP.y);
+//            return whiteBishop2.Canmove(newP.x, newP.y);
 //        case 23:
-//            return WQ.Canmove(newP.x, newP.y);
+//            return whiteQueen.Canmove(newP.x, newP.y);
 //        case 24:
-//            return WK.Canmove(newP.x, newP.y);
+//            return whiteKing.Canmove(newP.x, newP.y);
 //        case 25:
-//            return WS[0].Canmove(newP.x, newP.y, Color);
+//            return whitePawns[0].Canmove(newP.x, newP.y, color);
 //        case 26:
-//            return WS[1].Canmove(newP.x, newP.y, Color);
+//            return whitePawns[1].Canmove(newP.x, newP.y, color);
 //        case 27:
-//            return WS[2].Canmove(newP.x, newP.y, Color);
+//            return whitePawns[2].Canmove(newP.x, newP.y, color);
 //        case 28:
-//            return WS[3].Canmove(newP.x, newP.y, Color);
+//            return whitePawns[3].Canmove(newP.x, newP.y, color);
 //        case 29:
-//            return WS[4].Canmove(newP.x, newP.y, Color);
+//            return whitePawns[4].Canmove(newP.x, newP.y, color);
 //        case 30:
-//            return WS[5].Canmove(newP.x, newP.y, Color);
+//            return whitePawns[5].Canmove(newP.x, newP.y, color);
 //        case 31:
-//            return WS[6].Canmove(newP.x, newP.y, Color);
+//            return whitePawns[6].Canmove(newP.x, newP.y, color);
 //        case 32:
-//            return WS[7].Canmove(newP.x, newP.y, Color);
+//            return whitePawns[7].Canmove(newP.x, newP.y, color);
 //        default:
 //            break;
 //        }
@@ -410,21 +410,21 @@
 //    public boolean setSeentoSiliders(int i, Point P) {
 //        switch (i) {
 //        case 25:
-//            return WS[0].setSeenbychecking(P, Color);
+//            return whitePawns[0].setSeenbychecking(P, color);
 //        case 26:
-//            return WS[1].setSeenbychecking(P, Color);
+//            return whitePawns[1].setSeenbychecking(P, color);
 //        case 27:
-//            return WS[2].setSeenbychecking(P, Color);
+//            return whitePawns[2].setSeenbychecking(P, color);
 //        case 28:
-//            return WS[3].setSeenbychecking(P, Color);
+//            return whitePawns[3].setSeenbychecking(P, color);
 //        case 29:
-//            return WS[4].setSeenbychecking(P, Color);
+//            return whitePawns[4].setSeenbychecking(P, color);
 //        case 30:
-//            return WS[5].setSeenbychecking(P, Color);
+//            return whitePawns[5].setSeenbychecking(P, color);
 //        case 31:
-//            return WS[6].setSeenbychecking(P, Color);
+//            return whitePawns[6].setSeenbychecking(P, color);
 //        case 32:
-//            return WS[7].setSeenbychecking(P, Color);
+//            return whitePawns[7].setSeenbychecking(P, color);
 //        default:
 //            break;
 //        }
@@ -434,21 +434,21 @@
 //    public boolean returnsoliderSeen(int i) {
 //        switch (i) {
 //        case 25:
-//            return WS[0].returnMyseen();
+//            return whitePawns[0].returnMyseen();
 //        case 26:
-//            return WS[1].returnMyseen();
+//            return whitePawns[1].returnMyseen();
 //        case 27:
-//            return WS[2].returnMyseen();
+//            return whitePawns[2].returnMyseen();
 //        case 28:
-//            return WS[3].returnMyseen();
+//            return whitePawns[3].returnMyseen();
 //        case 29:
-//            return WS[4].returnMyseen();
+//            return whitePawns[4].returnMyseen();
 //        case 30:
-//            return WS[5].returnMyseen();
+//            return whitePawns[5].returnMyseen();
 //        case 31:
-//            return WS[6].returnMyseen();
+//            return whitePawns[6].returnMyseen();
 //        case 32:
-//            return WS[7].returnMyseen();
+//            return whitePawns[7].returnMyseen();
 //        default:
 //            break;
 //        }
@@ -459,31 +459,31 @@
 //        switch (i) {
 //
 //        case 17:
-//            return WC1.PieceInMYway(newP.x, newP.y, positionFromOthers);
+//            return whiteRook1.PieceInMYway(newP.x, newP.y, positionFromOthers);
 //        case 18:
-//            return WC2.PieceInMYway(newP.x, newP.y, positionFromOthers);
+//            return whiteRook2.PieceInMYway(newP.x, newP.y, positionFromOthers);
 //        case 21:
-//            return WE1.PieceInMYway(newP.x, newP.y, positionFromOthers);
+//            return whiteBishop1.PieceInMYway(newP.x, newP.y, positionFromOthers);
 //        case 22:
-//            return WE2.PieceInMYway(newP.x, newP.y, positionFromOthers);
+//            return whiteBishop2.PieceInMYway(newP.x, newP.y, positionFromOthers);
 //        case 23:
-//            return WQ.PieceInMYway(newP.x, newP.y, positionFromOthers);
+//            return whiteQueen.PieceInMYway(newP.x, newP.y, positionFromOthers);
 //        case 25:
-//            return WS[0].PieceInMYway(newP.x, newP.y, positionFromOthers, Color);
+//            return whitePawns[0].PieceInMYway(newP.x, newP.y, positionFromOthers, color);
 //        case 26:
-//            return WS[1].PieceInMYway(newP.x, newP.y, positionFromOthers, Color);
+//            return whitePawns[1].PieceInMYway(newP.x, newP.y, positionFromOthers, color);
 //        case 27:
-//            return WS[2].PieceInMYway(newP.x, newP.y, positionFromOthers, Color);
+//            return whitePawns[2].PieceInMYway(newP.x, newP.y, positionFromOthers, color);
 //        case 28:
-//            return WS[3].PieceInMYway(newP.x, newP.y, positionFromOthers, Color);
+//            return whitePawns[3].PieceInMYway(newP.x, newP.y, positionFromOthers, color);
 //        case 29:
-//            return WS[4].PieceInMYway(newP.x, newP.y, positionFromOthers, Color);
+//            return whitePawns[4].PieceInMYway(newP.x, newP.y, positionFromOthers, color);
 //        case 30:
-//            return WS[5].PieceInMYway(newP.x, newP.y, positionFromOthers, Color);
+//            return whitePawns[5].PieceInMYway(newP.x, newP.y, positionFromOthers, color);
 //        case 31:
-//            return WS[6].PieceInMYway(newP.x, newP.y, positionFromOthers, Color);
+//            return whitePawns[6].PieceInMYway(newP.x, newP.y, positionFromOthers, color);
 //        case 32:
-//            return WS[7].PieceInMYway(newP.x, newP.y, positionFromOthers, Color);
+//            return whitePawns[7].PieceInMYway(newP.x, newP.y, positionFromOthers, color);
 //        default:
 //            break;
 //
@@ -496,51 +496,51 @@
 //        switch (i) {
 //
 //        case 17:
-//            WC1.setPoint(out);
+//            whiteRook1.setPoint(out);
 //            return true;
 //        case 18:
-//            WC2.setPoint(out);
+//            whiteRook2.setPoint(out);
 //            return true;
 //        case 19:
-//            WH1.setPoint(out);
+//            whiteKnight1.setPoint(out);
 //            return true;
 //        case 20:
-//            WH2.setPoint(out);
+//            whiteKnight2.setPoint(out);
 //            return true;
 //        case 21:
-//            WE1.setPoint(out);
+//            whiteBishop1.setPoint(out);
 //            return true;
 //        case 22:
-//            WE2.setPoint(out);
+//            whiteBishop2.setPoint(out);
 //            return true;
 //        case 23:
-//            WQ.setPoint(out);
+//            whiteQueen.setPoint(out);
 //            return true;
 //        case 24:
 //            return false;
 //        case 25:
-//            WS[0].setPoint(out);
+//            whitePawns[0].setPoint(out);
 //            return true;
 //        case 26:
-//            WS[1].setPoint(out);
+//            whitePawns[1].setPoint(out);
 //            return true;
 //        case 27:
-//            WS[2].setPoint(out);
+//            whitePawns[2].setPoint(out);
 //            return true;
 //        case 28:
-//            WS[3].setPoint(out);
+//            whitePawns[3].setPoint(out);
 //            return true;
 //        case 29:
-//            WS[4].setPoint(out);
+//            whitePawns[4].setPoint(out);
 //            return true;
 //        case 30:
-//            WS[5].setPoint(out);
+//            whitePawns[5].setPoint(out);
 //            return true;
 //        case 31:
-//            WS[6].setPoint(out);
+//            whitePawns[6].setPoint(out);
 //            return true;
 //        case 32:
-//            WS[7].setPoint(out);
+//            whitePawns[7].setPoint(out);
 //            return true;
 //        default:
 //            break;
@@ -553,36 +553,36 @@
 //        switch (i) {
 //
 //        case 17:
-//            return WC1.checkKing(p1.x, p1.y, p2);
+//            return whiteRook1.checkKing(p1.x, p1.y, p2);
 //        case 18:
-//            return WC2.checkKing(p1.x, p1.y, p2);
+//            return whiteRook2.checkKing(p1.x, p1.y, p2);
 //        case 19:
-//            return WH1.Canmove(p1.x, p1.y);
+//            return whiteKnight1.Canmove(p1.x, p1.y);
 //        case 20:
-//            return WH2.Canmove(p1.x, p1.y);
+//            return whiteKnight2.Canmove(p1.x, p1.y);
 //        case 21:
-//            return WE1.checkKing(p1.x, p1.y, p2);
+//            return whiteBishop1.checkKing(p1.x, p1.y, p2);
 //        case 22:
-//            return WE2.checkKing(p1.x, p1.y, p2);
+//            return whiteBishop2.checkKing(p1.x, p1.y, p2);
 //        case 23:
-//            return WQ.checkKing(p1.x, p1.y, p2);
+//            return whiteQueen.checkKing(p1.x, p1.y, p2);
 //
 //        case 25:
-//            return WS[0].Canmove(p1.x, p1.y, Color);
+//            return whitePawns[0].Canmove(p1.x, p1.y, color);
 //        case 26:
-//            return WS[1].Canmove(p1.x, p1.y, Color);
+//            return whitePawns[1].Canmove(p1.x, p1.y, color);
 //        case 27:
-//            return WS[2].Canmove(p1.x, p1.y, Color);
+//            return whitePawns[2].Canmove(p1.x, p1.y, color);
 //        case 28:
-//            return WS[3].Canmove(p1.x, p1.y, Color);
+//            return whitePawns[3].Canmove(p1.x, p1.y, color);
 //        case 29:
-//            return WS[4].Canmove(p1.x, p1.y, Color);
+//            return whitePawns[4].Canmove(p1.x, p1.y, color);
 //        case 30:
-//            return WS[5].Canmove(p1.x, p1.y, Color);
+//            return whitePawns[5].Canmove(p1.x, p1.y, color);
 //        case 31:
-//            return WS[6].Canmove(p1.x, p1.y, Color);
+//            return whitePawns[6].Canmove(p1.x, p1.y, color);
 //        case 32:
-//            return WS[7].Canmove(p1.x, p1.y, Color);
+//            return whitePawns[7].Canmove(p1.x, p1.y, color);
 //        default:
 //            break;
 //        }
@@ -627,27 +627,27 @@
 //
 //            inHand = -1;
 //            return false;
-//        } else if (!CastleGenerate_moves(Enemy, WC1)) {
+//        } else if (!CastleGenerate_moves(Enemy, whiteRook1)) {
 //
 //            inHand = -1;
 //            return false;
-//        } else if (!CastleGenerate_moves(Enemy, WC2)) {
+//        } else if (!CastleGenerate_moves(Enemy, whiteRook2)) {
 //
 //            inHand = -1;
 //            return false;
-//        } else if (!BishopGenerate_moves(Enemy, WE1)) {
+//        } else if (!BishopGenerate_moves(Enemy, whiteBishop1)) {
 //
 //            inHand = -1;
 //            return false;
-//        } else if (!BishopGenerate_moves(Enemy, WE2)) {
+//        } else if (!BishopGenerate_moves(Enemy, whiteBishop2)) {
 //
 //            inHand = -1;
 //            return false;
-//        } else if (!HosreGenerate_moves(Enemy, WH1)) {
+//        } else if (!HosreGenerate_moves(Enemy, whiteKnight1)) {
 //
 //            inHand = -1;
 //            return false;
-//        } else if (!HosreGenerate_moves(Enemy, WH2)) {
+//        } else if (!HosreGenerate_moves(Enemy, whiteKnight2)) {
 //
 //            inHand = -1;
 //            return false;
@@ -661,7 +661,7 @@
 //
 //        for (int i = 0; i <= 7; i++) {
 //            inHand = 25 + i;
-//            if (!SoliderGenerate_moves(Enemy, WS[i])) {
+//            if (!SoliderGenerate_moves(Enemy, whitePawns[i])) {
 //
 //                inHand = -1;
 //                System.out.println("I Killed Solider 1");
@@ -676,7 +676,7 @@
 //
 //    public boolean see_king_Check(Player Black) {
 //
-//        Point My_King_position = WK.returnposition();
+//        Point My_King_position = whiteKing.returnposition();
 //        boolean flag = false;
 //
 //        ////////// Start Checking the King ////////////
@@ -743,7 +743,7 @@
 //            {
 //
 //                // Check if there is White Pices in the new Point
-//                // If so we Can't move (Same Color)!!
+//                // If so we Can't move (Same color)!!
 //
 //                sameposition = returnposition(i);
 //                if (newP.x == sameposition.x && newP.y == sameposition.y) {
@@ -792,15 +792,15 @@
 //        Point PlaceCheck = new Point();
 //        inHand = 24;
 //
-//        int x = WK.returnX();
-//        int y = WK.returnY();
+//        int x = whiteKing.returnX();
+//        int y = whiteKing.returnY();
 //        Oldp.x = x;
 //        Oldp.y = y;
 //
 //        if (x + 1 <= 8) {
 //
-//            WK.setX(x + 1);
-//            WK.setY(y);
+//            whiteKing.setX(x + 1);
+//            whiteKing.setY(y);
 //            PlaceCheck.x = x + 1;
 //            PlaceCheck.y = y;
 //
@@ -810,9 +810,9 @@
 //            if (Pice_already_there(PlaceCheck)) {
 //                if (!see_king_Check(enemy)) {
 //
-//                    WK.setPoint(Oldp);
+//                    whiteKing.setPoint(Oldp);
 //                    if (somthing_killed) {
-//                        enemy.changeposition(other, ate_to_protect);
+//                        enemy.changeposition(other, killToProtect);
 //                        somthing_killed = false;
 //                    }
 //                    return false;
@@ -820,15 +820,15 @@
 //            }
 //
 //        }
-//        WK.setPoint(Oldp);
+//        whiteKing.setPoint(Oldp);
 //        if (somthing_killed) {
-//            enemy.changeposition(other, ate_to_protect);
+//            enemy.changeposition(other, killToProtect);
 //            somthing_killed = false;
 //        }
 //        if (y + 1 <= 8) {
 //
-//            WK.setX(x);
-//            WK.setY(y + 1);
+//            whiteKing.setX(x);
+//            whiteKing.setY(y + 1);
 //            PlaceCheck.x = x;
 //            PlaceCheck.y = y + 1;
 //            if (kill_to_protect_king(enemy, returnposition(inHand))) {
@@ -837,9 +837,9 @@
 //            if (Pice_already_there(PlaceCheck)) {
 //                if (!see_king_Check(enemy)) {
 //
-//                    WK.setPoint(Oldp);
+//                    whiteKing.setPoint(Oldp);
 //                    if (somthing_killed) {
-//                        enemy.changeposition(other, ate_to_protect);
+//                        enemy.changeposition(other, killToProtect);
 //                        somthing_killed = false;
 //                    }
 //                    return false;
@@ -848,16 +848,16 @@
 //            }
 //
 //        }
-//        WK.setPoint(Oldp);
+//        whiteKing.setPoint(Oldp);
 //        if (somthing_killed) {
-//            enemy.changeposition(other, ate_to_protect);
+//            enemy.changeposition(other, killToProtect);
 //            somthing_killed = false;
 //        }
 //
 //        if (y - 1 > 0) {
 //
-//            WK.setX(x);
-//            WK.setY(y - 1);
+//            whiteKing.setX(x);
+//            whiteKing.setY(y - 1);
 //
 //            PlaceCheck.x = x;
 //            PlaceCheck.y = y - 1;
@@ -869,9 +869,9 @@
 //            if (Pice_already_there(PlaceCheck)) {
 //                if (!see_king_Check(enemy)) {
 //
-//                    WK.setPoint(Oldp);
+//                    whiteKing.setPoint(Oldp);
 //                    if (somthing_killed) {
-//                        enemy.changeposition(other, ate_to_protect);
+//                        enemy.changeposition(other, killToProtect);
 //                        somthing_killed = false;
 //                    }
 //
@@ -880,15 +880,15 @@
 //            }
 //
 //        }
-//        WK.setPoint(Oldp);
+//        whiteKing.setPoint(Oldp);
 //        if (somthing_killed) {
-//            enemy.changeposition(other, ate_to_protect);
+//            enemy.changeposition(other, killToProtect);
 //            somthing_killed = false;
 //        }
 //        if (x - 1 > 0) {
 //
-//            WK.setX(x - 1);
-//            WK.setY(y);
+//            whiteKing.setX(x - 1);
+//            whiteKing.setY(y);
 //
 //            PlaceCheck.x = x - 1;
 //            PlaceCheck.y = y;
@@ -898,24 +898,24 @@
 //            if (Pice_already_there(PlaceCheck)) {
 //                if (!see_king_Check(enemy)) {
 //                    if (somthing_killed) {
-//                        enemy.changeposition(other, ate_to_protect);
+//                        enemy.changeposition(other, killToProtect);
 //                        somthing_killed = false;
 //                    }
-//                    WK.setPoint(Oldp);
+//                    whiteKing.setPoint(Oldp);
 //                    return false;
 //                }
 //            }
 //
 //        }
-//        WK.setPoint(Oldp);
+//        whiteKing.setPoint(Oldp);
 //        if (somthing_killed) {
-//            enemy.changeposition(other, ate_to_protect);
+//            enemy.changeposition(other, killToProtect);
 //            somthing_killed = false;
 //        }
 //        if (y - 1 > 0 && x - 1 > 0) {
 //
-//            WK.setX(x - 1);
-//            WK.setY(y - 1);
+//            whiteKing.setX(x - 1);
+//            whiteKing.setY(y - 1);
 //
 //            PlaceCheck.x = x - 1;
 //            PlaceCheck.y = y - 1;
@@ -927,24 +927,24 @@
 //                if (!see_king_Check(enemy)) {
 //
 //                    if (somthing_killed) {
-//                        enemy.changeposition(other, ate_to_protect);
+//                        enemy.changeposition(other, killToProtect);
 //                        somthing_killed = false;
 //                    }
-//                    WK.setPoint(Oldp);
+//                    whiteKing.setPoint(Oldp);
 //                    return false;
 //                }
 //            }
 //
 //        }
-//        WK.setPoint(Oldp);
+//        whiteKing.setPoint(Oldp);
 //        if (somthing_killed) {
-//            enemy.changeposition(other, ate_to_protect);
+//            enemy.changeposition(other, killToProtect);
 //            somthing_killed = false;
 //        }
 //        if (y + 1 <= 8 && x + 1 <= 8) {
 //
-//            WK.setX(x + 1);
-//            WK.setY(y + 1);
+//            whiteKing.setX(x + 1);
+//            whiteKing.setY(y + 1);
 //
 //            PlaceCheck.x = x + 1;
 //            PlaceCheck.y = y + 1;
@@ -955,24 +955,24 @@
 //                if (!see_king_Check(enemy)) {
 //
 //                    if (somthing_killed) {
-//                        enemy.changeposition(other, ate_to_protect);
+//                        enemy.changeposition(other, killToProtect);
 //                        somthing_killed = false;
 //                    }
-//                    WK.setPoint(Oldp);
+//                    whiteKing.setPoint(Oldp);
 //                    return false;
 //                }
 //            }
 //
 //        }
-//        WK.setPoint(Oldp);
+//        whiteKing.setPoint(Oldp);
 //        if (somthing_killed) {
-//            enemy.changeposition(other, ate_to_protect);
+//            enemy.changeposition(other, killToProtect);
 //            somthing_killed = false;
 //        }
 //        if (y - 1 > 0 && x + 1 <= 8) {
 //
-//            WK.setX(x + 1);
-//            WK.setY(y - 1);
+//            whiteKing.setX(x + 1);
+//            whiteKing.setY(y - 1);
 //
 //            PlaceCheck.x = x + 1;
 //            PlaceCheck.y = y - 1;
@@ -982,24 +982,24 @@
 //            if (Pice_already_there(PlaceCheck)) {
 //                if (!see_king_Check(enemy)) {
 //                    if (somthing_killed) {
-//                        enemy.changeposition(other, ate_to_protect);
+//                        enemy.changeposition(other, killToProtect);
 //                        somthing_killed = false;
 //                    }
-//                    WK.setPoint(Oldp);
+//                    whiteKing.setPoint(Oldp);
 //                    return false;
 //                }
 //            }
 //
 //        }
-//        WK.setPoint(Oldp);
+//        whiteKing.setPoint(Oldp);
 //        if (somthing_killed) {
-//            enemy.changeposition(other, ate_to_protect);
+//            enemy.changeposition(other, killToProtect);
 //            somthing_killed = false;
 //        }
 //        if (y + 1 <= 8 && x - 1 > 0) {
 //
-//            WK.setX(x - 1);
-//            WK.setY(y + 1);
+//            whiteKing.setX(x - 1);
+//            whiteKing.setY(y + 1);
 //
 //            PlaceCheck.x = x - 1;
 //            PlaceCheck.y = y + 1;
@@ -1009,10 +1009,10 @@
 //            if (Pice_already_there(PlaceCheck)) {
 //                if (!see_king_Check(enemy)) {
 //                    if (somthing_killed) {
-//                        enemy.changeposition(other, ate_to_protect);
+//                        enemy.changeposition(other, killToProtect);
 //                        somthing_killed = false;
 //                    }
-//                    WK.setPoint(Oldp);
+//                    whiteKing.setPoint(Oldp);
 //                    return false;
 //                }
 //            }
@@ -1020,24 +1020,24 @@
 //        }
 //
 //        if (somthing_killed) {
-//            enemy.changeposition(other, ate_to_protect);
+//            enemy.changeposition(other, killToProtect);
 //            somthing_killed = false;
 //        }
 //
-//        WK.setPoint(Oldp);
+//        whiteKing.setPoint(Oldp);
 //        return true;
 //
 //    }
 //
-//    public boolean CastleGenerate_moves(Player enemy, Rook WC) {
+//    public boolean CastleGenerate_moves(Player enemy, Rook whiteRook) {
 //        boolean somthing_killed = false;
 //        Point Oldp1 = new Point();
 //
 //        Point PlaceCheck = new Point();
-//        int x1 = WC.returnX();
-//        int y1 = WC.returnY();
+//        int x1 = whiteRook.returnX();
+//        int y1 = whiteRook.returnY();
 //
-//        if (WC == WC1) {
+//        if (whiteRook == whiteRook1) {
 //            inHand = 17;
 //        } else {
 //            inHand = 18;
@@ -1051,7 +1051,7 @@
 //
 //        if (x1 != 20) {
 //            for (int i = 1; i <= 8; i++) {
-//                WC.setX(i);
+//                whiteRook.setX(i);
 //                PlaceCheck.x = i;
 //
 //                if (Check_The_Way_to_position(enemy, Oldp1)) {
@@ -1060,11 +1060,11 @@
 //                    }
 //                    if (Pice_already_there(PlaceCheck)) {
 //                        if (!see_king_Check(enemy)) {
-//                            WC.setX(Oldp1.x);
-//                            WC.setY(Oldp1.y);
+//                            whiteRook.setX(Oldp1.x);
+//                            whiteRook.setY(Oldp1.y);
 //
 //                            if (somthing_killed) {
-//                                enemy.changeposition(other, ate_to_protect);
+//                                enemy.changeposition(other, killToProtect);
 //                                somthing_killed = false;
 //                            }
 //                            return false;
@@ -1073,20 +1073,20 @@
 //                }
 //
 //                if (somthing_killed) {
-//                    enemy.changeposition(other, ate_to_protect);
+//                    enemy.changeposition(other, killToProtect);
 //                    somthing_killed = false;
 //                }
 //
 //            }
-//            WC.setX(Oldp1.x);
+//            whiteRook.setX(Oldp1.x);
 //            PlaceCheck.x = Oldp1.x;
 //
 //            if (somthing_killed) {
-//                enemy.changeposition(other, ate_to_protect);
+//                enemy.changeposition(other, killToProtect);
 //                somthing_killed = false;
 //            }
 //            for (int i = 1; i <= 8; i++) {
-//                WC.setY(i);
+//                whiteRook.setY(i);
 //                PlaceCheck.y = i;
 //                if (Check_The_Way_to_position(enemy, Oldp1)) {
 //                    if (kill_to_protect_king(enemy, returnposition(inHand))) {
@@ -1094,11 +1094,11 @@
 //                    }
 //                    if (Pice_already_there(PlaceCheck)) {
 //                        if (!see_king_Check(enemy)) {
-//                            WC.setX(Oldp1.x);
-//                            WC.setY(Oldp1.y);
+//                            whiteRook.setX(Oldp1.x);
+//                            whiteRook.setY(Oldp1.y);
 //
 //                            if (somthing_killed) {
-//                                enemy.changeposition(other, ate_to_protect);
+//                                enemy.changeposition(other, killToProtect);
 //                                somthing_killed = false;
 //                            }
 //                            return false;
@@ -1107,33 +1107,33 @@
 //                }
 //
 //                if (somthing_killed) {
-//                    enemy.changeposition(other, ate_to_protect);
+//                    enemy.changeposition(other, killToProtect);
 //                    somthing_killed = false;
 //                }
 //
 //            }
-//            WC.setY(Oldp1.y);
+//            whiteRook.setY(Oldp1.y);
 //        }
 //        //////////////////////////////////////////
 //        ///////////////////////////
 //
 //        if (somthing_killed) {
-//            enemy.changeposition(other, ate_to_protect);
+//            enemy.changeposition(other, killToProtect);
 //            somthing_killed = false;
 //        }
-//        WC.setX(Oldp1.x);
-//        WC.setY(Oldp1.y);
+//        whiteRook.setX(Oldp1.x);
+//        whiteRook.setY(Oldp1.y);
 //        return true;
 //    }
 //
-//    public boolean BishopGenerate_moves(Player enemy, Bishop WE) {
+//    public boolean BishopGenerate_moves(Player enemy, Bishop whiteBishop) {
 //        boolean somthing_killed = false;
 //        Point Oldp1 = new Point();
 //        Point PlaceCheck = new Point();
 //
-//        Oldp1 = WE.returnposition();
+//        Oldp1 = whiteBishop.returnposition();
 //
-//        if (WE == WE1) {
+//        if (whiteBishop == whiteBishop1) {
 //            inHand = 21;
 //        } else {
 //            inHand = 22;
@@ -1142,8 +1142,8 @@
 //        if (Oldp1.x != 20) {
 //            for (int x = Oldp1.x, y = Oldp1.y; x >= 1 && y <= 8; x--, y++) {
 //
-//                WE.setX(x);
-//                WE.setY(y);
+//                whiteBishop.setX(x);
+//                whiteBishop.setY(y);
 //                PlaceCheck.x = x;
 //                PlaceCheck.y = y;
 //                if (Check_The_Way_to_position(enemy, Oldp1)) {
@@ -1154,29 +1154,29 @@
 //                        if (!see_king_Check(enemy)) {
 //
 //                            if (somthing_killed) {
-//                                enemy.changeposition(other, ate_to_protect);
+//                                enemy.changeposition(other, killToProtect);
 //                                somthing_killed = false;
 //                            }
-//                            WE.setPoint(Oldp1);
+//                            whiteBishop.setPoint(Oldp1);
 //                            return false;
 //                        }
 //                    }
 //                }
 //
 //                if (somthing_killed) {
-//                    enemy.changeposition(other, ate_to_protect);
+//                    enemy.changeposition(other, killToProtect);
 //                    somthing_killed = false;
 //                }
 //
 //            }
 //            if (somthing_killed) {
-//                enemy.changeposition(other, ate_to_protect);
+//                enemy.changeposition(other, killToProtect);
 //                somthing_killed = false;
 //            }
 //            for (int x = Oldp1.x, y = Oldp1.y; y >= 1 && x <= 8; x++, y--) {
 //
-//                WE.setX(x);
-//                WE.setY(y);
+//                whiteBishop.setX(x);
+//                whiteBishop.setY(y);
 //                PlaceCheck.x = x;
 //                PlaceCheck.y = y;
 //                if (Check_The_Way_to_position(enemy, Oldp1)) {
@@ -1186,43 +1186,43 @@
 //                    if (Pice_already_there(PlaceCheck)) {
 //                        if (!see_king_Check(enemy)) {
 //                            if (somthing_killed) {
-//                                enemy.changeposition(other, ate_to_protect);
+//                                enemy.changeposition(other, killToProtect);
 //                                somthing_killed = false;
 //                            }
-//                            WE.setPoint(Oldp1);
+//                            whiteBishop.setPoint(Oldp1);
 //                            return false;
 //                        }
 //                    }
 //                }
 //
 //                if (somthing_killed) {
-//                    enemy.changeposition(other, ate_to_protect);
+//                    enemy.changeposition(other, killToProtect);
 //                    somthing_killed = false;
 //                }
 //
 //            }
-//            WE.setPoint(Oldp1);
+//            whiteBishop.setPoint(Oldp1);
 //
 //        }
 //
-//        WE.setPoint(Oldp1);
+//        whiteBishop.setPoint(Oldp1);
 //
 //        if (somthing_killed) {
-//            enemy.changeposition(other, ate_to_protect);
+//            enemy.changeposition(other, killToProtect);
 //            somthing_killed = false;
 //        }
 //
 //        return true;
 //    }
 //
-//    public boolean HosreGenerate_moves(Player enemy, Knight WH) {
+//    public boolean HosreGenerate_moves(Player enemy, Knight WhiteKnight) {
 //        Point oldp1 = new Point();
 //        boolean somthing_killed = false;
-//        oldp1 = WH.returnposition();
+//        oldp1 = WhiteKnight.returnposition();
 //
 //        Point PlaceCheck = new Point();
 //
-//        if (WH == WH1) {
+//        if (WhiteKnight == whiteKnight1) {
 //            inHand = 19;
 //        } else {
 //            inHand = 20;
@@ -1234,8 +1234,8 @@
 //        if (x != 20) {
 //
 //            if (x + 1 <= 8 && y + 1 <= 8) {
-//                WH.setX(x + 1);
-//                WH.setY(y + 2);
+//                WhiteKnight.setX(x + 1);
+//                WhiteKnight.setY(y + 2);
 //                PlaceCheck.x = x + 1;
 //                PlaceCheck.y = y + 2;
 //
@@ -1245,10 +1245,10 @@
 //
 //                if (Pice_already_there(PlaceCheck)) {
 //                    if (!see_king_Check(enemy)) {
-//                        WH.setPoint(oldp1);
+//                        WhiteKnight.setPoint(oldp1);
 //
 //                        if (somthing_killed) {
-//                            enemy.changeposition(other, ate_to_protect);
+//                            enemy.changeposition(other, killToProtect);
 //                            somthing_killed = false;
 //                        }
 //
@@ -1257,13 +1257,13 @@
 //                }
 //            }
 //            if (somthing_killed) {
-//                enemy.changeposition(other, ate_to_protect);
+//                enemy.changeposition(other, killToProtect);
 //                somthing_killed = false;
 //            }
 //
 //            if (x + 1 <= 8 && y - 2 >= 1) {
-//                WH.setX(x + 1);
-//                WH.setY(y - 2);
+//                WhiteKnight.setX(x + 1);
+//                WhiteKnight.setY(y - 2);
 //                PlaceCheck.x = x + 1;
 //                PlaceCheck.y = y - 2;
 //                if (kill_to_protect_king(enemy, returnposition(inHand))) {
@@ -1273,22 +1273,22 @@
 //                if (Pice_already_there(PlaceCheck)) {
 //                    if (!see_king_Check(enemy)) {
 //                        if (somthing_killed) {
-//                            enemy.changeposition(other, ate_to_protect);
+//                            enemy.changeposition(other, killToProtect);
 //                            somthing_killed = false;
 //                        }
-//                        WH.setPoint(oldp1);
+//                        WhiteKnight.setPoint(oldp1);
 //                        return false;
 //                    }
 //                }
 //            }
 //            if (somthing_killed) {
-//                enemy.changeposition(other, ate_to_protect);
+//                enemy.changeposition(other, killToProtect);
 //                somthing_killed = false;
 //            }
 //
 //            if (x + 2 <= 8 && y + 1 <= 8) {
-//                WH.setX(x + 2);
-//                WH.setY(y + 1);
+//                WhiteKnight.setX(x + 2);
+//                WhiteKnight.setY(y + 1);
 //                PlaceCheck.x = x + 2;
 //                PlaceCheck.y = y + 1;
 //
@@ -1299,22 +1299,22 @@
 //                if (Pice_already_there(PlaceCheck)) {
 //                    if (!see_king_Check(enemy)) {
 //                        if (somthing_killed) {
-//                            enemy.changeposition(other, ate_to_protect);
+//                            enemy.changeposition(other, killToProtect);
 //                            somthing_killed = false;
 //                        }
-//                        WH.setPoint(oldp1);
+//                        WhiteKnight.setPoint(oldp1);
 //                        return false;
 //                    }
 //                }
 //            }
 //
 //            if (somthing_killed) {
-//                enemy.changeposition(other, ate_to_protect);
+//                enemy.changeposition(other, killToProtect);
 //                somthing_killed = false;
 //            }
 //            if (x + 2 <= 8 && y - 1 >= 1) {
-//                WH.setX(x + 2);
-//                WH.setY(y - 1);
+//                WhiteKnight.setX(x + 2);
+//                WhiteKnight.setY(y - 1);
 //                PlaceCheck.x = x + 2;
 //                PlaceCheck.y = y - 1;
 //                if (kill_to_protect_king(enemy, returnposition(inHand))) {
@@ -1324,22 +1324,22 @@
 //                if (Pice_already_there(PlaceCheck)) {
 //                    if (!see_king_Check(enemy)) {
 //                        if (somthing_killed) {
-//                            enemy.changeposition(other, ate_to_protect);
+//                            enemy.changeposition(other, killToProtect);
 //                            somthing_killed = false;
 //                        }
-//                        WH.setPoint(oldp1);
+//                        WhiteKnight.setPoint(oldp1);
 //                        return false;
 //                    }
 //                }
 //            }
 //            if (somthing_killed) {
-//                enemy.changeposition(other, ate_to_protect);
+//                enemy.changeposition(other, killToProtect);
 //                somthing_killed = false;
 //            }
 //
 //            if (x - 1 >= 1 && y + 2 <= 8) {
-//                WH.setX(x - 1);
-//                WH.setY(y + 2);
+//                WhiteKnight.setX(x - 1);
+//                WhiteKnight.setY(y + 2);
 //                PlaceCheck.x = x - 1;
 //                PlaceCheck.y = y + 2;
 //
@@ -1350,22 +1350,22 @@
 //                if (Pice_already_there(PlaceCheck)) {
 //                    if (!see_king_Check(enemy)) {
 //                        if (somthing_killed) {
-//                            enemy.changeposition(other, ate_to_protect);
+//                            enemy.changeposition(other, killToProtect);
 //                            somthing_killed = false;
 //                        }
-//                        WH.setPoint(oldp1);
+//                        WhiteKnight.setPoint(oldp1);
 //                        return false;
 //                    }
 //                }
 //            }
 //            if (somthing_killed) {
-//                enemy.changeposition(other, ate_to_protect);
+//                enemy.changeposition(other, killToProtect);
 //                somthing_killed = false;
 //            }
 //
 //            if (x - 1 >= 1 && y - 2 >= 1) {
-//                WH.setX(x - 1);
-//                WH.setY(y - 2);
+//                WhiteKnight.setX(x - 1);
+//                WhiteKnight.setY(y - 2);
 //                PlaceCheck.x = x - 1;
 //                PlaceCheck.y = y - 2;
 //                if (kill_to_protect_king(enemy, returnposition(inHand))) {
@@ -1375,22 +1375,22 @@
 //                if (Pice_already_there(PlaceCheck)) {
 //                    if (!see_king_Check(enemy)) {
 //                        if (somthing_killed) {
-//                            enemy.changeposition(other, ate_to_protect);
+//                            enemy.changeposition(other, killToProtect);
 //                            somthing_killed = false;
 //                        }
-//                        WH.setPoint(oldp1);
+//                        WhiteKnight.setPoint(oldp1);
 //                        return false;
 //                    }
 //                }
 //            }
 //            if (somthing_killed) {
-//                enemy.changeposition(other, ate_to_protect);
+//                enemy.changeposition(other, killToProtect);
 //                somthing_killed = false;
 //            }
 //
 //            if (x - 2 >= 1 && y + 1 <= 8) {
-//                WH.setX(x - 2);
-//                WH.setY(y + 1);
+//                WhiteKnight.setX(x - 2);
+//                WhiteKnight.setY(y + 1);
 //                PlaceCheck.x = x - 2;
 //                PlaceCheck.y = y + 1;
 //
@@ -1400,23 +1400,23 @@
 //                if (Pice_already_there(PlaceCheck)) {
 //                    if (!see_king_Check(enemy)) {
 //                        if (somthing_killed) {
-//                            enemy.changeposition(other, ate_to_protect);
+//                            enemy.changeposition(other, killToProtect);
 //                            somthing_killed = false;
 //                        }
-//                        WH.setPoint(oldp1);
+//                        WhiteKnight.setPoint(oldp1);
 //                        return false;
 //                    }
 //                }
 //            }
 //
 //            if (somthing_killed) {
-//                enemy.changeposition(other, ate_to_protect);
+//                enemy.changeposition(other, killToProtect);
 //                somthing_killed = false;
 //            }
 //
 //            if (x - 2 >= 1 && y - 1 >= 1) {
-//                WH.setX(x - 2);
-//                WH.setY(y - 1);
+//                WhiteKnight.setX(x - 2);
+//                WhiteKnight.setY(y - 1);
 //                PlaceCheck.x = x - 2;
 //                PlaceCheck.y = y - 1;
 //
@@ -1427,21 +1427,21 @@
 //                if (Pice_already_there(PlaceCheck)) {
 //                    if (!see_king_Check(enemy)) {
 //                        if (somthing_killed) {
-//                            enemy.changeposition(other, ate_to_protect);
+//                            enemy.changeposition(other, killToProtect);
 //                            somthing_killed = false;
 //                        }
-//                        WH.setPoint(oldp1);
+//                        WhiteKnight.setPoint(oldp1);
 //                        return false;
 //                    }
 //                }
 //            }
 //            if (somthing_killed) {
-//                enemy.changeposition(other, ate_to_protect);
+//                enemy.changeposition(other, killToProtect);
 //                somthing_killed = false;
 //            }
 //
 //        }
-//        WH.setPoint(oldp1);
+//        WhiteKnight.setPoint(oldp1);
 //
 //        return true;
 //    }
@@ -1451,7 +1451,7 @@
 //
 //        Point Oldp1 = new Point();
 //
-//        Oldp1 = WQ.returnposition();
+//        Oldp1 = whiteQueen.returnposition();
 //
 //        Point PlaceCheck = new Point();
 //
@@ -1460,8 +1460,8 @@
 //        if (Oldp1.x != 20) {
 //            for (int x = Oldp1.x, y = Oldp1.y; x >= 1 && y <= 8; x--, y++) {
 //
-//                WQ.setX(x);
-//                WQ.setY(y);
+//                whiteQueen.setX(x);
+//                whiteQueen.setY(y);
 //                PlaceCheck.x = x;
 //                PlaceCheck.y = y;
 //                if (Check_The_Way_to_position(enemy, Oldp1)) {
@@ -1471,10 +1471,10 @@
 //
 //                    if (Pice_already_there(PlaceCheck)) {
 //                        if (!see_king_Check(enemy)) {
-//                            WQ.setPoint(Oldp1);
+//                            whiteQueen.setPoint(Oldp1);
 //
 //                            if (somthing_killed) {
-//                                enemy.changeposition(other, ate_to_protect);
+//                                enemy.changeposition(other, killToProtect);
 //                                somthing_killed = false;
 //                            }
 //                            return false;
@@ -1483,19 +1483,19 @@
 //                }
 //
 //                if (somthing_killed) {
-//                    enemy.changeposition(other, ate_to_protect);
+//                    enemy.changeposition(other, killToProtect);
 //                    somthing_killed = false;
 //                }
 //
 //            }
 //            if (somthing_killed) {
-//                enemy.changeposition(other, ate_to_protect);
+//                enemy.changeposition(other, killToProtect);
 //                somthing_killed = false;
 //            }
 //            for (int x = Oldp1.x, y = Oldp1.y; y >= 1 && x <= 8; x++, y--) {
 //
-//                WQ.setX(x);
-//                WQ.setY(y);
+//                whiteQueen.setX(x);
+//                whiteQueen.setY(y);
 //                PlaceCheck.x = x;
 //                PlaceCheck.y = y;
 //                if (Check_The_Way_to_position(enemy, Oldp1)) {
@@ -1504,9 +1504,9 @@
 //                    }
 //                    if (Pice_already_there(PlaceCheck)) {
 //                        if (!see_king_Check(enemy)) {
-//                            WQ.setPoint(Oldp1);
+//                            whiteQueen.setPoint(Oldp1);
 //                            if (somthing_killed) {
-//                                enemy.changeposition(other, ate_to_protect);
+//                                enemy.changeposition(other, killToProtect);
 //                                somthing_killed = false;
 //                            }
 //                            return false;
@@ -1515,22 +1515,22 @@
 //                }
 //
 //                if (somthing_killed) {
-//                    enemy.changeposition(other, ate_to_protect);
+//                    enemy.changeposition(other, killToProtect);
 //                    somthing_killed = false;
 //                }
 //
 //            }
-//            WQ.setPoint(Oldp1);
+//            whiteQueen.setPoint(Oldp1);
 //            PlaceCheck.x = Oldp1.x;
 //            PlaceCheck.y = Oldp1.y;
 //
 //            if (somthing_killed) {
-//                enemy.changeposition(other, ate_to_protect);
+//                enemy.changeposition(other, killToProtect);
 //                somthing_killed = false;
 //            }
 //
 //            for (int i = 1; i <= 8; i++) {
-//                WQ.setX(i);
+//                whiteQueen.setX(i);
 //
 //                PlaceCheck.x = i;
 //                if (Check_The_Way_to_position(enemy, Oldp1)) {
@@ -1539,9 +1539,9 @@
 //                    }
 //                    if (Pice_already_there(PlaceCheck)) {
 //                        if (!see_king_Check(enemy)) {
-//                            WQ.setX(Oldp1.x);
+//                            whiteQueen.setX(Oldp1.x);
 //                            if (somthing_killed) {
-//                                enemy.changeposition(other, ate_to_protect);
+//                                enemy.changeposition(other, killToProtect);
 //                                somthing_killed = false;
 //                            }
 //                            return false;
@@ -1550,21 +1550,21 @@
 //                }
 //
 //                if (somthing_killed) {
-//                    enemy.changeposition(other, ate_to_protect);
+//                    enemy.changeposition(other, killToProtect);
 //                    somthing_killed = false;
 //                }
 //
 //            }
-//            WQ.setX(Oldp1.x);
+//            whiteQueen.setX(Oldp1.x);
 //            PlaceCheck.x = Oldp1.x;
 //
 //            if (somthing_killed) {
-//                enemy.changeposition(other, ate_to_protect);
+//                enemy.changeposition(other, killToProtect);
 //                somthing_killed = false;
 //            }
 //
 //            for (int i = 1; i <= 8; i++) {
-//                WQ.setY(i);
+//                whiteQueen.setY(i);
 //                PlaceCheck.y = i;
 //                if (Check_The_Way_to_position(enemy, Oldp1)) {
 //                    if (kill_to_protect_king(enemy, returnposition(inHand))) {
@@ -1572,9 +1572,9 @@
 //                    }
 //                    if (Pice_already_there(PlaceCheck)) {
 //                        if (!see_king_Check(enemy)) {
-//                            WQ.setY(Oldp1.y);
+//                            whiteQueen.setY(Oldp1.y);
 //                            if (somthing_killed) {
-//                                enemy.changeposition(other, ate_to_protect);
+//                                enemy.changeposition(other, killToProtect);
 //                                somthing_killed = false;
 //                            }
 //                            return false;
@@ -1583,16 +1583,16 @@
 //                }
 //
 //                if (somthing_killed) {
-//                    enemy.changeposition(other, ate_to_protect);
+//                    enemy.changeposition(other, killToProtect);
 //                    somthing_killed = false;
 //                }
 //
 //            }
-//            WQ.setY(Oldp1.y);
+//            whiteQueen.setY(Oldp1.y);
 //        }
 //
 //        if (somthing_killed) {
-//            enemy.changeposition(other, ate_to_protect);
+//            enemy.changeposition(other, killToProtect);
 //            somthing_killed = false;
 //        }
 //
@@ -1600,16 +1600,16 @@
 //
 //    }
 //
-//    public boolean SoliderGenerate_moves(Player enemy, Pawn Sold) {
+//    public boolean SoliderGenerate_moves(Player enemy, Pawn myPawn) {
 //        Point Oldp1 = new Point();
-//        Oldp1 = Sold.returnposition();
+//        Oldp1 = myPawn.returnposition();
 //        Point PlaceCheck = new Point();
 //        PlaceCheck.x = Oldp1.x;
 //        PlaceCheck.y = Oldp1.y;
 //
 //        if (Oldp1.x != 20) {
-//            if (Sold.Canmove(Oldp1.x, Oldp1.y - 2, Color) && Oldp1.y - 2 >= 1) {
-//                Sold.setY(Oldp1.y - 2);
+//            if (myPawn.Canmove(Oldp1.x, Oldp1.y - 2, color) && Oldp1.y - 2 >= 1) {
+//                myPawn.setY(Oldp1.y - 2);
 //
 //                PlaceCheck.y = Oldp1.y - 1;
 //
@@ -1617,22 +1617,22 @@
 //                    if (Pice_already_there_from_enemy(PlaceCheck, enemy)) {
 //                        if (!see_king_Check(enemy)) {
 //
-//                            Sold.setPoint(Oldp1);
+//                            myPawn.setPoint(Oldp1);
 //                            return false;
 //                        }
 //                    }
 //                }
 //
 //            }
-//            if (Sold.Canmove(Oldp1.x, Oldp1.y - 1, Color) && Oldp1.y - 1 >= 1) {
-//                Sold.setY(Oldp1.y - 1);
+//            if (myPawn.Canmove(Oldp1.x, Oldp1.y - 1, color) && Oldp1.y - 1 >= 1) {
+//                myPawn.setY(Oldp1.y - 1);
 //                PlaceCheck.y = Oldp1.y - 1;
 //
 //                if (Pice_already_there(PlaceCheck)) {
 //                    if (Pice_already_there_from_enemy(PlaceCheck, enemy)) {
 //
 //                        if (!see_king_Check(enemy)) {
-//                            Sold.setPoint(Oldp1);
+//                            myPawn.setPoint(Oldp1);
 //                            System.out.println("dff");
 //                            System.out.println("dff");
 //                            System.out.println("dff");
@@ -1646,31 +1646,31 @@
 //                if (kill_to_protect_king(enemy, new Point(Oldp1.x - 1, Oldp1.y - 1))) {
 //
 //                    if (!see_king_Check(enemy)) {
-//                        enemy.changeposition(other, ate_to_protect);
-//                        Sold.setPoint(Oldp1);
+//                        enemy.changeposition(other, killToProtect);
+//                        myPawn.setPoint(Oldp1);
 //
 //                        return false;
 //                    }
-//                    enemy.changeposition(other, ate_to_protect);
+//                    enemy.changeposition(other, killToProtect);
 //                }
 //            }
 //
 //            if (!Pice_already_there_from_enemy(new Point(Oldp1.x + 1, Oldp1.y - 1), enemy)) {
 //                if (kill_to_protect_king(enemy, new Point(Oldp1.x + 1, Oldp1.y - 1))) {
 //                    if (!see_king_Check(enemy)) {
-//                        enemy.changeposition(other, ate_to_protect);
-//                        Sold.setPoint(Oldp1);
+//                        enemy.changeposition(other, killToProtect);
+//                        myPawn.setPoint(Oldp1);
 //
 //                        return false;
 //                    }
-//                    enemy.changeposition(other, ate_to_protect);
+//                    enemy.changeposition(other, killToProtect);
 //
 //                }
 //            }
 //
 //        }
 //
-//        Sold.setPoint(Oldp1);
+//        myPawn.setPoint(Oldp1);
 //        return true;
 //    }
 //
@@ -1702,7 +1702,7 @@
 //
 //            other = enemy.returnposition(i);
 //            if (other.x == newP.x && other.y == newP.y) {
-//                ate_to_protect = i;
+//                killToProtect = i;
 //
 //                enemy.Killedpiec(i);
 //                return true;
@@ -1716,37 +1716,37 @@
 //        switch (inHand) {
 //
 //        case 17:
-//            return WC1.Tell_me();
+//            return whiteRook1.Tell_me();
 //        case 18:
-//            return WC2.Tell_me();
+//            return whiteRook2.Tell_me();
 //        case 19:
-//            return WH1.Tell_me();
+//            return whiteKnight1.Tell_me();
 //        case 20:
-//            return WH2.Tell_me();
+//            return whiteKnight2.Tell_me();
 //        case 21:
-//            return WE1.Tell_me();
+//            return whiteBishop1.Tell_me();
 //        case 22:
-//            return WE2.Tell_me();
+//            return whiteBishop2.Tell_me();
 //        case 23:
-//            return WQ.Tell_me();
+//            return whiteQueen.Tell_me();
 //        case 24:
-//            return WK.Tell_me();
+//            return whiteKing.Tell_me();
 //        case 25:
-//            return WS[0].Tell_me();
+//            return whitePawns[0].Tell_me();
 //        case 26:
-//            return WS[1].Tell_me();
+//            return whitePawns[1].Tell_me();
 //        case 27:
-//            return WS[2].Tell_me();
+//            return whitePawns[2].Tell_me();
 //        case 28:
-//            return WS[3].Tell_me();
+//            return whitePawns[3].Tell_me();
 //        case 29:
-//            return WS[4].Tell_me();
+//            return whitePawns[4].Tell_me();
 //        case 30:
-//            return WS[5].Tell_me();
+//            return whitePawns[5].Tell_me();
 //        case 31:
-//            return WS[6].Tell_me();
+//            return whitePawns[6].Tell_me();
 //        case 32:
-//            return WS[7].Tell_me();
+//            return whitePawns[7].Tell_me();
 //        default:
 //            break;
 //        }

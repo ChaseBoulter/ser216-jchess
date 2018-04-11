@@ -13,6 +13,7 @@ public class King extends Piece {
         super(nameIcon, startX, startY);
     }
 
+    /** places King can move to. **/
     public boolean canMove(int x, int y) {
         return((y == nextY) && (x == (nextX - 1))) || ((y == nextY - 1) && (x == (nextX + 1)))
                 || ((y == nextY - 1) && (x == (nextX - 1))) || ((y == nextY + 1)

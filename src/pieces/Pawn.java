@@ -1,7 +1,6 @@
 
 package pieces;
 
-import java.awt.Image;
 import java.awt.Point;
 
 public class Pawn extends Piece {
@@ -9,11 +8,12 @@ public class Pawn extends Piece {
     private boolean myseen = false;
     private boolean movedbefore = false;
 
-    /** Creates a new instance of Pawn */
+    /** Creates a new instance of Pawn. */
     public Pawn(String nameIcon, int startX, int startY) {
         super(nameIcon, startX, startY);
     }
 
+    /** places pawn can move to. **/
     public boolean canMove(int x, int y, String typeColor) {
 
         if ((typeColor.equals("black"))) {
@@ -29,8 +29,9 @@ public class Pawn extends Piece {
                 return true;
             }
 
-            else
+            else {
                 return false;
+            }
         }
 
         else if (typeColor == "white") {
@@ -42,8 +43,9 @@ public class Pawn extends Piece {
                 return true;
             }
 
-            else
+            else {
                 return false;
+            }
         }
         return false;
 
@@ -55,8 +57,9 @@ public class Pawn extends Piece {
 
                 if ((((y - 1 == othersPostion.y) && (x == (othersPostion.x)))) && !movedbefore) {
                     return true;
-                } else
+                } else {
                     return false;
+                }
             }
 
             else if (typeColor.equals("white")) {
@@ -65,8 +68,9 @@ public class Pawn extends Piece {
 
                     return true;
 
-                } else
+                } else {
                     return false;
+                }
             }
         }
 
@@ -81,7 +85,7 @@ public class Pawn extends Piece {
         return myseen;
     }
 
-    public boolean setSeenbychecking(Point newP, String Color) {
+    public boolean setSeenByChecking(Point newP, String Color) {
         myseen = false;
         if ((Color.equals("black"))) {
             if ((newP.y - 1 == nextY && newP.x + 1 == (nextX) 
@@ -89,16 +93,19 @@ public class Pawn extends Piece {
 
                 myseen = true;
                 return true;
-            } else
+            } else {
                 return false;
+            }
         } else if (Color.equals("white")) {
             if ((newP.y + 1 == nextY && newP.x + 1 == (nextX)
                     || (newP.y + 1 == nextY && newP.x - 1 == (nextX)))) {
                 myseen = true;
 
                 return true;
-            } else
+            } else {
                 return false;
+            }
+
         }
         return false;
     }

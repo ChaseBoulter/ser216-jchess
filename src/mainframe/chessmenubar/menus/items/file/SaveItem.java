@@ -9,16 +9,16 @@ import javax.swing.JMenuItem;
 
 public class SaveItem extends JMenuItem {
 
-    /** Creates a new instance of SaveItem */
+    /** Creates a new instance of SaveItem. */
     public SaveItem() {
         setText("Save Game");
         addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                SaveFile.showSaveDialog(null);
+                saveFile.showSaveDialog(null);
 
             }
         });
     }
 
-    private final JFileChooser SaveFile = new JFileChooser();
+    private final JFileChooser saveFile = new JFileChooser();
 }

@@ -1,9 +1,6 @@
 
 package mainframe.chessframe;
 
-//import java.awt.BorderLayout;
-//import java.awt.Color;
-//import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -13,13 +10,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.UnknownHostException;
+import java.net.Socket;
+import java.net.ServerSocket;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import java.net.Socket;
-import java.net.ServerSocket;
 
 import javax.swing.border.TitledBorder;
 
@@ -48,7 +45,7 @@ public class ChatPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
 
                 textArea.append("\n" + textfield.getText());
-                if (I_am_What) {
+                if (isServer) {
                     sendTextServer();
                     textfield.setText(null);
                 } else {
@@ -66,7 +63,7 @@ public class ChatPanel extends JPanel {
                 if (e.getKeyChar() == '\n') {
                     textArea.append("\n" + textfield.getText());
 
-                    if (I_am_What) {
+                    if (isServer) {
                         sendTextServer();
                         textfield.setText(null);
                     } else {
@@ -84,7 +81,7 @@ public class ChatPanel extends JPanel {
             }
         });
 
-        // add(chatPanelScroll);
+        // add(chatPanelScroll); //TODO: add chat panel scroll
 
     }
 
@@ -94,7 +91,7 @@ public class ChatPanel extends JPanel {
         textfield.setEnabled(true);
         sendB.setEnabled(true);
 
-        I_am_What = false;
+        isServer = false;
         try {
             sendSocket = new Socket("127.0.0.1", 5002);
             in2 = new BufferedReader(new InputStreamReader(sendSocket.getInputStream()));
@@ -123,26 +120,25 @@ public class ChatPanel extends JPanel {
 
     }
 
-    public void ListenToChat() {
-
+    public void listenToChat() {
         textAreaScroll.setEnabled(true);
         textfield.setEnabled(true);
         sendB.setEnabled(true);
 
-        I_am_What = true;
+        isServer = true;
         try {
 
-            server_chat = new ServerSocket(5002);
+            serverChat = new ServerSocket(5002);
 
-            chat_socket = server_chat.accept();
+            chatSocket = serverChat.accept();
 
-            in1 = new BufferedReader(new InputStreamReader(chat_socket.getInputStream()));
+            in1 = new BufferedReader(new InputStreamReader(chatSocket.getInputStream()));
 
-            out1 = new PrintWriter(chat_socket.getOutputStream());
+            out1 = new PrintWriter(chatSocket.getOutputStream());
 
-            // chat_socket.setSoTimeout(10000);
+            // chatSocket.setSoTimeout(10000);
 
-            myserv_thread.start();
+            serverThread.start();
 
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -189,18 +185,19 @@ public class ChatPanel extends JPanel {
     private final ChatArea textArea = new ChatArea(6, 20);
     private final MyTextField textfield = new MyTextField(10);
     private final SendButton sendB = new SendButton();
-    private final JScrollPane textAreaScroll = new JScrollPane(textArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+    private final JScrollPane textAreaScroll = new JScrollPane(
+            textArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
             JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-    private Socket chat_socket;
-    private ServerSocket server_chat;
+    private Socket chatSocket;
+    private ServerSocket serverChat;
     private BufferedReader in1;
     private PrintWriter out1;
     private BufferedReader in2;
     private PrintWriter out2;
-    private ServerChat myserv_thread = new ServerChat();
+    private ServerChat serverThread = new ServerChat();
     private Socket sendSocket;
     private ClientChat clientThread = new ClientChat();
-    private boolean I_am_What;
+    private boolean isServer;
 
 }
 
@@ -213,13 +210,14 @@ class ChatArea extends JTextArea {
          */
         setEditable(false);
         // textAreaScroll =new
-        // JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        // JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+        //JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         // this.add(textAreaScroll);
-        setBorder(TextBorder);
+        setBorder(textBorder);
 
     }
 
-    private final TitledBorder TextBorder = new TitledBorder("Chat History");
+    private final TitledBorder textBorder = new TitledBorder("Chat History");
 }
 
 class SendButton extends JButton {

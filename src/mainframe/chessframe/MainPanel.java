@@ -29,41 +29,41 @@ import javax.net.*;
 
 public class MainPanel extends JPanel {
 
-    private Player1 P1 = new Player1();
-    private Player2 P2 = new Player2();
-    private final int Divide = 600 / 8;
+    private Player1 player1 = new Player1();
+    private Player2 player2 = new Player2();
+    private final int divide = 600 / 8;
     private int move = 0;
     private Rectangle2D rec;
-    private short players_turn = 1;
+    private short playersTurn = 1;
     public final ToolPanel myTool;
     private final StatusPanel myStatus;
-    private boolean GameOver = false;
-    private boolean Iam_Server = false;
-    private boolean Iam_Client = false;
-    private ServerSocket ServerSock;
-    private Socket Sock;
+    private boolean gameOver = false;
+    private boolean isServer = false;
+    private boolean isClient = false;
+    private ServerSocket serverSock;
+    private Socket sock;
     private BufferedReader in;
     private PrintWriter out;
-    private String Box;
+    private String box;
     private boolean local = true;
     private JButton startServer;
     private JButton startClient;
-    private String MyIp_Address;
-    private String MyPort_number;
-    private boolean Game_started = true;
-    private Recv_Thread Recv_from;
-    private ChatPanel Refe_Chat;
+    private String myIPAddress;
+    private String myPortNumber;
+    private boolean gameStarted = true;
+    private ReceiveThread receivedFrom;
+    private ChatPanel receiveChat;
 
-    public void start_As_Server(String Ip, String Port, ChatPanel newChat) {
+    public void startAsServer(String Ip, String Port, ChatPanel newChat) {
 
-        Recv_from = new Recv_Thread();
-        Refe_Chat = newChat;
-        Game_started = false;
+        receivedFrom = new ReceiveThread();
+        receiveChat = newChat;
+        gameStarted = false;
 
-        MyIp_Address = Ip;
-        MyPort_number = Port;
+        myIPAddress = Ip;
+        myPortNumber = Port;
 
-        start_Again();
+        startAgain();
         startServer = new JButton(" Start server");
         startServer.setSize(150, 25);
         startServer.setLocation(200, 300);
@@ -72,23 +72,23 @@ public class MainPanel extends JPanel {
 
                 try {
 
-                    ServerSock = new ServerSocket(Integer.parseInt(MyPort_number));
+                    serverSock = new ServerSocket(Integer.parseInt(myPortNumber));
 
-                    Thread Server = new Thread(new Runnable() {
+                    Thread server = new Thread(new Runnable() {
                         public synchronized void run() {
 
                             try {
 
-                                Sock = ServerSock.accept();
+                                sock = serverSock.accept();
 
-                                Refe_Chat.ListenToChat();
-                                in = new BufferedReader(new InputStreamReader(Sock.getInputStream()));
-                                out = new PrintWriter(Sock.getOutputStream());
+                                receiveChat.listenToChat();
+                                in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
+                                out = new PrintWriter(sock.getOutputStream());
                                 startServer.setVisible(false);
                                 startServer = null;
-                                Recv_from.start();
+                                receivedFrom.start();
 
-                                Game_started = true;
+                                gameStarted = true;
 
                             } catch (IOException ex) {
                                 ex.printStackTrace();
@@ -96,19 +96,19 @@ public class MainPanel extends JPanel {
                         }
                     });
 
-                    Server.start();
+                    server.start();
 
                     /*
-                     * in=new BufferedReader(new InputStreamReader(Sock.getInputStream())); out=new
-                     * PrintWriter(Sock.getOutputStream());
+                     * in=new BufferedReader(new InputStreamReader(sock.getInputStream())); out=new
+                     * PrintWriter(sock.getOutputStream());
                      */
-                    // Sock.setSoTimeout(999999);
-                    // Refe_Chat.listen_chat();
+                    // sock.setSoTimeout(999999);
+                    // receiveChat.listen_chat();
 
                 } catch (IOException ex) {
                     ex.printStackTrace();
-
-                    JOptionPane.showConfirmDialog(null, "Server error", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Server Error",
+                            "Error", JOptionPane.ERROR_MESSAGE, null);
                 }
                 startServer.setText("Waiting...");
 
@@ -118,21 +118,21 @@ public class MainPanel extends JPanel {
         local = false;
         add(startServer);
 
-        Iam_Server = true;
+        isServer = true;
         repaint();
     }
 
-    public void start_As_Client(String Ip, String Port, ChatPanel newChat) {
+    public void startAsClient(String Ip, String Port, ChatPanel newChat) {
 
-        Recv_from = new Recv_Thread();
+        receivedFrom = new ReceiveThread();
 
-        Refe_Chat = newChat;
+        receiveChat = newChat;
 
-        Game_started = false;
+        gameStarted = false;
 
-        start_Again();
-        MyIp_Address = Ip;
-        MyPort_number = Port;
+        startAgain();
+        myIPAddress = Ip;
+        myPortNumber = Port;
         local = false;
         startClient = new JButton("Start Client");
         startClient.setSize(150, 25);
@@ -143,19 +143,20 @@ public class MainPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try {
 
-                    Sock = new Socket(MyIp_Address, Integer.parseInt(MyPort_number));
-                    in = new BufferedReader(new InputStreamReader(Sock.getInputStream()));
-                    out = new PrintWriter(Sock.getOutputStream());
+                    sock = new Socket(myIPAddress, Integer.parseInt(myPortNumber));
+                    in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
+                    out = new PrintWriter(sock.getOutputStream());
 
-                    Recv_from.start();
-                    Game_started = true;
-                    Refe_Chat.startChat();
+                    receivedFrom.start();
+                    gameStarted = true;
+                    receiveChat.startChat();
 
                 } catch (UnknownHostException ex) {
                     ex.printStackTrace();
                 } catch (IOException ex) {
                     ex.printStackTrace();
-                    JOptionPane.showConfirmDialog(null, "Client error", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Client Error occurred",
+                            "Error", JOptionPane.ERROR_MESSAGE, null);
                 }
 
                 startClient.setVisible(false);
@@ -163,26 +164,27 @@ public class MainPanel extends JPanel {
             }
         });
 
-        Iam_Client = true;
+        isClient = true;
         add(startClient);
 
     }
 
-    public void start_Again() {
-        P1 = new Player1();
-        P2 = new Player2();
+    public void startAgain() {
+        player1 = new Player1();
+        player2 = new Player2();
         move = 0;
-        players_turn = 1;
-        GameOver = false;
+        playersTurn = 1;
+        gameOver = false;
         local = true;
-        myTool.start_Again();
+        myTool.startAgain();
         myStatus.start_Again();
-        Iam_Server = false;
-        Iam_Client = false;
+        isServer = false;
+        isClient = false;
         repaint();
 
     }
 
+    /** main panel constructor for board. **/
     public MainPanel(ToolPanel myToolPanel, StatusPanel myStatusPanel) {
         setBackground(Color.WHITE);
 
@@ -200,6 +202,7 @@ public class MainPanel extends JPanel {
 
     }
 
+    /** adds images and pieces. **/
     public void paintComponent(Graphics g) {
 
         super.paintComponent(g);
@@ -207,16 +210,16 @@ public class MainPanel extends JPanel {
         Graphics2D g2 = (Graphics2D) g;
 
         int iWidth = 600;
-        int iHeight = 600;
+        //int iHeight = 600;
 
         // Drawing the board
         for (int i = 0; i < 8; i = i + 2) {
             for (int j = 0; j < 8; j = j + 2) {
 
                 g2.setColor(Color.BLACK);
-                rec = new Rectangle2D.Double(j * iWidth / 8, (1 + i) * iWidth / 8, Divide, Divide);
+                rec = new Rectangle2D.Double(j * iWidth / 8, (1 + i) * iWidth / 8, divide, divide);
                 g2.fill(rec);
-                rec = new Rectangle2D.Double((1 + j) * iWidth / 8, i * iWidth / 8, Divide, Divide);
+                rec = new Rectangle2D.Double((1 + j) * iWidth / 8, i * iWidth / 8, divide, divide);
                 g2.fill(rec);
 
             }
@@ -229,36 +232,38 @@ public class MainPanel extends JPanel {
         Image img;
         for (int i = 1; i <= 32; i++) {
             if (i < 17) {
-                if (i == P2.GetInhand()) {
-                    postionPoint = P2.getPixelPoint(i);
+                if (i == player2.getInHand()) {
+                    postionPoint = player2.getPixelPoint(i);
 
                 } else {
-                    postionPoint = P2.returnPostion(i);
+                    postionPoint = player2.returnPostion(i);
                 }
-                img = P2.returnIconImage(i);
+                img = player2.returnIconImage(i);
 
             }
 
             else {
 
-                if (i == P1.GetInhand()) {
+                if (i == player1.getInHand()) {
 
-                    postionPoint = P1.getPixelPoint(i);
+                    postionPoint = player1.getPixelPoint(i);
 
                 } else {
-                    postionPoint = P1.returnPostion(i);
+                    postionPoint = player1.returnPostion(i);
                 }
-                img = P1.returnIconImage(i);
+                img = player1.returnIconImage(i);
             }
 
-            if (i == P1.GetInhand())
-                g2.drawImage(img, postionPoint.x - 25, postionPoint.y - 25, Divide - 40, Divide - 12, this);
-            else if (i == P2.GetInhand())
-                g2.drawImage(img, postionPoint.x - 25, postionPoint.y - 25, Divide - 40, Divide - 12, this);
+            if (i == player1.getInHand())
+                g2.drawImage(img, postionPoint.x - 25, postionPoint.y - 25,
+                        divide - 40, divide - 12, this);
+            else if (i == player2.getInHand())
+                g2.drawImage(img, postionPoint.x - 25, postionPoint.y - 25,
+                        divide - 40, divide - 12, this);
             else {
                 postX = rowToX(postionPoint.x);
                 postY = colToY(postionPoint.y);
-                g2.drawImage(img, postX + 20, postY + 4, Divide - 40, Divide - 12, this);
+                g2.drawImage(img, postX + 20, postY + 4, divide - 40, divide - 12, this);
             }
 
         }
@@ -277,61 +282,58 @@ public class MainPanel extends JPanel {
         }
 
         public void mouseReleased(MouseEvent e) {
-            boolean can_Send = false;
+            boolean canSend = false;
 
-            if (!GameOver) {
+            if (!gameOver) {
 
                 Point newP;
                 Point samePostion;
-                if (P1.GetInhand() != -1) {
+                if (player1.getInHand() != -1) {
 
-                    newP = P1.getPixelPoint(P1.GetInhand());
-                    newP.x /= Divide;
-                    newP.y /= Divide;
+                    newP = player1.getPixelPoint(player1.getInHand());
+                    newP.x /= divide;
+                    newP.y /= divide;
                     newP.x++;
                     newP.y++;
                     int otherindex;
 
-                    Point old = P1.returnOldPostion(P1.GetInhand());
+                    Point old = player1.returnOldPostion(player1.getInHand());
                     int x = old.x;
                     int y = old.y;
-                    Point present = P1.returnPostion(P1.GetInhand());
+                    Point present = player1.returnPostion(player1.getInHand());
 
                     ///////////////////////////////////////////////////////////////////////////
                     ///////////////////////////////////////////////////////////////////////////
 
-                    if (Iam_Server || local) {
+                    if (isServer || local) {
 
                         // set the seen of the solider -white
-                        if (P1.GetInhand() < 33 && P1.GetInhand() > 24) {
+                        if (player1.getInHand() < 33 && player1.getInHand() > 24) {
                             for (int i = 1; i < 17; i++) {
-                                samePostion = P2.returnPostion(i);
+                                samePostion = player2.returnPostion(i);
                                 if (samePostion.x == newP.x && samePostion.y == newP.y) {
-                                    if (P1.setSeentoSiliders(P1.GetInhand(), samePostion))
+                                    if (player1.setSeentoSiliders(player1.getInHand(), samePostion)) {
                                         break;
+                                    }
                                 }
                             }
                         }
-                        ///////////////////////////////////////////////////////////////////////////////////
-                        if (!(newP.x == present.x && newP.y == present.y)/* &&!P1.returncheckKing() */)
-                            if (P1.checkthemove(newP, P1.GetInhand())) // if the move is illegal
+                        /////////////////////////////////////////////////////////////////////////
+                        if (!(newP.x == present.x && newP.y == present.y)/* &&!player1.returncheckKing() */)
+                            if (player1.checkMove(newP, player1.getInHand())) // if the move is illegal
                             {
 
                                 boolean flag = false;
 
                                 for (int i = 1; i <= 32; i++) {
-                                    if (P1.GetInhand() != i)// check if there is peices in the WAY
+                                    if (player1.getInHand() != i)// check if there are pieces in the way
                                     {
-                                        if (i < 17)
-                                            flag = P1.checktheWay(newP, P2.returnPostion(i), P1.GetInhand());// Means
-                                        // there is
-                                        // somting
-                                        // in the
-                                        // Way so
-                                        // can't
-                                        // move
+                                        if (i < 17) {
+                                            flag = player1.checkTheWay(newP, player2.returnPostion(i), player1.getInHand());
+                                        }
+                                        //means there's something in the way, so we can't move.
                                         else {
-                                            flag = P1.checktheWay(newP, P1.returnPostion(i), P1.GetInhand());
+                                            flag = player1.checkTheWay(newP, player1.returnPostion(i), player1.getInHand());
                                         }
 
                                         if (flag == true)
@@ -342,49 +344,49 @@ public class MainPanel extends JPanel {
 
                                 }
 
-                                if (!flag && P1.Pice_already_there(newP))
-                                // (if flag =false this means "The pice able to MOVE as logic""
+                                if (!flag && player1.friendlyPieceAlreadyThere(newP))
+                                // (if flag =false this means "The piece able to MOVE as logic""
                                 {
                                     // So We Check If the New Place Make a Check To Black King !!!
                                     boolean kin2 = true;
                                     Point myold = new Point();
-                                    Point o = P1.returnPostion(P1.GetInhand());
+                                    Point o = player1.returnPostion(player1.getInHand());
                                     myold.x = o.x;
                                     myold.y = o.y;
                                     Point other = new Point();
                                     Point f = new Point();
                                     boolean kill = false;
                                     int killed = -1;
-                                    boolean end_move = true;
+                                    boolean endMove = true;
 
                                     //// *** Start Here to Check the King
 
                                     for (int k = 1; k < 17; k++) {
                                         // I have to Check the Place
 
-                                        other = P2.returnPostion(k);
+                                        other = player2.returnPostion(k);
 
                                         if (newP.x == other.x && newP.y == other.y) {
 
-                                            int inHand = P1.GetInhand();
+                                            int inHand = player1.getInHand();
 
-                                            if (inHand > 24 && P1.returnsoliderSeen(inHand)) {
+                                            if (inHand > 24 && player1.returnPawnPosition(inHand)) {
                                                 kill = true;
 
                                                 f.x = other.x;
                                                 f.y = other.y;
 
-                                                P2.Killedpiec(k);
+                                                player2.killedPiece(k);
                                             } else if (inHand <= 24) {
                                                 kill = true;
 
                                                 f.x = other.x;
                                                 f.y = other.y;
 
-                                                P2.Killedpiec(k);
+                                                player2.killedPiece(k);
                                             } else {
-                                                P1.changePostion(myold, inHand);
-                                                end_move = false;
+                                                player1.changePostion(myold, inHand);
+                                                endMove = false;
 
                                                 break;
                                             }
@@ -397,56 +399,56 @@ public class MainPanel extends JPanel {
 
                                     }
 
-                                    if (end_move)
-                                        P1.changePostion(newP, P1.GetInhand());// Here is the mOve ended
+                                    if (endMove)
+                                        player1.changePostion(newP, player1.getInHand());// Here is the mOve ended
 
-                                    P1.checkKing(false);
-                                    if (P1.see_king_Check(P2))
+                                    player1.checkKing(false);
+                                    if (player1.isKingChecked(player2))
                                     // if my king will be in check if i move
                                     // so i can't move and i will return back to old postion'
                                     {
-                                        P1.changePostion(myold, P1.GetInhand());
-                                        P1.checkKing(true);
-                                        end_move = false;
+                                        player1.changePostion(myold, player1.getInHand());
+                                        player1.checkKing(true);
+                                        endMove = false;
                                     }
-                                    if (kill && P1.returncheckKing()) {
-                                        P2.changePostion(f, killed);
+                                    if (kill && player1.returncheckKing()) {
+                                        player2.changePostion(f, killed);
 
                                     }
 
-                                    if (!P1.returncheckKing()) {
+                                    if (!player1.returncheckKing()) {
 
-                                        if (P2.see_king_Check(P1))
+                                        if (player2.isKingChecked(player1))
                                         // if my king will be in check if i move
                                         // so i can't move and i will return back to old postion'
                                         {
 
-                                            P2.checkKing(true);
-                                            end_move = false;
-                                            if (P2.Check_Mate_GameOver(P1)) {
-                                                GameOver();
-                                                Box = Integer.toString(P2.GetInhand()) + Integer.toString(newP.x)
+                                            player2.checkKing(true);
+                                            endMove = false;
+                                            if (player2.checkMateGameOver(player1)) {
+                                                gameOver();
+                                                box = Integer.toString(player2.getInHand()) + Integer.toString(newP.x)
                                                         + Integer.toString(newP.y);
-                                                can_Send = true;
+                                                canSend = true;
                                             }
 
                                             else {
-                                                Box = Integer.toString(P1.GetInhand()) + Integer.toString(newP.x)
+                                                box = Integer.toString(player1.getInHand()) + Integer.toString(newP.x)
                                                         + Integer.toString(newP.y);
 
-                                                CheckStatus();
-                                                can_Send = true;
+                                                checkStatus();
+                                                canSend = true;
 
                                             }
 
                                         }
 
-                                        if (end_move) {
-                                            Box = Integer.toString(P1.GetInhand()) + Integer.toString(newP.x)
+                                        if (endMove) {
+                                            box = Integer.toString(player1.getInHand()) + Integer.toString(newP.x)
                                                     + Integer.toString(newP.y);
 
-                                            ChangeTurn();
-                                            can_Send = true;
+                                            changeTurn();
+                                            canSend = true;
                                         }
 
                                     }
@@ -455,51 +457,45 @@ public class MainPanel extends JPanel {
 
                             }
 
-                        P1.SetInhand(-1);
+                        player1.setInHand(-1);
 
                         repaint();
 
-                        if (can_Send && ((Iam_Server || Iam_Client))) {
+                        if (canSend && ((isServer || isClient))) {
 
-                            Send_move();
+                            sendMove();
                             // Send_to.resume();
 
-                            // Recv_from.resume();
+                            // receivedFrom.resume();
 
                         }
 
-                        if (GameOver)
-                            JOptionPane.showConfirmDialog(null, "Check Mate\n White won the game", "Game Over",
-                                    JOptionPane.PLAIN_MESSAGE);
-
+                        if (gameOver) {
+                            JOptionPane.showMessageDialog(null, "Check Mate\n White won the game",
+                                    "Game Over", JOptionPane.PLAIN_MESSAGE);
+                        }
                     }
                 }
-                /////////////////////////////// Black/////////////////////////////////////////
-                ////////////////////////////// Black///////////////////////////////////////////
                 ////////////////////////////// Black//////////////////////////////////////////////
-                ////////////////////////////// Black//////////////////////////////////////////////
-                else if (P2.GetInhand() != -1)// white
-                {
+                else if (player2.getInHand() != -1) {
 
-                    if (Iam_Client || local) {
-                        newP = P2.getPixelPoint(P2.GetInhand());
-                        newP.x /= Divide;
-                        newP.y /= Divide;
+                    if (isClient || local) {
+                        newP = player2.getPixelPoint(player2.getInHand());
+                        newP.x /= divide;
+                        newP.y /= divide;
                         newP.x++;
                         newP.y++;
-                        boolean Kingch = false;
-                        Point old = P2.returnOldPostion(P2.GetInhand());
-                        Point present = P2.returnPostion(P2.GetInhand());
+                        boolean kingChecked = false;
+                        Point old = player2.returnOldPostion(player2.getInHand());
+                        Point present = player2.returnPostion(player2.getInHand());
 
                         // set the seen of the solider -black
-                        // set the seen of the solider -black
-                        // set the seen of the solider -black
-                        if (P2.GetInhand() < 17 && P2.GetInhand() > 8) {
+                        if (player2.getInHand() < 17 && player2.getInHand() > 8) {
                             for (int i = 17; i < 33; i++) {
-                                samePostion = P1.returnPostion(i);
+                                samePostion = player1.returnPostion(i);
 
                                 if (samePostion.x == newP.x && samePostion.y == newP.y) {
-                                    if (P2.setSeentoSiliders(P2.GetInhand(), samePostion)) {
+                                    if (player2.setSeentoSiliders(player2.getInHand(), samePostion)) {
 
                                         break;
                                     }
@@ -507,26 +503,32 @@ public class MainPanel extends JPanel {
                             }
                         }
 
-                        if (!(newP.x == present.x && newP.y == present.y)/* &&!P2.returncheckKing() */)
-                            if (P2.checkthemove(newP, P2.GetInhand())) {
+                        if (!(newP.x == present.x && newP.y == present.y) /* &&!player2.returncheckKing() */)
+                            if (player2.checkTheMove(newP, player2.getInHand())) {
                                 boolean flag = false;
                                 for (int i = 1; i <= 32; i++) {
-                                    if (P2.GetInhand() != i) {
-                                        if (i < 17)
-                                            flag = P2.checktheWay(newP, P2.returnPostion(i), P2.GetInhand());
-                                        else
-                                            flag = P2.checktheWay(newP, P1.returnPostion(i), P2.GetInhand());
+                                    if (player2.getInHand() != i) {
+                                        if (i < 17) {
+                                            flag = player2.checkTheWay(newP, 
+                                                    player2.returnPostion(i), player2.getInHand());
+                                        }
+                                        else {
+                                            flag = player2.checkTheWay(newP, 
+                                                    player1.returnPostion(i), player2.getInHand());
+                                        }
 
-                                        if (flag)
+                                        if (flag) {
                                             break;
+                                        }
                                     }
                                 }
 
                                 for (int i = 1; i <= 16 && !flag; i++) {
-                                    if (P2.GetInhand() != i) {
+                                    if (player2.getInHand() != i) {
                                         if (flag == false) {
-                                            samePostion = P2.returnPostion(i);
-                                            if (newP.x == samePostion.x && newP.y == samePostion.y) {
+                                            samePostion = player2.returnPostion(i);
+                                            if (newP.x == samePostion.x 
+                                                    && newP.y == samePostion.y) {
                                                 flag = true;
                                                 break;
 
@@ -540,43 +542,43 @@ public class MainPanel extends JPanel {
                                 }
 
                                 if (!flag) {
-                                    Point kingPostion2 = P2.returnPostion(8);
+                                    Point kingPostion2 = player2.returnPostion(8);
                                     Point myold = new Point();
-                                    Point o = P2.returnPostion(P2.GetInhand());
+                                    Point o = player2.returnPostion(player2.getInHand());
                                     myold.x = o.x;
                                     myold.y = o.y;
                                     Point other = new Point();
                                     Point f = new Point();
                                     boolean kill = false;
-                                    boolean end_move = true;
+                                    boolean endMove = true;
                                     int killed = -1;
 
                                     for (int k = 17; k < 33; k++) {
-                                        other = P1.returnPostion(k);
+                                        other = player1.returnPostion(k);
                                         if (newP.x == other.x && newP.y == other.y) {
 
-                                            int inHand = P2.GetInhand();
+                                            int inHand = player2.getInHand();
 
-                                            if (inHand > 8 && P2.returnsoliderSeen(inHand)) {
+                                            if (inHand > 8 && player2.returnPawnSeen(inHand)) {
                                                 kill = true;
 
-                                                other = P1.returnPostion(k);
+                                                other = player1.returnPostion(k);
 
                                                 f.x = other.x;
                                                 f.y = other.y;
 
-                                                P1.Killedpiec(k);
+                                                player1.killedPiece(k);
                                             } else if (inHand <= 8) {
                                                 kill = true;
 
-                                                other = P1.returnPostion(k);
+                                                other = player1.returnPostion(k);
 
                                                 f.x = other.x;
                                                 f.y = other.y;
-                                                P1.Killedpiec(k);
+                                                player1.killedPiece(k);
                                             } else {
-                                                end_move = false;
-                                                P2.changePostion(myold, inHand);
+                                                endMove = false;
+                                                player2.changePostion(myold, inHand);
                                             }
 
                                             killed = k;
@@ -586,77 +588,77 @@ public class MainPanel extends JPanel {
 
                                     }
                                     // boolean kin2=true;
-                                    if (end_move)
-                                        P2.changePostion(newP, P2.GetInhand());
+                                    if (endMove)
+                                        player2.changePostion(newP, player2.getInHand());
 
-                                    P2.checkKing(false);
-                                    if (P2.see_king_Check(P1))
+                                    player2.checkKing(false);
+                                    if (player2.isKingChecked(player1))
                                     // if my king will be in check if i move
                                     // so i can't move and i will return back to old postion'
                                     {
-                                        P2.changePostion(myold, P2.GetInhand());
-                                        P2.checkKing(true);
+                                        player2.changePostion(myold, player2.getInHand());
+                                        player2.checkKing(true);
 
-                                        end_move = false;
+                                        endMove = false;
 
                                     }
-                                    if (kill && P2.returncheckKing()) {
+                                    if (kill && player2.returncheckKing()) {
 
-                                        P1.changePostion(f, killed);
+                                        player1.changePostion(f, killed);
                                     }
 
-                                    if (P2.returncheckKing()) {
-                                        P2.changePostion(myold, P2.GetInhand());
+                                    if (player2.returncheckKing()) {
+                                        player2.changePostion(myold, player2.getInHand());
                                     }
 
-                                    if (!P2.returncheckKing()) {
-                                        if (P1.see_king_Check(P2))
+                                    if (!player2.returncheckKing()) {
+                                        if (player1.isKingChecked(player2))
                                         // if my king will be in check if i move
                                         // so i can't move and i will return back to old postion'
                                         {
 
-                                            P1.checkKing(true);
-                                            end_move = false;
+                                            player1.checkKing(true);
+                                            endMove = false;
 
-                                            if (P1.Check_Mate_GameOver(P2)) {
-                                                Box = Integer.toString(P2.GetInhand()) + Integer.toString(newP.x)
+                                            if (player1.checkMate(player2)) {
+                                                box = Integer.toString(player2.getInHand()) + Integer.toString(newP.x)
                                                         + Integer.toString(newP.y);
-                                                GameOver();
+                                                gameOver();
 
-                                                can_Send = true;
+                                                canSend = true;
                                             }
 
                                             else {
-                                                Box = Integer.toString(P2.GetInhand()) + Integer.toString(newP.x)
+                                                box = Integer.toString(player2.getInHand()) + Integer.toString(newP.x)
                                                         + Integer.toString(newP.y);
-                                                CheckStatus();
-                                                can_Send = true;
+                                                checkStatus();
+                                                canSend = true;
                                             }
                                         }
 
-                                        if (end_move) {
-                                            Box = Integer.toString(P2.GetInhand()) + Integer.toString(newP.x)
+                                        if (endMove) {
+                                            box = Integer.toString(player2.getInHand()) + Integer.toString(newP.x)
                                                     + Integer.toString(newP.y);
-                                            ChangeTurn();
-                                            can_Send = true;
+                                            changeTurn();
+                                            canSend = true;
                                         }
 
                                     }
 
                                 }
                             }
-                        P2.SetInhand(-1);
+                        player2.setInHand(-1);
 
                         repaint();
 
-                        if (can_Send && ((Iam_Server || Iam_Client))) {
+                        if (canSend && ((isServer || isClient))) {
 
                             // Send_to.resume();
-                            Send_move();
-                            /// Recv_from.resume();
+                            sendMove();
+                            /// receivedFrom.resume();
 
                         }
-                        if (GameOver)
+                        if (gameOver)
                             JOptionPane.showConfirmDialog(null, "Check Mate\n Black won the game", "Game Over",
                                     JOptionPane.DEFAULT_OPTION);
 
@@ -676,14 +678,12 @@ public class MainPanel extends JPanel {
     }
 
     //////// *---------------Mohamed Sami ------------------*//////////////////
-    public boolean BoardgetPostion(int x, int y)
+    public boolean getBoardPosition(int x, int y) {
+        if (!gameOver && gameStarted) {
+            if ((isServer && playersTurn == 1) || (local) || (isClient && playersTurn == 2)) {
 
-    {
-        if (!GameOver && Game_started) {
-            if ((Iam_Server && players_turn == 1) || (local) || (Iam_Client && players_turn == 2)) {
-
-                int newX = x / Divide;
-                int newY = y / Divide;
+                int newX = x / divide;
+                int newY = y / divide;
                 newX++;
                 newY++;
 
@@ -692,39 +692,41 @@ public class MainPanel extends JPanel {
                     return false;
 
                 }
-
-                if (players_turn == 1 && P1.GetInhand() == -1)// Player 1
-                {
+                
+                // Player 1
+                if (playersTurn == 1 && player1.getInHand() == -1) {
                     for (int i = 17; i <= 32; i++) {
-                        Point p = P1.returnPostion(i);
+                        Point p = player1.returnPostion(i);
                         if (p.x == newX && p.y == newY) {
-                            P1.SetInhand(i);
-                            whenHandleAndPice(x, y);
+                            player1.setInHand(i);
+                            whenHandleAndPiece(x, y);
                             return true;
                         }
                     }
-                } else if (players_turn == 2 && P2.GetInhand() == -1)// Player 2
-                {
+                } 
+                // Player 2
+                else if (playersTurn == 2 && player2.getInHand() == -1) {
                     for (int i = 1; i <= 16; i++) {
-                        Point p = P2.returnPostion(i);
+                        Point p = player2.returnPostion(i);
                         if (p.x == newX && p.y == newY) {
-                            P2.SetInhand(i);
-                            whenHandleAndPice(x, y);
+                            player2.setInHand(i);
+                            whenHandleAndPiece(x, y);
                             return true;
                         }
                     }
                 }
 
-                else if (players_turn == 1 && P1.GetInhand() != -1)// Player 1
-                {
-                    whenHandleAndPice(x, y);
+                // Player 1
+                else if (playersTurn == 1 && player1.getInHand() != -1) {
+                    whenHandleAndPiece(x, y);
                     return true;
-                } else if (players_turn == 2 && P2.GetInhand() != -1)// Player 2
-                {
-                    whenHandleAndPice(x, y);
+                } 
+                // Player 2
+                else if (playersTurn == 2 && player2.getInHand() != -1) {
+                    whenHandleAndPiece(x, y);
                     return true;
                 }
-                P1.SetInhand(-1);
+                player1.setInHand(-1);
                 move = 0;
 
                 return false;
@@ -734,13 +736,13 @@ public class MainPanel extends JPanel {
         return false;
     }
 
-    public boolean whenHandleAndPice(int x, int y) {
+    public boolean whenHandleAndPiece(int x, int y) {
 
-        if (players_turn == 1 && P1.GetInhand() != -1) {
-            P1.changePixel(x, y, P1.GetInhand());
+        if (playersTurn == 1 && player1.getInHand() != -1) {
+            player1.changePixel(x, y, player1.getInHand());
             return true;
-        } else if (players_turn == 2 && P2.GetInhand() != -1) {
-            P2.changePixel(x, y, P2.GetInhand());
+        } else if (playersTurn == 2 && player2.getInHand() != -1) {
+            player2.changePixel(x, y, player2.getInHand());
             return true;
         }
         return false;
@@ -749,14 +751,14 @@ public class MainPanel extends JPanel {
     private int rowToX(int r) {
         int myx;
         int iHeight = this.getHeight();
-        myx = (r * iHeight / 8) - Divide;
+        myx = (r * iHeight / 8) - divide;
         return myx;
     }
 
     private int colToY(int c) {
         int myy;
         int iWidth = getWidth();
-        myy = (c * iWidth / 8) - Divide;
+        myy = (c * iWidth / 8) - divide;
         return myy;
     }
 
@@ -765,7 +767,7 @@ public class MainPanel extends JPanel {
 
             int x = e.getX();
             int y = e.getY();
-            if (controll_game_type(x, y)) {
+            if (controlGameType(x, y)) {
 
                 repaint();
             }
@@ -778,118 +780,119 @@ public class MainPanel extends JPanel {
 
     }
 
-    public boolean controll_game_type(int x, int y) {
+    public boolean controlGameType(int x, int y) {
 
-        if (Iam_Server == true || Iam_Client == true && Game_started) {
-            if (Iam_Server && players_turn == 1) {
-                return BoardgetPostion(x, y);
-            } else if (Iam_Client && players_turn == 2) {
-                return BoardgetPostion(x, y);
-            } else
+        if (isServer == true || isClient == true && gameStarted) {
+            if (isServer && playersTurn == 1) {
+                return getBoardPosition(x, y);
+            } else if (isClient && playersTurn == 2) {
+                return getBoardPosition(x, y);
+            } else {
                 return false;
+            }
         } else {
-            return BoardgetPostion(x, y);
+            return getBoardPosition(x, y);
         }
 
         // return false;
     }
 
-    private void ChangeTurn() {
-        if (players_turn == 1) {
-            players_turn = 2;
-            myTool.add_to_History("White : " + P1.Tell_me_About_last_move());
+    private void changeTurn() {
+        if (playersTurn == 1) {
+            playersTurn = 2;
+            myTool.add_to_History("White : " + player1.lastMove());
             myStatus.changeStatus(" Black player turn");
             myTool.change_to_Timer2();
         }
 
-        else if (players_turn == 2) {
-            players_turn = 1;
-            myTool.add_to_History("Black : " + P2.Tell_me_About_last_move());
+        else if (playersTurn == 2) {
+            playersTurn = 1;
+            myTool.add_to_History("Black : " + player2.lastMove());
             myTool.change_to_Timer1();
             myStatus.changeStatus(" White player turn");
         }
 
     }
 
-    private void NetChangeTurn() {
-        if (players_turn == 2) {
+    private void netChangeTurn() {
+        if (playersTurn == 2) {
 
-            myTool.add_to_History("White : " + P1.Tell_me_About_last_move());
+            myTool.add_to_History("White : " + player1.lastMove());
             myStatus.changeStatus(" Black player turn");
             myTool.change_to_Timer2();
         }
 
-        else if (players_turn == 1) {
+        else if (playersTurn == 1) {
 
-            myTool.add_to_History("Black : " + P2.Tell_me_About_last_move());
+            myTool.add_to_History("Black : " + player2.lastMove());
             myTool.change_to_Timer1();
             myStatus.changeStatus(" White player turn");
         }
 
     }
 
-    private void NeTGameCheckStatus() {
-        if (players_turn == 1) {
+    private void netGameCheckStatus() {
+        if (playersTurn == 1) {
 
-            myTool.add_to_History("White : " + P1.Tell_me_About_last_move());
+            myTool.add_to_History("White : " + player1.lastMove());
             myTool.change_to_Timer2();
-        } else if (players_turn == 2) {
+        } else if (playersTurn == 2) {
 
-            myTool.add_to_History("Black : " + P2.Tell_me_About_last_move());
+            myTool.add_to_History("Black : " + player2.lastMove());
             myTool.change_to_Timer1();
         }
         myStatus.changeStatus(" Check! ");
     }
 
-    private void CheckStatus() {
-        if (players_turn == 1) {
+    private void checkStatus() {
+        if (playersTurn == 1) {
 
-            players_turn = 2;
-            myTool.add_to_History("White : " + P1.Tell_me_About_last_move());
+            playersTurn = 2;
+            myTool.add_to_History("White : " + player1.lastMove());
             myTool.change_to_Timer2();
-        } else if (players_turn == 2) {
+        } else if (playersTurn == 2) {
 
-            players_turn = 1;
-            myTool.add_to_History("Black : " + P2.Tell_me_About_last_move());
+            playersTurn = 1;
+            myTool.add_to_History("Black : " + player2.lastMove());
             myTool.change_to_Timer1();
         }
 
         myStatus.changeStatus(" Check! ");
     }
 
-    private void GameOver() {
+    private void gameOver() {
 
         myStatus.changeStatus(" Check Mate! ");
 
-        GameOver = true;
+        gameOver = true;
     }
 
-    public void Send_move() {
-        out.print(Box);
+    public void sendMove() {
+        out.print(box);
         out.print("\r\n");
         out.flush();
 
     }
 
-    class Recv_Thread extends Thread {
+    class ReceiveThread extends Thread {
         public synchronized void run() {
 
             while (true) {
 
                 try {
 
-                    Box = in.readLine();
+                    box = in.readLine();
 
                 } catch (IOException ex) {
                     ex.printStackTrace();
                     System.out.println("ERROR");
                 }
 
-                if (Box != null) {
+                if (box != null) {
 
-                    int newInHand = Integer.parseInt(Box);
-                    int newX = Integer.parseInt(Box);
-                    int newY = Integer.parseInt(Box);
+                    int newInHand = Integer.parseInt(box);
+                    int newX = Integer.parseInt(box);
+                    int newY = Integer.parseInt(box);
 
                     /***
                      * Operation to Get 1- The # of Pice 2- The Location nextX 3- The Location nextY
@@ -901,70 +904,64 @@ public class MainPanel extends JPanel {
                     newX /= 10;
                     newY -= (newInHand * 100) + (newX * 10);
 
-                    if (players_turn == 1) {
+                    if (playersTurn == 1) {
 
-                        P1.SetInhand(newInHand);
-                        players_turn = 2;
+                        player1.setInHand(newInHand);
+                        playersTurn = 2;
 
-                        P1.changePostion(new Point(newX, newY), newInHand);
+                        player1.changePostion(new Point(newX, newY), newInHand);
 
-                        P2.Killedpiec(P1.Get_Pice_already_there_from_enemy(new Point(newX, newY), P2));
-                        P2.checkKing(false);
+                        player2.killedPiece(player1.getEnemyPieceLocationInt(new Point(newX, newY), player2));
+                        player2.checkKing(false);
 
-                        if (P2.see_king_Check(P1))
                         // if my king will be in check if i move
                         // so i can't move and i will return back to old postion'
-                        {
+                        if (player2.isKingChecked(player1)) {
 
-                            P2.checkKing(true);
+                            player2.checkKing(true);
 
-                            if (P2.Check_Mate_GameOver(P1)) {
+                            if (player2.checkMateGameOver(player1)) {
                                 System.out.println("mate");
-                                GameOver();
+                                gameOver();
 
+                            } else {
+                                netGameCheckStatus();
                             }
-
-                            else {
-
-                                NeTGameCheckStatus();
-
-                            }
-                        } else
-                            NetChangeTurn();
-
-                        P1.SetInhand(-1);
-
+                        } else {
+                            netChangeTurn();
+                        }
+                        player1.setInHand(-1);
                     } else {
-                        P2.SetInhand(newInHand);
-                        P2.changePostion(new Point(newX, newY), newInHand);
+                        player2.setInHand(newInHand);
+                        player2.changePostion(new Point(newX, newY), newInHand);
 
-                        P1.Killedpiec(P2.Get_Pice_already_there_from_enemy(new Point(newX, newY), P1));
-                        players_turn = 1;
+                        player1.killedPiece(player2.getEnemyPieceThereInt(new Point(newX, newY), player1));
+                        playersTurn = 1;
 
-                        P1.checkKing(false);
-                        if (P1.see_king_Check(P2))
+                        player1.checkKing(false);
+                        if (player1.isKingChecked(player2))
                         // if my king will be in check if i move
                         // so i can't move and i will return back to old postion'
                         {
 
-                            P1.checkKing(true);
+                            player1.checkKing(true);
 
-                            if (P1.Check_Mate_GameOver(P2)) {
+                            if (player1.checkMate(player2)) {
 
                                 System.out.println("mate");
-                                GameOver();
+                                gameOver();
 
                             }
 
                             else {
 
-                                NeTGameCheckStatus();
+                                netGameCheckStatus();
 
                             }
                         } else
-                            NetChangeTurn();
+                            netChangeTurn();
 
-                        P2.SetInhand(-1);
+                        player2.setInHand(-1);
                     }
                     // CheckStatus();
 

@@ -27,7 +27,8 @@ public class ThreadTimer extends Thread {
             myScreen.setText(Float.toString(mytime) + " Seconds");
             if (mytime == 0) {
 
-                JOptionPane.showConfirmDialog(null, " Game Over!\n Timeout", "Timeout", JOptionPane.DEFAULT_OPTION);
+                JOptionPane.showMessageDialog(null, 
+                        " Game Over!\n Timeout", "Timeout", JOptionPane.DEFAULT_OPTION);
                 stop();
                 System.out.println("TimeOut");
 

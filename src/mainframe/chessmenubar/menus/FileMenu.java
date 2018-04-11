@@ -8,30 +8,30 @@ import mainframe.chessmenubar.menus.items.file.*;
 
 public class FileMenu extends JMenu {
 
-    /** Creates a new instance of FileMenu */
+    /** Creates a new instance of FileMenu. */
     public FileMenu(MainFrame ff) {
-        NItem = new NewItem(ff);
+        nItem = new NewItem(ff);
         setText("File");
 
-        add(NItem);
+        add(nItem);
         addSeparator();
-        add(SItem);
-        add(LItem);
-        add(EItem);
+        add(saveItem);
+        add(loadItem);
+        add(exitItem);
 
     }
 
     public String getIPaddress() {
-        return NItem.getIpAddress();
+        return nItem.getIpAddress();
     }
 
     public String getportNumber() {
-        return NItem.getportNumber();
+        return nItem.getportNumber();
     }
 
-    private final NewItem NItem;
-    private final SaveItem SItem = new SaveItem();
-    private final LoadItem LItem = new LoadItem();
-    private final ExitItem EItem = new ExitItem();
+    private final NewItem nItem;
+    private final SaveItem saveItem = new SaveItem();
+    private final LoadItem loadItem = new LoadItem();
+    private final ExitItem exitItem = new ExitItem();
 
 }
