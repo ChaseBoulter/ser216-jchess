@@ -4,39 +4,39 @@ import java.awt.Image;
 import java.awt.Point;
 
 public class Piece {
-    
-    protected int X;
-    protected int Y;
+
+    protected int nextX;
+    protected int nextY;
     protected Point pixelPoint = new Point();
     protected int pixelX;
     protected int pixelY;
     protected boolean havelife = true;
     protected PieceIcon pieceIcon;
-    protected Point p = new Point();
+    protected Point updatedPosition = new Point();
     protected Point old = new Point();
 
-//    public Piece(String NameIcon, int startX, int startY) {
-//
-//        //pieceIcon = new PieceIcon(NameIcon);
-//
-//        X = startX;
-//        Y = startY;
-//        p.x = X;
-//        p.y = Y;
-//    }
+    public Piece(String nameIcon, int startX, int startY) {
+
+        pieceIcon = new PieceIcon(nameIcon);
+
+        nextX = startX;
+        nextY = startY;
+        updatedPosition.x = nextX;
+        updatedPosition.y = nextY;
+    }
 
     public Image returnPieceImage() {
         return pieceIcon.returnPieceIcon();
     }
 
     public Point returnPostion() {
-        return (Point) p.clone();
+        return (Point) updatedPosition.clone();
     }
 
     public int returnX() {
-        return X;
+        return nextX;
     }
-    
+
     public void setPixels(int newpixelX, int newpixelY) {
         pixelPoint.x = newpixelX;
         pixelPoint.y = newpixelY;
@@ -55,24 +55,24 @@ public class Piece {
     }
 
     public int returnY() {
-        return Y;
+        return nextY;
     }
 
     public void setPoint(Point newPoint) {
-        old.x = p.x;
-        old.y = p.y;
-        X = p.x = newPoint.x;
-        Y = p.y = newPoint.y;
-        
-//        p.x = newPoint.x;
-//
-//        p.y = newPoint.y;
-//        X = p.x;
+        old.x = updatedPosition.x;
+        old.y = updatedPosition.y;
+        nextX = updatedPosition.x = newPoint.x;
+        nextY = updatedPosition.y = newPoint.y;
+
+        // updatedPosition.x = newPoint.x;
+        //
+        // updatedPosition.y = newPoint.y;
+        // nextX = updatedPosition.x;
     }
 
     public void setX(int newX) {
-        X = newX;
-        p.x = X;
+        nextX = newX;
+        updatedPosition.x = nextX;
     }
 
     public Point returnOld() {
@@ -80,23 +80,23 @@ public class Piece {
     }
 
     public void setY(int newY) {
-        Y = newY;
-        p.y = Y;
+        nextY = newY;
+        updatedPosition.y = nextY;
     }
 
-    public void toOld(Point Old) {
+    public void toOld(Point old) {
 
-        p.x = Old.x;
-        p.y = Old.y;
+        updatedPosition.x = old.x;
+        updatedPosition.y = old.y;
 
     }
 
     public boolean returnLife() {
         return havelife;
     }
-    
-    public boolean Inthispostion(int x, int y) {
-        if (p.x == x && p.y == y) {
+
+    public boolean inThisPosition(int x, int y) {
+        if (updatedPosition.x == x && updatedPosition.y == y) {
             return true;
         }
         return false;

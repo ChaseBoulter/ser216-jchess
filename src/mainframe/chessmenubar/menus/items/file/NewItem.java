@@ -8,37 +8,37 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
 import mainframe.chessframe.MainFrame;
-import mainframe.chessmenubar.menus.items.file.newgame.NewGameDialoge;
+import mainframe.chessmenubar.menus.items.file.newgame.NewGameDialog;
 
 public class NewItem extends JMenu {
 
-    /** Creates a new instance of NewItem */
+    /** Creates a new instance of NewItem. */
     public NewItem(MainFrame ff) {
-        Ndial = new NewGameDialoge(ff);
+        newGameDialog = new NewGameDialog(ff);
         setText("New Game");
 
-        OnePlayer.setEnabled(false);
-        TwoPlayer.addActionListener(new ActionListener() {
+        onePlayer.setEnabled(false);
+        twoPlayer.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                Ndial.setVisible(true);
+                newGameDialog.setVisible(true);
 
             }
         });
-        add(OnePlayer);
-        add(TwoPlayer);
+        add(onePlayer);
+        add(twoPlayer);
     }
 
     public String getIpAddress() {
-        return Ndial.GetIpAddress();
+        return newGameDialog.getIpAddress();
     }
 
     public String getportNumber() {
-        return Ndial.GetPortnumber();
+        return newGameDialog.getPortNumber();
     }
 
-    private final NewGameDialoge Ndial;
-    private final JMenuItem OnePlayer = new JMenuItem(" One Player");
-    private final JMenuItem TwoPlayer = new JMenuItem(" Two Player");
+    private final NewGameDialog newGameDialog;
+    private final JMenuItem onePlayer = new JMenuItem(" One Player");
+    private final JMenuItem twoPlayer = new JMenuItem(" Two Player");
 
 }

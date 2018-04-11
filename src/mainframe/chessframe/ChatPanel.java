@@ -1,9 +1,6 @@
 
 package mainframe.chessframe;
 
-//import java.awt.BorderLayout;
-//import java.awt.Color;
-//import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -12,20 +9,38 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.UnknownHostException;
 import java.net.Socket;
 import java.net.ServerSocket;
+import java.net.UnknownHostException;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-
 import javax.swing.border.TitledBorder;
 
 public class ChatPanel extends JPanel {
 
+    /** private fields for class.**/
+    private final JTextArea textChatArea = new JTextArea(6, 20);
+    private final TitledBorder textBorder = new TitledBorder("Chat History");
+    private final JTextField textField = new JTextField(10);
+    private final JButton sendB = new JButton();
+    private final JScrollPane textAreaScroll = new JScrollPane(
+            textChatArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+            JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+    private Socket chatSocket;
+    private ServerSocket serverChat;
+    private BufferedReader in1;
+    private PrintWriter out1;
+    private BufferedReader in2;
+    private PrintWriter out2;
+    private ServerChat serverThread = new ServerChat();
+    private Socket sendSocket;
+    private ClientChat clientThread = new ClientChat();
+    private boolean isServer;
+    
     /** Creates a new instance of ChatPanel. */
     public ChatPanel() {
         setSize(200, 300);
@@ -37,42 +52,59 @@ public class ChatPanel extends JPanel {
         setLayout(null);
 
         textAreaScroll.setEnabled(false);
-        textfield.setEnabled(false);
+        textField.setEnabled(false);
         sendB.setEnabled(false);
+        
+        //set sendButton's info
+        sendB.setSize(80, 30);
+        sendB.setLocation(50, 230);
+        sendB.setText("Send");
+        
+        
+        //set TextField info
+        textField.setSize(180, 20);
+        textField.setLocation(10, 200);
+        textField.add(textAreaScroll);
+        textField.setToolTipText("Write Text Here");
 
+        //set textChatArea info
+        textChatArea.setEditable(false);
+        textChatArea.setBorder(textBorder);
+        
+        
         add(textAreaScroll);
-        add(textfield);
+        add(textField);
         add(sendB);
 
         sendB.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
 
-                textArea.append("\n" + textfield.getText());
-                if (I_am_What) {
+                textChatArea.append("\n" + textField.getText());
+                if (isServer) {
                     sendTextServer();
-                    textfield.setText(null);
+                    textField.setText(null);
                 } else {
                     sendTextChat();
-                    textfield.setText(null);
+                    textField.setText(null);
                 }
 
             }
         });
 
-        textfield.addKeyListener(new KeyListener() {
+        textField.addKeyListener(new KeyListener() {
             public void keyPressed(KeyEvent e) {
                 // System.out.println("okdddd "+e.KEY_PRESSED+" "+e.VK_PAGE_DOWN);
 
                 if (e.getKeyChar() == '\n') {
-                    textArea.append("\n" + textfield.getText());
+                    textChatArea.append("\n" + textField.getText());
 
-                    if (I_am_What) {
+                    if (isServer) {
                         sendTextServer();
-                        textfield.setText(null);
+                        textField.setText(null);
                     } else {
                         sendTextChat();
-                        textfield.setText(null);
+                        textField.setText(null);
                     }
 
                 }
@@ -85,31 +117,31 @@ public class ChatPanel extends JPanel {
             }
         });
 
-        // add(chatPanelScroll);
+        // add(chatPanelScroll); //TODO: add chat panel scroll
 
     }
 
-    //TODO: fix chat panel with correct sockets and ports
+    // TODO: fix chat panel with correct sockets and ports
     public void startChat() {
         textAreaScroll.setEnabled(true);
-        textfield.setEnabled(true);
+        textField.setEnabled(true);
         sendB.setEnabled(true);
 
-        I_am_What = false;
+        isServer = false;
         try {
-            send_socket = new Socket("127.0.0.1", 5002);
-            in2 = new BufferedReader(new InputStreamReader(send_socket.getInputStream()));
-            out2 = new PrintWriter(send_socket.getOutputStream());
+            sendSocket = new Socket("127.0.0.1", 5002);
+            in2 = new BufferedReader(new InputStreamReader(sendSocket.getInputStream()));
+            out2 = new PrintWriter(sendSocket.getOutputStream());
         } catch (UnknownHostException ex) {
             ex.printStackTrace();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        client_thread.start();
+        clientThread.start();
     }
 
     public void sendTextChat() {
-        out2.print(textfield.getText());
+        out2.print(textField.getText());
         out2.print("\r\n");
 
         out2.flush();
@@ -117,33 +149,32 @@ public class ChatPanel extends JPanel {
     }
 
     public void sendTextServer() {
-        out1.print(textfield.getText());
+        out1.print(textField.getText());
         out1.print("\r\n");
 
         out1.flush();
 
     }
 
-    public void ListenToChat() {
-
+    public void listenToChat() {
         textAreaScroll.setEnabled(true);
-        textfield.setEnabled(true);
+        textField.setEnabled(true);
         sendB.setEnabled(true);
 
-        I_am_What = true;
+        isServer = true;
         try {
 
-            server_chat = new ServerSocket(5002);
+            serverChat = new ServerSocket(5002);
 
-            chat_socket = server_chat.accept();
+            chatSocket = serverChat.accept();
 
-            in1 = new BufferedReader(new InputStreamReader(chat_socket.getInputStream()));
+            in1 = new BufferedReader(new InputStreamReader(chatSocket.getInputStream()));
 
-            out1 = new PrintWriter(chat_socket.getOutputStream());
+            out1 = new PrintWriter(chatSocket.getOutputStream());
 
-            // chat_socket.setSoTimeout(10000);
+            // chatSocket.setSoTimeout(10000);
 
-            myserv_thread.start();
+            serverThread.start();
 
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -162,7 +193,7 @@ public class ChatPanel extends JPanel {
                 }
 
                 if (receive != null) {
-                    textArea.append("\n" + "Other: " + receive);
+                    textChatArea.append("\n" + "Other: " + receive);
                 }
             }
         }
@@ -180,68 +211,11 @@ public class ChatPanel extends JPanel {
 
                 if (receive != null) {
 
-                    textArea.append("\n" + "Other: " + receive);
+                    textChatArea.append("\n" + "Other: " + receive);
 
                 }
             }
         }
     }
 
-    private final ChatArea textArea = new ChatArea(6, 20);
-    private final MyTextField textfield = new MyTextField(10);
-    private final SendButton sendB = new SendButton();
-    private final JScrollPane textAreaScroll = new JScrollPane(textArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-            JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-    private Socket chat_socket;
-    private ServerSocket server_chat;
-    private BufferedReader in1;
-    private PrintWriter out1;
-    private BufferedReader in2;
-    private PrintWriter out2;
-    private ServerChat myserv_thread = new ServerChat();
-    private Socket send_socket;
-    private ClientChat client_thread = new ClientChat();
-    private boolean I_am_What;
-
-}
-
-class ChatArea extends JTextArea {
-    ChatArea(int rowNum, int colNum) {
-        super(rowNum, colNum);
-
-        /*
-         * setSize(130,150); setLocation(30,0);
-         */
-        setEditable(false);
-        // textAreaScroll =new
-        // JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        // this.add(textAreaScroll);
-        setBorder(TextBorder);
-
-    }
-
-    private final TitledBorder TextBorder = new TitledBorder("Chat History");
-}
-
-class SendButton extends JButton {
-    SendButton() {
-
-        setSize(80, 30);
-        setLocation(50, 230);
-        setText("Send");
-    }
-}
-
-class MyTextField extends JTextField {
-    MyTextField(int fieldLength) {
-        super(fieldLength);
-        setSize(180, 20);
-        setLocation(10, 200);
-
-        add(textAreaScroll);
-        this.setToolTipText("Write Text Here");
-
-    }
-
-    private final JScrollPane textAreaScroll = new JScrollPane();
 }

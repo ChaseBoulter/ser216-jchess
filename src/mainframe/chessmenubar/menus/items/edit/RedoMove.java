@@ -1,12 +1,10 @@
 //package mainframe.chessmenubar.menus.items.edit;
 //
 //
-//package MainFrame.ChessMenuBar.ChessBar_Menus.Menu_Items.Edit_MenuItems;
-//
 //import javax.swing.JMenuItem;
 //
 //
-//public class Redo_move extends JMenuItem
+//public class RedoMove extends JMenuItem
 //{
 //    
 //    /** Creates a new instance of Redo_move */

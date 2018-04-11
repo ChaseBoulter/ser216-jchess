@@ -6,7 +6,7 @@ import javax.swing.JMenuItem;
 
 public class ExitItem extends JMenuItem {
 
-    /** Creates a new instance of ExitItem */
+    /** Creates a new instance of ExitItem. */
     public ExitItem() {
         setText("Exit");
         addActionListener(new ActionListener() {
