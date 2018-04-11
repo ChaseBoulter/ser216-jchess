@@ -13,14 +13,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.UnknownHostException;
-import java.net.Socket;
-import java.net.ServerSocket;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-
+import java.net.Socket;
+import java.net.ServerSocket;
 
 import javax.swing.border.TitledBorder;
 
@@ -89,7 +88,7 @@ public class ChatPanel extends JPanel {
 
     }
 
-    //TODO: fix chat panel with correct sockets and ports
+    // TODO: fix chat panel with correct sockets and ports
     public void startChat() {
         textAreaScroll.setEnabled(true);
         textfield.setEnabled(true);
@@ -97,15 +96,15 @@ public class ChatPanel extends JPanel {
 
         I_am_What = false;
         try {
-            send_socket = new Socket("127.0.0.1", 5002);
-            in2 = new BufferedReader(new InputStreamReader(send_socket.getInputStream()));
-            out2 = new PrintWriter(send_socket.getOutputStream());
+            sendSocket = new Socket("127.0.0.1", 5002);
+            in2 = new BufferedReader(new InputStreamReader(sendSocket.getInputStream()));
+            out2 = new PrintWriter(sendSocket.getOutputStream());
         } catch (UnknownHostException ex) {
             ex.printStackTrace();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        client_thread.start();
+        clientThread.start();
     }
 
     public void sendTextChat() {
@@ -199,8 +198,8 @@ public class ChatPanel extends JPanel {
     private BufferedReader in2;
     private PrintWriter out2;
     private ServerChat myserv_thread = new ServerChat();
-    private Socket send_socket;
-    private ClientChat client_thread = new ClientChat();
+    private Socket sendSocket;
+    private ClientChat clientThread = new ClientChat();
     private boolean I_am_What;
 
 }
