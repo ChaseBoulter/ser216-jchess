@@ -28,33 +28,33 @@ public class Player2 implements Enumeration {
     public Player2() {
         String fileSeparator = System.getProperty("file.separator");
         blackRook1 = new Rook("src" + fileSeparator + "Icons"
-                + fileSeparator + "Player2Icons" + fileSeparator + "br.gif", 1, 1);
+                + fileSeparator + "Player2Icons" + fileSeparator + "blackRook.png", 1, 1);
         
         blackRook2 = new Rook("src" + fileSeparator + "Icons"
-                + fileSeparator + "Player2Icons" + fileSeparator + "br.gif", 8, 1);
+                + fileSeparator + "Player2Icons" + fileSeparator + "blackRook.png", 8, 1);
         
         blackKnight1 = new Knight("src" + fileSeparator + "Icons" 
-                + fileSeparator + "Player2Icons" + fileSeparator + "bn.gif", 2, 1);
+                + fileSeparator + "Player2Icons" + fileSeparator + "blackKnight.png", 2, 1);
         
         blackKnight2 = new Knight("src" + fileSeparator + "Icons" 
-                    + fileSeparator + "Player2Icons" + fileSeparator + "bn.gif", 7, 1);
+                    + fileSeparator + "Player2Icons" + fileSeparator + "blackKnight.png", 7, 1);
         
         blackBishop1 = new Bishop("src" + fileSeparator + "Icons" 
-                    + fileSeparator + "Player2Icons" + fileSeparator + "bb.gif", 3, 1);
+                    + fileSeparator + "Player2Icons" + fileSeparator + "blackBishop.png", 3, 1);
         
         blackBishop2 = new Bishop("src" + fileSeparator + "Icons" 
-                    + fileSeparator + "Player2Icons" + fileSeparator + "bb.gif", 6, 1);
+                    + fileSeparator + "Player2Icons" + fileSeparator + "blackBishop.png", 6, 1);
         
         blackQueen = new Queen("src" + fileSeparator + "Icons" 
-                    + fileSeparator + "Player2Icons" + fileSeparator + "bq.gif", 4, 1);
+                    + fileSeparator + "Player2Icons" + fileSeparator + "blackQueen.png", 4, 1);
         
         blackKing = new King("src" + fileSeparator + "Icons" 
-                    + fileSeparator + "Player2Icons" + fileSeparator + "bk.gif", 5, 1);
+                    + fileSeparator + "Player2Icons" + fileSeparator + "blackKing.png", 5, 1);
         
         int j = 1;
         for (int i = 0; i <= 7; i++, j++) {
             blackPawns[i] = new Pawn("src" + fileSeparator + "Icons"
-        + fileSeparator + "Player2Icons" + fileSeparator + "bp.gif", j, 2);
+        + fileSeparator + "Player2Icons" + fileSeparator + "blackPawn.png", j, 2);
         }
     }
 
