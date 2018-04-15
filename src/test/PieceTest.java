@@ -39,7 +39,8 @@ public class PieceTest {
 	 */
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		LOG.info("@AfterClass");
+		aPiece = null;
+		LOG.info("@AfterClass PieceTest complete");
 	}
 
 
