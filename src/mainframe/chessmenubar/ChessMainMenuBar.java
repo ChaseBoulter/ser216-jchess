@@ -24,13 +24,13 @@ public class ChessMainMenuBar extends JMenuBar {
 
     }
 
-    public String getIpAddress() {
-        return fileMenu.getIPaddress();
-    }
-
-    public String getPortnumber() {
-        return fileMenu.getportNumber();
-    }
+//    public String getIpAddress() {
+//        return fileMenu.getIPaddress();
+//    }
+//
+//    public String getPortnumber() {
+//        return fileMenu.getportNumber();
+//    }
 
     private final FileMenu fileMenu;
     // private final Edit_Menu Emenu=new Edit_Menu();

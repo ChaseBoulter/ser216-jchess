@@ -56,6 +56,15 @@ public class Preloader extends JFrame {
     public String getPortNumber() {
         return textPort.getText();
     }
+    
+    private static class SingletonHolder { 
+        public static final Preloader instance = new Preloader();
+    }
+    
+    public static Preloader getInstance() {
+        return SingletonHolder.instance;
+    }
+
     //List<String> lastNames = createLastNameList();              // Create "random last name" array list
   
     public Preloader() {
@@ -356,7 +365,7 @@ public class Preloader extends JFrame {
             }
         }
 
-        dispose();
+        //dispose();
         
     }                                          
     

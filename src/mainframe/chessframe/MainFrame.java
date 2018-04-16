@@ -4,6 +4,9 @@ package mainframe.chessframe;
 //import java.awt.BorderLayout;
 //import java.awt.Color;
 import java.awt.Container;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+
 //import java.awt.Dimension;
 //import java.awt.Graphics;
 //import java.awt.Toolkit;
@@ -25,11 +28,11 @@ public class MainFrame extends JFrame {
      * 
      */
     private static final long serialVersionUID = 1L;
+    Preloader preload = Preloader.getInstance(); //singleton
     /** creates Chess Game. **/
-    public MainFrame() {
-        
+    public MainFrame() {      
         setTitle("JChess!");
-        setSize(800, 700);
+        setSize(900, 700);
         setResizable(false);
         
         //where window should appear
@@ -56,8 +59,8 @@ public class MainFrame extends JFrame {
     }
 
     public void startAsServer() {
-        myMainPanel.startAsServer(myChessBar.getIpAddress(),
-                myChessBar.getPortnumber(), myChatPanel);
+        myMainPanel.startAsServer(preload.getIpAddress(),
+                preload.getPortNumber(), myChatPanel);
 
         contentPane.add(myMainPanel);
 
@@ -67,9 +70,9 @@ public class MainFrame extends JFrame {
 
     public void startAsClient() {
 
-        myMainPanel.startAsClient(myChessBar.getIpAddress(), 
-                myChessBar.getPortnumber(), myChatPanel);
-
+        myMainPanel.startAsClient(preload.getIpAddress(), 
+                preload.getPortNumber(), myChatPanel);
+        //myMainPanel.rotateComponent(null);
         contentPane.add(myMainPanel);
         setTitle("JChess! - Client");
     }
@@ -81,5 +84,6 @@ public class MainFrame extends JFrame {
     private final MainPanel myMainPanel = new MainPanel(myToolPanel, myStatusPanel);
     private final ChatPanel myChatPanel = new ChatPanel();
     private Container contentPane = getContentPane();
+    
 
 }

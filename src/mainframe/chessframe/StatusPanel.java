@@ -15,11 +15,11 @@ public class StatusPanel extends JPanel {
     private static final long serialVersionUID = 1L;
     /** Creates a new instance of StatusPanel. */
     public StatusPanel() {
-        setSize(580, 30);
+        setSize(600, 30);
         setLocation(10, 610);
         setLayout(null);
 
-        statusLabel.setSize(570, 25);
+        statusLabel.setSize(589, 25);
         statusLabel.setLocation(5, 5);
         statusLabel.setText(" Start New Game ");
         statusLabel.setBackground(Color.lightGray);
