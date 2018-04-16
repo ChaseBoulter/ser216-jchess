@@ -800,11 +800,11 @@ public class MainPanel extends JPanel {
             playersTurn = 2;
             myTool.add_to_History("White : " + player1.lastMove());
             myStatus.changeStatus(" Black player turn");
-            myTool.change_to_Timer2();
+            //myTool.change_to_Timer2();
         } else if (playersTurn == 2) {
             playersTurn = 1;
             myTool.add_to_History("Black : " + player2.lastMove());
-            myTool.change_to_Timer1();
+            //myTool.change_to_Timer1();
             myStatus.changeStatus(" White player turn");
         }
 
@@ -815,11 +815,11 @@ public class MainPanel extends JPanel {
 
             myTool.add_to_History("White : " + player1.lastMove());
             myStatus.changeStatus(" Black player turn");
-            myTool.change_to_Timer2();
+            //myTool.change_to_Timer2();
         } else if (playersTurn == 1) {
 
             myTool.add_to_History("Black : " + player2.lastMove());
-            myTool.change_to_Timer1();
+            //myTool.change_to_Timer1();
             myStatus.changeStatus(" White player turn");
         }
 
@@ -829,11 +829,11 @@ public class MainPanel extends JPanel {
         if (playersTurn == 1) {
 
             myTool.add_to_History("White : " + player1.lastMove());
-            myTool.change_to_Timer2();
+            //myTool.change_to_Timer2();
         } else if (playersTurn == 2) {
 
             myTool.add_to_History("Black : " + player2.lastMove());
-            myTool.change_to_Timer1();
+            //myTool.change_to_Timer1();
         }
         myStatus.changeStatus(" Check! ");
     }
@@ -843,12 +843,12 @@ public class MainPanel extends JPanel {
 
             playersTurn = 2;
             myTool.add_to_History("White : " + player1.lastMove());
-            myTool.change_to_Timer2();
+            //myTool.change_to_Timer2();
         } else if (playersTurn == 2) {
 
             playersTurn = 1;
             myTool.add_to_History("Black : " + player2.lastMove());
-            myTool.change_to_Timer1();
+            //myTool.change_to_Timer1();
         }
 
         myStatus.changeStatus(" Check! ");

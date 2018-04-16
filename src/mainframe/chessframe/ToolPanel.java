@@ -10,7 +10,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import mainframe.chessframe.timer.ThreadTimer;
+//import mainframe.chessframe.timer.ThreadTimer;
 
 public class ToolPanel extends JPanel {
 
@@ -30,8 +30,8 @@ public class ToolPanel extends JPanel {
     private final JLabel screen2 = new JLabel();
 //    private final JLabel timeDesc1 = new JLabel(" Timer 1");
 //    private final JLabel timeDesc2 = new JLabel(" Timer 2");
-    private ThreadTimer timer1;
-    private ThreadTimer timer2;
+    //private ThreadTimer timer1;
+    //private ThreadTimer timer2;
     
     /** Creates a new instance of ToolPanel. */
     public void paintComponent(Graphics g) {
@@ -119,33 +119,33 @@ public class ToolPanel extends JPanel {
         historyList.addElemen_tolist(newItem);
     }
 
-    public void change_to_Timer1() {
-        timer1.resume();
-        timer2.suspend();
-    }
-
-    public void change_to_Timer2() {
-        timer2.resume();
-        timer1.suspend();
-    }
-
-    public void stop_timers() {
-        timer1.stop();
-        timer2.stop();
-    }
+//    public void change_to_Timer1() {
+//        timer1.resume();
+//        timer2.suspend();
+//    }
+//
+//    public void change_to_Timer2() {
+//        timer2.resume();
+//        timer1.suspend();
+//    }
+//
+//    public void stop_timers() {
+//        timer1.stop();
+//        timer2.stop();
+//    }
 
     public void startAgain() {
-        if (timer1 != null) {
-            timer1.stop();
-            timer2.stop();
-        }
-
-        timer1 = new ThreadTimer(screen2);
-        timer2 = new ThreadTimer(screen1);
-
-        timer1.start();
-        timer2.start();
-        timer2.suspend();
+//        if (timer1 != null) {
+//            timer1.stop();
+//            timer2.stop();
+//        }
+//
+//        timer1 = new ThreadTimer(screen2);
+//        timer2 = new ThreadTimer(screen1);
+//
+//        timer1.start();
+//        timer2.start();
+//        timer2.suspend();
 
         historyList.clean_list();
         historyList.addElemen_tolist("Player: New Moves");
