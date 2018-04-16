@@ -10,7 +10,7 @@ public class Chess {
         Preloader preload = Preloader.getInstance();
         while(!preload.endLoading()) {
           //intentionally left empty
-      }
+        }
         //new MainFrame();
     }
 }

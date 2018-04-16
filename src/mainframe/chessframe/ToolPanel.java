@@ -5,11 +5,13 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import java.awt.Dimension;
 //import mainframe.chessframe.timer.ThreadTimer;
 
 public class ToolPanel extends JPanel {
@@ -32,6 +34,10 @@ public class ToolPanel extends JPanel {
 //    private final JLabel timeDesc2 = new JLabel(" Timer 2");
     //private ThreadTimer timer1;
     //private ThreadTimer timer2;
+    private ImageIcon myTurn;
+    private String fs;
+    private JLabel imageLabelWhite;
+    private JLabel imageLabelBlack;
     
     /** Creates a new instance of ToolPanel. */
     public void paintComponent(Graphics g) {
@@ -59,17 +65,25 @@ public class ToolPanel extends JPanel {
 
     /** initializes ToolPanel to default values.**/
     public ToolPanel() {
-        setSize(200, 350);
+        fs = System.getProperty("file.separator");
+        myTurn = new ImageIcon("src" + fs + "Icons" + fs
+                + "turn.png");
+        imageLabelWhite = new JLabel(myTurn);
+        imageLabelBlack = new JLabel(myTurn);
+        
+        setMinimumSize(new Dimension(300, 244));
+        historyList.setBackground(Color.WHITE);
+        setSize(300, 289);
         setLocation(600, 0);
         setLayout(null);
 
         turn1TextField.setSize(60, 25);
-        turn1TextField.setLocation(20, 10);
-        screen1.setSize(100, 25);
-        screen1.setLocation(90, 25);
+        turn1TextField.setLocation(20, 25);
+        screen1.setSize(77, 25);
+        screen1.setLocation(92, 25);
 
         blackTextField.setSize(60, 25);
-        blackTextField.setLocation(20, 34);
+        blackTextField.setLocation(92, 25);
 
         turn1TextField.setEnabled(false);
         turn1TextField.setBackground(Color.ORANGE);
@@ -82,11 +96,11 @@ public class ToolPanel extends JPanel {
         blackTextField.setDisabledTextColor(Color.BLACK);
 
         turn2TextField.setSize(60, 25);
-        turn2TextField.setLocation(20, 254);
+        turn2TextField.setLocation(20, 232);
         screen2.setSize(100, 25);
         screen2.setLocation(90, 254);
         whiteTextField.setSize(60, 25);
-        whiteTextField.setLocation(20, 230);
+        whiteTextField.setLocation(92, 232);
 
         turn2TextField.setEnabled(false);
         turn2TextField.setBackground(Color.ORANGE);
@@ -104,8 +118,23 @@ public class ToolPanel extends JPanel {
         add(whiteTextField);
         add(screen1);
         add(screen2);
+        
+        
+        //default
+        imageLabelBlack.setPreferredSize(new Dimension(32, 32));
+        imageLabelBlack.setBounds(158, 18, 32, 32);
+        imageLabelBlack.setEnabled(false);
+        add(imageLabelBlack);
+        
+        //white goes first
+        imageLabelWhite.setPreferredSize(new Dimension(32, 32));
+        imageLabelWhite.setBounds(164, 225, 32, 32);
+        imageLabelWhite.setEnabled(true);
+        add(imageLabelWhite);
+        //imageLabelBlack.setBounds
+        
 
-        historyScroll.setSize(150, 150);
+        historyScroll.setSize(274, 150);
         historyScroll.setLocation(20, 70);
         add(historyScroll);
 
@@ -117,6 +146,17 @@ public class ToolPanel extends JPanel {
 
     public void add_to_History(Object newItem) {
         historyList.addElemen_tolist(newItem);
+    }
+    
+    public void switchImageLocation(int player) {
+        if(player == 1) {
+            imageLabelWhite.setEnabled(true);
+            imageLabelBlack.setEnabled(false);
+        } else {
+            imageLabelWhite.setEnabled(false);
+            imageLabelBlack.setEnabled(true);
+        }
+        
     }
 
 //    public void change_to_Timer1() {
@@ -151,7 +191,6 @@ public class ToolPanel extends JPanel {
         historyList.addElemen_tolist("Player: New Moves");
 
     }
-
 }
 
 class myHistoryList extends JList {

@@ -20,10 +20,15 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
 
+import javax.swing.ImageIcon;
 //import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+import pieces.Rook;
+
 import java.lang.String;
 //import javax.swing.JScrollPane;
 //import javax.swing.border.BevelBorder;
@@ -198,6 +203,7 @@ public class MainPanel extends JPanel {
 
     /** main panel constructor for board. **/
     public MainPanel(ToolPanel myToolPanel, StatusPanel myStatusPanel) {
+        
         setBackground(Color.WHITE);
 
         setSize(600, 600);
@@ -807,6 +813,8 @@ public class MainPanel extends JPanel {
             //myTool.change_to_Timer1();
             myStatus.changeStatus(" White player turn");
         }
+        
+        myTool.switchImageLocation(playersTurn);
 
     }
 
@@ -822,6 +830,7 @@ public class MainPanel extends JPanel {
             //myTool.change_to_Timer1();
             myStatus.changeStatus(" White player turn");
         }
+        myTool.switchImageLocation(playersTurn);
 
     }
 
@@ -843,6 +852,7 @@ public class MainPanel extends JPanel {
 
             playersTurn = 2;
             myTool.add_to_History("White : " + player1.lastMove());
+            
             //myTool.change_to_Timer2();
         } else if (playersTurn == 2) {
 
