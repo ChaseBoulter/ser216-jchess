@@ -9,6 +9,8 @@ import java.awt.Container;
 //import java.awt.Toolkit;
 //import javax.swing.BorderFactory;
 import javax.swing.JFrame;
+
+import chessgame.Preloader;
 //import javax.swing.JMenu;
 //import javax.swing.JMenuBar;
 //import javax.swing.JMenuItem;
@@ -25,6 +27,7 @@ public class MainFrame extends JFrame {
     private static final long serialVersionUID = 1L;
     /** creates Chess Game. **/
     public MainFrame() {
+        
         setTitle("JChess!");
         setSize(800, 700);
         setResizable(false);
