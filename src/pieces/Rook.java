@@ -3,13 +3,30 @@ package pieces;
 
 import java.awt.Point;
 
+/**
+ * The Class Rook.
+ */
 public class Rook extends Piece {
 
+    /**
+     * Instantiates a new rook.
+     *
+     * @param nameIcon the name icon
+     * @param startX the start X
+     * @param startY the start Y
+     */
     public Rook(String nameIcon, int startX, int startY) {
 
         super(nameIcon, startX, startY);
     }
 
+    /**
+     * Can move.
+     *
+     * @param x the x
+     * @param y the y
+     * @return true, if successful
+     */
     public boolean canMove(int x, int y) {
         if (((y == nextY) && (x > (nextX) || (x < (nextX))))) {
             return true;
@@ -22,6 +39,14 @@ public class Rook extends Piece {
 
     }
 
+    /**
+     * Piece in my way.
+     *
+     * @param x the x
+     * @param y the y
+     * @param othersPostion the others postion
+     * @return true, if successful
+     */
     public boolean pieceInMyWay(int x, int y, Point othersPostion) {
         int j = y;
         int i = x;
@@ -68,6 +93,14 @@ public class Rook extends Piece {
 
     }
 
+    /**
+     * Check king.
+     *
+     * @param x the x
+     * @param y the y
+     * @param othersPostion the others postion
+     * @return true, if successful
+     */
     public boolean checkKing(int x, int y, Point othersPostion) {
         int j = y;
         int i = x;
@@ -114,10 +147,20 @@ public class Rook extends Piece {
 
     }
 
+    /**
+     * Generate possible moves.
+     *
+     * @return the point
+     */
     public Point generatePossibleMoves() {
         return new Point();
     }
 
+    /**
+     * Tell me.
+     *
+     * @return the string
+     */
     public String tellMe() {
         return "Rook= (" + updatedPosition.x + ',' + updatedPosition.y + ")";
     }
