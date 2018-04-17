@@ -315,7 +315,8 @@ public class Preloader extends JFrame {
         });
         
         //RADIO BUTTON LOGIC
-        rdbtnLocal.setSelected(true); //sets default as selected
+        rdbtnLocal.setSelected(true);
+        //sets default as selected
         txtIp.setEnabled(false);
         textPort.setEnabled(false);
         rdbtnServer.setEnabled(false);
