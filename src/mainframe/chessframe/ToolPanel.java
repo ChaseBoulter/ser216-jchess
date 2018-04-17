@@ -37,30 +37,6 @@ public class ToolPanel extends JPanel {
     private JLabel checkLabelWhite;
     private JLabel imageLabelBlack;
     private JLabel checkLabelBlack;
-    
-//    /** Creates a new instance of ToolPanel. */
-//    public void paintComponent(Graphics g) {
-//        super.paintComponent(g);
-//
-//        // Graphics2D g2 = (Graphics2D)g;
-//
-//        // draw a rectangle
-//
-//        /*
-//         * Ellipse2D start= new Ellipse2D.Double(100, 34, 30, 30); Ellipse2D stop= new
-//         * Ellipse2D.Double(100, 234, 30, 30); g2.setColor(color.RED.darker());
-//         * g2.fill(start); g2.setColor(color.GREEN.darker()); g2.fill(stop);
-//         * 
-//         * Ellipse2D surr1= new Ellipse2D.Double(100, 34, 30, 30); Ellipse2D surr2= new
-//         * Ellipse2D.Double(100, 234, 30, 30);
-//         * 
-//         * g2.setColor(color.BLACK.brighter());
-//         * 
-//         * 
-//         * g2.draw(surr1); g2.draw(surr2);
-//         */
-//
-//    }
 
     /** initializes ToolPanel to default values.**/
     public ToolPanel() {
@@ -82,7 +58,7 @@ public class ToolPanel extends JPanel {
         blackTextField.setHorizontalAlignment(SwingConstants.CENTER);
 
         blackTextField.setSize(60, 25);
-        blackTextField.setLocation(15, 25);
+        blackTextField.setLocation(15, 33);
 
         blackTextField.setEnabled(false);
         blackTextField.setBackground(Color.WHITE);
@@ -103,12 +79,12 @@ public class ToolPanel extends JPanel {
         
         //default
         imageLabelBlack.setPreferredSize(new Dimension(32, 32));
-        imageLabelBlack.setBounds(96, 18, 32, 32);
+        imageLabelBlack.setBounds(96, 26, 32, 32);
         imageLabelBlack.setEnabled(false);
         add(imageLabelBlack);
         
         checkLabelBlack.setPreferredSize(new Dimension(32, 32));
-        checkLabelBlack.setBounds(140, 18, 32, 32);
+        checkLabelBlack.setBounds(140, 26, 32, 32);
         checkLabelBlack.setEnabled(false);
         add(checkLabelBlack);
         

@@ -406,7 +406,7 @@ public class Preloader extends JFrame {
         
     }                                          
     
-    private boolean readyToPlay() {
+    public boolean readyToPlay() {
         if((validPort && validIp) || rdbtnLocal.isSelected() && validName(nameField.getText())) {
             playButton.setEnabled(true);   // Make "ready" button click-able
             return true;

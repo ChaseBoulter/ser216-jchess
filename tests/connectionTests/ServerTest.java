@@ -37,7 +37,6 @@ public class ServerTest {
         
         assertTrue(preloader.validateIpAddress("70.177.168.69"));
         preloader.setIpAddress("70.177.168.69");
-        System.out.println(preloader.getIpAddress());
         assertTrue(preloader.getIpAddress().equals("70.177.168.69"));
     }
     

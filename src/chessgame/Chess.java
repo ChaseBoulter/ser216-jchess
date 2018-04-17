@@ -8,9 +8,12 @@ import mainframe.chessframe.MainFrame;
 public class Chess {
     public static void main(String[] args) {
         Preloader preload = Preloader.getInstance();
+        if(preload == null) {
+            return;
+        }
+        
         while(!preload.endLoading()) {
           //intentionally left empty
         }
-        //new MainFrame();
     }
 }
