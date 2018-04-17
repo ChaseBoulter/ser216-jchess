@@ -321,6 +321,8 @@ public class Preloader extends JFrame {
         textPort.setEnabled(false);
         rdbtnServer.setEnabled(false);
         rdbtnClient.setEnabled(false);
+        lblIpAddress.setEnabled(false);
+        lblPort.setEnabled(false);
         
         rdbtnLocal.addChangeListener(new ChangeListener() {
 
@@ -333,6 +335,8 @@ public class Preloader extends JFrame {
               textPort.setEditable(false);
               txtIp.setEnabled(false);
               textPort.setEnabled(false);
+              lblIpAddress.setEnabled(false);
+              lblPort.setEnabled(false);
                 
                 
             }
@@ -349,6 +353,8 @@ public class Preloader extends JFrame {
               textPort.setEditable(true);
               txtIp.setEnabled(true);
               textPort.setEnabled(true);
+              lblIpAddress.setEnabled(true);
+              lblPort.setEnabled(true);
                 
                 
             }

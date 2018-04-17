@@ -1,7 +1,5 @@
 package chessgame;
 
-import mainframe.chessframe.MainFrame;
-
 /**
  * entry point for Chess.
  */

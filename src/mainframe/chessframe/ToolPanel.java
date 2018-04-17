@@ -32,6 +32,7 @@ public class ToolPanel extends JPanel {
     //private ThreadTimer timer1;
     //private ThreadTimer timer2;
     private ImageIcon myTurn;
+    private ImageIcon myCheck;
     private String fs;
     private JLabel imageLabelWhite;
     private JLabel checkLabelWhite;
@@ -47,12 +48,14 @@ public class ToolPanel extends JPanel {
         
         setSize(310, 340);
         fs = System.getProperty("file.separator");
-        myTurn = new ImageIcon("src" + fs + "Icons" + fs
-                + "turn.png");
+        myTurn = new ImageIcon("src" + fs + "Icons" + fs + "other" + fs
+                + "Turn.png");
+        myCheck = new ImageIcon("src" + fs + "Icons" + fs + "other" + fs
+                + "CheckMate.png");
         imageLabelWhite = new JLabel(myTurn);
         imageLabelBlack = new JLabel(myTurn);
-        checkLabelWhite = new JLabel(myTurn); //TODO: change to check image
-        checkLabelBlack = new JLabel(myTurn);
+        checkLabelWhite = new JLabel(myCheck);
+        checkLabelBlack = new JLabel(myCheck);
         
         historyList.setBackground(Color.WHITE);
         blackTextField.setHorizontalAlignment(SwingConstants.CENTER);

@@ -125,7 +125,9 @@ public class MainPanel extends JPanel {
                     JOptionPane.showMessageDialog(null, "Server Error",
                             "Error", JOptionPane.ERROR_MESSAGE, null);
                 }
+                //startServer.removeAll();
                 startServer.setText("Waiting...");
+                startServer.setEnabled(false);
 
             }
 
