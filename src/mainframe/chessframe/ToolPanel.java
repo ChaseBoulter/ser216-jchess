@@ -38,32 +38,38 @@ public class ToolPanel extends JPanel {
     private JLabel imageLabelBlack;
     private JLabel checkLabelBlack;
     
-    /** Creates a new instance of ToolPanel. */
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-
-        // Graphics2D g2 = (Graphics2D)g;
-
-        // draw a rectangle
-
-        /*
-         * Ellipse2D start= new Ellipse2D.Double(100, 34, 30, 30); Ellipse2D stop= new
-         * Ellipse2D.Double(100, 234, 30, 30); g2.setColor(color.RED.darker());
-         * g2.fill(start); g2.setColor(color.GREEN.darker()); g2.fill(stop);
-         * 
-         * Ellipse2D surr1= new Ellipse2D.Double(100, 34, 30, 30); Ellipse2D surr2= new
-         * Ellipse2D.Double(100, 234, 30, 30);
-         * 
-         * g2.setColor(color.BLACK.brighter());
-         * 
-         * 
-         * g2.draw(surr1); g2.draw(surr2);
-         */
-
-    }
+//    /** Creates a new instance of ToolPanel. */
+//    public void paintComponent(Graphics g) {
+//        super.paintComponent(g);
+//
+//        // Graphics2D g2 = (Graphics2D)g;
+//
+//        // draw a rectangle
+//
+//        /*
+//         * Ellipse2D start= new Ellipse2D.Double(100, 34, 30, 30); Ellipse2D stop= new
+//         * Ellipse2D.Double(100, 234, 30, 30); g2.setColor(color.RED.darker());
+//         * g2.fill(start); g2.setColor(color.GREEN.darker()); g2.fill(stop);
+//         * 
+//         * Ellipse2D surr1= new Ellipse2D.Double(100, 34, 30, 30); Ellipse2D surr2= new
+//         * Ellipse2D.Double(100, 234, 30, 30);
+//         * 
+//         * g2.setColor(color.BLACK.brighter());
+//         * 
+//         * 
+//         * g2.draw(surr1); g2.draw(surr2);
+//         */
+//
+//    }
 
     /** initializes ToolPanel to default values.**/
     public ToolPanel() {
+        setPreferredSize(new Dimension(310, 340));
+        setMinimumSize(new Dimension(310, 340));
+        setLocation(595, 0);
+        setLayout(null);
+        
+        setSize(310, 340);
         fs = System.getProperty("file.separator");
         myTurn = new ImageIcon("src" + fs + "Icons" + fs
                 + "turn.png");
@@ -72,15 +78,11 @@ public class ToolPanel extends JPanel {
         checkLabelWhite = new JLabel(myTurn); //TODO: change to check image
         checkLabelBlack = new JLabel(myTurn);
         
-        setMinimumSize(new Dimension(300, 244));
         historyList.setBackground(Color.WHITE);
-        setSize(300, 289);
-        setLocation(600, 0);
-        setLayout(null);
         blackTextField.setHorizontalAlignment(SwingConstants.CENTER);
 
         blackTextField.setSize(60, 25);
-        blackTextField.setLocation(20, 25);
+        blackTextField.setLocation(15, 25);
 
         blackTextField.setEnabled(false);
         blackTextField.setBackground(Color.WHITE);
@@ -89,7 +91,7 @@ public class ToolPanel extends JPanel {
         whiteTextField.setForeground(Color.WHITE);
         whiteTextField.setHorizontalAlignment(SwingConstants.CENTER);
         whiteTextField.setSize(60, 25);
-        whiteTextField.setLocation(20, 232);
+        whiteTextField.setLocation(15, 284);
 
         whiteTextField.setEnabled(false);
         whiteTextField.setBackground(Color.BLACK);
@@ -112,18 +114,18 @@ public class ToolPanel extends JPanel {
         
         //white goes first
         imageLabelWhite.setPreferredSize(new Dimension(32, 32));
-        imageLabelWhite.setBounds(96, 225, 32, 32);
+        imageLabelWhite.setBounds(96, 277, 32, 32);
         imageLabelWhite.setEnabled(true);
         add(imageLabelWhite);
         //imageLabelBlack.setBounds
         
         checkLabelWhite.setPreferredSize(new Dimension(32, 32));
-        checkLabelWhite.setBounds(140, 225, 32, 32);
+        checkLabelWhite.setBounds(140, 277, 32, 32);
         checkLabelWhite.setEnabled(false);
         add(checkLabelWhite);
 
-        historyScroll.setSize(274, 150);
-        historyScroll.setLocation(20, 70);
+        historyScroll.setSize(278, 202);
+        historyScroll.setLocation(16, 70);
         add(historyScroll);
 
     }
@@ -136,6 +138,10 @@ public class ToolPanel extends JPanel {
         historyList.addElemen_tolist(newItem);
     }
     
+    /**
+     * displays whose turn it is.
+     * @param player
+     */
     public void switchImageLocation(int player) {
         if(player == 1) {
             imageLabelWhite.setEnabled(true);
@@ -149,13 +155,23 @@ public class ToolPanel extends JPanel {
         
     }
     
+    /**
+     * displays who is in check
+     * @param player
+     */
     public void inCheck(int player) {
         if(player == 1) {
             checkLabelWhite.setEnabled(true);
             checkLabelBlack.setEnabled(false);
+            
+            imageLabelWhite.setEnabled(true);
+            imageLabelBlack.setEnabled(false);
         } else {
             checkLabelWhite.setEnabled(false);
             checkLabelBlack.setEnabled(true);
+            
+            imageLabelWhite.setEnabled(false);
+            imageLabelBlack.setEnabled(true);
         }
     }
 
@@ -218,13 +234,13 @@ class myHistoryList extends JList {
     private DefaultListModel listModel = new DefaultListModel();
 }
 
-class myStatusFileds extends JTextField {
+class myStatusFields extends JTextField {
     /**
      * 
      */
     private static final long serialVersionUID = 1L;
 
-    myStatusFileds() {
+    myStatusFields() {
         this.setEnabled(false);
     }
 }
