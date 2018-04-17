@@ -33,12 +33,9 @@ public class Preloader extends JFrame {
     private volatile boolean exitWindow = false;                 // Tests "ready" button to close window
     private boolean nameGiven = false;                  // Tests if name field has input 
     private String firstName = "";                      // Store user (name) input      
-    private String lastName = "";                       // Store random last name                 
-    private JColorChooser jColorChooser1;
     private JTextField nameField;
     private JLabel nameLabel;
     private JButton playButton;
-    private ButtonGroup screenSizeGroup;
     private JLabel titleLabel;
     private JTextField txtIp;
     private JTextField textPort;
@@ -55,94 +52,21 @@ public class Preloader extends JFrame {
     private static final Pattern PATTERN = Pattern.compile(
             "^(([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.){3}([01]?\\d\\d?|2[0-4]\\d|25[0-5])$");
     
-    
-    public String getIpAddress() {
-        return txtIp.getText();
-    }
 
-    public String getPortNumber() {
-        return textPort.getText();
-    }
-    
-    /**
-     * assumes validateIpAddress has been used already.
-     * @param address, valid ip address
-     */
-    public void setIpAddress(String address) {
-        txtIp.setText(address);  
-    }
-    
-    /**
-     * used from https://stackoverflow.com/questions/5667371/validate-ipv4-address-in-java
-     * to validate an IP address.
-     * @param ip
-     * @return
-     */
-    public static boolean validateIpAddress(final String ip) {
-        return PATTERN.matcher(ip).matches();
-    }
-    
-
-    /**
-     * assumed that validatePortNumber is used with it.
-     * @param port valid port number.
-     */
-    public void setPortNumber(String port) {
-        textPort.setText(port);
-        
-    }
-    
-    /**
-     * validates port number from text field
-     * @param port to test against
-     * @return
-     */
-    public boolean validatePortNumber(String port) {
-        int validPort;
-        try {
-            validPort = Integer.parseInt(port);
-            //reserved ports and max ports - 1
-            if(validPort > 1024 && validPort < 65534) {
-                return true;
-            }
-        }
-        catch(NumberFormatException ex) {
-            //exit out of program, warn user
-            return false;
-            //JOptionPane.showMessageDialog(null, "Invalid port number. Try again!", "Invalid Port Number", JOptionPane.WARNING_MESSAGE);
-        }
-        
-        return false;
-    }
-    
-    private static class SingletonHolder { 
-        public static final Preloader instance = new Preloader();
-    }
-    
-    public static Preloader getInstance() {
-        return SingletonHolder.instance;
-    }
-
-    //List<String> lastNames = createLastNameList();              // Create "random last name" array list
   
     public Preloader() {
-        setMinimumSize(new Dimension(400, 400));
+        setMinimumSize(new Dimension(400, 350));
         initComponents();                               // Initalize alignements and fields
         playButton.setEnabled(false);                   // Disable "ready" button
         this.setLocationRelativeTo(null);               // Center Setup Frame on Screen
         setResizable(false);
         setVisible(true);
        
-        //this.setPreferredSize(800, 700);
-        //this.getContentPane().setBackground(BLACK);   // Set window background to black
-        //nameField.setCaretColor(WHITE);
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
-        screenSizeGroup = new ButtonGroup();
-        jColorChooser1 = new JColorChooser();
         titleLabel = new JLabel();
         nameLabel = new JLabel();
         nameField = new JTextField();
@@ -199,36 +123,7 @@ public class Preloader extends JFrame {
                 nameFieldFocusGained(evt);
             }
             public void focusLost(FocusEvent evt)  {
-                switch (nameField.getText()) {
-                case "":                                            // If input field is empty
-                case "Player Name":                                 // or if input field has defualt text
-                    //timeStamp();
-                    //System.out.println("No name set");                      // Status Print: User's name set
-                    nameField.setText("Player Name");                       // Set input field to default text
-                    nameField.setForeground(new Color(204, 204, 204));      // Set color of default text
-                    nameField.setFocusable(false);                          // Lose focus of input field
-                    break;
-                case "Bansal": case "Chase":
-                    titleLabel.setText("You Win!");                         // "Ajay" was input into the "name input" field
-                    break;
-                default:
-                    firstName = nameField.getText();                        // Save field text to "first name"
-                    //timeStamp();
-                    System.out.println("Player name set: " + firstName);    // Status Print: User's name set
-                    nameField.setVisible(false);                            // Hide the "typing field"
-                    //lastName = getLastName(lastNames);                      // Save "last name"
-                    nameLabel.setHorizontalAlignment(JTextField.CENTER);    // Center "name label" text
-                    nameLabel.setFont(new Font("Matura MT Script Capitals", 0, 24));   // Change "name label" font and size
-                    nameLabel.setText("Sir " + firstName + " " + lastName); // Set "name label" text to "first" and "last name" 
-                    
-                    //if online, check for valid ip, else check if local
-                    if((validPort && validIp) || rdbtnLocal.isSelected()) {
-                        playButton.setEnabled(true);                            // Make "ready" button click-able
-                    }
-                    
-                    nameGiven = true;                                       // Name was give, "ready!" button is active
-                    break;
-                }
+                validName(nameField.getText());
             }
         });
         nameField.addMouseListener(new MouseAdapter() {
@@ -272,7 +167,7 @@ public class Preloader extends JFrame {
         
         lblIpAddress = new JLabel("IP Address");
         
-        lblPort = new JLabel("port");
+        lblPort = new JLabel("Port");
         
         textPort = new JTextField();
         textPort.setText("9000");
@@ -313,13 +208,13 @@ public class Preloader extends JFrame {
                                         .addComponent(txtIp, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
                             .addGap(54))))
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(168)
-                    .addComponent(playButton)
-                    .addContainerGap(222, Short.MAX_VALUE))
-                .addGroup(layout.createSequentialGroup()
                     .addGap(128)
                     .addComponent(titleLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGap(164))
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(169)
+                    .addComponent(playButton)
+                    .addContainerGap(221, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(Alignment.LEADING)
@@ -350,9 +245,9 @@ public class Preloader extends JFrame {
                             .addGroup(layout.createParallelGroup(Alignment.BASELINE)
                                 .addComponent(lblPort)
                                 .addComponent(textPort, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
-                    .addPreferredGap(ComponentPlacement.RELATED, 319, Short.MAX_VALUE)
+                    .addGap(31)
                     .addComponent(playButton)
-                    .addGap(30))
+                    .addContainerGap(82, Short.MAX_VALUE))
         );
         getContentPane().setLayout(layout);
         pack();
@@ -375,16 +270,13 @@ public class Preloader extends JFrame {
                     lblIpAddress.setForeground(Color.RED);
                     playButton.setEnabled(false);
                     validIp = false;
-                    //System.out.println(txtIp.getText());
                 }
                 else {
                     lblIpAddress.setForeground(Color.BLACK);
                     validIp = true;
                     
-                    //TODO: add logic somewhere better
-                    if((validPort && validIp) || rdbtnLocal.isSelected()) {
-                        playButton.setEnabled(true);                            // Make "ready" button click-able
-                    }
+                    //initiates whether user input is correct
+                    readyToPlay();
                 }
                 
             }
@@ -414,10 +306,8 @@ public class Preloader extends JFrame {
                     lblPort.setForeground(Color.BLACK);
                     validPort = true;
                     
-                    //TODO: add logic somewhere better
-                    if((validPort && validIp) || rdbtnLocal.isSelected()) {
-                        playButton.setEnabled(true);                            // Make "ready" button click-able
-                    }
+                    //initiates whether user input is correct.
+                    readyToPlay();
                 }
                 
             }
@@ -426,6 +316,10 @@ public class Preloader extends JFrame {
         
         //RADIO BUTTON LOGIC
         rdbtnLocal.setSelected(true); //sets default as selected
+        txtIp.setEnabled(false);
+        textPort.setEnabled(false);
+        rdbtnServer.setEnabled(false);
+        rdbtnClient.setEnabled(false);
         
         rdbtnLocal.addChangeListener(new ChangeListener() {
 
@@ -460,54 +354,34 @@ public class Preloader extends JFrame {
         });
     }// </editor-fold>                        
 
-    // Method: Key "enter" is Pressed While in Input (Name) Field
-    private void nameFieldActionPerformed(ActionEvent evt) {                                          
-        switch (nameField.getText()) {
-            case "":                                            // If input field is empty
-            case "Player Name":                                 // or if input field has defualt text
-                //timeStamp();
-                //System.out.println("No name set");                      // Status Print: User's name set
-                nameField.setText("Player Name");                       // Set input field to default text
-                nameField.setForeground(new Color(204, 204, 204));      // Set color of default text
-                nameField.setFocusable(false);                          // Lose focus of input field
-                break;
-            case "Bansal": case "Chase":
-                titleLabel.setText("You Win!");                         // "Ajay" was input into the "name input" field
-                break;
-            default:
-                firstName = nameField.getText();                        // Save field text to "first name"
-                //timeStamp();
-                System.out.println("Player name set: " + firstName);    // Status Print: User's name set
-                nameField.setVisible(false);                            // Hide the "typing field"
-                //lastName = getLastName(lastNames);                      // Save "last name"
-                nameLabel.setHorizontalAlignment(JTextField.CENTER);    // Center "name label" text
-                nameLabel.setFont(new Font("Matura MT Script Capitals", 0, 24));   // Change "name label" font and size
-                nameLabel.setText("Sir " + firstName + " " + lastName); // Set "name label" text to "first" and "last name" 
-                
-                //if online, check for valid ip, else check if local
-                if((validPort && validIp) || rdbtnLocal.isSelected()) {
-                    playButton.setEnabled(true);                            // Make "ready" button click-able
-                }
-                
-                nameGiven = true;                                       // Name was give, "ready!" button is active
-                break;                                                  
-        }
+    /**
+     * enter button clicked on JTextField for name.
+     * @param evt
+     */
+    private void nameFieldActionPerformed(ActionEvent evt) {     
+        firstName = nameField.getText();
+        validName(nameField.getText());
     }                                         
 
     
-    // Method: Mouse Clicked on Input (Name) Field
+    /**
+     * mouse clicked on JTextField for name.
+     * @param evt
+     */
     private void nameFieldMouseClicked(MouseEvent evt) {                                       
         nameField.setFocusable(true);                       // Focus on "name" input field
         
         if (nameField.getText().equals("Player Name")){     // Clear only if initial text
             nameField.setText("");                          // Erase inital text
-            //timeStamp();
-            System.out.println("Changing player name");     // Status print: Changing player name
         }
     }                                      
 
     
-    // Method: "Ready!" Button was Clicked
+    /**
+     * The "Ready!" button was clicked.
+     * Checks for local or online gameplay depending on radio buttons.
+     * @param evt
+     */
     private void playButtonActionPerformed(ActionEvent evt) {                                           
         exitWindow = true;              // Exit preloader loop
         this.dispose();                      // Exit preloader window
@@ -531,6 +405,13 @@ public class Preloader extends JFrame {
         
     }                                          
     
+    private boolean readyToPlay() {
+        if((validPort && validIp) || rdbtnLocal.isSelected() && validName(nameField.getText())) {
+            playButton.setEnabled(true);   // Make "ready" button click-able
+            return true;
+        }
+        return false;
+    }
     
     // Method: 
     private void nameFieldFocusGained(FocusEvent evt) {                                      
@@ -539,8 +420,11 @@ public class Preloader extends JFrame {
 
     
      // Method: Mouse is Hoverirng over Text Label
-    private void nameLabelMouseEntered(MouseEvent evt) {                                       
-        if (nameGiven) {nameLabel.setForeground(new Color(102, 102, 102));} // Text color changes to gray with mouse hovering over
+    private void nameLabelMouseEntered(MouseEvent evt) {   
+        // Text color changes to gray with mouse hovering over
+        if (nameGiven) {
+            nameLabel.setForeground(new Color(102, 102, 102));
+        } 
     }                                      
 
     
@@ -552,8 +436,6 @@ public class Preloader extends JFrame {
     
      // Method: 
     private void nameLabelMouseClicked(MouseEvent evt) {                                       
-        //timeStamp();
-        System.out.println("Reseting player name");        // Status print: Changing player
         playButton.setEnabled(false);                                   // Disable "ready!" button
 
         nameField.setVisible(true);                                     // Make visible the "name input field" 
@@ -561,7 +443,7 @@ public class Preloader extends JFrame {
         
         nameLabel.setText("Your Name:");                                // Set input text field
         nameLabel.setHorizontalAlignment(JTextField.RIGHT);             // right justification 
-        nameLabel.setFont(new Font("Lucida Grande", 0, 13));   // Set "text labels" font and size 
+        nameLabel.setFont(new Font("Lucida Grande", 0, 13));            // Set "text labels" font and size 
         
         nameGiven = false;
     }                                      
@@ -578,5 +460,130 @@ public class Preloader extends JFrame {
     // Method: Set Player Full Name
     public String getName() { // Gives full name of user
         return firstName;
-    } 
+    }
+    
+    /**
+    * gets IpAddress from txtIp JTextField.
+    * @return
+    */
+   public String getIpAddress() {
+       return txtIp.getText();
+   }
+
+   /**
+    * gets port number from textPort JTextField.
+    * @return
+    */
+   public String getPortNumber() {
+       return textPort.getText();
+   }
+   
+   /**
+    * assumes validateIpAddress has been used already.
+    * @param address, valid ip address
+    */
+   public void setIpAddress(String address) {
+       txtIp.setText(address);  
+   }
+   
+   /**
+    * used from https://stackoverflow.com/questions/5667371/validate-ipv4-address-in-java
+    * to validate an IP address.
+    * @param ip
+    * @return
+    */
+   public static boolean validateIpAddress(final String ip) {
+       return PATTERN.matcher(ip).matches();
+   }
+   
+
+   /**
+    * assumed that validatePortNumber is used with it.
+    * @param port valid port number.
+    */
+   public void setPortNumber(String port) {
+       textPort.setText(port);
+       
+   }
+   
+   /**
+    * validates port number from text field
+    * @param port to test against
+    * @return
+    */
+   public boolean validatePortNumber(String port) {
+       int validPort;
+       try {
+           validPort = Integer.parseInt(port);
+           //reserved ports and max ports - 1
+           if(validPort > 1024 && validPort < 65534) {
+               return true;
+           }
+       }
+       catch(NumberFormatException ex) {
+           //exit out of program, warn user
+           return false;
+           //JOptionPane.showMessageDialog(null, "Invalid port number. Try again!", "Invalid Port Number", JOptionPane.WARNING_MESSAGE);
+       }
+       
+       return false;
+   }
+   
+   
+   /**
+    * info for singleton
+    * @author Josh
+    *
+    */
+   private static class SingletonHolder { 
+       public static final Preloader instance = new Preloader();
+   }
+   
+   /**
+    * info to get singleton instance
+    * @return
+    */
+   public static Preloader getInstance() {
+       return SingletonHolder.instance;
+   }
+   
+   /**
+    * decides if the user name is valid.
+    * Must be less than 10 characters.
+    * @param text
+    * @return
+    */
+   public boolean validName(String text) {
+       
+    if(text.equals("Chase") || text.equals("Bansal")) {
+           firstName = text;
+           titleLabel.setText("You win!");
+           nameLabel.setHorizontalAlignment(JTextField.CENTER);    // Center "name label" text
+           nameLabel.setFont(new Font("Matura MT Script Capitals", 0, 24));   // Change "name label" font and size
+           nameLabel.setText("Sir " + firstName);
+           playButton.setEnabled(false);
+           nameField.setVisible(false);
+           nameGiven = true;
+           
+           return false;
+       } else if(!text.equals("") && !text.equalsIgnoreCase("Player Name") && text.length() < 10) {
+           firstName = text;
+           nameField.setVisible(false);                            // Hide the "typing field"
+           //lastName = getLastName(lastNames);                      // Save "last name"
+           nameLabel.setHorizontalAlignment(JTextField.CENTER);    // Center "name label" text
+           nameLabel.setFont(new Font("Matura MT Script Capitals", 0, 24));   // Change "name label" font and size
+           nameLabel.setText("Sir " + firstName);
+           nameGiven = true;
+           //check if ready
+           readyToPlay();
+           return true;
+       }
+       
+       //else initialize to original state
+       nameField.setText("Player Name");                       // Set input field to default text
+       nameField.setForeground(new Color(204, 204, 204));      // Set color of default text
+       nameField.setFocusable(false);
+       playButton.setEnabled(false);
+       return false;
+   }
 }
