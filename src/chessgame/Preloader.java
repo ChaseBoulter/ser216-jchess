@@ -2,6 +2,7 @@ package chessgame;
 
 import java.util.*;
 import java.util.List;
+import java.util.regex.Pattern;
 //import java.awt.Color;
 import java.awt.*;
 import java.awt.event.*;
@@ -27,6 +28,8 @@ import mainframe.chessframe.MainFrame;
 public class Preloader extends JFrame {
 
     // Initalize Values
+    private boolean validIp = true;
+    private boolean validPort = true;
     private volatile boolean exitWindow = false;                 // Tests "ready" button to close window
     private boolean nameGiven = false;                  // Tests if name field has input 
     private String firstName = "";                      // Store user (name) input      
@@ -46,7 +49,11 @@ public class Preloader extends JFrame {
     private JRadioButton rdbtnOnline;
     private JRadioButton rdbtnClient;
     private JRadioButton rdbtnServer;
+    private JLabel lblIpAddress;
+    private JLabel lblPort;
     private MainFrame myNewFrame; //for online and local
+    private static final Pattern PATTERN = Pattern.compile(
+            "^(([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.){3}([01]?\\d\\d?|2[0-4]\\d|25[0-5])$");
     
     
     public String getIpAddress() {
@@ -55,6 +62,57 @@ public class Preloader extends JFrame {
 
     public String getPortNumber() {
         return textPort.getText();
+    }
+    
+    /**
+     * assumes validateIpAddress has been used already.
+     * @param address, valid ip address
+     */
+    public void setIpAddress(String address) {
+        txtIp.setText(address);  
+    }
+    
+    /**
+     * used from https://stackoverflow.com/questions/5667371/validate-ipv4-address-in-java
+     * to validate an IP address.
+     * @param ip
+     * @return
+     */
+    public static boolean validateIpAddress(final String ip) {
+        return PATTERN.matcher(ip).matches();
+    }
+    
+
+    /**
+     * assumed that validatePortNumber is used with it.
+     * @param port valid port number.
+     */
+    public void setPortNumber(String port) {
+        textPort.setText(port);
+        
+    }
+    
+    /**
+     * validates port number from text field
+     * @param port to test against
+     * @return
+     */
+    public boolean validatePortNumber(String port) {
+        int validPort;
+        try {
+            validPort = Integer.parseInt(port);
+            //reserved ports and max ports - 1
+            if(validPort > 1024 && validPort < 65534) {
+                return true;
+            }
+        }
+        catch(NumberFormatException ex) {
+            //exit out of program, warn user
+            return false;
+            //JOptionPane.showMessageDialog(null, "Invalid port number. Try again!", "Invalid Port Number", JOptionPane.WARNING_MESSAGE);
+        }
+        
+        return false;
     }
     
     private static class SingletonHolder { 
@@ -140,6 +198,38 @@ public class Preloader extends JFrame {
             public void focusGained(FocusEvent evt) {
                 nameFieldFocusGained(evt);
             }
+            public void focusLost(FocusEvent evt)  {
+                switch (nameField.getText()) {
+                case "":                                            // If input field is empty
+                case "Player Name":                                 // or if input field has defualt text
+                    //timeStamp();
+                    //System.out.println("No name set");                      // Status Print: User's name set
+                    nameField.setText("Player Name");                       // Set input field to default text
+                    nameField.setForeground(new Color(204, 204, 204));      // Set color of default text
+                    nameField.setFocusable(false);                          // Lose focus of input field
+                    break;
+                case "Bansal": case "Chase":
+                    titleLabel.setText("You Win!");                         // "Ajay" was input into the "name input" field
+                    break;
+                default:
+                    firstName = nameField.getText();                        // Save field text to "first name"
+                    //timeStamp();
+                    System.out.println("Player name set: " + firstName);    // Status Print: User's name set
+                    nameField.setVisible(false);                            // Hide the "typing field"
+                    //lastName = getLastName(lastNames);                      // Save "last name"
+                    nameLabel.setHorizontalAlignment(JTextField.CENTER);    // Center "name label" text
+                    nameLabel.setFont(new Font("Matura MT Script Capitals", 0, 24));   // Change "name label" font and size
+                    nameLabel.setText("Sir " + firstName + " " + lastName); // Set "name label" text to "first" and "last name" 
+                    
+                    //if online, check for valid ip, else check if local
+                    if((validPort && validIp) || rdbtnLocal.isSelected()) {
+                        playButton.setEnabled(true);                            // Make "ready" button click-able
+                    }
+                    
+                    nameGiven = true;                                       // Name was give, "ready!" button is active
+                    break;
+                }
+            }
         });
         nameField.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
@@ -180,9 +270,9 @@ public class Preloader extends JFrame {
         txtIp.setText("127.0.0.1");
         txtIp.setColumns(10);
         
-        JLabel lblIpAddress = new JLabel("IP Address");
+        lblIpAddress = new JLabel("IP Address");
         
-        JLabel lblPort = new JLabel("port");
+        lblPort = new JLabel("port");
         
         textPort = new JTextField();
         textPort.setText("9000");
@@ -191,10 +281,6 @@ public class Preloader extends JFrame {
         GroupLayout layout = new GroupLayout(getContentPane());
         layout.setHorizontalGroup(
             layout.createParallelGroup(Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(121)
-                    .addComponent(titleLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGap(171))
                 .addGroup(layout.createSequentialGroup()
                     .addGap(69)
                     .addComponent(rdbtnLocal)
@@ -230,14 +316,19 @@ public class Preloader extends JFrame {
                     .addGap(168)
                     .addComponent(playButton)
                     .addContainerGap(222, Short.MAX_VALUE))
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(128)
+                    .addComponent(titleLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(164))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(titleLabel)
+                    .addPreferredGap(ComponentPlacement.RELATED)
                     .addGroup(layout.createParallelGroup(Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(titleLabel)
                             .addGap(18)
                             .addGroup(layout.createParallelGroup(Alignment.BASELINE)
                                 .addComponent(nameLabel, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
@@ -255,17 +346,83 @@ public class Preloader extends JFrame {
                                 .addComponent(txtIp, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addComponent(lblIpAddress)))
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(210)
+                            .addGap(146)
                             .addGroup(layout.createParallelGroup(Alignment.BASELINE)
                                 .addComponent(lblPort)
                                 .addComponent(textPort, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
-                    .addPreferredGap(ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                    .addPreferredGap(ComponentPlacement.RELATED, 319, Short.MAX_VALUE)
                     .addComponent(playButton)
                     .addGap(30))
         );
         getContentPane().setLayout(layout);
         pack();
         
+        txtIp.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {  
+                //intentionally left empty
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                //intentionally left empty
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                String text = txtIp.getText();
+                if(!validateIpAddress(text)) {
+                    lblIpAddress.setForeground(Color.RED);
+                    playButton.setEnabled(false);
+                    validIp = false;
+                    //System.out.println(txtIp.getText());
+                }
+                else {
+                    lblIpAddress.setForeground(Color.BLACK);
+                    validIp = true;
+                    
+                    //TODO: add logic somewhere better
+                    if((validPort && validIp) || rdbtnLocal.isSelected()) {
+                        playButton.setEnabled(true);                            // Make "ready" button click-able
+                    }
+                }
+                
+            }
+            
+        });
+        
+        textPort.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {  
+                //intentionally left empty
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                //intentionally left empty
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                String text = textPort.getText();
+                if(!validatePortNumber(text)) {
+                    lblPort.setForeground(Color.RED);
+                    playButton.setEnabled(false);
+                    validPort = false;
+                }
+                else {
+                    lblPort.setForeground(Color.BLACK);
+                    validPort = true;
+                    
+                    //TODO: add logic somewhere better
+                    if((validPort && validIp) || rdbtnLocal.isSelected()) {
+                        playButton.setEnabled(true);                            // Make "ready" button click-able
+                    }
+                }
+                
+            }
+            
+        });
         
         //RADIO BUTTON LOGIC
         rdbtnLocal.setSelected(true); //sets default as selected
@@ -326,7 +483,12 @@ public class Preloader extends JFrame {
                 nameLabel.setHorizontalAlignment(JTextField.CENTER);    // Center "name label" text
                 nameLabel.setFont(new Font("Matura MT Script Capitals", 0, 24));   // Change "name label" font and size
                 nameLabel.setText("Sir " + firstName + " " + lastName); // Set "name label" text to "first" and "last name" 
-                playButton.setEnabled(true);                            // Make "ready" button click-able
+                
+                //if online, check for valid ip, else check if local
+                if((validPort && validIp) || rdbtnLocal.isSelected()) {
+                    playButton.setEnabled(true);                            // Make "ready" button click-able
+                }
+                
                 nameGiven = true;                                       // Name was give, "ready!" button is active
                 break;                                                  
         }

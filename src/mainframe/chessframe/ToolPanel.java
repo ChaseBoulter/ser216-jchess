@@ -126,12 +126,12 @@ public class ToolPanel extends JPanel {
         
         //default
         imageLabelBlack.setPreferredSize(new Dimension(32, 32));
-        imageLabelBlack.setBounds(168, 25, 32, 32);
+        imageLabelBlack.setBounds(164, 18, 32, 32);
         imageLabelBlack.setEnabled(false);
         add(imageLabelBlack);
         
         checkLabelBlack.setPreferredSize(new Dimension(32, 32));
-        checkLabelBlack.setBounds(212, 25, 32, 32);
+        checkLabelBlack.setBounds(208, 18, 32, 32);
         checkLabelBlack.setEnabled(false);
         add(checkLabelBlack);
         
