@@ -20,7 +20,7 @@ import chessgame.Preloader;
 //import javax.swing.border.BevelBorder;
 import mainframe.chessframe.ChatPanel;
 import mainframe.chessmenubar.ChessMainMenuBar;
-import mainframe.chessframe.StatusPanel;
+//import mainframe.chessframe.StatusPanel;
 
 public class MainFrame extends JFrame {
 
@@ -32,7 +32,7 @@ public class MainFrame extends JFrame {
     /** creates Chess Game. **/
     public MainFrame() {      
         setTitle("JChess!");
-        setSize(900, 700);
+        setSize(900, 665);
         setResizable(false);
         
         //where window should appear
@@ -40,7 +40,7 @@ public class MainFrame extends JFrame {
 
         contentPane.setLayout(null);
         contentPane.add(myChatPanel);
-        contentPane.add(myStatusPanel);
+        //contentPane.add(myStatusPanel);
         contentPane.add(myToolPanel);
 
         myChessBar = new ChessMainMenuBar(this);
@@ -79,9 +79,9 @@ public class MainFrame extends JFrame {
 
     private final ChessMainMenuBar myChessBar;
     public final ToolPanel myToolPanel = new ToolPanel();
-    private final StatusPanel myStatusPanel = new StatusPanel();
+    //private final StatusPanel myStatusPanel = new StatusPanel();
 
-    private final MainPanel myMainPanel = new MainPanel(myToolPanel, myStatusPanel);
+    private final MainPanel myMainPanel = new MainPanel(myToolPanel);//, myStatusPanel);
     private final ChatPanel myChatPanel = new ChatPanel();
     private Container contentPane = getContentPane();
     

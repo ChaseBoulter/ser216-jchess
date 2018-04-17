@@ -37,7 +37,9 @@ public class ToolPanel extends JPanel {
     private ImageIcon myTurn;
     private String fs;
     private JLabel imageLabelWhite;
+    private JLabel checkLabelWhite;
     private JLabel imageLabelBlack;
+    private JLabel checkLabelBlack;
     
     /** Creates a new instance of ToolPanel. */
     public void paintComponent(Graphics g) {
@@ -70,6 +72,8 @@ public class ToolPanel extends JPanel {
                 + "turn.png");
         imageLabelWhite = new JLabel(myTurn);
         imageLabelBlack = new JLabel(myTurn);
+        checkLabelWhite = new JLabel(myTurn); //TODO: change to check image
+        checkLabelBlack = new JLabel(myTurn);
         
         setMinimumSize(new Dimension(300, 244));
         historyList.setBackground(Color.WHITE);
@@ -122,9 +126,14 @@ public class ToolPanel extends JPanel {
         
         //default
         imageLabelBlack.setPreferredSize(new Dimension(32, 32));
-        imageLabelBlack.setBounds(158, 18, 32, 32);
+        imageLabelBlack.setBounds(168, 25, 32, 32);
         imageLabelBlack.setEnabled(false);
         add(imageLabelBlack);
+        
+        checkLabelBlack.setPreferredSize(new Dimension(32, 32));
+        checkLabelBlack.setBounds(212, 25, 32, 32);
+        checkLabelBlack.setEnabled(false);
+        add(checkLabelBlack);
         
         //white goes first
         imageLabelWhite.setPreferredSize(new Dimension(32, 32));
@@ -133,6 +142,10 @@ public class ToolPanel extends JPanel {
         add(imageLabelWhite);
         //imageLabelBlack.setBounds
         
+        checkLabelWhite.setPreferredSize(new Dimension(32, 32));
+        checkLabelWhite.setBounds(208, 225, 32, 32);
+        checkLabelWhite.setEnabled(false);
+        add(checkLabelWhite);
 
         historyScroll.setSize(274, 150);
         historyScroll.setLocation(20, 70);
@@ -156,7 +169,19 @@ public class ToolPanel extends JPanel {
             imageLabelWhite.setEnabled(false);
             imageLabelBlack.setEnabled(true);
         }
+        checkLabelWhite.setEnabled(false);
+        checkLabelBlack.setEnabled(false);
         
+    }
+    
+    public void inCheck(int player) {
+        if(player == 1) {
+            checkLabelWhite.setEnabled(true);
+            checkLabelBlack.setEnabled(false);
+        } else {
+            checkLabelWhite.setEnabled(false);
+            checkLabelBlack.setEnabled(true);
+        }
     }
 
 //    public void change_to_Timer1() {
