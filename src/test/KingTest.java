@@ -1,6 +1,7 @@
 package test;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.logging.Logger;
@@ -57,7 +58,7 @@ public class KingTest {
     }
 
     /**
-     * Test can move.
+     * Test can move. 
      */
     @Test
     public void testCanMove() {
