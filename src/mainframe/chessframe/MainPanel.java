@@ -1,15 +1,15 @@
 
 package mainframe.chessframe;
 
-import players.*;
-
 import java.awt.Color;
-import java.awt.event.*;
-import java.awt.geom.Rectangle2D;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.awt.geom.Rectangle2D;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -20,53 +20,103 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
 
-import javax.swing.ImageIcon;
 //import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import pieces.Rook;
+import players.Player1;
+import players.Player2;
 
-import java.lang.String;
-//import javax.swing.JScrollPane;
-//import javax.swing.border.BevelBorder;
-//import javax.swing.border.TitledBorder;
-//import javax.net.*;
-
+/**
+ * The Class MainPanel.
+ */
 public class MainPanel extends JPanel {
 
-    /**
-     * 
-     */
+    /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
+    
+    /** The player 1. */
     private Player1 player1 = new Player1();
+    
+    /** The player 2. */
     private Player2 player2 = new Player2();
+    
+    /** The divide. */
     private final int divide = 600 / 8;
+    
+    /** The move. */
     private int move = 0;
+    
+    /** The rec. */
     private Rectangle2D rec;
+    
+    /** The players turn. */
     private short playersTurn = 1;
+    
+    /** The my tool. */
     public final ToolPanel myTool;
+    
+    /** The game over. */
     //private final StatusPanel myStatus;
     private boolean gameOver = false;
+    
+    /** The is server. */
     private boolean isServer = false;
+    
+    /** The is client. */
     private boolean isClient = false;
+    
+    /** The server sock. */
     private ServerSocket serverSock;
+    
+    /** The sock. */
     private Socket sock;
+    
+    /** The in. */
     private BufferedReader in;
+    
+    /** The out. */
     private PrintWriter out;
+    
+    /** The box. */
     private String box;
+    
+    /** The local. */
     private boolean local = true;
+    
+    /** The start server. */
     private JButton startServer;
+    
+    /** The start client. */
     private JButton startClient;
+    
+    /** The my IP address. */
     private String myIPAddress;
+    
+    /** The my port number. */
     private String myPortNumber;
+    
+    /** The game started. */
     private boolean gameStarted = true;
+    
+    /** The received from. */
     private ReceiveThread receivedFrom;
+    
+    /** The receive chat. */
     private ChatPanel receiveChat;
+    
+    /** The waiting label. */
     private final JLabel waitingLabel = new JLabel("Waiting...");
 
+    /**
+     * Start as server.
+     *
+     * @param myIp the my ip
+     * @param myPort the my port
+     * @param newChat the new chat
+     */
     public void startAsServer(String myIp, String myPort, ChatPanel newChat) {
 
         receivedFrom = new ReceiveThread();
@@ -80,59 +130,57 @@ public class MainPanel extends JPanel {
         startServer = new JButton(" Start server");
         startServer.setSize(150, 25);
         startServer.setLocation(200, 300);
-        startServer.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+        startServer.addActionListener(e -> {
 
-                try {
+            try {
 
-                    serverSock = new ServerSocket(Integer.parseInt(myPortNumber));
+                serverSock = new ServerSocket(Integer.parseInt(myPortNumber));
 
-                    Thread server = new Thread(new Runnable() {
-                        public synchronized void run() {
+                Thread server = new Thread(new Runnable() {
+                    @Override
+                    public synchronized void run() {
 
-                            try {
+                        try {
 
-                                sock = serverSock.accept();
+                            sock = serverSock.accept();
 
-                                receiveChat.listenToChat();
-                                
-                                in = new BufferedReader(new InputStreamReader(sock.getInputStream(), StandardCharsets.UTF_8));
-                                out = new PrintWriter(new OutputStreamWriter(
-                                        sock.getOutputStream(), StandardCharsets.UTF_8), true);
-                                
-                                startServer.setVisible(false);
-                                startServer = null;
-                                receivedFrom.start();
+                            receiveChat.listenToChat();
+                            
+                            in = new BufferedReader(new InputStreamReader(sock.getInputStream(), StandardCharsets.UTF_8));
+                            out = new PrintWriter(new OutputStreamWriter(
+                                    sock.getOutputStream(), StandardCharsets.UTF_8), true);
+                            
+                            startServer.setVisible(false);
+                            startServer = null;
+                            receivedFrom.start();
 
-                                gameStarted = true;
+                            gameStarted = true;
 
-                            } catch (IOException ex) {
-                                ex.printStackTrace();
-                            }
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
                         }
-                    });
+                    }
+                });
 
-                    server.start();
+                server.start();
 
-                    /*
-                     * in=new BufferedReader(new InputStreamReader(sock.getInputStream())); out=new
-                     * PrintWriter(sock.getOutputStream());
-                     */
-                    // sock.setSoTimeout(999999);
-                    // receiveChat.listen_chat();
+                /*
+                 * in=new BufferedReader(new InputStreamReader(sock.getInputStream())); out=new
+                 * PrintWriter(sock.getOutputStream());
+                 */
+                // sock.setSoTimeout(999999);
+                // receiveChat.listen_chat();
 
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                    JOptionPane.showMessageDialog(null, "Server Error",
-                            "Error", JOptionPane.ERROR_MESSAGE, null);
-                }
-                //startServer.removeAll();
-                startServer.setText("Waiting...");
-                startServer.setVisible(false);
-                //startServer = null;
-                //startServer.setEnabled(false);
-
+            } catch (IOException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Server Error",
+                        "Error", JOptionPane.ERROR_MESSAGE, null);
             }
+            //startServer.removeAll();
+            startServer.setText("Waiting...");
+            startServer.setVisible(false);
+            //startServer = null;
+            //startServer.setEnabled(false);
 
         });
         local = false;
@@ -142,6 +190,13 @@ public class MainPanel extends JPanel {
         repaint();
     }
 
+    /**
+     * Start as client.
+     *
+     * @param myIp the my ip
+     * @param myPort the my port
+     * @param newChat the new chat
+     */
     public void startAsClient(String myIp, String myPort, ChatPanel newChat) {
 
         receivedFrom = new ReceiveThread();
@@ -158,32 +213,29 @@ public class MainPanel extends JPanel {
         startClient.setSize(150, 25);
         startClient.setLocation(200, 300);
 
-        startClient.addActionListener(new ActionListener() {
+        startClient.addActionListener(e -> {
+            try {
 
-            public void actionPerformed(ActionEvent e) {
-                try {
+                sock = new Socket(myIPAddress, Integer.parseInt(myPortNumber));
+                
+                in = new BufferedReader(new InputStreamReader(sock.getInputStream(), StandardCharsets.UTF_8));
+                out = new PrintWriter(new OutputStreamWriter(
+                        sock.getOutputStream(), StandardCharsets.UTF_8), true);
 
-                    sock = new Socket(myIPAddress, Integer.parseInt(myPortNumber));
-                    
-                    in = new BufferedReader(new InputStreamReader(sock.getInputStream(), StandardCharsets.UTF_8));
-                    out = new PrintWriter(new OutputStreamWriter(
-                            sock.getOutputStream(), StandardCharsets.UTF_8), true);
+                receivedFrom.start();
+                gameStarted = true;
+                receiveChat.startChat();
 
-                    receivedFrom.start();
-                    gameStarted = true;
-                    receiveChat.startChat();
-
-                } catch (UnknownHostException ex) {
-                    ex.printStackTrace();
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                    JOptionPane.showMessageDialog(null, "Client Error occurred",
-                            "Error", JOptionPane.ERROR_MESSAGE, null);
-                }
-
-                startClient.setVisible(false);
-                startClient = null;
+            } catch (UnknownHostException ex1) {
+                ex1.printStackTrace();
+            } catch (IOException ex2) {
+                ex2.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Client Error occurred",
+                        "Error", JOptionPane.ERROR_MESSAGE, null);
             }
+
+            startClient.setVisible(false);
+            startClient = null;
         });
 
         isClient = true;
@@ -191,6 +243,9 @@ public class MainPanel extends JPanel {
 
     }
 
+    /**
+     * Start again.
+     */
     public void startAgain() {
         player1 = new Player1();
         player2 = new Player2();
@@ -206,7 +261,11 @@ public class MainPanel extends JPanel {
 
     }
 
-    /** main panel constructor for board. **/
+    /**
+     *  main panel constructor for board. *
+     *
+     * @param myToolPanel the my tool panel
+     */
     public MainPanel(ToolPanel myToolPanel) {//, StatusPanel myStatusPanel) {
         
         setBackground(Color.WHITE);
@@ -225,7 +284,12 @@ public class MainPanel extends JPanel {
 
     }
 
-    /** adds images and pieces. **/
+    /**
+     *  adds images and pieces. *
+     *
+     * @param g the g
+     */
+    @Override
     public void paintComponent(Graphics g) {
 
         super.paintComponent(g);
@@ -291,17 +355,32 @@ public class MainPanel extends JPanel {
 
     }
 
+    /**
+     * The Class Mousehere.
+     */
     /// You can inherit from Adapter and avoid meaningless
     private class Mousehere implements MouseListener {
 
+        /* (non-Javadoc)
+         * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
+         */
+        @Override
         public void mouseClicked(MouseEvent e) {
 
         }
 
+        /* (non-Javadoc)
+         * @see java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent)
+         */
+        @Override
         public void mousePressed(MouseEvent e) {
 
         }
 
+        /* (non-Javadoc)
+         * @see java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent)
+         */
+        @Override
         public void mouseReleased(MouseEvent e) {
             boolean canSend = false;
 
@@ -340,7 +419,7 @@ public class MainPanel extends JPanel {
                             }
                         }
                         /////////////////////////////////////////////////////////////////////////
-                        if (!(newP.x == present.x && newP.y == present.y)/* &&!player1.returncheckKing() */)
+                        if (!(newP.x == present.x && newP.y == present.y)/* &&!player1.returncheckKing() */) {
                             // if the move is illegal
                             if (player1.checkMove(newP, player1.getInHand())) {
 
@@ -473,12 +552,13 @@ public class MainPanel extends JPanel {
                                 }
 
                             }
+                        }
 
                         player1.setInHand(-1);
 
                         repaint();
 
-                        if (canSend && ((isServer || isClient))) {
+                        if (canSend && (isServer || isClient)) {
 
                             sendMove();
                             // Send_to.resume();
@@ -519,7 +599,7 @@ public class MainPanel extends JPanel {
                             }
                         }
 
-                        if (!(newP.x == present.x && newP.y == present.y) /* &&!player2.returncheckKing() */)
+                        if (!(newP.x == present.x && newP.y == present.y) /* &&!player2.returncheckKing() */) {
                             if (player2.checkTheMove(newP, player2.getInHand())) {
                                 boolean flag = false;
                                 for (int i = 1; i <= 32; i++) {
@@ -660,11 +740,12 @@ public class MainPanel extends JPanel {
 
                                 }
                             }
+                        }
                         player2.setInHand(-1);
 
                         repaint();
 
-                        if (canSend && ((isServer || isClient))) {
+                        if (canSend && (isServer || isClient)) {
 
                             // Send_to.resume();
                             sendMove();
@@ -682,20 +763,34 @@ public class MainPanel extends JPanel {
 
         }
 
+        /* (non-Javadoc)
+         * @see java.awt.event.MouseListener#mouseEntered(java.awt.event.MouseEvent)
+         */
+        @Override
         public void mouseEntered(MouseEvent e) {
 
         }
 
+        /* (non-Javadoc)
+         * @see java.awt.event.MouseListener#mouseExited(java.awt.event.MouseEvent)
+         */
+        @Override
         public void mouseExited(MouseEvent e) {
 
         }
     }
 
     //////// *---------------Mohamed Sami ------------------*//////////////////
-    /** TODO: enter stuff.**/
+    /**
+     *  TODO: enter stuff.*
+     *
+     * @param x the x
+     * @param y the y
+     * @return the board position
+     */
     public boolean getBoardPosition(int x, int y) {
         if (!gameOver && gameStarted) {
-            if ((isServer && playersTurn == 1) || (local) || (isClient && playersTurn == 2)) {
+            if (isServer && playersTurn == 1 || local || isClient && playersTurn == 2) {
 
                 int newX = x / divide;
                 int newY = y / divide;
@@ -747,6 +842,13 @@ public class MainPanel extends JPanel {
         return false;
     }
 
+    /**
+     * When handle and piece.
+     *
+     * @param x the x
+     * @param y the y
+     * @return true, if successful
+     */
     public boolean whenHandleAndPiece(int x, int y) {
         if (playersTurn == 1 && player1.getInHand() != -1) {
             player1.changePixel(x, y, player1.getInHand());
@@ -758,21 +860,41 @@ public class MainPanel extends JPanel {
         return false;
     }
 
+    /**
+     * Row to X.
+     *
+     * @param r the r
+     * @return the int
+     */
     private int rowToX(int r) {
         int myx;
         int height = this.getHeight();
-        myx = (r * height / 8) - divide;
+        myx = r * height / 8 - divide;
         return myx;
     }
 
+    /**
+     * Col to Y.
+     *
+     * @param c the c
+     * @return the int
+     */
     private int colToY(int c) {
         int myy;
         int width = getWidth();
-        myy = (c * width / 8) - divide;
+        myy = c * width / 8 - divide;
         return myy;
     }
 
+    /**
+     * The Class MousewhenMove.
+     */
     private class MousewhenMove implements MouseMotionListener {
+        
+        /* (non-Javadoc)
+         * @see java.awt.event.MouseMotionListener#mouseDragged(java.awt.event.MouseEvent)
+         */
+        @Override
         public void mouseDragged(MouseEvent e) {
 
             int x = e.getX();
@@ -784,12 +906,23 @@ public class MainPanel extends JPanel {
 
         }
 
+        /* (non-Javadoc)
+         * @see java.awt.event.MouseMotionListener#mouseMoved(java.awt.event.MouseEvent)
+         */
+        @Override
         public void mouseMoved(MouseEvent e) {
 
         }
 
     }
 
+    /**
+     * Control game type.
+     *
+     * @param x the x
+     * @param y the y
+     * @return true, if successful
+     */
     public boolean controlGameType(int x, int y) {
         if (isServer == true || isClient == true && gameStarted) {
             if (isServer && playersTurn == 1) {
@@ -806,6 +939,9 @@ public class MainPanel extends JPanel {
         // return false;
     }
 
+    /**
+     * Change turn.
+     */
     private void changeTurn() {
         if (playersTurn == 1) {
             playersTurn = 2;
@@ -823,6 +959,9 @@ public class MainPanel extends JPanel {
 
     }
 
+    /**
+     * Net change turn.
+     */
     private void netChangeTurn() {
         if (playersTurn == 2) {
 
@@ -839,6 +978,9 @@ public class MainPanel extends JPanel {
 
     }
 
+    /**
+     * Net game check status.
+     */
     private void netGameCheckStatus() {
         if (playersTurn == 1) {
 
@@ -854,6 +996,9 @@ public class MainPanel extends JPanel {
         //TODO: add check image
     }
 
+    /**
+     * Check status.
+     */
     private void checkStatus() {
         if (playersTurn == 1) {
 
@@ -873,6 +1018,9 @@ public class MainPanel extends JPanel {
         //myStatus.changeStatus(" Check! ");
     }
 
+    /**
+     * Game over.
+     */
     private void gameOver() {
 
         //myStatus.changeStatus(" Check Mate! ");
@@ -880,6 +1028,9 @@ public class MainPanel extends JPanel {
         gameOver = true;
     }
 
+    /**
+     * Send move.
+     */
     public void sendMove() {
         out.print(box);
         out.print("\r\n");
@@ -887,7 +1038,15 @@ public class MainPanel extends JPanel {
 
     }
 
+    /**
+     * The Class ReceiveThread.
+     */
     class ReceiveThread extends Thread {
+        
+        /* (non-Javadoc)
+         * @see java.lang.Thread#run()
+         */
+        @Override
         public synchronized void run() {
 
             while (true) {
@@ -913,9 +1072,9 @@ public class MainPanel extends JPanel {
                      **/
 
                     newInHand /= 100;
-                    newX -= (newInHand * 100);
+                    newX -= newInHand * 100;
                     newX /= 10;
-                    newY -= (newInHand * 100) + (newX * 10);
+                    newY -= newInHand * 100 + newX * 10;
 
                     if (playersTurn == 1) {
 

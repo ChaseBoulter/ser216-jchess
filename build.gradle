@@ -7,6 +7,7 @@ apply plugin: 'jacoco'
 apply plugin: 'java'
 
 
+
 // OS Type
 def static String checkBuildOS() {
     String osName = System.getProperty("os.name");
@@ -60,6 +61,7 @@ dependencies {
   compile 'com.io7m.xom:xom:1.2.+'
   compile 'net.sourceforge.nekohtml:nekohtml:1.9.+'
   compile 'org.json:json:+'
+  compile 'junit:junit:4.12'
 
   if (checkBuildOS()){
     compile group: 'com.apple', name: 'AppleJavaExtensions', version: '1.4'
@@ -69,6 +71,11 @@ dependencies {
   testCompile "org.mockito:mockito-core:2.+"
 
 }
+
+jacoco {
+    applyTo run
+}
+
 
 // Referenced from jacoco documentation
 // https://docs.gradle.org/current/userguide/jacoco_plugin.html

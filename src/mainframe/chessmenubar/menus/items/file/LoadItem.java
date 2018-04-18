@@ -1,27 +1,23 @@
 
 package mainframe.chessmenubar.menus.items.file;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JFileChooser;
 import javax.swing.JMenuItem;
 
+/**
+ * The Class LoadItem.
+ */
 public class LoadItem extends JMenuItem {
 
-    /**
-     * 
-     */
+    /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
 
     /** Creates a new instance of LoadItem. */
     public LoadItem() {
         setText("Load Game");
-        addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                loadFile.showOpenDialog(null);
-            }
-        });
+        addActionListener(e -> loadFile.showOpenDialog(null));
     }
 
+    /** The load file. */
     private final JFileChooser loadFile = new JFileChooser();
 }
