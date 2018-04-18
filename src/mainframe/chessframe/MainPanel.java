@@ -65,6 +65,7 @@ public class MainPanel extends JPanel {
     private boolean gameStarted = true;
     private ReceiveThread receivedFrom;
     private ChatPanel receiveChat;
+    private final JLabel waitingLabel = "Waiting...";
 
     public void startAsServer(String myIp, String myPort, ChatPanel newChat) {
 
@@ -127,7 +128,9 @@ public class MainPanel extends JPanel {
                 }
                 //startServer.removeAll();
                 startServer.setText("Waiting...");
-                startServer.setEnabled(false);
+                startServer.setVisible(false);
+                //startServer = null;
+                //startServer.setEnabled(false);
 
             }
 
