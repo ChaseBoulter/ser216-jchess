@@ -3,7 +3,8 @@
  */
 package test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.awt.Point;
 import java.util.logging.Logger;
@@ -41,7 +42,7 @@ public class PawnTest {
     protected static Pawn[] whitePawns3 = new Pawn[8];
 
     /**
-     * Sets the up before class.
+     * Sets up before class.
      *
      * @throws Exception
      *             the exception
@@ -203,8 +204,8 @@ public class PawnTest {
             otherPosition = new Point(whitePawns3[i].returnX(), whitePawns3[i].returnY());
             // System.out.println(whitePawns3[i].returnX() + ", "+whitePawns3[i].returnY());
             // System.out.println(blackPawns[i].returnX() + ", "+blackPawns[i].returnY());
-            assertFalse(blackPawns[i].pieceInMyWay(blackPawns[i].returnX(), blackPawns[i].
-                    returnY(), otherPosition,"black"));
+            assertFalse(blackPawns[i].pieceInMyWay(blackPawns[i].returnX(), blackPawns[i]
+                    .returnY(), otherPosition,"black"));
         }
 
     }

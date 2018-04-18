@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry excluding="tests/" kind="src" path="src"/>
-	<classpathentry kind="src" path="tests"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="lib/nekohtml.jar"/>
-	<classpathentry kind="lib" path="lib/nekohtmlXni.jar"/>
-	<classpathentry kind="lib" path="lib/swag.jar"/>
-	<classpathentry kind="lib" path="lib/swexpl.jar"/>
-	<classpathentry kind="lib" path="lib/xercesImpl.jar"/>
-	<classpathentry kind="lib" path="lib/xmlParserAPIs.jar"/>
-	<classpathentry kind="lib" path="lib/xom-1.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

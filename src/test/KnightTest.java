@@ -1,6 +1,7 @@
 package test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.logging.Logger;
 
@@ -34,7 +35,7 @@ public class KnightTest {
     protected static Knight blackKnight2;
 
     /**
-     * Sets the up before class.
+     * Sets up before class.
      *
      * @throws Exception
      *             the exception

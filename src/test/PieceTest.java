@@ -30,7 +30,7 @@ public class PieceTest {
     protected static Piece aPiece;
 
     /**
-     * Sets the up before class.
+     * Sets up before class.
      *
      * @throws Exception
      *             the exception

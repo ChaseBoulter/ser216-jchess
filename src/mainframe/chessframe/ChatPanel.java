@@ -1,8 +1,7 @@
 
 package mainframe.chessframe;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.BufferedReader;
@@ -10,8 +9,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
-import java.net.Socket;
 import java.net.ServerSocket;
+import java.net.Socket;
 import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
 
@@ -20,37 +19,65 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-
 import javax.swing.border.TitledBorder;
 
 import chessgame.Preloader;
-import java.awt.Dimension;
 
+/**
+ * The Class ChatPanel.
+ */
 public class ChatPanel extends JPanel {
 
-    /**
-     * 
-     */
+    /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
     /** private fields for class.**/
     private final JTextArea textChatArea = new JTextArea(6, 20);
+    
+    /** The text border. */
     private final TitledBorder textBorder = new TitledBorder("Chat History");
+    
+    /** The text field. */
     private final JTextField textField = new JTextField(10);
+    
+    /** The send B. */
     private final JButton sendB = new JButton();
+    
+    /** The text area scroll. */
     private final JScrollPane textAreaScroll = new JScrollPane(
             textChatArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
             JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+    
+    /** The chat socket. */
     private Socket chatSocket;
+    
+    /** The server chat. */
     private ServerSocket serverChat;
+    
+    /** The in 1. */
     private BufferedReader in1;
+    
+    /** The out 1. */
     private PrintWriter out1;
+    
+    /** The in 2. */
     private BufferedReader in2;
+    
+    /** The out 2. */
     private PrintWriter out2;
+    
+    /** The server thread. */
     private ServerChat serverThread = new ServerChat();
+    
+    /** The send socket. */
     private Socket sendSocket;
+    
+    /** The client thread. */
     private ClientChat clientThread = new ClientChat();
+    
+    /** The is server. */
     private boolean isServer;
     
+    /** The preload. */
     Preloader preload = Preloader.getInstance(); //singleton
     
     /** Creates a new instance of ChatPanel. */
@@ -91,23 +118,21 @@ public class ChatPanel extends JPanel {
         add(textField);
         add(sendB);
 
-        sendB.addActionListener(new ActionListener() {
+        sendB.addActionListener(e -> {
 
-            public void actionPerformed(ActionEvent e) {
-
-                textChatArea.append("\n" + preload.getName() + ": " + textField.getText());
-                if (isServer) {
-                    sendTextServer();
-                    textField.setText(null);
-                } else {
-                    sendTextChat();
-                    textField.setText(null);
-                }
-
+            textChatArea.append("\n" + preload.getName() + ": " + textField.getText());
+            if (isServer) {
+                sendTextServer();
+                textField.setText(null);
+            } else {
+                sendTextChat();
+                textField.setText(null);
             }
+
         });
 
         textField.addKeyListener(new KeyListener() {
+            @Override
             public void keyPressed(KeyEvent e) {
                 // System.out.println("okdddd "+e.KEY_PRESSED+" "+e.VK_PAGE_DOWN);
 
@@ -125,9 +150,11 @@ public class ChatPanel extends JPanel {
                 }
             }
 
+            @Override
             public void keyReleased(KeyEvent e) {
             }
 
+            @Override
             public void keyTyped(KeyEvent e) {
             }
         });
@@ -136,6 +163,9 @@ public class ChatPanel extends JPanel {
 
     }
 
+    /**
+     * Start chat.
+     */
     // TODO: fix chat panel with correct sockets and ports
     public void startChat() {
         textAreaScroll.setEnabled(true);
@@ -158,6 +188,9 @@ public class ChatPanel extends JPanel {
         clientThread.start();
     }
 
+    /**
+     * Send text chat.
+     */
     public void sendTextChat() {
         out2.print(preload.getName() + ": " + textField.getText());
         out2.print("\r\n");
@@ -166,6 +199,9 @@ public class ChatPanel extends JPanel {
 
     }
 
+    /**
+     * Send text server.
+     */
     public void sendTextServer() {
         out1.print(preload.getName() + ": " + textField.getText());
         out1.print("\r\n");
@@ -174,6 +210,9 @@ public class ChatPanel extends JPanel {
 
     }
 
+    /**
+     * Listen to chat.
+     */
     public void listenToChat() {
         textAreaScroll.setEnabled(true);
         textField.setEnabled(true);
@@ -201,7 +240,15 @@ public class ChatPanel extends JPanel {
 
     }
 
+    /**
+     * The Class ClientChat.
+     */
     class ClientChat extends Thread {
+        
+        /* (non-Javadoc)
+         * @see java.lang.Thread#run()
+         */
+        @Override
         public void run() {
             String receive = null;
             while (true) {
@@ -218,7 +265,15 @@ public class ChatPanel extends JPanel {
         }
     }
 
+    /**
+     * The Class ServerChat.
+     */
     class ServerChat extends Thread {
+        
+        /* (non-Javadoc)
+         * @see java.lang.Thread#run()
+         */
+        @Override
         public void run() {
             String receive = null;
             while (true) {

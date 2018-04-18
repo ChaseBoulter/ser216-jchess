@@ -2,8 +2,9 @@
 package mainframe.chessframe;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Graphics;
+
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -11,32 +12,53 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import java.awt.Dimension;
 import javax.swing.SwingConstants;
 //import mainframe.chessframe.timer.ThreadTimer;
 
+/**
+ * The Class ToolPanel.
+ */
 public class ToolPanel extends JPanel {
 
-    /**
-     * 
-     */
+    /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
+    
+    /** The white text field. */
     private final JTextField whiteTextField = new JTextField("WHITE");
+    
+    /** The black text field. */
     private final JTextField blackTextField = new JTextField("BLACK");
+    
+    /** The history list. */
     private final myHistoryList historyList = new myHistoryList();
+    
+    /** The history scroll. */
     //private final short numberOfTurns = 1;
     private final JScrollPane historyScroll = new JScrollPane(historyList, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
             JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 //    private final JLabel timeDesc1 = new JLabel(" Timer 1");
 //    private final JLabel timeDesc2 = new JLabel(" Timer 2");
     //private ThreadTimer timer1;
-    //private ThreadTimer timer2;
+    /** The my turn. */
+//private ThreadTimer timer2;
     private ImageIcon myTurn;
+    
+    /** The my check. */
     private ImageIcon myCheck;
+    
+    /** The fs. */
     private String fs;
+    
+    /** The image label white. */
     private JLabel imageLabelWhite;
+    
+    /** The check label white. */
     private JLabel checkLabelWhite;
+    
+    /** The image label black. */
     private JLabel imageLabelBlack;
+    
+    /** The check label black. */
     private JLabel checkLabelBlack;
 
     /** initializes ToolPanel to default values.**/
@@ -109,17 +131,26 @@ public class ToolPanel extends JPanel {
 
     }
 
+    /**
+     * Setturn.
+     */
     public void setturn() {
 
     }
 
+    /**
+     * Adds the to history.
+     *
+     * @param newItem the new item
+     */
     public void add_to_History(Object newItem) {
         historyList.addElemen_tolist(newItem);
     }
     
     /**
      * displays whose turn it is.
-     * @param player
+     *
+     * @param player the player
      */
     public void switchImageLocation(int player) {
         if(player == 1) {
@@ -135,8 +166,9 @@ public class ToolPanel extends JPanel {
     }
     
     /**
-     * displays who is in check
-     * @param player
+     * displays who is in check.
+     *
+     * @param player the player
      */
     public void inCheck(int player) {
         if(player == 1) {
@@ -169,7 +201,10 @@ public class ToolPanel extends JPanel {
 //        timer2.stop();
 //    }
 
-    public void startAgain() {
+    /**
+ * Start again.
+ */
+public void startAgain() {
 //        if (timer1 != null) {
 //            timer1.stop();
 //            timer2.stop();

@@ -4,8 +4,6 @@ package mainframe.chessframe;
 //import java.awt.BorderLayout;
 //import java.awt.Color;
 import java.awt.Container;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 
 //import java.awt.Dimension;
 //import java.awt.Graphics;
@@ -14,20 +12,18 @@ import java.awt.Graphics2D;
 import javax.swing.JFrame;
 
 import chessgame.Preloader;
-//import javax.swing.JMenu;
-//import javax.swing.JMenuBar;
-//import javax.swing.JMenuItem;
-//import javax.swing.border.BevelBorder;
-import mainframe.chessframe.ChatPanel;
 import mainframe.chessmenubar.ChessMainMenuBar;
 //import mainframe.chessframe.StatusPanel;
 
+/**
+ * The Class MainFrame.
+ */
 public class MainFrame extends JFrame {
 
-    /**
-     * 
-     */
+    /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
+    
+    /** The preload. */
     Preloader preload = Preloader.getInstance(); //singleton
     /** creates Chess Game. **/
     public MainFrame() {      
@@ -51,6 +47,9 @@ public class MainFrame extends JFrame {
 
     }
 
+    /**
+     * Start again.
+     */
     public void startAgain() {
         myMainPanel.startAgain();
 
@@ -58,6 +57,9 @@ public class MainFrame extends JFrame {
 
     }
 
+    /**
+     * Start as server.
+     */
     public void startAsServer() {
         myMainPanel.startAsServer(preload.getIpAddress(),
                 preload.getPortNumber(), myChatPanel);
@@ -68,6 +70,9 @@ public class MainFrame extends JFrame {
 
     }
 
+    /**
+     * Start as client.
+     */
     public void startAsClient() {
 
         myMainPanel.startAsClient(preload.getIpAddress(), 
@@ -77,12 +82,20 @@ public class MainFrame extends JFrame {
         setTitle("JChess! - Client");
     }
 
+    /** The my chess bar. */
     private final ChessMainMenuBar myChessBar;
+    
+    /** The my tool panel. */
     public final ToolPanel myToolPanel = new ToolPanel();
     //private final StatusPanel myStatusPanel = new StatusPanel();
 
+    /** The my main panel. */
     private final MainPanel myMainPanel = new MainPanel(myToolPanel);//, myStatusPanel);
+    
+    /** The my chat panel. */
     private final ChatPanel myChatPanel = new ChatPanel();
+    
+    /** The content pane. */
     private Container contentPane = getContentPane();
     
 
