@@ -28,25 +28,25 @@ public class Player1 {
     public Player1() {
         String fileSeparator = System.getProperty("file.separator");
         whiteRook1 = new Rook("src" + fileSeparator + "Icons" + fileSeparator
-                + "Player1Icons" + fileSeparator + "wr.gif", 8, 8);
+                + "Player1Icons" + fileSeparator + "whiteRook.png", 8, 8);
         whiteRook2 = new Rook("src" + fileSeparator + "Icons" + fileSeparator
-                + "Player1Icons" + fileSeparator + "wr.gif", 1, 8);
+                + "Player1Icons" + fileSeparator + "whiteRook.png", 1, 8);
         whiteKnight1 = new Knight("src" + fileSeparator + "Icons" + fileSeparator
-                + "Player1Icons" + fileSeparator + "wn.gif", 2, 8);
+                + "Player1Icons" + fileSeparator + "whiteKnight.png", 2, 8);
         whiteKnight2 = new Knight("src" + fileSeparator + "Icons" + fileSeparator
-                + "Player1Icons" + fileSeparator + "wn.gif", 7, 8);
+                + "Player1Icons" + fileSeparator + "whiteKnight.png", 7, 8);
         whiteBishop1 = new Bishop("src" + fileSeparator + "Icons" + fileSeparator
-                + "Player1Icons" + fileSeparator + "wb.gif", 3, 8);
+                + "Player1Icons" + fileSeparator + "whiteBishop.png", 3, 8);
         whiteBishop2 = new Bishop("src" + fileSeparator + "Icons" + fileSeparator
-                + "Player1Icons" + fileSeparator + "wb.gif", 6, 8);
+                + "Player1Icons" + fileSeparator + "whiteBishop.png", 6, 8);
         whiteQueen = new Queen("src" + fileSeparator + "Icons" + fileSeparator
-                + "Player1Icons" + fileSeparator + "wq.gif", 4, 8);
+                + "Player1Icons" + fileSeparator + "whiteQueen.png", 4, 8);
         whiteKing = new King("src" + fileSeparator + "Icons" + fileSeparator
-                + "Player1Icons" + fileSeparator + "wk.gif", 5, 8);
+                + "Player1Icons" + fileSeparator + "whiteKing.png", 5, 8);
         int j = 1;
         for (int i = 0; i <= 7; i++, j++) {
             whitePawns[i] = new Pawn("src" + fileSeparator + "Icons" 
-                    + fileSeparator + "Player1Icons" + fileSeparator + "wp.gif", j, 7);
+                    + fileSeparator + "Player1Icons" + fileSeparator + "WhitePawn.png", j, 7);
         }
     }
 
