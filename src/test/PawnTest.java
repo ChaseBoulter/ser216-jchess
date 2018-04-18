@@ -1,6 +1,7 @@
 /**
  * Testing pawn class
  */
+
 package test;
 
 import static org.junit.Assert.assertFalse;
@@ -52,10 +53,10 @@ public class PawnTest {
 
         for (int i = 0, j = 1; i <= 7; i++, j++) {
             whitePawns[i] = new Pawn(
-                    "src" + fileSeparator + "Icons" + fileSeparator + "Player1Icons" 
+                    "src" + fileSeparator + "Icons" + fileSeparator + "Player1Icons"
                     + fileSeparator + "wp.gif", j, 7);
             blackPawns[i] = new Pawn(
-                    "src" + fileSeparator + "Icons" + fileSeparator + "Player2Icons" 
+                    "src" + fileSeparator + "Icons" + fileSeparator + "Player2Icons"
                     + fileSeparator  + "bp.gif", j, 2);
         }
 

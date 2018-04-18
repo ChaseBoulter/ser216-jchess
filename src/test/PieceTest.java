@@ -1,6 +1,7 @@
 /**
  * JUnit test case is testing a generic chess piece
  */
+
 package test;
 
 import static org.junit.Assert.assertNotNull;

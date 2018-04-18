@@ -10,7 +10,7 @@ public class Pawn extends Piece {
 
     /** The myseen. */
     private boolean myseen = false;
-    
+
     /** The movedbefore. */
     private boolean movedbefore = false;
 
@@ -34,16 +34,16 @@ public class Pawn extends Piece {
      * @return true, if successful
      */
     public boolean canMove(int x, int y, String typeColor) {
-    	
-    	
-    	/** Setting movedbefore to true if a pwan is no longer on its starting row**/
-    	if (typeColor.equals("black") && nextY !=2) {
+
+
+        /** Setting movedbefore to true if a pwan is no longer on its starting row**/
+        if (typeColor.equals("black") && nextY !=2) {
             movedbefore = true;
         }
-    	if(typeColor.equals("white") && nextY !=7) {
+        if(typeColor.equals("white") && nextY !=7) {
             movedbefore = true;
         }
-    	
+
 
         if (typeColor.equals("black")) {
             if (y - 1 == nextY && x == nextX /* &&!Check_Solider_Sees(x,y) */) {

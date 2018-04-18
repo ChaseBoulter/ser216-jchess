@@ -24,17 +24,17 @@ public class CheckMateTest {
 
     /** The black king. */
     protected static King blackKing;
-    
+
     /** The white rook1. */
     protected static Rook whiteRook1;
-    
-  
+
+
     /** The white rook2. */
     protected static Rook whiteRook2;
 
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
+    @BeforeClass
+    public static void setUpBeforeClass() throws Exception {
         whiteKing = new King(
                 "src" + fileSeparator + "Icons" + fileSeparator + "Player1Icons" + fileSeparator 
                 + "wk.gif", 6, 2);
@@ -47,22 +47,22 @@ public class CheckMateTest {
         whiteRook2 = new Rook(
                 "src" + fileSeparator + "Icons" + fileSeparator 
                 + "Player1Icons" + fileSeparator + "wr.gif", 2, 2);
-   
-	}
 
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
+    }
+
+    @AfterClass
+    public static void tearDownAfterClass() throws Exception {
         whiteKing = blackKing = null;
         whiteRook1 =  whiteRook2 =  null;
         LOG.info("@AfterClass CheckMateTest complete");
-	}
+    }
 
 
-	@Test
-	public void testCheckMate() {
-		assertFalse(whiteRook1.checkKing(6,1, new Point(blackKing.getPixelX(), blackKing.getPixelY())));
-		assertFalse(whiteRook2.checkKing(3,5, new Point(blackKing.getPixelX(), blackKing.getPixelY())));
-		assertFalse(whiteRook1.checkKing(5,2, new Point(blackKing.getPixelX(), blackKing.getPixelY())));
-	}
+    @Test
+    public void testCheckMate() {
+        assertFalse(whiteRook1.checkKing(6,1, new Point(blackKing.getPixelX(), blackKing.getPixelY())));
+        assertFalse(whiteRook2.checkKing(3,5, new Point(blackKing.getPixelX(), blackKing.getPixelY())));
+        assertFalse(whiteRook1.checkKing(5,2, new Point(blackKing.getPixelX(), blackKing.getPixelY())));
+    }
 
 }

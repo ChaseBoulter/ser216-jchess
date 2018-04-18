@@ -1,6 +1,7 @@
 /**
  * Testing bishop
  */
+
 package test;
 
 import static org.junit.Assert.assertFalse;
