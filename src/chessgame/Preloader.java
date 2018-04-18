@@ -171,14 +171,17 @@ public class Preloader extends JFrame {
         nameLabel.setRequestFocusEnabled(false);
         nameLabel.setVerifyInputWhenFocusTarget(false);
         nameLabel.addMouseListener(new MouseAdapter() {
+            
             @Override
             public void mouseClicked(MouseEvent evt) {
                 nameLabelMouseClicked(evt);
             }
+            
             @Override
             public void mouseExited(MouseEvent evt) {
                 nameLabelMouseExited(evt);
             }
+            
             @Override
             public void mouseEntered(MouseEvent evt) {
                 nameLabelMouseEntered(evt);
