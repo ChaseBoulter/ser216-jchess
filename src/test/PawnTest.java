@@ -15,7 +15,7 @@ import org.junit.Test;
 import pieces.Pawn;
 
 /**
- * The Class PawnTest.
+ * The Class PawnTest. 
  */
 public class PawnTest {
 

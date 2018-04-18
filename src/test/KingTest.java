@@ -34,7 +34,7 @@ public class KingTest {
      */
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
-        whiteKing = new King(
+        whiteKing = new King( 
                 "src" + fileSeparator + "Icons" + fileSeparator + "Player1Icons" + fileSeparator 
                 + "wk.gif", 5, 8);
         blackKing = new King(
@@ -76,6 +76,8 @@ public class KingTest {
         assertFalse(blackKing.canMove(3, 2));
         assertFalse(blackKing.canMove(3, 3));
         assertFalse(blackKing.canMove(1, 5));
+        
+        assertNotNull(blackKing.tellMe());
     }
 
-}
+} 

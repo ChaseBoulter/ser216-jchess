@@ -11,7 +11,7 @@ import org.junit.Test;
 import pieces.Rook;
 
 /**
- * The Class RookTest.
+ * The Class RookTest. 
  */
 public class RookTest {
 

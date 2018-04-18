@@ -7,6 +7,7 @@ apply plugin: 'jacoco'
 apply plugin: 'java'
 
 
+
 // OS Type
 def static String checkBuildOS() {
     String osName = System.getProperty("os.name");
@@ -70,6 +71,11 @@ dependencies {
   testCompile "org.mockito:mockito-core:2.+"
 
 }
+
+jacoco {
+    applyTo run
+}
+
 
 // Referenced from jacoco documentation
 // https://docs.gradle.org/current/userguide/jacoco_plugin.html
