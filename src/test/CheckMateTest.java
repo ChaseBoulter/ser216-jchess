@@ -1,19 +1,15 @@
 package test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
 
 import java.awt.Point;
 import java.util.logging.Logger;
 
-import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import pieces.King;
-import pieces.Knight;
-import pieces.Pawn;
 import pieces.Rook; 
 
 public class CheckMateTest {
@@ -46,11 +42,11 @@ public class CheckMateTest {
                 "src" + fileSeparator + "Icons" + fileSeparator + "Player2Icons" + fileSeparator 
                 + "bk.gif", 4, 5);
         whiteRook1 = new Rook(
-                "src" + fileSeparator + "Icons" + fileSeparator + 
-                "Player1Icons" + fileSeparator + "wr.gif", 7, 1);
+                "src" + fileSeparator + "Icons" + fileSeparator 
+                + "Player1Icons" + fileSeparator + "wr.gif", 7, 1);
         whiteRook2 = new Rook(
-                "src" + fileSeparator + "Icons" + fileSeparator + 
-                "Player1Icons" + fileSeparator + "wr.gif", 2, 2);
+                "src" + fileSeparator + "Icons" + fileSeparator 
+                + "Player1Icons" + fileSeparator + "wr.gif", 2, 2);
    
 	}
 

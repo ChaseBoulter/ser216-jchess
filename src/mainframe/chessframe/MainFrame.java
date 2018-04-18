@@ -26,6 +26,7 @@ public class MainFrame extends JFrame {
     /** The preload. */
     Preloader preload = Preloader.getInstance(); //singleton
     /** creates Chess Game. **/
+    
     public MainFrame() {      
         setTitle("JChess!");
         setSize(900, 665);

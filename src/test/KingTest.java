@@ -37,9 +37,8 @@ public class KingTest {
      */
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
-        whiteKing = new King( 
-                "src" + fileSeparator + "Icons" + fileSeparator + "Player1Icons" + fileSeparator 
-                + "wk.gif", 5, 8);
+        whiteKing = new King( "src" + fileSeparator + "Icons" + fileSeparator
+                + "Player1Icons" + fileSeparator + "wk.gif", 5, 8);
         blackKing = new King(
                 "src" + fileSeparator + "Icons" + fileSeparator + "Player2Icons" + fileSeparator 
                 + "bk.gif", 5, 1);

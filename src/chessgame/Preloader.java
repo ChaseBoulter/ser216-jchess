@@ -293,8 +293,7 @@ public class Preloader extends JFrame {
                 .addGroup(Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(251)
                         .addComponent(playButton)
-                        .addContainerGap(265, Short.MAX_VALUE))
-                );
+                        .addContainerGap(265, Short.MAX_VALUE)));
         layout.setVerticalGroup(
                 layout.createParallelGroup(Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()

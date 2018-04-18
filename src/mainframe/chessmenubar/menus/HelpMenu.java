@@ -14,6 +14,7 @@ public class HelpMenu extends JMenu {
     /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
     /** Creates a new instance of HelpMenu. */
+    
     public HelpMenu() {
         setText("Help");
         add(aboutGame);
