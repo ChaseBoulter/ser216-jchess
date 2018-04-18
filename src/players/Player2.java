@@ -4,24 +4,62 @@ package players;
 import java.awt.Image;
 import java.awt.Point;
 import java.util.Enumeration;
-import pieces.*;
 
+import pieces.Bishop;
+import pieces.King;
+import pieces.Knight;
+import pieces.Pawn;
+import pieces.Queen;
+import pieces.Rook;
+
+/**
+ * The Class Player2.
+ */
 public class Player2 implements Enumeration {
+    
+    /** The black rook 1. */
     public Rook blackRook1;
+    
+    /** The black rook 2. */
     public Rook blackRook2;
+    
+    /** The black knight 1. */
     public Knight blackKnight1;
+    
+    /** The black knight 2. */
     public Knight blackKnight2;
+    
+    /** The black bishop 1. */
     public Bishop blackBishop1;
+    
+    /** The black bishop 2. */
     public Bishop blackBishop2;
+    
+    /** The black queen. */
     public Queen blackQueen;
+    
+    /** The black king. */
     private King blackKing;
+    
+    /** The black pawns. */
     public Pawn[] blackPawns = new Pawn[8];
+    
+    /** The choosen one. */
     private int choosenOne;
+    
+    /** The in hand. */
     private int inHand = -1;
+    
+    /** The kingischeck. */
     private boolean kingischeck = false;
+    
+    /** The other. */
     private Point other;
+    
+    /** The kill to protect. */
     private int killToProtect;
 
+    /** The color. */
     private String color = "black";
 
     /** Creates a new instance of Player2. */
@@ -58,10 +96,21 @@ public class Player2 implements Enumeration {
         }
     }
 
+    /**
+     * Sets the choosen.
+     *
+     * @param newChoosen the new choosen
+     */
     public void setChoosen(int newChoosen) {
         choosenOne = newChoosen;
     }
 
+    /**
+     * Return postion.
+     *
+     * @param i the i
+     * @return the point
+     */
     public Point returnPostion(int i) {
 
         switch (i) {
@@ -105,6 +154,12 @@ public class Player2 implements Enumeration {
 
     }
 
+    /**
+     * Return old postion.
+     *
+     * @param i the i
+     * @return the point
+     */
     public Point returnOldPostion(int i) {
 
         switch (i) {
@@ -148,6 +203,12 @@ public class Player2 implements Enumeration {
 
     }
 
+    /**
+     * Return icon image.
+     *
+     * @param i the i
+     * @return the image
+     */
     public Image returnIconImage(int i) {
         switch (i) {
             case 1:
@@ -190,6 +251,12 @@ public class Player2 implements Enumeration {
 
     }
 
+    /**
+     * Change postion.
+     *
+     * @param newPoint the new point
+     * @param i the i
+     */
     public void changePostion(Point newPoint, int i) {
         switch (i) {
             case 1:
@@ -247,6 +314,12 @@ public class Player2 implements Enumeration {
 
     }
 
+    /**
+     * Change postion to old.
+     *
+     * @param newPoint the new point
+     * @param i the i
+     */
     public void changePostionToOld(Point newPoint, int i) {
         switch (i) {
             case 1:
@@ -304,6 +377,13 @@ public class Player2 implements Enumeration {
 
     }
     
+    /**
+     * Change pixel.
+     *
+     * @param newPixelX the new pixel X
+     * @param newPixelY the new pixel Y
+     * @param i the i
+     */
     public void changePixel(int newPixelX, int newPixelY, int i) {
         choosenOne = i;
         switch (choosenOne) {
@@ -361,6 +441,12 @@ public class Player2 implements Enumeration {
         }
     }
 
+    /**
+     * Change pixel.
+     *
+     * @param newPixelX the new pixel X
+     * @param newPixelY the new pixel Y
+     */
     public void changePixel(int newPixelX, int newPixelY) {
         switch (choosenOne) {
             case 1:
@@ -417,6 +503,12 @@ public class Player2 implements Enumeration {
         }
     }
 
+    /**
+     * Gets the pixel point.
+     *
+     * @param i the i
+     * @return the pixel point
+     */
     public Point getPixelPoint(int i) {
         choosenOne = i;
         switch (choosenOne) {
@@ -459,6 +551,12 @@ public class Player2 implements Enumeration {
         return null;
     }
 
+    /**
+     * Killed piece.
+     *
+     * @param i the i
+     * @return true, if successful
+     */
     public boolean killedPiece(int i) {
         Point out = new Point(20, 20);
         switch (i) {
@@ -515,6 +613,13 @@ public class Player2 implements Enumeration {
         return false;
     }
 
+    /**
+     * Check the move.
+     *
+     * @param newP the new P
+     * @param i the i
+     * @return true, if successful
+     */
     public boolean checkTheMove(Point newP, int i) {
         choosenOne = i;
         switch (choosenOne) {
@@ -557,6 +662,13 @@ public class Player2 implements Enumeration {
         return false;
     }
 
+    /**
+     * Pawn seen.
+     *
+     * @param i the i
+     * @param myPoint the my point
+     * @return true, if successful
+     */
     //TODO: find out what this means.
     public boolean pawnSeen(int i, Point myPoint) {
 
@@ -584,6 +696,12 @@ public class Player2 implements Enumeration {
 
     }
 
+    /**
+     * Return pawn seen.
+     *
+     * @param i the i
+     * @return true, if successful
+     */
     public boolean returnPawnSeen(int i) {
         switch (i) {
 
@@ -609,6 +727,14 @@ public class Player2 implements Enumeration {
         return false;
     }
 
+    /**
+     * Check the way.
+     *
+     * @param newP the new P
+     * @param postionFromOthers the postion from others
+     * @param i the i
+     * @return true, if successful
+     */
     //do you know da way?
     public boolean checkTheWay(Point newP, Point postionFromOthers, int i) {
         switch (i) {
@@ -646,10 +772,23 @@ public class Player2 implements Enumeration {
         return false;
     }
 
+    /**
+     * Check king.
+     *
+     * @param newkingcheck the newkingcheck
+     */
     public void checkKing(boolean newkingcheck) {
         kingischeck = newkingcheck;
     }
     
+    /**
+     * Check king.
+     *
+     * @param p1 the p 1
+     * @param p2 the p 2
+     * @param i the i
+     * @return true, if successful
+     */
     public boolean checkKing(Point p1, Point p2, int i) {
         switch (i) {
 
@@ -690,27 +829,60 @@ public class Player2 implements Enumeration {
         return false;
     }
 
+    /**
+     * Return chosen.
+     *
+     * @return the int
+     */
     public int returnChosen() {
         return choosenOne;
     }
 
+    /**
+     * Sets the in hand.
+     *
+     * @param i the new in hand
+     */
     public void setInHand(int i) {
         inHand = i;
     }
 
+    /**
+     * Gets the in hand.
+     *
+     * @return the in hand
+     */
     public int getInHand() {
         return inHand;
     }
 
+    /**
+     * Can move.
+     *
+     * @param x the x
+     * @param y the y
+     * @return true, if successful
+     */
     public boolean canMove(int x, int y) {
         return true;
     }
 
 
+    /**
+     * Returncheck king.
+     *
+     * @return true, if successful
+     */
     public boolean returncheckKing() {
         return kingischeck;
     }
 
+    /**
+     * Checks if is king checked.
+     *
+     * @param white the white
+     * @return true, if is king checked
+     */
     public boolean isKingChecked(Player1 white) {
 
         Point myKingPosition = blackKing.returnPostion();
@@ -770,6 +942,12 @@ public class Player2 implements Enumeration {
         return true;
     }
 
+    /**
+     * Check mate game over.
+     *
+     * @param enemy the enemy
+     * @return true, if successful
+     */
     public boolean checkMateGameOver(Player1 enemy) {
 
         if (!generateKingMoves(enemy)) {
@@ -834,6 +1012,12 @@ public class Player2 implements Enumeration {
 
     }
 
+    /**
+     * Friendly piece already there.
+     *
+     * @param newP the new P
+     * @return true, if successful
+     */
     public boolean friendlyPieceAlreadyThere(Point newP) {
         Point samePostion;
         for (int i = 1; i <= 16; i++) {
@@ -855,6 +1039,13 @@ public class Player2 implements Enumeration {
         return true;
     }
 
+    /**
+     * Enemy piece already there.
+     *
+     * @param newP the new P
+     * @param enemy the enemy
+     * @return true, if successful
+     */
     public boolean enemyPieceAlreadyThere(Point newP, Player1 enemy) {
         Point samePostion;
         for (int i = 17; i <= 32; i++) {
@@ -874,6 +1065,13 @@ public class Player2 implements Enumeration {
         return true;
     }
 
+    /**
+     * Gets the enemy piece there int.
+     *
+     * @param newP the new P
+     * @param enemy the enemy
+     * @return the enemy piece there int
+     */
     public int getEnemyPieceThereInt(Point newP, Player1 enemy) {
         Point samePostion;
         for (int i = 17; i <= 32; i++) {
@@ -885,6 +1083,12 @@ public class Player2 implements Enumeration {
         return -1;
     }
 
+    /**
+     * Generate king moves.
+     *
+     * @param enemy the enemy
+     * @return true, if successful
+     */
     public boolean generateKingMoves(Player1 enemy) {
         boolean killedSomething = false;
         Point oldP = new Point();
@@ -1130,6 +1334,13 @@ public class Player2 implements Enumeration {
 
     }
 
+    /**
+     * Generate castle moves.
+     *
+     * @param enemy the enemy
+     * @param blackRook the black rook
+     * @return true, if successful
+     */
     public boolean generateCastleMoves(Player1 enemy, Rook blackRook) {
         boolean killedSomething = false;
         Point oldPoint1 = new Point();
@@ -1229,6 +1440,13 @@ public class Player2 implements Enumeration {
         return true;
     }
 
+    /**
+     * Generate bishop moves.
+     *
+     * @param enemy the enemy
+     * @param blackBishop the black bishop
+     * @return true, if successful
+     */
     public boolean generateBishopMoves(Player1 enemy, Bishop blackBishop) {
         boolean killedSomething = false;
         Point oldPoint1 = new Point();
@@ -1318,6 +1536,13 @@ public class Player2 implements Enumeration {
         return true;
     }
 
+    /**
+     * Generate knight moves.
+     *
+     * @param enemy the enemy
+     * @param blackKnight the black knight
+     * @return true, if successful
+     */
     public boolean generateKnightMoves(Player1 enemy, Knight blackKnight) {
         Point oldp1 = new Point();
         boolean killedSomething = false;
@@ -1549,6 +1774,12 @@ public class Player2 implements Enumeration {
         return true;
     }
 
+    /**
+     * Generate queen moves.
+     *
+     * @param enemy the enemy
+     * @return true, if successful
+     */
     public boolean generateQueenMoves(Player1 enemy) {
         boolean killedSomething = false;
 
@@ -1703,6 +1934,13 @@ public class Player2 implements Enumeration {
 
     }
 
+    /**
+     * Generate pawn moves.
+     *
+     * @param enemy the enemy
+     * @param myPawn the my pawn
+     * @return true, if successful
+     */
     public boolean generatePawnMoves(Player1 enemy, Pawn myPawn) {
         Point oldPoint1 = new Point();
         oldPoint1 = myPawn.returnPostion();
@@ -1774,6 +2012,13 @@ public class Player2 implements Enumeration {
         return true;
     }
 
+    /**
+     * Check way to position.
+     *
+     * @param enemy the enemy
+     * @param newP the new P
+     * @return true, if successful
+     */
     public boolean checkWayToPosition(Player1 enemy, Point newP) {
         boolean flag = false;
 
@@ -1795,6 +2040,13 @@ public class Player2 implements Enumeration {
 
     }
 
+    /**
+     * Kill to protect king.
+     *
+     * @param enemy the enemy
+     * @param newP the new P
+     * @return true, if successful
+     */
     public boolean killToProtectKing(Player1 enemy, Point newP) {
 
         for (int i = 17; i <= 32; i++) {
@@ -1811,16 +2063,28 @@ public class Player2 implements Enumeration {
         return false;
     }
 
+    /* (non-Javadoc)
+     * @see java.util.Enumeration#hasMoreElements()
+     */
+    @Override
     public boolean hasMoreElements() {
         return false;
     }
 
+    /* (non-Javadoc)
+     * @see java.util.Enumeration#nextElement()
+     */
+    @Override
     public Object nextElement() {
 
         return new Object();
     }
 
-    /** tells user about last move. Previously named "Tell_Me_About_Last_Move"**/
+    /**
+     *  tells user about last move. Previously named "Tell_Me_About_Last_Move"*
+     *
+     * @return the string
+     */
     public String lastMove() {
         switch (inHand) {
             case 1:

@@ -1,6 +1,7 @@
 package test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.logging.Logger;
 
@@ -34,7 +35,7 @@ public class RookTest {
     protected static Rook blackRook2;
 
     /**
-     * Sets the up before class.
+     * Sets up before class.
      *
      * @throws Exception
      *             the exception
@@ -42,18 +43,18 @@ public class RookTest {
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
         whiteRook1 = new Rook(
-                "src" + fileSeparator + "Icons" + fileSeparator + 
-                "Player1Icons" + fileSeparator + "wr.gif", 8, 8);
+                "src" + fileSeparator + "Icons" + fileSeparator 
+                + "Player1Icons" + fileSeparator + "wr.gif", 8, 8);
         whiteRook2 = new Rook(
-                "src" + fileSeparator + "Icons" + fileSeparator + 
-                "Player1Icons" + fileSeparator + "wr.gif", 1, 8);
+                "src" + fileSeparator + "Icons" + fileSeparator 
+                + "Player1Icons" + fileSeparator + "wr.gif", 1, 8);
         blackRook1 = new Rook(
-                "src" + fileSeparator + "Icons" + fileSeparator + 
-                "Player2Icons" + fileSeparator + "br.gif", 1, 1);
+                "src" + fileSeparator + "Icons" + fileSeparator 
+                + "Player2Icons" + fileSeparator + "br.gif", 1, 1);
 
         blackRook2 = new Rook(
-                "src" + fileSeparator + "Icons" + fileSeparator + 
-                "Player2Icons" + fileSeparator + "br.gif", 8, 1);
+                "src" + fileSeparator + "Icons" + fileSeparator 
+                + "Player2Icons" + fileSeparator + "br.gif", 8, 1);
     }
 
     /**

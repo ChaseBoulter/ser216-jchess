@@ -3,25 +3,62 @@ package players;
 
 import java.awt.Image;
 import java.awt.Point;
-import pieces.*;
 
+import pieces.Bishop;
+import pieces.King;
+import pieces.Knight;
+import pieces.Pawn;
+import pieces.Queen;
+import pieces.Rook;
+
+/**
+ * The Class Player1.
+ */
 public class Player1 {
 
     /** Creates a new instance of Player1. */
     public Rook whiteRook1;
+    
+    /** The white rook 2. */
     public Rook whiteRook2;
+    
+    /** The white knight 1. */
     public Knight whiteKnight1;
+    
+    /** The white knight 2. */
     public Knight whiteKnight2;
+    
+    /** The white queen. */
     public Queen whiteQueen;
+    
+    /** The white bishop 1. */
     public Bishop whiteBishop1;
+    
+    /** The white bishop 2. */
     public Bishop whiteBishop2;
+    
+    /** The white pawns. */
     public Pawn[] whitePawns = new Pawn[8];
+    
+    /** The white king. */
     public King whiteKing;
+    
+    /** The in hand. */
     private int inHand = -1;
+    
+    /** The kingischeck. */
     private boolean kingischeck = false;
+    
+    /** The choosen one. */
     private int choosenOne;
+    
+    /** The color. */
     String color = "white";
+    
+    /** The other. */
     private Point other;
+    
+    /** The kill to protect. */
     int killToProtect;
 
     /** constructs Player1 pieces. **/
@@ -50,7 +87,12 @@ public class Player1 {
         }
     }
 
-    /** returns position of each piece wrapped all in a switch case. **/
+    /**
+     *  returns position of each piece wrapped all in a switch case. *
+     *
+     * @param i the i
+     * @return the point
+     */
     public Point returnPostion(int i) {
 
         switch (i) {
@@ -93,7 +135,12 @@ public class Player1 {
         return new Point(-1, -1);
     }
 
-    /** returns position of each old piece wrapped all in a switch case. **/
+    /**
+     *  returns position of each old piece wrapped all in a switch case. *
+     *
+     * @param i the i
+     * @return the point
+     */
     public Point returnOldPostion(int i) {
 
         switch (i) {
@@ -136,7 +183,12 @@ public class Player1 {
         return new Point(-1, -1);
     }
 
-    /** returns position of each image wrapped all in a switch case. **/
+    /**
+     *  returns position of each image wrapped all in a switch case. *
+     *
+     * @param i the i
+     * @return the image
+     */
     public Image returnIconImage(int i) {
 
         switch (i) {
@@ -179,6 +231,12 @@ public class Player1 {
         return null;
     }
 
+    /**
+     * Change postion.
+     *
+     * @param newPoint the new point
+     * @param i the i
+     */
     public void changePostion(Point newPoint, int i) {
         switch (i) {
 
@@ -236,6 +294,12 @@ public class Player1 {
 
     }
 
+    /**
+     * Change position to old.
+     *
+     * @param newPoint the new point
+     * @param i the i
+     */
     public void changePostionToOld(Point newPoint, int i) {
         switch (i) {
 
@@ -292,6 +356,13 @@ public class Player1 {
         }
     }
 
+    /**
+     * Change pixel.
+     *
+     * @param newPixelX the new pixel X
+     * @param newPixelY the new pixel Y
+     * @param i the i
+     */
     public void changePixel(int newPixelX, int newPixelY, int i) {
         choosenOne = i;
         switch (choosenOne) {
@@ -349,6 +420,12 @@ public class Player1 {
         }
     }
 
+    /**
+     * Gets the pixel point.
+     *
+     * @param i the i
+     * @return the pixel point
+     */
     public Point getPixelPoint(int i) {
         choosenOne = i;
         switch (choosenOne) {
@@ -391,6 +468,13 @@ public class Player1 {
         return null;
     }
 
+    /**
+     * Check move.
+     *
+     * @param newP the new P
+     * @param i the i
+     * @return true, if successful
+     */
     public boolean checkMove(Point newP, int i) {
         choosenOne = i;
         switch (choosenOne) {
@@ -433,7 +517,13 @@ public class Player1 {
         return false;
     }
 
-    /** originally named setSeenToSiliders, so I have no idea what this does. **/
+    /**
+     *  originally named setSeenToSiliders, so I have no idea what this does. *
+     *
+     * @param i the i
+     * @param myPoint the my point
+     * @return true, if successful
+     */
     public boolean pawnSeen(int i, Point myPoint) {
         switch (i) {
             case 25:
@@ -458,6 +548,12 @@ public class Player1 {
         return false;
     }
 
+    /**
+     * Return pawn position.
+     *
+     * @param i the i
+     * @return true, if successful
+     */
     public boolean returnPawnPosition(int i) {
         switch (i) {
             case 25:
@@ -482,6 +578,14 @@ public class Player1 {
         return false;
     }
 
+    /**
+     * Check the way.
+     *
+     * @param newP the new P
+     * @param postionFromOthers the postion from others
+     * @param i the i
+     * @return true, if successful
+     */
     public boolean checkTheWay(Point newP, Point postionFromOthers, int i) {
         switch (i) {
 
@@ -518,6 +622,12 @@ public class Player1 {
         return false;
     }
 
+    /**
+     * Killed piece.
+     *
+     * @param i the i
+     * @return true, if successful
+     */
     public boolean killedPiece(int i) {
         Point out = new Point(13, 13);
         switch (i) {
@@ -577,10 +687,23 @@ public class Player1 {
     }
     
 
+    /**
+     * Check king.
+     *
+     * @param newkingcheck the newkingcheck
+     */
     public void checkKing(boolean newkingcheck) {
         kingischeck = newkingcheck;
     }
 
+    /**
+     * Check king.
+     *
+     * @param p1 the p 1
+     * @param p2 the p 2
+     * @param i the i
+     * @return true, if successful
+     */
     public boolean checkKing(Point p1, Point p2, int i) {
         switch (i) {
 
@@ -621,28 +744,61 @@ public class Player1 {
         return false;
     }
 
+    /**
+     * Return chosen.
+     *
+     * @return the int
+     */
     public int returnChosen() {
         return choosenOne;
     }
 
+    /**
+     * Sets the in hand.
+     *
+     * @param i the new in hand
+     */
     public void setInHand(int i) {
         inHand = i;
     }
 
+    /**
+     * Gets the in hand.
+     *
+     * @return the in hand
+     */
     public int getInHand() {
         return inHand;
     }
 
+    /**
+     * Can move.
+     *
+     * @param x the x
+     * @param y the y
+     * @return true, if successful
+     */
     public boolean canMove(int x, int y) {
         return true;
     }
 
 
+    /**
+     * Returncheck king.
+     *
+     * @return true, if successful
+     */
     public boolean returncheckKing() {
 
         return kingischeck;
     }
 
+    /**
+     * King in check.
+     *
+     * @param black the black
+     * @return true, if successful
+     */
     public boolean kingInCheck(Player2 black) {
 //        boolean isCheckmate = false;
 //        boolean flag = false;
@@ -650,6 +806,12 @@ public class Player1 {
         return false;
     }
 
+    /**
+     * Check mate.
+     *
+     * @param enemy the enemy
+     * @return true, if successful
+     */
     public boolean checkMate(Player2 enemy) {
 
         if (!generateKingMoves(enemy)) {
@@ -701,6 +863,12 @@ public class Player1 {
 
     }
 
+    /**
+     * Checks if is king checked.
+     *
+     * @param black the black
+     * @return true, if is king checked
+     */
     public boolean isKingChecked(Player2 black) {
 
         Point myKingPosition = whiteKing.returnPostion();
@@ -758,6 +926,12 @@ public class Player1 {
         return true;
     }
 
+    /**
+     * Friendly piece already there.
+     *
+     * @param newP the new P
+     * @return true, if successful
+     */
     //TODO: combine friendlyPiece and enemyPiece together?
     public boolean friendlyPieceAlreadyThere(Point newP) {
         Point samePostion;
@@ -780,6 +954,13 @@ public class Player1 {
         return true;
     }
 
+    /**
+     * Enemy piece already there.
+     *
+     * @param newP the new P
+     * @param enemy the enemy
+     * @return true, if successful
+     */
     public boolean enemyPieceAlreadyThere(Point newP, Player2 enemy) {
         Point samePostion;
         for (int i = 1; i <= 16; i++) {
@@ -794,6 +975,13 @@ public class Player1 {
         return true;
     }
 
+    /**
+     * Gets the enemy piece location int.
+     *
+     * @param newP the new P
+     * @param enemy the enemy
+     * @return the enemy piece location int
+     */
     //TODO: why does this return int?
     public int getEnemyPieceLocationInt(Point newP, Player2 enemy) {
         Point samePostion;
@@ -809,6 +997,12 @@ public class Player1 {
         return -1;
     }
 
+    /**
+     * Generate king moves.
+     *
+     * @param enemy the enemy
+     * @return true, if successful
+     */
     public boolean generateKingMoves(Player2 enemy) {
         boolean killedSomething = false;
         Point oldP = new Point();
@@ -1053,6 +1247,13 @@ public class Player1 {
 
     }
 
+    /**
+     * Generate castle moves.
+     *
+     * @param enemy the enemy
+     * @param whiteRook the white rook
+     * @return true, if successful
+     */
     public boolean generateCastleMoves(Player2 enemy, Rook whiteRook) {
         boolean killedSomething = false;
         Point oldp1 = new Point();
@@ -1150,6 +1351,13 @@ public class Player1 {
         return true;
     }
 
+    /**
+     * Generate bishop moves.
+     *
+     * @param enemy the enemy
+     * @param whiteBishop the white bishop
+     * @return true, if successful
+     */
     public boolean generateBishopMoves(Player2 enemy, Bishop whiteBishop) {
         boolean killedSomething = false;
         Point oldP1 = new Point();
@@ -1239,6 +1447,13 @@ public class Player1 {
         return true;
     }
 
+    /**
+     * Generate horse moves.
+     *
+     * @param enemy the enemy
+     * @param whiteKnight the white knight
+     * @return true, if successful
+     */
     public boolean generateHorseMoves(Player2 enemy, Knight whiteKnight) {
         Point oldp1 = new Point();
         boolean killedSomething = false;
@@ -1470,6 +1685,12 @@ public class Player1 {
         return true;
     }
 
+    /**
+     * Generate moves.
+     *
+     * @param enemy the enemy
+     * @return true, if successful
+     */
     public boolean generateMoves(Player2 enemy) {
         boolean killedSomething = false;
 
@@ -1624,6 +1845,13 @@ public class Player1 {
 
     }
 
+    /**
+     * Generate pawn moves.
+     *
+     * @param enemy the enemy
+     * @param myPawn the my pawn
+     * @return true, if successful
+     */
     public boolean generatePawnMoves(Player2 enemy, Pawn myPawn) {
         Point oldp1 = new Point();
         oldp1 = myPawn.returnPostion();
@@ -1698,6 +1926,13 @@ public class Player1 {
         return true;
     }
 
+    /**
+     * Check way to position.
+     *
+     * @param enemy the enemy
+     * @param newP the new P
+     * @return true, if successful
+     */
     public boolean checkWayToPosition(Player2 enemy, Point newP) {
         boolean flag = false;
 
@@ -1720,6 +1955,13 @@ public class Player1 {
 
     }
 
+    /**
+     * Kill to protect king.
+     *
+     * @param enemy the enemy
+     * @param newP the new P
+     * @return true, if successful
+     */
     public boolean killToProtectKing(Player2 enemy, Point newP) {
 
         for (int i = 1; i < 17; i++) {
@@ -1736,7 +1978,11 @@ public class Player1 {
         return false;
     }
 
-    /** tells user about last move. Previously named "Tell_Me_About_Last_Move"**/
+    /**
+     *  tells user about last move. Previously named "Tell_Me_About_Last_Move"*
+     *
+     * @return the string
+     */
     public String lastMove() {
         switch (inHand) {
 

@@ -37,32 +37,34 @@ public class Pawn extends Piece {
     	
     	
     	/** Setting movedbefore to true if a pwan is no longer on its starting row**/
-    	if (typeColor.equals("black") && nextY !=2) 
-    		movedbefore = true;
-    	if(typeColor.equals("white") && nextY !=7) 
-    		movedbefore = true;
+    	if (typeColor.equals("black") && nextY !=2) {
+            movedbefore = true;
+        }
+    	if(typeColor.equals("white") && nextY !=7) {
+            movedbefore = true;
+        }
     	
 
-        if ((typeColor.equals("black"))) {
-            if ((((y - 1 == nextY) && (x == (nextX)))) /* &&!Check_Solider_Sees(x,y) */) {
+        if (typeColor.equals("black")) {
+            if (y - 1 == nextY && x == nextX /* &&!Check_Solider_Sees(x,y) */) {
 
                 return true;
 
-            } else if ((((y - 2 == nextY) && (x == (nextX)))) && !movedbefore) {
+            } else if (y - 2 == nextY && x == nextX && !movedbefore) {
 
                 return true;
-            } else if ((y - 1 == nextY && x + 1 == (nextX)
-                    || (y - 1 == nextY && x - 1 == (nextX))) && myseen) {
+            } else if ((y - 1 == nextY && x + 1 == nextX
+                    || y - 1 == nextY && x - 1 == nextX) && myseen) {
                 return true;
             } else {
                 return false;
             }
         } else if (typeColor.equals("white")) {
-            if (((y + 1 == nextY) && (x == (nextX))) /* &&!Check_Solider_Sees(x,y) */) {
+            if (y + 1 == nextY && x == nextX /* &&!Check_Solider_Sees(x,y) */) {
                 return true;
-            } else if ((((y + 2 == nextY) && (x == (nextX)))) && !movedbefore) {
+            } else if (y + 2 == nextY && x == nextX && !movedbefore) {
                 return true;
-            } else if ((y + 1 == nextY && x + 1 == (nextX) || (y + 1 == nextY && x - 1 == (nextX))) && myseen) {
+            } else if ((y + 1 == nextY && x + 1 == nextX || y + 1 == nextY && x - 1 == nextX) && myseen) {
                 return true;
             } else {
                 return false;
@@ -83,16 +85,16 @@ public class Pawn extends Piece {
      */
     public boolean pieceInMyWay(int x, int y, Point othersPostion, String typeColor) {
         if (nextY - y == 2 || nextY - y == -2) {
-            if ((typeColor.equals("black"))) {
+            if (typeColor.equals("black")) {
 
-                if ((((y - 1 == othersPostion.y) && (x == (othersPostion.x)))) && !movedbefore) {
+                if (y - 1 == othersPostion.y && x == othersPostion.x && !movedbefore) {
                     return true;
                 } else {
                     return false;
                 }
             } else if (typeColor.equals("white")) {
 
-                if (((y + 1 == othersPostion.y) && (x == (othersPostion.x)) && !movedbefore)) {
+                if (y + 1 == othersPostion.y && x == othersPostion.x && !movedbefore) {
 
                     return true;
 
@@ -132,9 +134,9 @@ public class Pawn extends Piece {
      */
     public boolean setSeenByChecking(Point newP, String color) {
         myseen = false;
-        if ((color.equals("black"))) {
-            if ((newP.y - 1 == nextY && newP.x + 1 == (nextX) 
-                    || (newP.y - 1 == nextY && newP.x - 1 == (nextX)))) {
+        if (color.equals("black")) {
+            if (newP.y - 1 == nextY && newP.x + 1 == nextX 
+                    || newP.y - 1 == nextY && newP.x - 1 == nextX) {
 
                 myseen = true;
                 return true;
@@ -142,8 +144,8 @@ public class Pawn extends Piece {
                 return false;
             }
         } else if (color.equals("white")) {
-            if ((newP.y + 1 == nextY && newP.x + 1 == (nextX)
-                    || (newP.y + 1 == nextY && newP.x - 1 == (nextX)))) {
+            if (newP.y + 1 == nextY && newP.x + 1 == nextX
+                    || newP.y + 1 == nextY && newP.x - 1 == nextX) {
                 myseen = true;
 
                 return true;

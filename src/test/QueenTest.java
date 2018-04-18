@@ -1,8 +1,10 @@
 package test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.logging.Logger;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -27,7 +29,7 @@ public class QueenTest {
     protected static Queen blackQueen;
 
     /**
-     * Sets the up before class.
+     * Sets up before class.
      *
      * @throws Exception
      *             the exception
@@ -35,11 +37,11 @@ public class QueenTest {
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
         whiteQueen = new Queen(
-                "src" + fileSeparator + "Icons" + fileSeparator +
-                "Player1Icons" + fileSeparator + "wq.gif", 4, 6);
+                "src" + fileSeparator + "Icons" + fileSeparator 
+                + "Player1Icons" + fileSeparator + "wq.gif", 4, 6);
         blackQueen = new Queen(
-                "src" + fileSeparator + "Icons" + fileSeparator +
-                "Player2Icons" + fileSeparator + "bq.gif", 4, 3);
+                "src" + fileSeparator + "Icons" + fileSeparator 
+                +"Player2Icons" + fileSeparator + "bq.gif", 4, 3);
     }
 
     /**

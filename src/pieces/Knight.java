@@ -28,11 +28,11 @@ public class Knight extends Piece {
      * @return true, if successful
      */
     public boolean canMove(int x, int y) {
-        return (x + 1 == nextX) && (y + 2 == nextY) 
-                || (x + 1 == nextX) && (y - 2 == nextY) || (x - 1 == nextX) && (y + 2 == nextY)
-                || (x - 1 == nextX) && (y - 2 == nextY) || (x + 2 == nextX) && (y + 1 == nextY)
-                || (x + 2 == nextX) && (y - 1 == nextY)
-                || (x - 2 == nextX) && (y + 1 == nextY) || (x - 2 == nextX) && (y - 1 == nextY);
+        return x + 1 == nextX && y + 2 == nextY 
+                || x + 1 == nextX && y - 2 == nextY || x - 1 == nextX && y + 2 == nextY
+                || x - 1 == nextX && y - 2 == nextY || x + 2 == nextX && y + 1 == nextY
+                || x + 2 == nextX && y - 1 == nextY
+                || x - 2 == nextX && y + 1 == nextY || x - 2 == nextX && y - 1 == nextY;
     }
 
     /**
