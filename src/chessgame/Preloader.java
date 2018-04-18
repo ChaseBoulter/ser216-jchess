@@ -51,11 +51,15 @@ public class Preloader extends JFrame {
     private MainFrame myNewFrame; //for online and local
     private static final Pattern PATTERN = Pattern.compile(
             "^(([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.){3}([01]?\\d\\d?|2[0-4]\\d|25[0-5])$");
+    private JLabel lblHitEnterTo;
+    private JLabel lblPortInfo;
     
 
   
     public Preloader() {
-        setMinimumSize(new Dimension(400, 350));
+        setMinimumSize(new Dimension(600, 400));
+        setPreferredSize(new Dimension(600, 400));
+        setMaximumSize(new Dimension(600, 400));
         initComponents();                               // Initalize alignements and fields
         playButton.setEnabled(false);                   // Disable "ready" button
         this.setLocationRelativeTo(null);               // Center Setup Frame on Screen
@@ -123,7 +127,11 @@ public class Preloader extends JFrame {
                 nameFieldFocusGained(evt);
             }
             public void focusLost(FocusEvent evt)  {
-                validName(nameField.getText());
+                if(validName(nameField.getText())) {
+                    lblHitEnterTo.setEnabled(false);
+                } else {
+                    lblHitEnterTo.setEnabled(true);
+                }
             }
         });
         nameField.addMouseListener(new MouseAdapter() {
@@ -172,49 +180,58 @@ public class Preloader extends JFrame {
         textPort = new JTextField();
         textPort.setText("9000");
         textPort.setColumns(10);
+        
+        lblHitEnterTo = new JLabel("Hit enter to confirm name.");
+        
+        lblPortInfo = new JLabel("port must be between 1025 and 65534");
 
         GroupLayout layout = new GroupLayout(getContentPane());
         layout.setHorizontalGroup(
-            layout.createParallelGroup(Alignment.LEADING)
+            layout.createParallelGroup(Alignment.TRAILING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(69)
-                    .addComponent(rdbtnLocal)
-                    .addGroup(layout.createParallelGroup(Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addPreferredGap(ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(nameLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addPreferredGap(ComponentPlacement.RELATED)
-                                    .addComponent(nameField, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
-                                    .addGap(134))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(rdbtnOnline)
-                                    .addGap(93))))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(88)
-                            .addGroup(layout.createParallelGroup(Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(rdbtnClient)
-                                    .addPreferredGap(ComponentPlacement.UNRELATED)
-                                    .addComponent(rdbtnServer))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(Alignment.TRAILING)
-                                        .addComponent(lblPort)
-                                        .addComponent(lblIpAddress))
-                                    .addPreferredGap(ComponentPlacement.RELATED)
-                                    .addGroup(layout.createParallelGroup(Alignment.LEADING)
-                                        .addComponent(textPort, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtIp, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
-                            .addGap(54))))
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(128)
-                    .addComponent(titleLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGap(164))
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(169)
-                    .addComponent(playButton)
+                    .addGap(212)
+                    .addComponent(lblHitEnterTo)
                     .addContainerGap(221, Short.MAX_VALUE))
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(titleLabel, GroupLayout.PREFERRED_SIZE, 601, GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createSequentialGroup()
+                    .addGroup(layout.createParallelGroup(Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(189)
+                                .addComponent(nameLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(ComponentPlacement.UNRELATED)
+                                .addComponent(nameField, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
+                                .addGap(6))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(99)
+                                .addGroup(layout.createParallelGroup(Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(rdbtnLocal)
+                                        .addGap(244))
+                                    .addComponent(rdbtnClient)
+                                    .addComponent(lblIpAddress))))
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(lblPort)))
+                    .addPreferredGap(ComponentPlacement.RELATED)
+                    .addGroup(layout.createParallelGroup(Alignment.LEADING)
+                        .addComponent(rdbtnOnline)
+                        .addGroup(layout.createParallelGroup(Alignment.LEADING)
+                            .addComponent(textPort, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(Alignment.TRAILING)
+                                .addComponent(txtIp, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(rdbtnServer))))
+                    .addGap(121))
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap(287, Short.MAX_VALUE)
+                    .addComponent(lblPortInfo)
+                    .addGap(123))
+                .addGroup(Alignment.LEADING, layout.createSequentialGroup()
+                    .addGap(251)
+                    .addComponent(playButton)
+                    .addContainerGap(265, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(Alignment.LEADING)
@@ -229,25 +246,30 @@ public class Preloader extends JFrame {
                                 .addComponent(nameLabel, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
                                 .addComponent(nameField, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(ComponentPlacement.RELATED)
+                            .addComponent(lblHitEnterTo)
+                            .addGap(29)
+                            .addComponent(rdbtnClient))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(66)
                             .addGroup(layout.createParallelGroup(Alignment.BASELINE)
                                 .addComponent(rdbtnLocal)
                                 .addComponent(rdbtnOnline))
-                            .addPreferredGap(ComponentPlacement.UNRELATED)
-                            .addGroup(layout.createParallelGroup(Alignment.BASELINE)
-                                .addComponent(rdbtnClient)
-                                .addComponent(rdbtnServer))
                             .addPreferredGap(ComponentPlacement.RELATED)
+                            .addComponent(rdbtnServer))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(136)
                             .addGroup(layout.createParallelGroup(Alignment.BASELINE)
                                 .addComponent(txtIp, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblIpAddress)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(146)
+                                .addComponent(lblIpAddress))
+                            .addPreferredGap(ComponentPlacement.UNRELATED)
                             .addGroup(layout.createParallelGroup(Alignment.BASELINE)
-                                .addComponent(lblPort)
-                                .addComponent(textPort, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
-                    .addGap(31)
+                                .addComponent(textPort, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblPort))))
+                    .addPreferredGap(ComponentPlacement.RELATED)
+                    .addComponent(lblPortInfo)
+                    .addPreferredGap(ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                     .addComponent(playButton)
-                    .addContainerGap(82, Short.MAX_VALUE))
+                    .addGap(22))
         );
         getContentPane().setLayout(layout);
         pack();
@@ -300,10 +322,15 @@ public class Preloader extends JFrame {
                 if(!validatePortNumber(text)) {
                     lblPort.setForeground(Color.RED);
                     playButton.setEnabled(false);
+                    lblPortInfo.setEnabled(true);
+                    lblPortInfo.setForeground(Color.RED);
+                    
                     validPort = false;
                 }
                 else {
                     lblPort.setForeground(Color.BLACK);
+                    lblPortInfo.setEnabled(false);
+                    lblPortInfo.setForeground(Color.BLACK);
                     validPort = true;
                     
                     //initiates whether user input is correct.
@@ -323,6 +350,7 @@ public class Preloader extends JFrame {
         rdbtnClient.setEnabled(false);
         lblIpAddress.setEnabled(false);
         lblPort.setEnabled(false);
+        lblPortInfo.setEnabled(false);
         
         rdbtnLocal.addChangeListener(new ChangeListener() {
 
@@ -367,7 +395,11 @@ public class Preloader extends JFrame {
      */
     private void nameFieldActionPerformed(ActionEvent evt) {     
         firstName = nameField.getText();
-        validName(nameField.getText());
+        if(validName(firstName)) {
+            lblHitEnterTo.setEnabled(false);
+        } else {
+            lblHitEnterTo.setEnabled(true);
+        }
     }                                         
 
     
