@@ -4,18 +4,23 @@ package mainframe.chessframe;
 //import java.awt.BorderLayout;
 //import java.awt.Color;
 import java.awt.Container;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+
 //import java.awt.Dimension;
 //import java.awt.Graphics;
 //import java.awt.Toolkit;
 //import javax.swing.BorderFactory;
 import javax.swing.JFrame;
+
+import chessgame.Preloader;
 //import javax.swing.JMenu;
 //import javax.swing.JMenuBar;
 //import javax.swing.JMenuItem;
 //import javax.swing.border.BevelBorder;
 import mainframe.chessframe.ChatPanel;
 import mainframe.chessmenubar.ChessMainMenuBar;
-import mainframe.chessframe.StatusPanel;
+//import mainframe.chessframe.StatusPanel;
 
 public class MainFrame extends JFrame {
 
@@ -23,10 +28,11 @@ public class MainFrame extends JFrame {
      * 
      */
     private static final long serialVersionUID = 1L;
+    Preloader preload = Preloader.getInstance(); //singleton
     /** creates Chess Game. **/
-    public MainFrame() {
+    public MainFrame() {      
         setTitle("JChess!");
-        setSize(800, 700);
+        setSize(900, 665);
         setResizable(false);
         
         //where window should appear
@@ -34,7 +40,7 @@ public class MainFrame extends JFrame {
 
         contentPane.setLayout(null);
         contentPane.add(myChatPanel);
-        contentPane.add(myStatusPanel);
+        //contentPane.add(myStatusPanel);
         contentPane.add(myToolPanel);
 
         myChessBar = new ChessMainMenuBar(this);
@@ -53,8 +59,8 @@ public class MainFrame extends JFrame {
     }
 
     public void startAsServer() {
-        myMainPanel.startAsServer(myChessBar.getIpAddress(),
-                myChessBar.getPortnumber(), myChatPanel);
+        myMainPanel.startAsServer(preload.getIpAddress(),
+                preload.getPortNumber(), myChatPanel);
 
         contentPane.add(myMainPanel);
 
@@ -64,19 +70,20 @@ public class MainFrame extends JFrame {
 
     public void startAsClient() {
 
-        myMainPanel.startAsClient(myChessBar.getIpAddress(), 
-                myChessBar.getPortnumber(), myChatPanel);
-
+        myMainPanel.startAsClient(preload.getIpAddress(), 
+                preload.getPortNumber(), myChatPanel);
+        //myMainPanel.rotateComponent(null);
         contentPane.add(myMainPanel);
         setTitle("JChess! - Client");
     }
 
     private final ChessMainMenuBar myChessBar;
     public final ToolPanel myToolPanel = new ToolPanel();
-    private final StatusPanel myStatusPanel = new StatusPanel();
+    //private final StatusPanel myStatusPanel = new StatusPanel();
 
-    private final MainPanel myMainPanel = new MainPanel(myToolPanel, myStatusPanel);
+    private final MainPanel myMainPanel = new MainPanel(myToolPanel);//, myStatusPanel);
     private final ChatPanel myChatPanel = new ChatPanel();
     private Container contentPane = getContentPane();
+    
 
 }

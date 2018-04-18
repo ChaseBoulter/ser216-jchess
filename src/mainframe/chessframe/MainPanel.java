@@ -20,10 +20,15 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
 
+import javax.swing.ImageIcon;
 //import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+import pieces.Rook;
+
 import java.lang.String;
 //import javax.swing.JScrollPane;
 //import javax.swing.border.BevelBorder;
@@ -43,7 +48,7 @@ public class MainPanel extends JPanel {
     private Rectangle2D rec;
     private short playersTurn = 1;
     public final ToolPanel myTool;
-    private final StatusPanel myStatus;
+    //private final StatusPanel myStatus;
     private boolean gameOver = false;
     private boolean isServer = false;
     private boolean isClient = false;
@@ -60,6 +65,7 @@ public class MainPanel extends JPanel {
     private boolean gameStarted = true;
     private ReceiveThread receivedFrom;
     private ChatPanel receiveChat;
+    private final JLabel waitingLabel = new JLabel("Waiting...");
 
     public void startAsServer(String myIp, String myPort, ChatPanel newChat) {
 
@@ -120,7 +126,11 @@ public class MainPanel extends JPanel {
                     JOptionPane.showMessageDialog(null, "Server Error",
                             "Error", JOptionPane.ERROR_MESSAGE, null);
                 }
+                //startServer.removeAll();
                 startServer.setText("Waiting...");
+                startServer.setVisible(false);
+                //startServer = null;
+                //startServer.setEnabled(false);
 
             }
 
@@ -189,7 +199,7 @@ public class MainPanel extends JPanel {
         gameOver = false;
         local = true;
         myTool.startAgain();
-        myStatus.start_Again();
+        //myStatus.start_Again();
         isServer = false;
         isClient = false;
         repaint();
@@ -197,7 +207,8 @@ public class MainPanel extends JPanel {
     }
 
     /** main panel constructor for board. **/
-    public MainPanel(ToolPanel myToolPanel, StatusPanel myStatusPanel) {
+    public MainPanel(ToolPanel myToolPanel) {//, StatusPanel myStatusPanel) {
+        
         setBackground(Color.WHITE);
 
         setSize(600, 600);
@@ -209,7 +220,7 @@ public class MainPanel extends JPanel {
         addMouseListener(mouseHereEvent);
 
         myTool = myToolPanel;
-        myStatus = myStatusPanel;
+        //myStatus = myStatusPanel;
         setLayout(null);
 
     }
@@ -798,65 +809,73 @@ public class MainPanel extends JPanel {
     private void changeTurn() {
         if (playersTurn == 1) {
             playersTurn = 2;
-            myTool.add_to_History("White : " + player1.lastMove());
-            myStatus.changeStatus(" Black player turn");
-            myTool.change_to_Timer2();
+            myTool.add_to_History("White: " + player1.lastMove());
+            //myStatus.changeStatus(" Black player turn");
+            //myTool.change_to_Timer2();
         } else if (playersTurn == 2) {
             playersTurn = 1;
-            myTool.add_to_History("Black : " + player2.lastMove());
-            myTool.change_to_Timer1();
-            myStatus.changeStatus(" White player turn");
+            myTool.add_to_History("Black: " + player2.lastMove());
+            //myTool.change_to_Timer1();
+            //myStatus.changeStatus(" White player turn");
         }
+        
+        myTool.switchImageLocation(playersTurn);
 
     }
 
     private void netChangeTurn() {
         if (playersTurn == 2) {
 
-            myTool.add_to_History("White : " + player1.lastMove());
-            myStatus.changeStatus(" Black player turn");
-            myTool.change_to_Timer2();
+            myTool.add_to_History("White: " + player1.lastMove());
+            //myStatus.changeStatus(" Black player turn");
+            //myTool.change_to_Timer2();
         } else if (playersTurn == 1) {
 
-            myTool.add_to_History("Black : " + player2.lastMove());
-            myTool.change_to_Timer1();
-            myStatus.changeStatus(" White player turn");
+            myTool.add_to_History("Black: " + player2.lastMove());
+            //myTool.change_to_Timer1();
+            //myStatus.changeStatus(" White player turn");
         }
+        myTool.switchImageLocation(playersTurn);
 
     }
 
     private void netGameCheckStatus() {
         if (playersTurn == 1) {
 
-            myTool.add_to_History("White : " + player1.lastMove());
-            myTool.change_to_Timer2();
+            myTool.add_to_History("White: " + player1.lastMove());
+            //myTool.change_to_Timer2();
         } else if (playersTurn == 2) {
 
-            myTool.add_to_History("Black : " + player2.lastMove());
-            myTool.change_to_Timer1();
+            myTool.add_to_History("Black: " + player2.lastMove());
+            //myTool.change_to_Timer1();
         }
-        myStatus.changeStatus(" Check! ");
+        myTool.inCheck(playersTurn);
+       // myStatus.changeStatus(" Check! ");
+        //TODO: add check image
     }
 
     private void checkStatus() {
         if (playersTurn == 1) {
 
             playersTurn = 2;
-            myTool.add_to_History("White : " + player1.lastMove());
-            myTool.change_to_Timer2();
+            myTool.add_to_History("White: " + player1.lastMove());
+            
+            //myTool.change_to_Timer2();
         } else if (playersTurn == 2) {
 
             playersTurn = 1;
-            myTool.add_to_History("Black : " + player2.lastMove());
-            myTool.change_to_Timer1();
+            myTool.add_to_History("Black: " + player2.lastMove());
+            //myTool.change_to_Timer1();
         }
-
-        myStatus.changeStatus(" Check! ");
+        //TODO: add check image
+        myTool.inCheck(playersTurn);
+        
+        //myStatus.changeStatus(" Check! ");
     }
 
     private void gameOver() {
 
-        myStatus.changeStatus(" Check Mate! ");
+        //myStatus.changeStatus(" Check Mate! ");
 
         gameOver = true;
     }

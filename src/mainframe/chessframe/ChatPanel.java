@@ -23,6 +23,9 @@ import javax.swing.JTextField;
 
 import javax.swing.border.TitledBorder;
 
+import chessgame.Preloader;
+import java.awt.Dimension;
+
 public class ChatPanel extends JPanel {
 
     /**
@@ -48,13 +51,18 @@ public class ChatPanel extends JPanel {
     private ClientChat clientThread = new ClientChat();
     private boolean isServer;
     
+    Preloader preload = Preloader.getInstance(); //singleton
+    
     /** Creates a new instance of ChatPanel. */
     public ChatPanel() {
-        setSize(200, 300);
+        setPreferredSize(new Dimension(300, 244));
+        setMinimumSize(new Dimension(300, 300));
+        setSize(300, 244);
         setLocation(600, 350);
 
-        textAreaScroll.setSize(180, 190);
+        textAreaScroll.setSize(284, 188);
         textAreaScroll.setLocation(10, 0);
+        textChatArea.setLineWrap(true);
 
         setLayout(null);
 
@@ -64,14 +72,14 @@ public class ChatPanel extends JPanel {
         
         //set sendButton's info
         sendB.setSize(80, 30);
-        sendB.setLocation(50, 230);
+        sendB.setLocation(214, 192);
         sendB.setText("Send");
         
         
         //set TextField info
         textField.setSize(180, 20);
-        textField.setLocation(10, 200);
-        textField.add(textAreaScroll);
+        textField.setLocation(10, 196);
+        //textField.add(textAreaScroll);
         textField.setToolTipText("Write Text Here");
 
         //set textChatArea info
@@ -87,7 +95,7 @@ public class ChatPanel extends JPanel {
 
             public void actionPerformed(ActionEvent e) {
 
-                textChatArea.append("\n" + textField.getText());
+                textChatArea.append("\n" + preload.getName() + ": " + textField.getText());
                 if (isServer) {
                     sendTextServer();
                     textField.setText(null);
@@ -104,7 +112,7 @@ public class ChatPanel extends JPanel {
                 // System.out.println("okdddd "+e.KEY_PRESSED+" "+e.VK_PAGE_DOWN);
 
                 if (e.getKeyChar() == '\n') {
-                    textChatArea.append("\n" + textField.getText());
+                    textChatArea.append("\n" + preload.getName() + ": " + textField.getText());
 
                     if (isServer) {
                         sendTextServer();
@@ -136,7 +144,7 @@ public class ChatPanel extends JPanel {
 
         isServer = false;
         try {
-            sendSocket = new Socket("127.0.0.1", 5002);
+            sendSocket = new Socket(preload.getIpAddress(), Integer.parseInt(preload.getPortNumber())+1);
             
             in2 = new BufferedReader(new InputStreamReader(sendSocket.getInputStream(), StandardCharsets.UTF_8));
             out2 = new PrintWriter(new OutputStreamWriter(
@@ -151,7 +159,7 @@ public class ChatPanel extends JPanel {
     }
 
     public void sendTextChat() {
-        out2.print(textField.getText());
+        out2.print(preload.getName() + ": " + textField.getText());
         out2.print("\r\n");
 
         out2.flush();
@@ -159,7 +167,7 @@ public class ChatPanel extends JPanel {
     }
 
     public void sendTextServer() {
-        out1.print(textField.getText());
+        out1.print(preload.getName() + ": " + textField.getText());
         out1.print("\r\n");
 
         out1.flush();
@@ -173,8 +181,8 @@ public class ChatPanel extends JPanel {
 
         isServer = true;
         try {
-
-            serverChat = new ServerSocket(5002);
+            //HACK BECAUSE HOW THEY IMPLEMENTED: ADD 1 SO CHAT DOES NOT HAVE SAME SOCKET (BINDING WILL FAIL)
+            serverChat = new ServerSocket(Integer.parseInt(preload.getPortNumber())+1); 
 
             chatSocket = serverChat.accept();
 
@@ -204,7 +212,7 @@ public class ChatPanel extends JPanel {
                 }
 
                 if (receive != null) {
-                    textChatArea.append("\n" + "Other: " + receive);
+                    textChatArea.append("\n" + receive);
                 }
             }
         }
@@ -222,7 +230,8 @@ public class ChatPanel extends JPanel {
 
                 if (receive != null) {
 
-                    textChatArea.append("\n" + "Other: " + receive);
+                    //textChatArea.append("\n" + preload.getName() + ": " + receive);
+                    textChatArea.append("\n" + receive);
 
                 }
             }
