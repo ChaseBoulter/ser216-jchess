@@ -83,14 +83,13 @@ public class PawnTest {
      */
     @Before
     public void setUp() throws Exception {
-
         for (int i = 0, j = 1; i <= 7; i++, j++) {
         	whitePawns1[i] = new Pawn("src" + fileSeparator + "Icons"+ fileSeparator + "Player1Icons" + fileSeparator + "WhitePawn.png", j, 7);
 
         	
             blackPawns1[i] = new Pawn(
                     "src" + fileSeparator + "Icons" + fileSeparator + "Player2Icons"
-                    + fileSeparator  + "BlackPawn.png", j, 2);
+                    + fileSeparator  + "BlackPawn.png", j, 2); 
         }
 
         for (int i = 0, j = 1; i <= 7; i++, j++) {
