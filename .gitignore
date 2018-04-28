@@ -160,3 +160,15 @@ nbactions.xml
 
 
 # End of https://www.gitignore.io/api/java,eclipse,netbeans,intellij
+.gradle/4.5/fileChanges/last-build.bin
+.gradle/4.5/fileContent/annotation-processors.bin
+.gradle/4.5/fileContent/fileContent.lock
+.gradle/4.5/fileHashes/fileHashes.bin
+.gradle/4.5/fileHashes/fileHashes.lock
+.gradle/4.5/fileHashes/resourceHashesCache.bin
+.gradle/4.5/taskHistory/taskHistory.bin
+.gradle/4.5/taskHistory/taskHistory.lock
+.gradle/buildOutputCleanup/buildOutputCleanup.lock
+.gradle/vcsWorkingDirs/gc.properties
+.gradle/workspace-id.txt
+.gradle/workspace-id.txt.lock
