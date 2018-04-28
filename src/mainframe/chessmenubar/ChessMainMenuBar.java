@@ -3,10 +3,10 @@ package mainframe.chessmenubar;
 import javax.swing.JMenuBar;
 
 import mainframe.chessframe.MainFrame;
-//import MainFrame.ChessMenuBar.ChessBar_Menus.Edit_Menu;
+
 import mainframe.chessmenubar.menus.FileMenu;
 import mainframe.chessmenubar.menus.HelpMenu;
-//import MainFrame.ChessMenuBar.ChessBar_Menus.Tools_Menu;
+
 
 /**
  * The Class ChessMainMenuBar.

@@ -134,7 +134,6 @@ public class ChatPanel extends JPanel {
         textField.addKeyListener(new KeyListener() {
             @Override
             public void keyPressed(KeyEvent e) {
-                // System.out.println("okdddd "+e.KEY_PRESSED+" "+e.VK_PAGE_DOWN);
 
                 if (e.getKeyChar() == '\n') {
                     textChatArea.append("\n" + preload.getName() + ": " + textField.getText());
@@ -229,8 +228,6 @@ public class ChatPanel extends JPanel {
 
             out1 = new PrintWriter(new OutputStreamWriter(
                     chatSocket.getOutputStream(), StandardCharsets.UTF_8), true);
-
-            // chatSocket.setSoTimeout(10000);
 
             serverThread.start();
 

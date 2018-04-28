@@ -411,10 +411,8 @@ public class MainPanel extends JPanel {
                         if (player1.getInHand() < 33 && player1.getInHand() > 24) {
                             for (int i = 1; i < 17; i++) {
                                 samePostion = player2.returnPostion(i);
-                                if (samePostion.x == newP.x && samePostion.y == newP.y) {
-                                    if (player1.pawnSeen(player1.getInHand(), samePostion)) {
+                                if ((samePostion.x == newP.x && samePostion.y == newP.y) && player1.pawnSeen(player1.getInHand(), samePostion)) {
                                         break;
-                                    }
                                 }
                             }
                         }
@@ -709,20 +707,20 @@ public class MainPanel extends JPanel {
 
                                     if (!player2.returncheckKing()) {
                                         if (player1.isKingChecked(player2)) {
-                                            // if my king will be in check if i move
-                                            // so i can't move and i will return back to old postion'
 
                                             player1.checkKing(true);
                                             endMove = false;
 
                                             if (player1.checkMate(player2)) {
-                                                box = Integer.toString(player2.getInHand()) + Integer.toString(newP.x)
+                                                box = Integer.toString(player2.getInHand()) 
+                                                        + Integer.toString(newP.x)
                                                         + Integer.toString(newP.y);
                                                 gameOver();
 
                                                 canSend = true;
                                             } else {
-                                                box = Integer.toString(player2.getInHand()) + Integer.toString(newP.x)
+                                                box = Integer.toString(player2.getInHand()) 
+                                                        + Integer.toString(newP.x)
                                                         + Integer.toString(newP.y);
                                                 checkStatus();
                                                 canSend = true;
@@ -730,7 +728,8 @@ public class MainPanel extends JPanel {
                                         }
 
                                         if (endMove) {
-                                            box = Integer.toString(player2.getInHand()) + Integer.toString(newP.x)
+                                            box = Integer.toString(player2.getInHand()) 
+                                                    + Integer.toString(newP.x)
                                                     + Integer.toString(newP.y);
                                             changeTurn();
                                             canSend = true;
@@ -753,7 +752,8 @@ public class MainPanel extends JPanel {
 
                         }
                         if (gameOver) {
-                            JOptionPane.showConfirmDialog(null, "Check Mate\n Black won the game", "Game Over",
+                            JOptionPane.showConfirmDialog(null, "Check Mate\n Black won the game",
+                                    "Game Over",
                                     JOptionPane.DEFAULT_OPTION);
                         }
 
@@ -780,10 +780,8 @@ public class MainPanel extends JPanel {
         }
     }
 
-    //////// *---------------Mohamed Sami ------------------*//////////////////
     /**
-     *  TODO: enter stuff.*
-     *
+     * Gets Board Position
      * @param x the x
      * @param y the y
      * @return the board position
