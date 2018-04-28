@@ -1,19 +1,19 @@
 package mainframe.chessmenubar.menus.items.file;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JMenuItem;
 
+/**
+ * The Class ExitItem.
+ */
 public class ExitItem extends JMenuItem {
 
-    /** Creates a new instance of ExitItem */
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = 1L;
+
+    /** Creates a new instance of ExitItem. */
     public ExitItem() {
         setText("Exit");
-        addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
+        addActionListener(e -> System.exit(0));
 
     }
 

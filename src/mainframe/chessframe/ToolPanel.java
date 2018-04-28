@@ -1,183 +1,260 @@
 
 package mainframe.chessframe;
 
-
-import mainframe.chessframe.timer.ThreadTimer;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Graphics;
+
 import javax.swing.DefaultListModel;
-import javax.swing.JList;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+//import mainframe.chessframe.timer.ThreadTimer;
 
-
-
+/**
+ * The Class ToolPanel.
+ */
 public class ToolPanel extends JPanel {
-    /** Creates a new instance of ToolPanel */
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        
-        //        Graphics2D g2 = (Graphics2D)g;
-        
-        // draw a rectangle
-        
-       /* Ellipse2D start= new Ellipse2D.Double(100, 34, 30, 30);
-        Ellipse2D stop= new Ellipse2D.Double(100, 234, 30, 30);
-        g2.setColor(Color.RED.darker());
-        g2.fill(start);
-        g2.setColor(Color.GREEN.darker());
-        g2.fill(stop);
-        
-        Ellipse2D surr1= new Ellipse2D.Double(100, 34, 30, 30);
-        Ellipse2D surr2= new Ellipse2D.Double(100, 234, 30, 30);
-        
-        g2.setColor(Color.BLACK.brighter());
-        
-        
-        g2.draw(surr1);
-        g2.draw(surr2);*/
-        
-        
-        
-        
-    }
+
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = 1L;
     
+    /** The white text field. */
+    private final JTextField whiteTextField = new JTextField("WHITE");
     
+    /** The black text field. */
+    private final JTextField blackTextField = new JTextField("BLACK");
     
+    /** The history list. */
+    private final myHistoryList historyList = new myHistoryList();
+    
+    /** The history scroll. */
+    //private final short numberOfTurns = 1;
+    private final JScrollPane historyScroll = new JScrollPane(historyList, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+            JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+//    private final JLabel timeDesc1 = new JLabel(" Timer 1");
+//    private final JLabel timeDesc2 = new JLabel(" Timer 2");
+    //private ThreadTimer timer1;
+    /** The my turn. */
+//private ThreadTimer timer2;
+    private ImageIcon myTurn;
+    
+    /** The my check. */
+    private ImageIcon myCheck;
+    
+    /** The fs. */
+    private String fs;
+    
+    /** The image label white. */
+    private JLabel imageLabelWhite;
+    
+    /** The check label white. */
+    private JLabel checkLabelWhite;
+    
+    /** The image label black. */
+    private JLabel imageLabelBlack;
+    
+    /** The check label black. */
+    private JLabel checkLabelBlack;
+
+    /** initializes ToolPanel to default values.**/
     public ToolPanel() {
-        setSize(200,350);
-        setLocation(600,0);
+        setPreferredSize(new Dimension(310, 340));
+        setMinimumSize(new Dimension(310, 340));
+        setLocation(595, 0);
         setLayout(null);
         
+        setSize(310, 340);
+        fs = System.getProperty("file.separator");
+        myTurn = new ImageIcon("src" + fs + "Icons" + fs + "other" + fs
+                + "Turn.png");
+        myCheck = new ImageIcon("src" + fs + "Icons" + fs + "other" + fs
+                + "CheckMate.png");
+        imageLabelWhite = new JLabel(myTurn);
+        imageLabelBlack = new JLabel(myTurn);
+        checkLabelWhite = new JLabel(myCheck);
+        checkLabelBlack = new JLabel(myCheck);
+        
+        historyList.setBackground(Color.WHITE);
+        blackTextField.setHorizontalAlignment(SwingConstants.CENTER);
+
+        blackTextField.setSize(60, 25);
+        blackTextField.setLocation(15, 33);
+
+        blackTextField.setEnabled(false);
+        blackTextField.setBackground(Color.WHITE);
+        blackTextField.setFont(new Font("Arial", Font.BOLD, 12));
+        blackTextField.setDisabledTextColor(Color.BLACK);
+        whiteTextField.setForeground(Color.WHITE);
+        whiteTextField.setHorizontalAlignment(SwingConstants.CENTER);
+        whiteTextField.setSize(60, 25);
+        whiteTextField.setLocation(15, 284);
+
+        whiteTextField.setEnabled(false);
+        whiteTextField.setBackground(Color.BLACK);
+        whiteTextField.setFont(new Font("Arial", Font.BOLD, 12));
+        whiteTextField.setDisabledTextColor(Color.WHITE);
+        add(blackTextField);
+        add(whiteTextField);
         
         
-        JLturn1.setSize(60,25);
-        JLturn1.setLocation(20,10);
-        Screen1.setSize(100,25);
-        Screen1.setLocation(90,25);
+        //default
+        imageLabelBlack.setPreferredSize(new Dimension(32, 32));
+        imageLabelBlack.setBounds(96, 26, 32, 32);
+        imageLabelBlack.setEnabled(false);
+        add(imageLabelBlack);
         
-        JLblack.setSize(60,25);
-        JLblack.setLocation(20,34);
+        checkLabelBlack.setPreferredSize(new Dimension(32, 32));
+        checkLabelBlack.setBounds(140, 26, 32, 32);
+        checkLabelBlack.setEnabled(false);
+        add(checkLabelBlack);
         
-        JLturn1.setEnabled(false);
-        JLturn1.setBackground(Color.ORANGE);
-        JLturn1.setDisabledTextColor(Color.BLACK);
-        JLturn1.setFont(new Font("Arial",Font.BOLD,12));
+        //white goes first
+        imageLabelWhite.setPreferredSize(new Dimension(32, 32));
+        imageLabelWhite.setBounds(96, 277, 32, 32);
+        imageLabelWhite.setEnabled(true);
+        add(imageLabelWhite);
+        //imageLabelBlack.setBounds
         
-        JLblack.setEnabled(false);
-        JLblack.setBackground(new Color(230,12,0));
-        JLblack.setFont(new Font("Arial",Font.BOLD,12));
-        JLblack.setDisabledTextColor(Color.BLACK);
-        
-        JLturn2.setSize(60,25);
-        JLturn2.setLocation(20,254);
-        Screen2.setSize(100,25);
-        Screen2.setLocation(90,254);
-        JLwhite.setSize(60,25);
-        JLwhite.setLocation(20,230);
-        
-        JLturn2.setEnabled(false);
-        JLturn2.setBackground(Color.ORANGE);
-        JLturn2.setDisabledTextColor(Color.BLACK);
-        JLturn2.setFont(new Font("Arial",Font.BOLD,12));
-        
-        JLwhite.setEnabled(false);
-        JLwhite.setBackground(new Color(230,12,0));
-        JLwhite.setFont(new Font("Arial",Font.BOLD,12));
-        JLwhite.setDisabledTextColor(Color.BLACK);
-        
-        add(JLturn1);
-        add(JLblack);
-        add(JLturn2);
-        add(JLwhite);
-        add(Screen1);
-        add(Screen2);
-        
-        HistoryScroll.setSize(150,150);
-        HistoryScroll.setLocation(20,70);
-        add(HistoryScroll);
-        
-        
-        
-        
+        checkLabelWhite.setPreferredSize(new Dimension(32, 32));
+        checkLabelWhite.setBounds(140, 277, 32, 32);
+        checkLabelWhite.setEnabled(false);
+        add(checkLabelWhite);
+
+        historyScroll.setSize(278, 202);
+        historyScroll.setLocation(16, 70);
+        add(historyScroll);
+
     }
-    public  void setturn() {
-        
-        
+
+    /**
+     * Setturn.
+     */
+    public void setturn() {
+
     }
+
+    /**
+     * Adds the to history.
+     *
+     * @param newItem the new item
+     */
     public void add_to_History(Object newItem) {
-        HistoryList.addElemen_tolist(newItem);
-    }
-    public void change_to_Timer1() {
-        Timer1.resume();
-        Timer2.suspend();
-    }
-    public void change_to_Timer2() {
-        Timer2.resume();
-        Timer1.suspend();
-    }
-    public void stop_timers() {
-        Timer1.stop();
-        Timer2.stop();
+        historyList.addElemen_tolist(newItem);
     }
     
-    private final JTextField JLturn1=new JTextField(" P2  Turn ");
-    private final JTextField JLturn2=new JTextField(" P1  Turn ");
-    private final JTextField JLwhite=new JTextField("  White ");
-    private final JTextField JLblack=new JTextField("  Black ");
-    private final myHistoryList HistoryList=new myHistoryList();
-    private final short number_of_turn=1;
-    private final JScrollPane HistoryScroll=new JScrollPane(HistoryList,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-    private final JLabel Screen1=new JLabel();
-    private final JLabel  Screen2=new JLabel();
-    private final JLabel TimDesc1=new JLabel(" Timer 1");
-    private final JLabel TimDesc2=new JLabel(" Timer 2");
-    private ThreadTimer Timer1;
-    private ThreadTimer Timer2;
-    
-    public void start_Again() {
-        if(Timer1!=null) {
-            Timer1.stop();
-            Timer2.stop();
+    /**
+     * displays whose turn it is.
+     *
+     * @param player the player
+     */
+    public void switchImageLocation(int player) {
+        if(player == 1) {
+            imageLabelWhite.setEnabled(true);
+            imageLabelBlack.setEnabled(false);
+        } else {
+            imageLabelWhite.setEnabled(false);
+            imageLabelBlack.setEnabled(true);
         }
-        
-        Timer1=new ThreadTimer(Screen2);
-        Timer2=new ThreadTimer(Screen1);
-        
-        Timer1.start();
-        Timer2.start();
-        Timer2.suspend();
-        
-        HistoryList.clean_list();
-        HistoryList.addElemen_tolist("Player: New Moves");
+        checkLabelWhite.setEnabled(false);
+        checkLabelBlack.setEnabled(false);
         
     }
     
-    
+    /**
+     * displays who is in check.
+     *
+     * @param player the player
+     */
+    public void inCheck(int player) {
+        if(player == 1) {
+            checkLabelWhite.setEnabled(true);
+            checkLabelBlack.setEnabled(false);
+            
+            imageLabelWhite.setEnabled(true);
+            imageLabelBlack.setEnabled(false);
+        } else {
+            checkLabelWhite.setEnabled(false);
+            checkLabelBlack.setEnabled(true);
+            
+            imageLabelWhite.setEnabled(false);
+            imageLabelBlack.setEnabled(true);
+        }
+    }
+
+//    public void change_to_Timer1() {
+//        timer1.resume();
+//        timer2.suspend();
+//    }
+//
+//    public void change_to_Timer2() {
+//        timer2.resume();
+//        timer1.suspend();
+//    }
+//
+//    public void stop_timers() {
+//        timer1.stop();
+//        timer2.stop();
+//    }
+
+    /**
+ * Start again.
+ */
+public void startAgain() {
+//        if (timer1 != null) {
+//            timer1.stop();
+//            timer2.stop();
+//        }
+//
+//        timer1 = new ThreadTimer(screen2);
+//        timer2 = new ThreadTimer(screen1);
+//
+//        timer1.start();
+//        timer2.start();
+//        timer2.suspend();
+
+        historyList.clean_list();
+        historyList.addElemen_tolist("Player: New Moves");
+
+    }
 }
 
 class myHistoryList extends JList {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
     myHistoryList() {
-        
+
         this.setBackground(Color.ORANGE);
         setModel(listModel);
         listModel.addElement("Player: New Moves");
-        
+
     }
+
     public void clean_list() {
         listModel.clear();
     }
-    
+
     public void addElemen_tolist(Object newItem) {
         listModel.addElement(newItem);
     }
-    private DefaultListModel listModel=new DefaultListModel();
+
+    private DefaultListModel listModel = new DefaultListModel();
 }
-class myStatusFileds extends JTextField {
-    myStatusFileds() {
+
+class myStatusFields extends JTextField {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    myStatusFields() {
         this.setEnabled(false);
     }
 }

@@ -1,45 +1,54 @@
 
-
 package mainframe.chessmenubar.menus;
 
 import javax.swing.JMenu;
 
 import mainframe.chessframe.MainFrame;
-import mainframe.chessmenubar.menus.items.file.*;
+import mainframe.chessmenubar.menus.items.file.ExitItem;
+import mainframe.chessmenubar.menus.items.file.LoadItem;
+import mainframe.chessmenubar.menus.items.file.SaveItem;
 
+/**
+ * The Class FileMenu.
+ */
+public class FileMenu extends JMenu {
 
-
-public class FileMenu extends JMenu
-{
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = 1L;
     
-    /** Creates a new instance of FileMenu */
-    public FileMenu(MainFrame ff)
-    {
-        NItem=new NewItem(ff);
+    /**
+     *  Creates a new instance of FileMenu.
+     *
+     * @param ff the ff
+     */
+    public FileMenu(MainFrame ff) {
+        //newItem = new NewItem(ff);
         setText("File");
-        
-        
-        
-        add(NItem);
-        addSeparator();
-        add(SItem);
-        add(LItem);
-        add(EItem);
-        
+
+        //add(newItem);
+        //addSeparator();
+        add(saveItem);
+        add(loadItem);
+        add(exitItem);
+
     }
-    public String getIPaddress()
-    {
-        return NItem.getIpAddress();
-    }
-    public String getportNumber()
-    {
-        return NItem.getportNumber();
-    }
+
+//    public String getIPaddress() {
+//        return newItem.getIpAddress();
+//    }
+//
+//    public String getportNumber() {
+//        return newItem.getportNumber();
+//    }
+
+    /** The save item. */
+//private final NewItem newItem;
+    private final SaveItem saveItem = new SaveItem();
     
+    /** The load item. */
+    private final LoadItem loadItem = new LoadItem();
     
-    private final NewItem NItem;
-    private final SaveItem SItem=new SaveItem();
-    private final LoadItem LItem=new LoadItem();
-    private final ExitItem EItem=new ExitItem();
-    
+    /** The exit item. */
+    private final ExitItem exitItem = new ExitItem();
+
 }

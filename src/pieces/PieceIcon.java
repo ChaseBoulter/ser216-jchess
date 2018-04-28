@@ -4,16 +4,33 @@ package pieces;
 import java.awt.Image;
 import java.awt.Toolkit;
 
+/**
+ * The Class PieceIcon.
+ */
 public class PieceIcon {
+    
+    /** The kit. */
     private Toolkit kit = Toolkit.getDefaultToolkit();
+    
+    /** The image. */
     private Image image;
 
-    public PieceIcon(String NameIcon) // throws IOException
-    {
+    /**
+     * Instantiates a new piece icon.
+     *
+     * @param nameIcon the name icon
+     */
+    //throws IO Exception?
+    public PieceIcon(String nameIcon) {
 
-        image = kit.getImage(NameIcon);
+        image = kit.getImage(nameIcon);
     }
 
+    /**
+     * Return piece icon.
+     *
+     * @return the image
+     */
     public Image returnPieceIcon() {
         return image;
     }

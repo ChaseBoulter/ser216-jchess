@@ -1,12 +1,23 @@
+package chessgame;
+
 /**
  * entry point for Chess.
  */
-package chessgame;
-
-import mainframe.chessframe.MainFrame;
-
 public class Chess {
+    
+    /**
+     * The main method.
+     *
+     * @param args the arguments
+     */
     public static void main(String[] args) {
-        MainFrame frame = new MainFrame();
+        Preloader preload = Preloader.getInstance();
+        if (preload == null) {
+            return;
+        }
+        
+        while(!preload.endLoading()) {
+          //intentionally left empty
+        }
     }
 }

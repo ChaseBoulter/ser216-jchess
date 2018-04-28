@@ -1,149 +1,238 @@
 
 package mainframe.chessframe;
 
-//import java.awt.BorderLayout;
-//import java.awt.Color;
-//import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
-import java.net.UnknownHostException;
-import java.net.Socket;
 import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.nio.charset.StandardCharsets;
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-
-
 import javax.swing.border.TitledBorder;
 
+import chessgame.Preloader;
+
+/**
+ * The Class ChatPanel.
+ */
 public class ChatPanel extends JPanel {
 
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = 1L;
+    /** private fields for class.**/
+    private final JTextArea textChatArea = new JTextArea(6, 20);
+    
+    /** The text border. */
+    private final TitledBorder textBorder = new TitledBorder("Chat History");
+    
+    /** The text field. */
+    private final JTextField textField = new JTextField(10);
+    
+    /** The send B. */
+    private final JButton sendB = new JButton();
+    
+    /** The text area scroll. */
+    private final JScrollPane textAreaScroll = new JScrollPane(
+            textChatArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+            JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+    
+    /** The chat socket. */
+    private Socket chatSocket;
+    
+    /** The server chat. */
+    private ServerSocket serverChat;
+    
+    /** The in 1. */
+    private BufferedReader in1;
+    
+    /** The out 1. */
+    private PrintWriter out1;
+    
+    /** The in 2. */
+    private BufferedReader in2;
+    
+    /** The out 2. */
+    private PrintWriter out2;
+    
+    /** The server thread. */
+    private ServerChat serverThread = new ServerChat();
+    
+    /** The send socket. */
+    private Socket sendSocket;
+    
+    /** The client thread. */
+    private ClientChat clientThread = new ClientChat();
+    
+    /** The is server. */
+    private boolean isServer;
+    
+    /** The preload. */
+    Preloader preload = Preloader.getInstance(); //singleton
+    
     /** Creates a new instance of ChatPanel. */
     public ChatPanel() {
-        setSize(200, 300);
+        setPreferredSize(new Dimension(300, 244));
+        setMinimumSize(new Dimension(300, 300));
+        setSize(300, 244);
         setLocation(600, 350);
 
-        textAreaScroll.setSize(180, 190);
+        textAreaScroll.setSize(284, 188);
         textAreaScroll.setLocation(10, 0);
+        textChatArea.setLineWrap(true);
 
         setLayout(null);
 
         textAreaScroll.setEnabled(false);
-        textfield.setEnabled(false);
+        textField.setEnabled(false);
         sendB.setEnabled(false);
+        
+        //set sendButton's info
+        sendB.setSize(80, 30);
+        sendB.setLocation(214, 192);
+        sendB.setText("Send");
+        
+        
+        //set TextField info
+        textField.setSize(180, 20);
+        textField.setLocation(10, 196);
+        //textField.add(textAreaScroll);
+        textField.setToolTipText("Write Text Here");
 
+        //set textChatArea info
+        textChatArea.setEditable(false);
+        textChatArea.setBorder(textBorder);
+        
+        
         add(textAreaScroll);
-        add(textfield);
+        add(textField);
         add(sendB);
 
-        sendB.addActionListener(new ActionListener() {
+        sendB.addActionListener(e -> {
 
-            public void actionPerformed(ActionEvent e) {
-
-                textArea.append("\n" + textfield.getText());
-                if (I_am_What) {
-                    sendTextServer();
-                    textfield.setText(null);
-                } else {
-                    sendTextChat();
-                    textfield.setText(null);
-                }
-
+            textChatArea.append("\n" + preload.getName() + ": " + textField.getText());
+            if (isServer) {
+                sendTextServer();
+                textField.setText(null);
+            } else {
+                sendTextChat();
+                textField.setText(null);
             }
+
         });
 
-        textfield.addKeyListener(new KeyListener() {
+        textField.addKeyListener(new KeyListener() {
+            @Override
             public void keyPressed(KeyEvent e) {
                 // System.out.println("okdddd "+e.KEY_PRESSED+" "+e.VK_PAGE_DOWN);
 
                 if (e.getKeyChar() == '\n') {
-                    textArea.append("\n" + textfield.getText());
+                    textChatArea.append("\n" + preload.getName() + ": " + textField.getText());
 
-                    if (I_am_What) {
+                    if (isServer) {
                         sendTextServer();
-                        textfield.setText(null);
+                        textField.setText(null);
                     } else {
                         sendTextChat();
-                        textfield.setText(null);
+                        textField.setText(null);
                     }
 
                 }
             }
 
+            @Override
             public void keyReleased(KeyEvent e) {
             }
 
+            @Override
             public void keyTyped(KeyEvent e) {
             }
         });
 
-        // add(chatPanelScroll);
+        // add(chatPanelScroll); //TODO: add chat panel scroll
 
     }
 
-    //TODO: fix chat panel with correct sockets and ports
+    /**
+     * Start chat.
+     */
+    // TODO: fix chat panel with correct sockets and ports
     public void startChat() {
         textAreaScroll.setEnabled(true);
-        textfield.setEnabled(true);
+        textField.setEnabled(true);
         sendB.setEnabled(true);
 
-        I_am_What = false;
+        isServer = false;
         try {
-            send_socket = new Socket("127.0.0.1", 5002);
-            in2 = new BufferedReader(new InputStreamReader(send_socket.getInputStream()));
-            out2 = new PrintWriter(send_socket.getOutputStream());
+            sendSocket = new Socket(preload.getIpAddress(), Integer.parseInt(preload.getPortNumber())+1);
+            
+            in2 = new BufferedReader(new InputStreamReader(sendSocket.getInputStream(), StandardCharsets.UTF_8));
+            out2 = new PrintWriter(new OutputStreamWriter(
+                    sendSocket.getOutputStream(), StandardCharsets.UTF_8), true);
+            
         } catch (UnknownHostException ex) {
             ex.printStackTrace();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        client_thread.start();
+        clientThread.start();
     }
 
+    /**
+     * Send text chat.
+     */
     public void sendTextChat() {
-        out2.print(textfield.getText());
+        out2.print(preload.getName() + ": " + textField.getText());
         out2.print("\r\n");
 
         out2.flush();
 
     }
 
+    /**
+     * Send text server.
+     */
     public void sendTextServer() {
-        out1.print(textfield.getText());
+        out1.print(preload.getName() + ": " + textField.getText());
         out1.print("\r\n");
 
         out1.flush();
 
     }
 
-    public void ListenToChat() {
-
+    /**
+     * Listen to chat.
+     */
+    public void listenToChat() {
         textAreaScroll.setEnabled(true);
-        textfield.setEnabled(true);
+        textField.setEnabled(true);
         sendB.setEnabled(true);
 
-        I_am_What = true;
+        isServer = true;
         try {
+            //HACK BECAUSE HOW THEY IMPLEMENTED: ADD 1 SO CHAT DOES NOT HAVE SAME SOCKET (BINDING WILL FAIL)
+            serverChat = new ServerSocket(Integer.parseInt(preload.getPortNumber())+1); 
 
-            server_chat = new ServerSocket(5002);
+            chatSocket = serverChat.accept();
 
-            chat_socket = server_chat.accept();
+            in1 = new BufferedReader(new InputStreamReader(chatSocket.getInputStream(), StandardCharsets.UTF_8));
 
-            in1 = new BufferedReader(new InputStreamReader(chat_socket.getInputStream()));
+            out1 = new PrintWriter(new OutputStreamWriter(
+                    chatSocket.getOutputStream(), StandardCharsets.UTF_8), true);
 
-            out1 = new PrintWriter(chat_socket.getOutputStream());
+            // chatSocket.setSoTimeout(10000);
 
-            // chat_socket.setSoTimeout(10000);
-
-            myserv_thread.start();
+            serverThread.start();
 
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -151,7 +240,15 @@ public class ChatPanel extends JPanel {
 
     }
 
+    /**
+     * The Class ClientChat.
+     */
     class ClientChat extends Thread {
+        
+        /* (non-Javadoc)
+         * @see java.lang.Thread#run()
+         */
+        @Override
         public void run() {
             String receive = null;
             while (true) {
@@ -162,13 +259,21 @@ public class ChatPanel extends JPanel {
                 }
 
                 if (receive != null) {
-                    textArea.append("\n" + "Other: " + receive);
+                    textChatArea.append("\n" + receive);
                 }
             }
         }
     }
 
+    /**
+     * The Class ServerChat.
+     */
     class ServerChat extends Thread {
+        
+        /* (non-Javadoc)
+         * @see java.lang.Thread#run()
+         */
+        @Override
         public void run() {
             String receive = null;
             while (true) {
@@ -180,68 +285,12 @@ public class ChatPanel extends JPanel {
 
                 if (receive != null) {
 
-                    textArea.append("\n" + "Other: " + receive);
+                    //textChatArea.append("\n" + preload.getName() + ": " + receive);
+                    textChatArea.append("\n" + receive);
 
                 }
             }
         }
     }
 
-    private final ChatArea textArea = new ChatArea(6, 20);
-    private final MyTextField textfield = new MyTextField(10);
-    private final SendButton sendB = new SendButton();
-    private final JScrollPane textAreaScroll = new JScrollPane(textArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-            JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-    private Socket chat_socket;
-    private ServerSocket server_chat;
-    private BufferedReader in1;
-    private PrintWriter out1;
-    private BufferedReader in2;
-    private PrintWriter out2;
-    private ServerChat myserv_thread = new ServerChat();
-    private Socket send_socket;
-    private ClientChat client_thread = new ClientChat();
-    private boolean I_am_What;
-
-}
-
-class ChatArea extends JTextArea {
-    ChatArea(int rowNum, int colNum) {
-        super(rowNum, colNum);
-
-        /*
-         * setSize(130,150); setLocation(30,0);
-         */
-        setEditable(false);
-        // textAreaScroll =new
-        // JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        // this.add(textAreaScroll);
-        setBorder(TextBorder);
-
-    }
-
-    private final TitledBorder TextBorder = new TitledBorder("Chat History");
-}
-
-class SendButton extends JButton {
-    SendButton() {
-
-        setSize(80, 30);
-        setLocation(50, 230);
-        setText("Send");
-    }
-}
-
-class MyTextField extends JTextField {
-    MyTextField(int fieldLength) {
-        super(fieldLength);
-        setSize(180, 20);
-        setLocation(10, 200);
-
-        add(textAreaScroll);
-        this.setToolTipText("Write Text Here");
-
-    }
-
-    private final JScrollPane textAreaScroll = new JScrollPane();
 }

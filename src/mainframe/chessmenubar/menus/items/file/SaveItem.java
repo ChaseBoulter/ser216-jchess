@@ -1,24 +1,23 @@
 
 package mainframe.chessmenubar.menus.items.file;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JFileChooser;
 import javax.swing.JMenuItem;
 
+/**
+ * The Class SaveItem.
+ */
 public class SaveItem extends JMenuItem {
 
-    /** Creates a new instance of SaveItem */
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = 1L;
+
+    /** Creates a new instance of SaveItem. */
     public SaveItem() {
         setText("Save Game");
-        addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                SaveFile.showSaveDialog(null);
-
-            }
-        });
+        addActionListener(e -> saveFile.showSaveDialog(null));
     }
 
-    private final JFileChooser SaveFile = new JFileChooser();
+    /** The save file. */
+    private final JFileChooser saveFile = new JFileChooser();
 }
