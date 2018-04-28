@@ -10,6 +10,9 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import pieces.Bishop;
+import pieces.Knight;
+import pieces.Rook;
 import players.Player1;
 import players.Player2;
 
@@ -168,6 +171,46 @@ public class GameBoardSetupTest {
         assertFalse(player1.checkMove(new Point(5,3), 31));
         assertFalse(player1.checkMove(new Point(2,4), 32));
 
+    }
+    
+    @Test
+    public void testGenerateBishopMoves() {
+
+	    Bishop whiteBishop =  new Bishop("src" + fileSeparator + "Icons" + fileSeparator
+          + "Player1Icons" + fileSeparator + "whiteBishop.png", 3, 8);
+	    Bishop  blackBishop = new Bishop("src" + fileSeparator + "Icons" 
+                + fileSeparator + "Player2Icons" + fileSeparator + "blackBishop.png", 3, 1);
+        assertFalse(player1.generateBishopMoves(player2, whiteBishop));
+        assertFalse(player2.generateBishopMoves(player1, blackBishop));
+    }
+    
+    /**
+     * Test generateCastleMoves
+     */
+    @Test
+    public void testGenerateCastleMoves() {
+    	 Rook whiteRook1 = new Rook("src" + fileSeparator + "Icons"
+                 + fileSeparator + "Player2Icons" + fileSeparator + "WhiteRook.png", 1, 1);
+    	 assertTrue(player1.generateCastleMoves(player2, whiteRook1));
+    }
+    
+    /**
+     * Test generateHorseMoves
+     */
+    @Test
+    public void testGenerateHorseMoves() {
+    	Knight whiteKnight1 = new Knight("src" + fileSeparator + "Icons" + fileSeparator
+                + "Player1Icons" + fileSeparator + "whiteKnight.png", 2, 8);
+    	Knight whiteKnight2 = new Knight("src" + fileSeparator + "Icons" + fileSeparator
+                + "Player1Icons" + fileSeparator + "whiteKnight.png", 3, 3);
+    	Knight whiteKnight3 = new Knight("src" + fileSeparator + "Icons" + fileSeparator
+                + "Player1Icons" + fileSeparator + "whiteKnight.png", 4, 5);
+    	Knight whiteKnight4 = new Knight("src" + fileSeparator + "Icons" + fileSeparator
+                + "Player1Icons" + fileSeparator + "whiteKnight.png", 7, 6);
+    	assertTrue(player1.generateHorseMoves(player2, whiteKnight1));
+    	assertTrue(player1.generateHorseMoves(player2, whiteKnight2));
+    	assertTrue(player1.generateHorseMoves(player2, whiteKnight3));
+    	assertTrue(player1.generateHorseMoves(player2, whiteKnight4));
     }
 
 }
