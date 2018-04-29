@@ -4,6 +4,7 @@
 
 package test;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -83,6 +84,11 @@ public class PieceTest {
         assertTrue(aPiece.returnOld().getY() == 8);
         aPiece.toOld(aPiece.returnOld());
         assertTrue(aPiece.inThisPosition(1, 8));
+        assertFalse(aPiece.inThisPosition(3, 8));
+        aPiece.setY(1);
+        aPiece.setX(1);
+        assertTrue(aPiece.returnPostion().y==1);
+        assertTrue(aPiece.returnPostion().x==1);
 
     }
 
