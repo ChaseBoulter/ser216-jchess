@@ -248,7 +248,7 @@ public class Preloader extends JFrame {
 
         lblHitEnterTo = new JLabel("Hit enter to confirm name.");
 
-        lblPortInfo = new JLabel("port must be between 1025 and 65534");
+        lblPortInfo = new JLabel("port must be between 1025 and 65533");
 
         GroupLayout layout = new GroupLayout(getContentPane());
         layout.setHorizontalGroup(
@@ -497,8 +497,6 @@ public class Preloader extends JFrame {
             }
         }
 
-        //dispose();
-
     }                                          
 
     /**
@@ -651,7 +649,7 @@ public class Preloader extends JFrame {
         try {
             validPort = Integer.parseInt(port);
             //reserved ports and max ports - 1
-            if(validPort > 1024 && validPort < 65534) {
+            if(validPort > 1024 && validPort < 65533) {
                 return true;
             }
         } catch(NumberFormatException ex) {

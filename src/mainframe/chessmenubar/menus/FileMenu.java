@@ -24,22 +24,13 @@ public class FileMenu extends JMenu {
     public FileMenu(MainFrame ff) {
         //newItem = new NewItem(ff);
         setText("File");
-
-        //add(newItem);
-        //addSeparator();
+        
         add(saveItem);
         add(loadItem);
         add(exitItem);
 
     }
 
-//    public String getIPaddress() {
-//        return newItem.getIpAddress();
-//    }
-//
-//    public String getportNumber() {
-//        return newItem.getportNumber();
-//    }
 
     /** The save item. */
 //private final NewItem newItem;
