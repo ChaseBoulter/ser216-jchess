@@ -14,8 +14,8 @@ public class LoadItem extends JMenuItem {
 
     /** Creates a new instance of LoadItem. */
     public LoadItem() {
-        setText("Load Game");
-        addActionListener(e -> loadFile.showOpenDialog(null));
+        this.setText("Load Game");
+        this.addActionListener(e -> this.loadFile.showOpenDialog(null));
     }
 
     /** The load file. */

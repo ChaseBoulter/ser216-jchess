@@ -13,7 +13,7 @@ public class Options extends JMenuItem {
 
     /** Creates a new instance of Options. */
     public Options() {
-        setText("Options");
+        this.setText("Options");
     }
 
 }

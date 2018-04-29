@@ -9,11 +9,14 @@ import java.awt.Point;
 public class Knight extends Piece {
 
     /**
-     *  Creates a new instance of Knight.
+     * Creates a new instance of Knight.
      *
-     * @param nameIcon the name icon
-     * @param startX the start X
-     * @param startY the start Y
+     * @param nameIcon
+     *            the name icon
+     * @param startX
+     *            the start X
+     * @param startY
+     *            the start Y
      */
     public Knight(String nameIcon, int startX, int startY) {
 
@@ -21,18 +24,23 @@ public class Knight extends Piece {
     }
 
     /**
-     *  moves logic for Knight.*
+     * moves logic for Knight.*
      *
-     * @param x the x
-     * @param y the y
+     * @param x
+     *            the x
+     * @param y
+     *            the y
      * @return true, if successful
      */
     public boolean canMove(int x, int y) {
-        return x + 1 == nextX && y + 2 == nextY 
-                || x + 1 == nextX && y - 2 == nextY || x - 1 == nextX && y + 2 == nextY
-                || x - 1 == nextX && y - 2 == nextY || x + 2 == nextX && y + 1 == nextY
-                || x + 2 == nextX && y - 1 == nextY
-                || x - 2 == nextX && y + 1 == nextY || x - 2 == nextX && y - 1 == nextY;
+        return x + 1 == this.nextX && y + 2 == this.nextY
+                || x + 1 == this.nextX && y - 2 == this.nextY
+                || x - 1 == this.nextX && y + 2 == this.nextY
+                || x - 1 == this.nextX && y - 2 == this.nextY
+                || x + 2 == this.nextX && y + 1 == this.nextY
+                || x + 2 == this.nextX && y - 1 == this.nextY
+                || x - 2 == this.nextX && y + 1 == this.nextY
+                || x - 2 == this.nextX && y - 1 == this.nextY;
     }
 
     /**
@@ -50,6 +58,6 @@ public class Knight extends Piece {
      * @return the string
      */
     public String tellMe() {
-        return "Knight= (" + updatedPosition.x + ',' + updatedPosition.y + ")";
+        return "Knight= (" + this.updatedPosition.x + ',' + this.updatedPosition.y + ")";
     }
 }

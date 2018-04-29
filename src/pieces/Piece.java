@@ -10,46 +10,49 @@ public class Piece {
 
     /** The next X. */
     protected int nextX;
-    
+
     /** The next Y. */
     protected int nextY;
-    
+
     /** The pixel point. */
     protected Point pixelPoint = new Point();
-    
+
     /** The pixel X. */
     protected int pixelX;
-    
+
     /** The pixel Y. */
     protected int pixelY;
-    
+
     /** The havelife. */
     protected boolean havelife = true;
-    
+
     /** The piece icon. */
     protected PieceIcon pieceIcon;
-    
+
     /** The updated position. */
     protected Point updatedPosition = new Point();
-    
+
     /** The old. */
     protected Point old = new Point();
 
     /**
      * Instantiates a new piece.
      *
-     * @param nameIcon the name icon
-     * @param startX the start X
-     * @param startY the start Y
+     * @param nameIcon
+     *            the name icon
+     * @param startX
+     *            the start X
+     * @param startY
+     *            the start Y
      */
     public Piece(String nameIcon, int startX, int startY) {
 
-        pieceIcon = new PieceIcon(nameIcon);
+        this.pieceIcon = new PieceIcon(nameIcon);
 
-        nextX = startX;
-        nextY = startY;
-        updatedPosition.x = nextX;
-        updatedPosition.y = nextY;
+        this.nextX = startX;
+        this.nextY = startY;
+        this.updatedPosition.x = this.nextX;
+        this.updatedPosition.y = this.nextY;
     }
 
     /**
@@ -58,7 +61,7 @@ public class Piece {
      * @return the image
      */
     public Image returnPieceImage() {
-        return pieceIcon.returnPieceIcon();
+        return this.pieceIcon.returnPieceIcon();
     }
 
     /**
@@ -67,7 +70,7 @@ public class Piece {
      * @return the point
      */
     public Point returnPostion() {
-        return (Point) updatedPosition.clone();
+        return (Point) this.updatedPosition.clone();
     }
 
     /**
@@ -76,18 +79,20 @@ public class Piece {
      * @return the int
      */
     public int returnX() {
-        return nextX;
+        return this.nextX;
     }
 
     /**
      * Sets the pixels.
      *
-     * @param newpixelX the newpixel X
-     * @param newpixelY the newpixel Y
+     * @param newpixelX
+     *            the newpixel X
+     * @param newpixelY
+     *            the newpixel Y
      */
     public void setPixels(int newpixelX, int newpixelY) {
-        pixelPoint.x = newpixelX;
-        pixelPoint.y = newpixelY;
+        this.pixelPoint.x = newpixelX;
+        this.pixelPoint.y = newpixelY;
     }
 
     /**
@@ -96,7 +101,7 @@ public class Piece {
      * @return the pixel X
      */
     public int getPixelX() {
-        return pixelX;
+        return this.pixelX;
     }
 
     /**
@@ -105,7 +110,7 @@ public class Piece {
      * @return the pixel Y
      */
     public int getPixelY() {
-        return pixelY;
+        return this.pixelY;
     }
 
     /**
@@ -114,7 +119,7 @@ public class Piece {
      * @return the pixel point
      */
     public Point getpixelPoint() {
-        return pixelPoint;
+        return this.pixelPoint;
     }
 
     /**
@@ -123,19 +128,20 @@ public class Piece {
      * @return the int
      */
     public int returnY() {
-        return nextY;
+        return this.nextY;
     }
 
     /**
      * Sets the point.
      *
-     * @param newPoint the new point
+     * @param newPoint
+     *            the new point
      */
     public void setPoint(Point newPoint) {
-        old.x = updatedPosition.x;
-        old.y = updatedPosition.y;
-        nextX = updatedPosition.x = newPoint.x;
-        nextY = updatedPosition.y = newPoint.y;
+        this.old.x = this.updatedPosition.x;
+        this.old.y = this.updatedPosition.y;
+        this.nextX = this.updatedPosition.x = newPoint.x;
+        this.nextY = this.updatedPosition.y = newPoint.y;
 
         // updatedPosition.x = newPoint.x;
         //
@@ -146,11 +152,12 @@ public class Piece {
     /**
      * Sets the x.
      *
-     * @param newX the new x
+     * @param newX
+     *            the new x
      */
     public void setX(int newX) {
-        nextX = newX;
-        updatedPosition.x = nextX;
+        this.nextX = newX;
+        this.updatedPosition.x = this.nextX;
     }
 
     /**
@@ -159,28 +166,30 @@ public class Piece {
      * @return the point
      */
     public Point returnOld() {
-        return old;
+        return this.old;
     }
 
     /**
      * Sets the y.
      *
-     * @param newY the new y
+     * @param newY
+     *            the new y
      */
     public void setY(int newY) {
-        nextY = newY;
-        updatedPosition.y = nextY;
+        this.nextY = newY;
+        this.updatedPosition.y = this.nextY;
     }
 
     /**
      * To old.
      *
-     * @param old the old
+     * @param old
+     *            the old
      */
     public void toOld(Point old) {
 
-        updatedPosition.x = old.x;
-        updatedPosition.y = old.y;
+        this.updatedPosition.x = old.x;
+        this.updatedPosition.y = old.y;
 
     }
 
@@ -190,18 +199,20 @@ public class Piece {
      * @return true, if successful
      */
     public boolean returnLife() {
-        return havelife;
+        return this.havelife;
     }
 
     /**
      * In this position.
      *
-     * @param x the x
-     * @param y the y
+     * @param x
+     *            the x
+     * @param y
+     *            the y
      * @return true, if successful
      */
     public boolean inThisPosition(int x, int y) {
-        if (updatedPosition.x == x && updatedPosition.y == y) {
+        if (this.updatedPosition.x == x && this.updatedPosition.y == y) {
             return true;
         }
         return false;

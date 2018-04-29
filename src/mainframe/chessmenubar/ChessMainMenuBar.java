@@ -15,22 +15,23 @@ public class ChessMainMenuBar extends JMenuBar {
 
     /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
-    
+
     /**
-     *  Creates a new instance of Chess_MainMenuBar.
+     * Creates a new instance of Chess_MainMenuBar.
      *
-     * @param ff the ff
+     * @param ff
+     *            the ff
      */
     public ChessMainMenuBar(MainFrame ff) {
-        fileMenu = new FileMenu(ff);
-        add(fileMenu);
-        add(helpMenu);
+        this.fileMenu = new FileMenu(ff);
+        this.add(this.fileMenu);
+        this.add(this.helpMenu);
 
     }
-    
+
     /** The file menu. */
     private final FileMenu fileMenu;
-    
+
     /** The help menu. */
     private final HelpMenu helpMenu = new HelpMenu();
 

@@ -13,18 +13,19 @@ public class HelpMenu extends JMenu {
 
     /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
+
     /** Creates a new instance of HelpMenu. */
-    
+
     public HelpMenu() {
-        setText("Help");
-        add(aboutGame);
-        add(aboutUs);
+        this.setText("Help");
+        this.add(this.aboutGame);
+        this.add(this.aboutUs);
         this.setEnabled(false);
     }
 
     /** The about game. */
     private final AboutChessGame aboutGame = new AboutChessGame();
-    
+
     /** The about us. */
     private final AboutGameProgrammers aboutUs = new AboutGameProgrammers();
 

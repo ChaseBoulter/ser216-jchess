@@ -1,6 +1,8 @@
 
 package mainframe.chessframe;
 
+import chessgame.Preloader;
+
 //import java.awt.BorderLayout;
 //import java.awt.Color;
 import java.awt.Container;
@@ -11,7 +13,6 @@ import java.awt.Container;
 //import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 
-import chessgame.Preloader;
 import mainframe.chessmenubar.ChessMainMenuBar;
 //import mainframe.chessframe.StatusPanel;
 
@@ -22,29 +23,30 @@ public class MainFrame extends JFrame {
 
     /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
-    
+
     /** The preload. */
-    Preloader preload = Preloader.getInstance(); //singleton
+    Preloader preload = Preloader.getInstance(); // singleton
+
     /** creates Chess Game. **/
-    
-    public MainFrame() {      
-        setTitle("JChess!");
-        setSize(900, 665);
-        setResizable(false);
-        
-        //where window should appear
+
+    public MainFrame() {
+        this.setTitle("JChess!");
+        this.setSize(900, 665);
+        this.setResizable(false);
+
+        // where window should appear
         this.setLocationRelativeTo(null);
 
-        contentPane.setLayout(null);
-        contentPane.add(myChatPanel);
-        //contentPane.add(myStatusPanel);
-        contentPane.add(myToolPanel);
+        this.contentPane.setLayout(null);
+        this.contentPane.add(this.myChatPanel);
+        // contentPane.add(myStatusPanel);
+        this.contentPane.add(this.myToolPanel);
 
-        myChessBar = new ChessMainMenuBar(this);
+        this.myChessBar = new ChessMainMenuBar(this);
 
-        setJMenuBar(myChessBar);
-        setVisible(true);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setJMenuBar(this.myChessBar);
+        this.setVisible(true);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     }
 
@@ -52,9 +54,9 @@ public class MainFrame extends JFrame {
      * Start again.
      */
     public void startAgain() {
-        myMainPanel.startAgain();
+        this.myMainPanel.startAgain();
 
-        contentPane.add(myMainPanel);
+        this.contentPane.add(this.myMainPanel);
 
     }
 
@@ -62,12 +64,12 @@ public class MainFrame extends JFrame {
      * Start as server.
      */
     public void startAsServer() {
-        myMainPanel.startAsServer(preload.getIpAddress(),
-                preload.getPortNumber(), myChatPanel);
+        this.myMainPanel.startAsServer(this.preload.getIpAddress(), this.preload.getPortNumber(),
+                this.myChatPanel);
 
-        contentPane.add(myMainPanel);
+        this.contentPane.add(this.myMainPanel);
 
-        setTitle("JChess! - Server");
+        this.setTitle("JChess! - Server");
 
     }
 
@@ -76,28 +78,27 @@ public class MainFrame extends JFrame {
      */
     public void startAsClient() {
 
-        myMainPanel.startAsClient(preload.getIpAddress(), 
-                preload.getPortNumber(), myChatPanel);
-        //myMainPanel.rotateComponent(null);
-        contentPane.add(myMainPanel);
-        setTitle("JChess! - Client");
+        this.myMainPanel.startAsClient(this.preload.getIpAddress(), this.preload.getPortNumber(),
+                this.myChatPanel);
+        // myMainPanel.rotateComponent(null);
+        this.contentPane.add(this.myMainPanel);
+        this.setTitle("JChess! - Client");
     }
 
     /** The my chess bar. */
     private final ChessMainMenuBar myChessBar;
-    
+
     /** The my tool panel. */
     public final ToolPanel myToolPanel = new ToolPanel();
-    //private final StatusPanel myStatusPanel = new StatusPanel();
+    // private final StatusPanel myStatusPanel = new StatusPanel();
 
     /** The my main panel. */
-    private final MainPanel myMainPanel = new MainPanel(myToolPanel);//, myStatusPanel);
-    
+    private final MainPanel myMainPanel = new MainPanel(this.myToolPanel);// , myStatusPanel);
+
     /** The my chat panel. */
     private final ChatPanel myChatPanel = new ChatPanel();
-    
+
     /** The content pane. */
-    private Container contentPane = getContentPane();
-    
+    private Container contentPane = this.getContentPane();
 
 }

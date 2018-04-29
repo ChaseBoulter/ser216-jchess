@@ -43,18 +43,14 @@ public class KnightTest {
      */
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
-        whiteKnight1 = new Knight(
-                "src" + fileSeparator + "Icons" + fileSeparator + "Player1Icons" + fileSeparator 
-                + "wn.gif", 2, 8);
-        whiteKnight2 = new Knight(
-                "src" + fileSeparator + "Icons" + fileSeparator + "Player1Icons" + fileSeparator 
-                + "wn.gif", 7, 8);
-        blackKnight1 = new Knight(
-                "src" + fileSeparator + "Icons" + fileSeparator + "Player2Icons" + fileSeparator 
-                + "bn.gif", 2, 1);
-        blackKnight2 = new Knight(
-                "src" + fileSeparator + "Icons" + fileSeparator + "Player2Icons" + fileSeparator 
-                + "bn.gif", 7, 1);
+        whiteKnight1 = new Knight("src" + fileSeparator + "Icons" + fileSeparator + "Player1Icons"
+                + fileSeparator + "wn.gif", 2, 8);
+        whiteKnight2 = new Knight("src" + fileSeparator + "Icons" + fileSeparator + "Player1Icons"
+                + fileSeparator + "wn.gif", 7, 8);
+        blackKnight1 = new Knight("src" + fileSeparator + "Icons" + fileSeparator + "Player2Icons"
+                + fileSeparator + "bn.gif", 2, 1);
+        blackKnight2 = new Knight("src" + fileSeparator + "Icons" + fileSeparator + "Player2Icons"
+                + fileSeparator + "bn.gif", 7, 1);
     }
 
     /**
@@ -89,22 +85,21 @@ public class KnightTest {
         assertTrue(blackKnight2.canMove(8, 3));
         assertFalse(blackKnight1.canMove(7, 3));
     }
-    
+
     /**
      * Test tellMe().
      */
     @Test
     public void testTellMe() {
-    	assertNotNull(whiteKnight1.tellMe());
+        assertNotNull(whiteKnight1.tellMe());
     }
 
     /**
-     * Test generatePossibleMoves()
+     * Test generatePossibleMoves().
      */
     @Test
     public void testGeneratePossibleMoves() {
-    	assertNotNull(whiteKnight1.generatePossibleMoves());
+        assertNotNull(whiteKnight1.generatePossibleMoves());
     }
-
 
 }
