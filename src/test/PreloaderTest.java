@@ -1,13 +1,13 @@
 package test;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import chessgame.Preloader;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import chessgame.Preloader;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * The Class PreloaderTest.
@@ -15,26 +15,28 @@ import chessgame.Preloader;
 public class PreloaderTest {
 
     /** The preloader. */
-    Preloader preloader; //singleton
+    Preloader preloader; // singleton
 
     /**
      * Sets up.
      *
-     * @throws Exception the exception
+     * @throws Exception
+     *             the exception
      */
     @Before
     public void setUp() throws Exception {
-        preloader = Preloader.getInstance();
+        this.preloader = Preloader.getInstance();
     }
 
     /**
      * Tear down.
      *
-     * @throws Exception the exception
+     * @throws Exception
+     *             the exception
      */
     @After
     public void tearDown() throws Exception {
-        preloader = null;
+        this.preloader = null;
     }
 
     /**
@@ -42,31 +44,31 @@ public class PreloaderTest {
      */
     @Test
     public void testValidName() {
-        assertTrue(preloader.validName("Josh"));
-        assertFalse(preloader.validName(""));
-        assertFalse(preloader.validName("Player Name"));
-        assertFalse(preloader.validName("player name"));
-        assertFalse(preloader.validName("Chase"));
+        assertTrue(this.preloader.validName("Josh"));
+        assertFalse(this.preloader.validName(""));
+        assertFalse(this.preloader.validName("Player Name"));
+        assertFalse(this.preloader.validName("player name"));
+        assertFalse(this.preloader.validName("Chase"));
     }
-    
+
     /**
      * Test play game.
      */
     @Test
     public void testPlayGame() {
-        
-        //default
-        preloader.setName("Josh");
-        assertTrue(preloader.readyToPlay());      
-        
-        //example how it should run, use validateIpAddress first.
+
+        // default
+        this.preloader.setName("Josh");
+        assertTrue(this.preloader.readyToPlay());
+
+        // example how it should run, use validateIpAddress first.
         if (Preloader.validateIpAddress("123")) {
-            preloader.setIpAddress("123");
-            assertTrue(preloader.readyToPlay());
+            this.preloader.setIpAddress("123");
+            assertTrue(this.preloader.readyToPlay());
         }
-        
-        //tests the local button
-        assertTrue(preloader.readyToPlay());
+
+        // tests the local button
+        assertTrue(this.preloader.readyToPlay());
     }
 
 }

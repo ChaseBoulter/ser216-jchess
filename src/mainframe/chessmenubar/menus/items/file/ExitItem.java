@@ -12,8 +12,8 @@ public class ExitItem extends JMenuItem {
 
     /** Creates a new instance of ExitItem. */
     public ExitItem() {
-        setText("Exit");
-        addActionListener(e -> System.exit(0));
+        this.setText("Exit");
+        this.addActionListener(e -> System.exit(0));
 
     }
 

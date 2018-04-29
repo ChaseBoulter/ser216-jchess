@@ -31,15 +31,15 @@ import javax.swing.WindowConstants;
 import mainframe.chessframe.MainFrame;
 
 /**
- * Initial Version: 11/7/2016
- * Updated Version: 4/15/2018.
+ * Initial Version: 11/7/2016 Updated Version: 4/29/2018.
  *
  * @author jeremypowell
  * @author Joshua Goralczyk
+ * @author chaseboulter
  */
-
-//TODO: local button, online button set local host and port
 public class Preloader extends JFrame {
+
+    private static final long serialVersionUID = 1L;
 
     /** The valid ip. */
     // Initalize Values
@@ -49,13 +49,13 @@ public class Preloader extends JFrame {
     private boolean validPort = true;
 
     /** The exit window. */
-    private volatile boolean exitWindow = false;                 // Tests "ready" button to close window
+    private volatile boolean exitWindow = false; // Tests "ready" button to close window
 
     /** The name given. */
-    private boolean nameGiven = false;                  // Tests if name field has input 
+    private boolean nameGiven = false; // Tests if name field has input
 
     /** The first name. */
-    private String firstName = "";                      // Store user (name) input      
+    private String firstName = ""; // Store user (name) input
 
     /** The name field. */
     private JTextField nameField;
@@ -100,11 +100,11 @@ public class Preloader extends JFrame {
     private JLabel lblPort;
 
     /** The my new frame. */
-    private MainFrame myNewFrame; //for online and local
+    private MainFrame myNewFrame; // for online and local
 
     /** The Constant PATTERN. */
-    private static final Pattern PATTERN = Pattern.compile(
-            "^(([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.){3}([01]?\\d\\d?|2[0-4]\\d|25[0-5])$");
+    private static final Pattern PATTERN = Pattern
+            .compile("^(([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.){3}([01]?\\d\\d?|2[0-4]\\d|25[0-5])$");
 
     /** The lbl hit enter to. */
     private JLabel lblHitEnterTo;
@@ -112,392 +112,382 @@ public class Preloader extends JFrame {
     /** The lbl port info. */
     private JLabel lblPortInfo;
 
-
-
     /**
      * Instantiates a new preloader.
      */
     public Preloader() {
-        setMinimumSize(new Dimension(600, 400));
-        setPreferredSize(new Dimension(600, 400));
-        setMaximumSize(new Dimension(600, 400));
-        initComponents();                               // Initalize alignements and fields
-        playButton.setEnabled(false);                   // Disable "ready" button
-        this.setLocationRelativeTo(null);               // Center Setup Frame on Screen
-        setResizable(false);
-        setVisible(true);
+        this.setMinimumSize(new Dimension(600, 400));
+        this.setPreferredSize(new Dimension(600, 400));
+        this.setMaximumSize(new Dimension(600, 400));
+        this.initComponents(); // Initalize alignements and fields
+        this.playButton.setEnabled(false); // Disable "ready" button
+        this.setLocationRelativeTo(null); // Center Setup Frame on Screen
+        this.setResizable(false);
+        this.setVisible(true);
 
     }
 
     /**
      * Inits the components.
      */
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
 
-        titleLabel = new JLabel();
-        nameLabel = new JLabel();
-        nameField = new JTextField();
-        playButton = new JButton();
+        this.titleLabel = new JLabel();
+        this.nameLabel = new JLabel();
+        this.nameField = new JTextField();
+        this.playButton = new JButton();
 
-        //init local online radio buttons
-        localOrOnline = new ButtonGroup();
+        // init local online radio buttons
+        this.localOrOnline = new ButtonGroup();
 
-        //init server client
-        sbg = new ButtonGroup();
-        //sbg.add(asServer);
-        //sbg.add(asClient);
+        // init server client
+        this.sbg = new ButtonGroup();
+        // sbg.add(asServer);
+        // sbg.add(asClient);
 
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Setup");
-        setAlwaysOnTop(true);
-        setBackground(new Color(0, 0, 0));
-        setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-        setIconImages(null);
-        setLocation(new Point(100, 100));
-        setName("setupFrame"); // NOI18N
-        setPreferredSize(new Dimension(450, 275));
-        setResizable(false);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        this.setTitle("Setup");
+        this.setAlwaysOnTop(true);
+        this.setBackground(new Color(0, 0, 0));
+        this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        this.setIconImages(null);
+        this.setLocation(new Point(100, 100));
+        this.setName("setupFrame"); // NOI18N
+        this.setPreferredSize(new Dimension(450, 275));
+        this.setResizable(false);
 
-        titleLabel.setFont(new Font("Matura MT Script Capitals", 1, 48)); // NOI18N
-        titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        titleLabel.setText("JChess!");
+        this.titleLabel.setFont(new Font("Matura MT Script Capitals", 1, 48)); // NOI18N
+        this.titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        this.titleLabel.setText("JChess!");
 
-        nameLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-        nameLabel.setText("Your Name:");
-        nameLabel.setFocusable(false);
-        nameLabel.setInheritsPopupMenu(false);
-        nameLabel.setMaximumSize(new Dimension(300, 16));
-        nameLabel.setRequestFocusEnabled(false);
-        nameLabel.setVerifyInputWhenFocusTarget(false);
-        nameLabel.addMouseListener(new MouseAdapter() {
-            
+        this.nameLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+        this.nameLabel.setText("Your Name:");
+        this.nameLabel.setFocusable(false);
+        this.nameLabel.setInheritsPopupMenu(false);
+        this.nameLabel.setMaximumSize(new Dimension(300, 16));
+        this.nameLabel.setRequestFocusEnabled(false);
+        this.nameLabel.setVerifyInputWhenFocusTarget(false);
+        this.nameLabel.addMouseListener(new MouseAdapter() {
+
             @Override
             public void mouseClicked(MouseEvent evt) {
-                nameLabelMouseClicked(evt);
+                Preloader.this.nameLabelMouseClicked(evt);
             }
-            
+
             @Override
             public void mouseExited(MouseEvent evt) {
-                nameLabelMouseExited(evt);
+                Preloader.this.nameLabelMouseExited(evt);
             }
-            
+
             @Override
             public void mouseEntered(MouseEvent evt) {
-                nameLabelMouseEntered(evt);
+                Preloader.this.nameLabelMouseEntered(evt);
             }
         });
 
-        nameField.setForeground(new Color(204, 204, 204));
-        nameField.setText("Player Name");
-        nameField.setCursor(new Cursor(Cursor.TEXT_CURSOR));
-        nameField.setMaximumSize(new Dimension(125, 26));
-        nameField.addFocusListener(new FocusAdapter() {
+        this.nameField.setForeground(new Color(204, 204, 204));
+        this.nameField.setText("Player Name");
+        this.nameField.setCursor(new Cursor(Cursor.TEXT_CURSOR));
+        this.nameField.setMaximumSize(new Dimension(125, 26));
+        this.nameField.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent evt) {
-                nameFieldFocusGained(evt);
+                Preloader.this.nameFieldFocusGained(evt);
             }
+
             @Override
-            public void focusLost(FocusEvent evt)  {
-                if(validName(nameField.getText())) {
-                    lblHitEnterTo.setEnabled(false);
+            public void focusLost(FocusEvent evt) {
+                if (Preloader.this.validName(Preloader.this.nameField.getText())) {
+                    Preloader.this.lblHitEnterTo.setEnabled(false);
                 } else {
-                    lblHitEnterTo.setEnabled(true);
+                    Preloader.this.lblHitEnterTo.setEnabled(true);
                 }
             }
         });
-        nameField.addMouseListener(new MouseAdapter() {
+        this.nameField.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent evt) {
-                nameFieldMouseClicked(evt);
+                Preloader.this.nameFieldMouseClicked(evt);
             }
         });
-        nameField.addActionListener(evt -> nameFieldActionPerformed(evt));
+        this.nameField.addActionListener(evt -> this.nameFieldActionPerformed(evt));
 
-        playButton.setBackground(new Color(255, 255, 255));
-        playButton.setText("Ready!");
-        playButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-        playButton.addActionListener(evt -> playButtonActionPerformed(evt));
+        this.playButton.setBackground(new Color(255, 255, 255));
+        this.playButton.setText("Ready!");
+        this.playButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        this.playButton.addActionListener(evt -> this.playButtonActionPerformed(evt));
 
-        //local or online?
-        rdbtnLocal = new JRadioButton("local");
-        localOrOnline.add(rdbtnLocal);
+        // local or online?
+        this.rdbtnLocal = new JRadioButton("local");
+        this.localOrOnline.add(this.rdbtnLocal);
 
-        rdbtnOnline = new JRadioButton("online");
-        localOrOnline.add(rdbtnOnline);
+        this.rdbtnOnline = new JRadioButton("online");
+        this.localOrOnline.add(this.rdbtnOnline);
 
+        // client or server
+        this.rdbtnClient = new JRadioButton("client");
+        this.sbg.add(this.rdbtnClient);
 
-        //client or server
-        rdbtnClient = new JRadioButton("client");
-        sbg.add(rdbtnClient);
+        this.rdbtnServer = new JRadioButton("server");
+        this.sbg.add(this.rdbtnServer);
 
-        rdbtnServer = new JRadioButton("server");
-        sbg.add(rdbtnServer);
+        this.txtIp = new JTextField();
+        this.txtIp.setText("127.0.0.1");
+        this.txtIp.setColumns(10);
 
-        txtIp = new JTextField();
-        txtIp.setText("127.0.0.1");
-        txtIp.setColumns(10);
+        this.lblIpAddress = new JLabel("IP Address");
 
-        lblIpAddress = new JLabel("IP Address");
+        this.lblPort = new JLabel("Port");
 
-        lblPort = new JLabel("Port");
+        this.textPort = new JTextField();
+        this.textPort.setText("9000");
+        this.textPort.setColumns(10);
 
-        textPort = new JTextField();
-        textPort.setText("9000");
-        textPort.setColumns(10);
+        this.lblHitEnterTo = new JLabel("Hit enter to confirm name.");
 
-        lblHitEnterTo = new JLabel("Hit enter to confirm name.");
+        this.lblPortInfo = new JLabel("port must be between 1025 and 65533");
 
-        lblPortInfo = new JLabel("port must be between 1025 and 65533");
-
-        GroupLayout layout = new GroupLayout(getContentPane());
-        layout.setHorizontalGroup(
-                layout.createParallelGroup(Alignment.TRAILING)
+        GroupLayout layout = new GroupLayout(this.getContentPane());
+        layout.setHorizontalGroup(layout.createParallelGroup(Alignment.TRAILING)
+                .addGroup(layout.createSequentialGroup().addGap(212)
+                        .addComponent(this.lblHitEnterTo).addContainerGap(221, Short.MAX_VALUE))
                 .addGroup(layout.createSequentialGroup()
-                        .addGap(212)
-                        .addComponent(lblHitEnterTo)
-                        .addContainerGap(221, Short.MAX_VALUE))
-                .addGroup(layout.createSequentialGroup()
-                        .addComponent(titleLabel, GroupLayout.PREFERRED_SIZE, 601, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(this.titleLabel, GroupLayout.PREFERRED_SIZE, 601,
+                                GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(Alignment.TRAILING)
-                                .addGroup(layout.createParallelGroup(Alignment.TRAILING)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addGap(189)
-                                                .addComponent(nameLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                .addComponent(nameField, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
-                                                .addGap(6))
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addGap(99)
-                                                .addGroup(layout.createParallelGroup(Alignment.TRAILING)
-                                                        .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(rdbtnLocal)
-                                                                .addGap(244))
-                                                        .addComponent(rdbtnClient)
-                                                        .addComponent(lblIpAddress))))
-                                .addGroup(layout.createSequentialGroup()
-                                        .addContainerGap()
-                                        .addComponent(lblPort)))
-                        .addPreferredGap(ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(Alignment.LEADING)
-                                .addComponent(rdbtnOnline)
-                                .addGroup(layout.createParallelGroup(Alignment.LEADING)
-                                        .addComponent(textPort, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createSequentialGroup().addGroup(layout
+                        .createParallelGroup(Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(Alignment.TRAILING).addGroup(layout
+                                .createSequentialGroup().addGap(189)
+                                .addComponent(this.nameLabel, GroupLayout.DEFAULT_SIZE,
+                                        GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(ComponentPlacement.UNRELATED)
+                                .addComponent(this.nameField, GroupLayout.PREFERRED_SIZE, 125,
+                                        GroupLayout.PREFERRED_SIZE)
+                                .addGap(6))
+                                .addGroup(layout.createSequentialGroup().addGap(99)
                                         .addGroup(layout.createParallelGroup(Alignment.TRAILING)
-                                                .addComponent(txtIp, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(rdbtnServer))))
-                        .addGap(121))
-                .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(287, Short.MAX_VALUE)
-                        .addComponent(lblPortInfo)
-                        .addGap(123))
-                .addGroup(Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(251)
-                        .addComponent(playButton)
-                        .addContainerGap(265, Short.MAX_VALUE)));
-        layout.setVerticalGroup(
-                layout.createParallelGroup(Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(titleLabel)
+                                                .addGroup(layout.createSequentialGroup()
+                                                        .addComponent(this.rdbtnLocal).addGap(244))
+                                                .addComponent(this.rdbtnClient)
+                                                .addComponent(this.lblIpAddress))))
+                        .addGroup(layout.createSequentialGroup().addContainerGap()
+                                .addComponent(this.lblPort)))
                         .addPreferredGap(ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                        .addGap(18)
-                                        .addGroup(layout.createParallelGroup(Alignment.BASELINE)
-                                                .addComponent(nameLabel, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(nameField, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(ComponentPlacement.RELATED)
-                                        .addComponent(lblHitEnterTo)
-                                        .addGap(29)
-                                        .addComponent(rdbtnClient))
-                                .addGroup(layout.createSequentialGroup()
-                                        .addGap(66)
-                                        .addGroup(layout.createParallelGroup(Alignment.BASELINE)
-                                                .addComponent(rdbtnLocal)
-                                                .addComponent(rdbtnOnline))
-                                        .addPreferredGap(ComponentPlacement.RELATED)
-                                        .addComponent(rdbtnServer))
-                                .addGroup(layout.createSequentialGroup()
-                                        .addGap(136)
-                                        .addGroup(layout.createParallelGroup(Alignment.BASELINE)
-                                                .addComponent(txtIp, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(lblIpAddress))
-                                        .addPreferredGap(ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(Alignment.BASELINE)
-                                                .addComponent(textPort, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(lblPort))))
-                        .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(lblPortInfo)
-                        .addPreferredGap(ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                        .addComponent(playButton)
-                        .addGap(22))
-                );
-        getContentPane().setLayout(layout);
-        pack();
+                                .addComponent(this.rdbtnOnline)
+                                .addGroup(layout.createParallelGroup(Alignment.LEADING)
+                                        .addComponent(this.textPort, Alignment.TRAILING,
+                                                GroupLayout.PREFERRED_SIZE,
+                                                GroupLayout.DEFAULT_SIZE,
+                                                GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createParallelGroup(Alignment.TRAILING)
+                                                .addComponent(this.txtIp,
+                                                        GroupLayout.PREFERRED_SIZE,
+                                                        GroupLayout.DEFAULT_SIZE,
+                                                        GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(this.rdbtnServer))))
+                        .addGap(121))
+                .addGroup(layout.createSequentialGroup().addContainerGap(287, Short.MAX_VALUE)
+                        .addComponent(this.lblPortInfo).addGap(123))
+                .addGroup(Alignment.LEADING, layout.createSequentialGroup().addGap(251)
+                        .addComponent(this.playButton).addContainerGap(265, Short.MAX_VALUE)));
+        layout.setVerticalGroup(layout.createParallelGroup(Alignment.LEADING).addGroup(layout
+                .createSequentialGroup().addContainerGap().addComponent(this.titleLabel)
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup().addGap(18)
+                                .addGroup(layout.createParallelGroup(Alignment.BASELINE)
+                                        .addComponent(this.nameLabel, GroupLayout.PREFERRED_SIZE,
+                                                26, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(this.nameField, GroupLayout.PREFERRED_SIZE,
+                                                26, GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(ComponentPlacement.RELATED)
+                                .addComponent(this.lblHitEnterTo).addGap(29)
+                                .addComponent(this.rdbtnClient))
+                        .addGroup(layout.createSequentialGroup().addGap(66)
+                                .addGroup(layout.createParallelGroup(Alignment.BASELINE)
+                                        .addComponent(this.rdbtnLocal)
+                                        .addComponent(this.rdbtnOnline))
+                                .addPreferredGap(ComponentPlacement.RELATED)
+                                .addComponent(this.rdbtnServer))
+                        .addGroup(layout.createSequentialGroup().addGap(136).addGroup(layout
+                                .createParallelGroup(Alignment.BASELINE)
+                                .addComponent(this.txtIp, GroupLayout.PREFERRED_SIZE,
+                                        GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(this.lblIpAddress))
+                                .addPreferredGap(ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(Alignment.BASELINE)
+                                        .addComponent(this.textPort, GroupLayout.PREFERRED_SIZE,
+                                                GroupLayout.DEFAULT_SIZE,
+                                                GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(this.lblPort))))
+                .addPreferredGap(ComponentPlacement.RELATED).addComponent(this.lblPortInfo)
+                .addPreferredGap(ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addComponent(this.playButton).addGap(22)));
+        this.getContentPane().setLayout(layout);
+        this.pack();
 
-        txtIp.addKeyListener(new KeyListener() {
+        this.txtIp.addKeyListener(new KeyListener() {
             @Override
-            public void keyTyped(KeyEvent e) {  
-                //intentionally left empty
+            public void keyTyped(KeyEvent e) {
+                // intentionally left empty
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
-                //intentionally left empty
+                // intentionally left empty
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
-                String text = txtIp.getText();
-                if(!validateIpAddress(text)) {
-                    lblIpAddress.setForeground(Color.RED);
-                    playButton.setEnabled(false);
-                    validIp = false;
+                String text = Preloader.this.txtIp.getText();
+                if (!validateIpAddress(text)) {
+                    Preloader.this.lblIpAddress.setForeground(Color.RED);
+                    Preloader.this.playButton.setEnabled(false);
+                    Preloader.this.validIp = false;
                 } else {
-                    lblIpAddress.setForeground(Color.BLACK);
-                    validIp = true;
+                    Preloader.this.lblIpAddress.setForeground(Color.BLACK);
+                    Preloader.this.validIp = true;
 
-                    //initiates whether user input is correct
-                    readyToPlay();
+                    // initiates whether user input is correct
+                    Preloader.this.readyToPlay();
                 }
 
             }
 
         });
 
-        textPort.addKeyListener(new KeyListener() {
+        this.textPort.addKeyListener(new KeyListener() {
             @Override
-            public void keyTyped(KeyEvent e) {  
-                //intentionally left empty
+            public void keyTyped(KeyEvent e) {
+                // intentionally left empty
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
-                //intentionally left empty
+                // intentionally left empty
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
-                String text = textPort.getText();
-                if(!validatePortNumber(text)) {
-                    lblPort.setForeground(Color.RED);
-                    playButton.setEnabled(false);
-                    lblPortInfo.setEnabled(true);
-                    lblPortInfo.setForeground(Color.RED);
+                String text = Preloader.this.textPort.getText();
+                if (!Preloader.this.validatePortNumber(text)) {
+                    Preloader.this.lblPort.setForeground(Color.RED);
+                    Preloader.this.playButton.setEnabled(false);
+                    Preloader.this.lblPortInfo.setEnabled(true);
+                    Preloader.this.lblPortInfo.setForeground(Color.RED);
 
-                    validPort = false;
+                    Preloader.this.validPort = false;
                 } else {
-                    lblPort.setForeground(Color.BLACK);
-                    lblPortInfo.setEnabled(false);
-                    lblPortInfo.setForeground(Color.BLACK);
-                    validPort = true;
+                    Preloader.this.lblPort.setForeground(Color.BLACK);
+                    Preloader.this.lblPortInfo.setEnabled(false);
+                    Preloader.this.lblPortInfo.setForeground(Color.BLACK);
+                    Preloader.this.validPort = true;
 
-                    //initiates whether user input is correct.
-                    readyToPlay();
+                    // initiates whether user input is correct.
+                    Preloader.this.readyToPlay();
                 }
 
             }
 
         });
 
-        //RADIO BUTTON LOGIC
-        rdbtnLocal.setSelected(true);
-        //sets default as selected
-        txtIp.setEnabled(false);
-        textPort.setEnabled(false);
-        rdbtnServer.setEnabled(false);
-        rdbtnClient.setEnabled(false);
-        lblIpAddress.setEnabled(false);
-        lblPort.setEnabled(false);
-        lblPortInfo.setEnabled(false);
+        // RADIO BUTTON LOGIC
+        this.rdbtnLocal.setSelected(true);
+        // sets default as selected
+        this.txtIp.setEnabled(false);
+        this.textPort.setEnabled(false);
+        this.rdbtnServer.setEnabled(false);
+        this.rdbtnClient.setEnabled(false);
+        this.lblIpAddress.setEnabled(false);
+        this.lblPort.setEnabled(false);
+        this.lblPortInfo.setEnabled(false);
 
-        rdbtnLocal.addChangeListener(e -> {
-            rdbtnClient.setEnabled(false);
-            rdbtnServer.setSelected(false);
-            rdbtnServer.setEnabled(false);
-            txtIp.setEditable(false);
-            textPort.setEditable(false);
-            txtIp.setEnabled(false);
-            textPort.setEnabled(false);
-            lblIpAddress.setEnabled(false);
-            lblPort.setEnabled(false);
-
-
-        });
-
-        rdbtnOnline.addChangeListener(e -> {
-            rdbtnClient.setEnabled(true);
-            rdbtnServer.setEnabled(true);
-            rdbtnServer.setSelected(true);
-            txtIp.setEditable(true);
-            textPort.setEditable(true);
-            txtIp.setEnabled(true);
-            textPort.setEnabled(true);
-            lblIpAddress.setEnabled(true);
-            lblPort.setEnabled(true);
-
+        this.rdbtnLocal.addChangeListener(e -> {
+            this.rdbtnClient.setEnabled(false);
+            this.rdbtnServer.setSelected(false);
+            this.rdbtnServer.setEnabled(false);
+            this.txtIp.setEditable(false);
+            this.textPort.setEditable(false);
+            this.txtIp.setEnabled(false);
+            this.textPort.setEnabled(false);
+            this.lblIpAddress.setEnabled(false);
+            this.lblPort.setEnabled(false);
 
         });
-    }// </editor-fold>                        
+
+        this.rdbtnOnline.addChangeListener(e -> {
+            this.rdbtnClient.setEnabled(true);
+            this.rdbtnServer.setEnabled(true);
+            this.rdbtnServer.setSelected(true);
+            this.txtIp.setEditable(true);
+            this.textPort.setEditable(true);
+            this.txtIp.setEnabled(true);
+            this.textPort.setEnabled(true);
+            this.lblIpAddress.setEnabled(true);
+            this.lblPort.setEnabled(true);
+
+        });
+    }
 
     /**
      * enter button clicked on JTextField for name.
      *
-     * @param evt the evt
+     * @param evt
+     *            the evt
      */
-    private void nameFieldActionPerformed(ActionEvent evt) {     
-        firstName = nameField.getText();
-        if(validName(firstName)) {
-            lblHitEnterTo.setEnabled(false);
+    private void nameFieldActionPerformed(ActionEvent evt) {
+        this.firstName = this.nameField.getText();
+        if (this.validName(this.firstName)) {
+            this.lblHitEnterTo.setEnabled(false);
         } else {
-            lblHitEnterTo.setEnabled(true);
+            this.lblHitEnterTo.setEnabled(true);
         }
-    }                                         
-
+    }
 
     /**
      * mouse clicked on JTextField for name.
      *
-     * @param evt the evt
+     * @param evt
+     *            the evt
      */
-    private void nameFieldMouseClicked(MouseEvent evt) {                                       
-        nameField.setFocusable(true);                       // Focus on "name" input field
+    private void nameFieldMouseClicked(MouseEvent evt) {
+        this.nameField.setFocusable(true); // Focus on "name" input field
 
-        if (nameField.getText().equals("Player Name")){     // Clear only if initial text
-            nameField.setText("");                          // Erase inital text
+        if (this.nameField.getText().equals("Player Name")) { // Clear only if initial text
+            this.nameField.setText(""); // Erase inital text
         }
-    }                                      
-
+    }
 
     /**
-     * The "Ready!" button was clicked.
-     * Checks for local or online gameplay depending on radio buttons.
+     * The "Ready!" button was clicked. Checks for local or online gameplay depending on radio
+     * buttons.
      *
-     * @param evt the evt
+     * @param evt
+     *            the evt
      */
-    private void playButtonActionPerformed(ActionEvent evt) {                                           
-        exitWindow = true;              // Exit preloader loop
-        this.dispose();                      // Exit preloader window
+    private void playButtonActionPerformed(ActionEvent evt) {
+        this.exitWindow = true; // Exit preloader loop
+        this.dispose(); // Exit preloader window
 
-        //initialize new frame
-        //if local then initialize local play
-        if (rdbtnLocal.isSelected()) {
-            myNewFrame = new MainFrame();
-            myNewFrame.startAgain();
-        } else { //else it's online play
-            if (rdbtnServer.isSelected()) {
-                myNewFrame = new MainFrame();
-                myNewFrame.startAsServer();
+        // initialize new frame
+        // if local then initialize local play
+        if (this.rdbtnLocal.isSelected()) {
+            this.myNewFrame = new MainFrame();
+            this.myNewFrame.startAgain();
+        } else { // else it's online play
+            if (this.rdbtnServer.isSelected()) {
+                this.myNewFrame = new MainFrame();
+                this.myNewFrame.startAsServer();
             } else {
-                myNewFrame = new MainFrame();
-                myNewFrame.startAsClient();
+                this.myNewFrame = new MainFrame();
+                this.myNewFrame.startAsClient();
             }
         }
 
-    }                                          
+    }
 
     /**
      * Ready to play.
@@ -505,8 +495,9 @@ public class Preloader extends JFrame {
      * @return true, if successful
      */
     public boolean readyToPlay() {
-        if(validPort && validIp || rdbtnLocal.isSelected() && validName(nameField.getText())) {
-            playButton.setEnabled(true);   // Make "ready" button click-able
+        if (this.validPort && this.validIp
+                || this.rdbtnLocal.isSelected() && this.validName(this.nameField.getText())) {
+            this.playButton.setEnabled(true); // Make "ready" button click-able
             return true;
         }
         return false;
@@ -515,60 +506,60 @@ public class Preloader extends JFrame {
     /**
      * Name field focus gained.
      *
-     * @param evt the evt
+     * @param evt
+     *            the evt
      */
-    // Method: 
-    private void nameFieldFocusGained(FocusEvent evt) {                                      
-        nameField.setForeground(BLACK); // Set text color to black while typing name
-    }                                     
-
+    // Method:
+    private void nameFieldFocusGained(FocusEvent evt) {
+        this.nameField.setForeground(BLACK); // Set text color to black while typing name
+    }
 
     /**
      * Name label mouse entered.
      *
-     * @param evt the evt
+     * @param evt
+     *            the evt
      */
     // Method: Mouse is Hoverirng over Text Label
-    private void nameLabelMouseEntered(MouseEvent evt) {   
+    private void nameLabelMouseEntered(MouseEvent evt) {
         // Text color changes to gray with mouse hovering over
-        if (nameGiven) {
-            nameLabel.setForeground(new Color(102, 102, 102));
-        } 
-    }                                      
-
+        if (this.nameGiven) {
+            this.nameLabel.setForeground(new Color(102, 102, 102));
+        }
+    }
 
     /**
      * Name label mouse exited.
      *
-     * @param evt the evt
+     * @param evt
+     *            the evt
      */
     // Method: Mouse is Not Hovering Over Text Label
-    private void nameLabelMouseExited(MouseEvent evt) {                                      
-        nameLabel.setForeground(BLACK);     // Text reverts to color black without mouse hovering over
-    }                                     
-
+    private void nameLabelMouseExited(MouseEvent evt) {
+        this.nameLabel.setForeground(BLACK); // Text reverts to color black without mouse hovering
+    }
 
     /**
      * Name label mouse clicked.
      *
-     * @param evt the evt
+     * @param evt
+     *            the evt
      */
-    // Method: 
-    private void nameLabelMouseClicked(MouseEvent evt) {                                       
-        playButton.setEnabled(false);                                   // Disable "ready!" button
+    // Method:
+    private void nameLabelMouseClicked(MouseEvent evt) {
+        this.playButton.setEnabled(false); // Disable "ready!" button
 
-        nameField.setVisible(true);                                     // Make visible the "name input field" 
-        nameField.requestFocus(true);                                   // Focus input on input text field
+        this.nameField.setVisible(true); // Make visible the "name input field"
+        this.nameField.requestFocus(true); // Focus input on input text field
 
-        nameLabel.setText("Your Name:");                                // Set input text field
-        nameLabel.setHorizontalAlignment(SwingConstants.RIGHT);             // right justification 
-        nameLabel.setFont(new Font("Lucida Grande", 0, 13));            // Set "text labels" font and size 
+        this.nameLabel.setText("Your Name:"); // Set input text field
+        this.nameLabel.setHorizontalAlignment(SwingConstants.RIGHT); // right justification
+        this.nameLabel.setFont(new Font("Lucida Grande", 0, 13)); // Set "text labels" font and size
 
-        nameGiven = false;
-    }                                      
+        this.nameGiven = false;
+    }
 
-    // End of variables declaration                   
-
+    // End of variables declaration
 
     /**
      * End loading.
@@ -577,17 +568,18 @@ public class Preloader extends JFrame {
      */
     // Method: Exit Pre-loader
     public boolean endLoading() {
-        return exitWindow; // Allows the main looping file to close the pre-loader
-    } 
+        return this.exitWindow; // Allows the main looping file to close the pre-loader
+    }
 
-
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see java.awt.Component#getName()
      */
     // Method: Set Player Full Name
     @Override
     public String getName() { // Gives full name of user
-        return firstName;
+        return this.firstName;
     }
 
     /**
@@ -596,7 +588,7 @@ public class Preloader extends JFrame {
      * @return the ip address
      */
     public String getIpAddress() {
-        return txtIp.getText();
+        return this.txtIp.getText();
     }
 
     /**
@@ -605,69 +597,73 @@ public class Preloader extends JFrame {
      * @return the port number
      */
     public String getPortNumber() {
-        return textPort.getText();
+        return this.textPort.getText();
     }
 
     /**
      * assumes validateIpAddress has been used already.
      *
-     * @param address the new ip address
+     * @param address
+     *            the new ip address
      */
     public void setIpAddress(String address) {
-        txtIp.setText(address);  
+        this.txtIp.setText(address);
     }
 
     /**
-     * used from https://stackoverflow.com/questions/5667371/validate-ipv4-address-in-java
-     * to validate an IP address.
+     * used from https://stackoverflow.com/questions/5667371/validate-ipv4-address-in-java to
+     * validate an IP address.
      *
-     * @param ip the ip
+     * @param ip
+     *            the ip
      * @return true, if successful
      */
     public static boolean validateIpAddress(final String ip) {
         return PATTERN.matcher(ip).matches();
     }
 
-
     /**
      * assumed that validatePortNumber is used with it.
-     * @param port valid port number.
+     * 
+     * @param port
+     *            valid port number.
      */
     public void setPortNumber(String port) {
-        textPort.setText(port);
+        this.textPort.setText(port);
 
     }
 
     /**
      * validates port number from text field.
      *
-     * @param port to test against
+     * @param port
+     *            to test against
      * @return true, if successful
      */
     public boolean validatePortNumber(String port) {
         int validPort;
         try {
             validPort = Integer.parseInt(port);
-            //reserved ports and max ports - 1
-            if(validPort > 1024 && validPort < 65533) {
+            // reserved ports and max ports - 1
+            if (validPort > 1024 && validPort < 65533) {
                 return true;
             }
-        } catch(NumberFormatException ex) {
-            //exit out of program, warn user
+        } catch (NumberFormatException ex) {
+            // exit out of program, warn user
             return false;
-            //JOptionPane.showMessageDialog(null, "Invalid port number. Try again!", "Invalid Port Number", JOptionPane.WARNING_MESSAGE);
+            // JOptionPane.showMessageDialog(null, "Invalid port number. Try again!", "Invalid Port
+            // Number", JOptionPane.WARNING_MESSAGE);
         }
 
         return false;
     }
-
 
     /**
      * info for singleton.
      *
      * @author Josh
      */
-    private static class SingletonHolder { 
+    private static class SingletonHolder {
 
         /** The Constant instance. */
         public static final Preloader instance = new Preloader();
@@ -683,43 +679,44 @@ public class Preloader extends JFrame {
     }
 
     /**
-     * decides if the user name is valid.
-     * Must be less than 10 characters.
+     * decides if the user name is valid. Must be less than 10 characters.
      *
-     * @param text the text
+     * @param text
+     *            the text
      * @return true, if successful
      */
     public boolean validName(String text) {
 
-        if(text.equals("Chase") || text.equals("Bansal")) {
-            firstName = text;
-            titleLabel.setText("You win!");
-            nameLabel.setHorizontalAlignment(SwingConstants.CENTER);    // Center "name label" text
-            nameLabel.setFont(new Font("Matura MT Script Capitals", 0, 24));   // Change "name label" font and size
-            nameLabel.setText("Sir " + firstName);
-            playButton.setEnabled(false);
-            nameField.setVisible(false);
-            nameGiven = true;
+        if (text.equals("Chase") || text.equals("Bansal")) {
+            this.firstName = text;
+            this.titleLabel.setText("You win!");
+            this.nameLabel.setHorizontalAlignment(SwingConstants.CENTER); // Center "name label" txt
+            this.nameLabel.setFont(new Font("Matura MT Script Capitals", 0, 24));
+            this.nameLabel.setText("Sir " + this.firstName);
+            this.playButton.setEnabled(false);
+            this.nameField.setVisible(false);
+            this.nameGiven = true;
 
             return false;
-        } else if(!text.equals("") && !text.equalsIgnoreCase("Player Name") && text.length() < 10) {
-            firstName = text;
-            nameField.setVisible(false);                            // Hide the "typing field"
-            //lastName = getLastName(lastNames);                      // Save "last name"
-            nameLabel.setHorizontalAlignment(SwingConstants.CENTER);    // Center "name label" text
-            nameLabel.setFont(new Font("Matura MT Script Capitals", 0, 24));   // Change "name label" font and size
-            nameLabel.setText("Sir " + firstName);
-            nameGiven = true;
-            //check if ready
-            readyToPlay();
+        } else if (!text.equals("") && !text.equalsIgnoreCase("Player Name")
+                && text.length() < 10) {
+            this.firstName = text;
+            this.nameField.setVisible(false); // Hide the "typing field"
+            // lastName = getLastName(lastNames); // Save "last name"
+            this.nameLabel.setHorizontalAlignment(SwingConstants.CENTER); // Center "name label"
+            this.nameLabel.setFont(new Font("Matura MT Script Capitals", 0, 24));
+            this.nameLabel.setText("Sir " + this.firstName);
+            this.nameGiven = true;
+            // check if ready
+            this.readyToPlay();
             return true;
         }
 
-        //else initialize to original state
-        nameField.setText("Player Name");                       // Set input field to default text
-        nameField.setForeground(new Color(204, 204, 204));      // Set color of default text
-        nameField.setFocusable(false);
-        playButton.setEnabled(false);
+        // else initialize to original state
+        this.nameField.setText("Player Name"); // Set input field to default text
+        this.nameField.setForeground(new Color(204, 204, 204)); // Set color of default text
+        this.nameField.setFocusable(false);
+        this.playButton.setEnabled(false);
         return false;
     }
 }

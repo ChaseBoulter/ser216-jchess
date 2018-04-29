@@ -37,11 +37,10 @@ public class KingTest {
      */
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
-        whiteKing = new King("src" + fileSeparator + "Icons" + fileSeparator
-                + "Player1Icons" + fileSeparator + "wk.gif", 5, 8);
-        blackKing = new King(
-                "src" + fileSeparator + "Icons" + fileSeparator + "Player2Icons" + fileSeparator 
-                + "bk.gif", 5, 1);
+        whiteKing = new King("src" + fileSeparator + "Icons" + fileSeparator + "Player1Icons"
+                + fileSeparator + "wk.gif", 5, 8);
+        blackKing = new King("src" + fileSeparator + "Icons" + fileSeparator + "Player2Icons"
+                + fileSeparator + "bk.gif", 5, 1);
     }
 
     /**
@@ -57,7 +56,7 @@ public class KingTest {
     }
 
     /**
-     * Test can move. 
+     * Test can move.
      */
     @Test
     public void testCanMove() {
@@ -78,8 +77,8 @@ public class KingTest {
         assertFalse(blackKing.canMove(3, 2));
         assertFalse(blackKing.canMove(3, 3));
         assertFalse(blackKing.canMove(1, 5));
-        
+
         assertNotNull(blackKing.tellMe());
     }
 
-} 
+}

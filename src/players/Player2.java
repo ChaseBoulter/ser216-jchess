@@ -15,47 +15,48 @@ import pieces.Rook;
 /**
  * The Class Player2.
  */
+@SuppressWarnings("rawtypes")
 public class Player2 implements Enumeration {
-    
+
     /** The black rook 1. */
     public Rook blackRook1;
-    
+
     /** The black rook 2. */
     public Rook blackRook2;
-    
+
     /** The black knight 1. */
     public Knight blackKnight1;
-    
+
     /** The black knight 2. */
     public Knight blackKnight2;
-    
+
     /** The black bishop 1. */
     public Bishop blackBishop1;
-    
+
     /** The black bishop 2. */
     public Bishop blackBishop2;
-    
+
     /** The black queen. */
     public Queen blackQueen;
-    
+
     /** The black king. */
     private King blackKing;
-    
+
     /** The black pawns. */
     public Pawn[] blackPawns = new Pawn[8];
-    
+
     /** The choosen one. */
     private int choosenOne;
-    
+
     /** The in hand. */
     private int inHand = -1;
-    
+
     /** The kingischeck. */
     private boolean kingischeck = false;
-    
+
     /** The other. */
     private Point other;
-    
+
     /** The kill to protect. */
     private int killToProtect;
 
@@ -65,87 +66,89 @@ public class Player2 implements Enumeration {
     /** Creates a new instance of Player2. */
     public Player2() {
         String fileSeparator = System.getProperty("file.separator");
-        blackRook1 = new Rook("src" + fileSeparator + "Icons"
-                + fileSeparator + "Player2Icons" + fileSeparator + "blackRook.png", 1, 1);
-        
-        blackRook2 = new Rook("src" + fileSeparator + "Icons"
-                + fileSeparator + "Player2Icons" + fileSeparator + "blackRook.png", 8, 1);
-        
-        blackKnight1 = new Knight("src" + fileSeparator + "Icons" 
-                + fileSeparator + "Player2Icons" + fileSeparator + "blackKnight.png", 2, 1);
-        
-        blackKnight2 = new Knight("src" + fileSeparator + "Icons" 
-                    + fileSeparator + "Player2Icons" + fileSeparator + "blackKnight.png", 7, 1);
-        
-        blackBishop1 = new Bishop("src" + fileSeparator + "Icons" 
-                    + fileSeparator + "Player2Icons" + fileSeparator + "blackBishop.png", 3, 1);
-        
-        blackBishop2 = new Bishop("src" + fileSeparator + "Icons" 
-                    + fileSeparator + "Player2Icons" + fileSeparator + "blackBishop.png", 6, 1);
-        
-        blackQueen = new Queen("src" + fileSeparator + "Icons" 
-                    + fileSeparator + "Player2Icons" + fileSeparator + "blackQueen.png", 4, 1);
-        
-        blackKing = new King("src" + fileSeparator + "Icons" 
-                    + fileSeparator + "Player2Icons" + fileSeparator + "blackKing.png", 5, 1);
-        
+        this.blackRook1 = new Rook("src" + fileSeparator + "Icons" + fileSeparator + "Player2Icons"
+                + fileSeparator + "blackRook.png", 1, 1);
+
+        this.blackRook2 = new Rook("src" + fileSeparator + "Icons" + fileSeparator + "Player2Icons"
+                + fileSeparator + "blackRook.png", 8, 1);
+
+        this.blackKnight1 = new Knight("src" + fileSeparator + "Icons" + fileSeparator
+                + "Player2Icons" + fileSeparator + "blackKnight.png", 2, 1);
+
+        this.blackKnight2 = new Knight("src" + fileSeparator + "Icons" + fileSeparator
+                + "Player2Icons" + fileSeparator + "blackKnight.png", 7, 1);
+
+        this.blackBishop1 = new Bishop("src" + fileSeparator + "Icons" + fileSeparator
+                + "Player2Icons" + fileSeparator + "blackBishop.png", 3, 1);
+
+        this.blackBishop2 = new Bishop("src" + fileSeparator + "Icons" + fileSeparator
+                + "Player2Icons" + fileSeparator + "blackBishop.png", 6, 1);
+
+        this.blackQueen = new Queen("src" + fileSeparator + "Icons" + fileSeparator + "Player2Icons"
+                + fileSeparator + "blackQueen.png", 4, 1);
+
+        this.blackKing = new King("src" + fileSeparator + "Icons" + fileSeparator + "Player2Icons"
+                + fileSeparator + "blackKing.png", 5, 1);
+
         int j = 1;
         for (int i = 0; i <= 7; i++, j++) {
-            blackPawns[i] = new Pawn("src" + fileSeparator + "Icons"
-        + fileSeparator + "Player2Icons" + fileSeparator + "BlackPawn.png", j, 2);
+            this.blackPawns[i] = new Pawn("src" + fileSeparator + "Icons" + fileSeparator
+                    + "Player2Icons" + fileSeparator + "BlackPawn.png", j, 2);
         }
     }
 
     /**
      * Sets the choosen.
      *
-     * @param newChoosen the new choosen
+     * @param newChoosen
+     *            the new choosen
      */
     public void setChoosen(int newChoosen) {
-        choosenOne = newChoosen;
+        this.choosenOne = newChoosen;
     }
 
     /**
      * Return postion.
      *
-     * @param i the i
+     * @param i
+     *            the i
      * @return the point
      */
     public Point returnPostion(int i) {
 
         switch (i) {
             case 1:
-                return blackRook1.returnPostion();
+                return this.blackRook1.returnPostion();
             case 2:
-                return blackRook2.returnPostion();
+                return this.blackRook2.returnPostion();
             case 3:
-                return blackKnight1.returnPostion();
+                return this.blackKnight1.returnPostion();
             case 4:
-                return blackKnight2.returnPostion();
+                return this.blackKnight2.returnPostion();
             case 5:
-                return blackBishop1.returnPostion();
+                return this.blackBishop1.returnPostion();
             case 6:
-                return blackBishop2.returnPostion();
+                return this.blackBishop2.returnPostion();
             case 7:
-                return blackQueen.returnPostion();
+                return this.blackQueen.returnPostion();
             case 8:
-                return blackKing.returnPostion();
+                return this.blackKing.returnPostion();
             case 9:
-                return blackPawns[0].returnPostion();
+                return this.blackPawns[0].returnPostion();
             case 10:
-                return blackPawns[1].returnPostion();
+                return this.blackPawns[1].returnPostion();
             case 11:
-                return blackPawns[2].returnPostion();
+                return this.blackPawns[2].returnPostion();
             case 12:
-                return blackPawns[3].returnPostion();
+                return this.blackPawns[3].returnPostion();
             case 13:
-                return blackPawns[4].returnPostion();
+                return this.blackPawns[4].returnPostion();
             case 14:
-                return blackPawns[5].returnPostion();
+                return this.blackPawns[5].returnPostion();
             case 15:
-                return blackPawns[6].returnPostion();
+                return this.blackPawns[6].returnPostion();
             case 16:
-                return blackPawns[7].returnPostion();
+                return this.blackPawns[7].returnPostion();
             default:
                 break;
 
@@ -157,44 +160,45 @@ public class Player2 implements Enumeration {
     /**
      * Return old postion.
      *
-     * @param i the i
+     * @param i
+     *            the i
      * @return the point
      */
     public Point returnOldPostion(int i) {
 
         switch (i) {
             case 1:
-                return blackRook1.returnOld();
+                return this.blackRook1.returnOld();
             case 2:
-                return blackRook2.returnOld();
+                return this.blackRook2.returnOld();
             case 3:
-                return blackKnight1.returnOld();
+                return this.blackKnight1.returnOld();
             case 4:
-                return blackKnight2.returnOld();
+                return this.blackKnight2.returnOld();
             case 5:
-                return blackBishop1.returnOld();
+                return this.blackBishop1.returnOld();
             case 6:
-                return blackBishop2.returnOld();
+                return this.blackBishop2.returnOld();
             case 7:
-                return blackQueen.returnOld();
+                return this.blackQueen.returnOld();
             case 8:
-                return blackKing.returnOld();
+                return this.blackKing.returnOld();
             case 9:
-                return blackPawns[0].returnOld();
+                return this.blackPawns[0].returnOld();
             case 10:
-                return blackPawns[1].returnOld();
+                return this.blackPawns[1].returnOld();
             case 11:
-                return blackPawns[2].returnOld();
+                return this.blackPawns[2].returnOld();
             case 12:
-                return blackPawns[3].returnOld();
+                return this.blackPawns[3].returnOld();
             case 13:
-                return blackPawns[4].returnOld();
+                return this.blackPawns[4].returnOld();
             case 14:
-                return blackPawns[5].returnOld();
+                return this.blackPawns[5].returnOld();
             case 15:
-                return blackPawns[6].returnOld();
+                return this.blackPawns[6].returnOld();
             case 16:
-                return blackPawns[7].returnOld();
+                return this.blackPawns[7].returnOld();
             default:
                 break;
 
@@ -206,43 +210,44 @@ public class Player2 implements Enumeration {
     /**
      * Return icon image.
      *
-     * @param i the i
+     * @param i
+     *            the i
      * @return the image
      */
     public Image returnIconImage(int i) {
         switch (i) {
             case 1:
-                return blackRook1.returnPieceImage();
+                return this.blackRook1.returnPieceImage();
             case 2:
-                return blackRook2.returnPieceImage();
+                return this.blackRook2.returnPieceImage();
             case 3:
-                return blackKnight1.returnPieceImage();
+                return this.blackKnight1.returnPieceImage();
             case 4:
-                return blackKnight2.returnPieceImage();
+                return this.blackKnight2.returnPieceImage();
             case 5:
-                return blackBishop1.returnPieceImage();
+                return this.blackBishop1.returnPieceImage();
             case 6:
-                return blackBishop2.returnPieceImage();
+                return this.blackBishop2.returnPieceImage();
             case 7:
-                return blackQueen.returnPieceImage();
+                return this.blackQueen.returnPieceImage();
             case 8:
-                return blackKing.returnPieceImage();
+                return this.blackKing.returnPieceImage();
             case 9:
-                return blackPawns[0].returnPieceImage();
+                return this.blackPawns[0].returnPieceImage();
             case 10:
-                return blackPawns[1].returnPieceImage();
+                return this.blackPawns[1].returnPieceImage();
             case 11:
-                return blackPawns[2].returnPieceImage();
+                return this.blackPawns[2].returnPieceImage();
             case 12:
-                return blackPawns[3].returnPieceImage();
+                return this.blackPawns[3].returnPieceImage();
             case 13:
-                return blackPawns[4].returnPieceImage();
+                return this.blackPawns[4].returnPieceImage();
             case 14:
-                return blackPawns[5].returnPieceImage();
+                return this.blackPawns[5].returnPieceImage();
             case 15:
-                return blackPawns[6].returnPieceImage();
+                return this.blackPawns[6].returnPieceImage();
             case 16:
-                return blackPawns[7].returnPieceImage();
+                return this.blackPawns[7].returnPieceImage();
             default:
                 break;
 
@@ -254,58 +259,60 @@ public class Player2 implements Enumeration {
     /**
      * Change postion.
      *
-     * @param newPoint the new point
-     * @param i the i
+     * @param newPoint
+     *            the new point
+     * @param i
+     *            the i
      */
     public void changePostion(Point newPoint, int i) {
         switch (i) {
             case 1:
-                blackRook1.setPoint(newPoint);
+                this.blackRook1.setPoint(newPoint);
                 break;
             case 2:
-                blackRook2.setPoint(newPoint);
+                this.blackRook2.setPoint(newPoint);
                 break;
             case 3:
-                blackKnight1.setPoint(newPoint);
+                this.blackKnight1.setPoint(newPoint);
                 break;
             case 4:
-                blackKnight2.setPoint(newPoint);
+                this.blackKnight2.setPoint(newPoint);
                 break;
             case 5:
-                blackBishop1.setPoint(newPoint);
+                this.blackBishop1.setPoint(newPoint);
                 break;
             case 6:
-                blackBishop2.setPoint(newPoint);
+                this.blackBishop2.setPoint(newPoint);
                 break;
             case 7:
-                blackQueen.setPoint(newPoint);
+                this.blackQueen.setPoint(newPoint);
                 break;
             case 8:
-                blackKing.setPoint(newPoint);
+                this.blackKing.setPoint(newPoint);
                 break;
             case 9:
-                blackPawns[0].setPoint(newPoint);
+                this.blackPawns[0].setPoint(newPoint);
                 break;
             case 10:
-                blackPawns[1].setPoint(newPoint);
+                this.blackPawns[1].setPoint(newPoint);
                 break;
             case 11:
-                blackPawns[2].setPoint(newPoint);
+                this.blackPawns[2].setPoint(newPoint);
                 break;
             case 12:
-                blackPawns[3].setPoint(newPoint);
+                this.blackPawns[3].setPoint(newPoint);
                 break;
             case 13:
-                blackPawns[4].setPoint(newPoint);
+                this.blackPawns[4].setPoint(newPoint);
                 break;
             case 14:
-                blackPawns[5].setPoint(newPoint);
+                this.blackPawns[5].setPoint(newPoint);
                 break;
             case 15:
-                blackPawns[6].setPoint(newPoint);
+                this.blackPawns[6].setPoint(newPoint);
                 break;
             case 16:
-                blackPawns[7].setPoint(newPoint);
+                this.blackPawns[7].setPoint(newPoint);
                 break;
             default:
                 break;
@@ -317,58 +324,60 @@ public class Player2 implements Enumeration {
     /**
      * Change postion to old.
      *
-     * @param newPoint the new point
-     * @param i the i
+     * @param newPoint
+     *            the new point
+     * @param i
+     *            the i
      */
     public void changePostionToOld(Point newPoint, int i) {
         switch (i) {
             case 1:
-                blackRook1.toOld(newPoint);
+                this.blackRook1.toOld(newPoint);
                 break;
             case 2:
-                blackRook2.toOld(newPoint);
+                this.blackRook2.toOld(newPoint);
                 break;
             case 3:
-                blackKnight1.toOld(newPoint);
+                this.blackKnight1.toOld(newPoint);
                 break;
             case 4:
-                blackKnight2.toOld(newPoint);
+                this.blackKnight2.toOld(newPoint);
                 break;
             case 5:
-                blackBishop1.toOld(newPoint);
+                this.blackBishop1.toOld(newPoint);
                 break;
             case 6:
-                blackBishop2.toOld(newPoint);
+                this.blackBishop2.toOld(newPoint);
                 break;
             case 7:
-                blackQueen.toOld(newPoint);
+                this.blackQueen.toOld(newPoint);
                 break;
             case 8:
-                blackKing.toOld(newPoint);
+                this.blackKing.toOld(newPoint);
                 break;
             case 9:
-                blackPawns[0].toOld(newPoint);
+                this.blackPawns[0].toOld(newPoint);
                 break;
             case 10:
-                blackPawns[1].toOld(newPoint);
+                this.blackPawns[1].toOld(newPoint);
                 break;
             case 11:
-                blackPawns[2].toOld(newPoint);
+                this.blackPawns[2].toOld(newPoint);
                 break;
             case 12:
-                blackPawns[3].toOld(newPoint);
+                this.blackPawns[3].toOld(newPoint);
                 break;
             case 13:
-                blackPawns[4].toOld(newPoint);
+                this.blackPawns[4].toOld(newPoint);
                 break;
             case 14:
-                blackPawns[5].toOld(newPoint);
+                this.blackPawns[5].toOld(newPoint);
                 break;
             case 15:
-                blackPawns[6].toOld(newPoint);
+                this.blackPawns[6].toOld(newPoint);
                 break;
             case 16:
-                blackPawns[7].toOld(newPoint);
+                this.blackPawns[7].toOld(newPoint);
                 break;
             default:
                 break;
@@ -376,64 +385,67 @@ public class Player2 implements Enumeration {
         }
 
     }
-    
+
     /**
      * Change pixel.
      *
-     * @param newPixelX the new pixel X
-     * @param newPixelY the new pixel Y
-     * @param i the i
+     * @param newPixelX
+     *            the new pixel X
+     * @param newPixelY
+     *            the new pixel Y
+     * @param i
+     *            the i
      */
     public void changePixel(int newPixelX, int newPixelY, int i) {
-        choosenOne = i;
-        switch (choosenOne) {
+        this.choosenOne = i;
+        switch (this.choosenOne) {
             case 1:
-                blackRook1.setPixels(newPixelX, newPixelY);
+                this.blackRook1.setPixels(newPixelX, newPixelY);
                 break;
             case 2:
-                blackRook2.setPixels(newPixelX, newPixelY);
+                this.blackRook2.setPixels(newPixelX, newPixelY);
                 break;
             case 3:
-                blackKnight1.setPixels(newPixelX, newPixelY);
+                this.blackKnight1.setPixels(newPixelX, newPixelY);
                 break;
             case 4:
-                blackKnight2.setPixels(newPixelX, newPixelY);
+                this.blackKnight2.setPixels(newPixelX, newPixelY);
                 break;
             case 5:
-                blackBishop1.setPixels(newPixelX, newPixelY);
+                this.blackBishop1.setPixels(newPixelX, newPixelY);
                 break;
             case 6:
-                blackBishop2.setPixels(newPixelX, newPixelY);
+                this.blackBishop2.setPixels(newPixelX, newPixelY);
                 break;
             case 7:
-                blackQueen.setPixels(newPixelX, newPixelY);
+                this.blackQueen.setPixels(newPixelX, newPixelY);
                 break;
             case 8:
-                blackKing.setPixels(newPixelX, newPixelY);
+                this.blackKing.setPixels(newPixelX, newPixelY);
                 break;
             case 9:
-                blackPawns[0].setPixels(newPixelX, newPixelY);
+                this.blackPawns[0].setPixels(newPixelX, newPixelY);
                 break;
             case 10:
-                blackPawns[1].setPixels(newPixelX, newPixelY);
+                this.blackPawns[1].setPixels(newPixelX, newPixelY);
                 break;
             case 11:
-                blackPawns[2].setPixels(newPixelX, newPixelY);
+                this.blackPawns[2].setPixels(newPixelX, newPixelY);
                 break;
             case 12:
-                blackPawns[3].setPixels(newPixelX, newPixelY);
+                this.blackPawns[3].setPixels(newPixelX, newPixelY);
                 break;
             case 13:
-                blackPawns[4].setPixels(newPixelX, newPixelY);
+                this.blackPawns[4].setPixels(newPixelX, newPixelY);
                 break;
             case 14:
-                blackPawns[5].setPixels(newPixelX, newPixelY);
+                this.blackPawns[5].setPixels(newPixelX, newPixelY);
                 break;
             case 15:
-                blackPawns[6].setPixels(newPixelX, newPixelY);
+                this.blackPawns[6].setPixels(newPixelX, newPixelY);
                 break;
             case 16:
-                blackPawns[7].setPixels(newPixelX, newPixelY);
+                this.blackPawns[7].setPixels(newPixelX, newPixelY);
                 break;
             default:
                 break;
@@ -444,58 +456,60 @@ public class Player2 implements Enumeration {
     /**
      * Change pixel.
      *
-     * @param newPixelX the new pixel X
-     * @param newPixelY the new pixel Y
+     * @param newPixelX
+     *            the new pixel X
+     * @param newPixelY
+     *            the new pixel Y
      */
     public void changePixel(int newPixelX, int newPixelY) {
-        switch (choosenOne) {
+        switch (this.choosenOne) {
             case 1:
-                blackRook1.setPixels(newPixelX, newPixelY);
+                this.blackRook1.setPixels(newPixelX, newPixelY);
                 break;
             case 2:
-                blackRook2.setPixels(newPixelX, newPixelY);
+                this.blackRook2.setPixels(newPixelX, newPixelY);
                 break;
             case 3:
-                blackKnight1.setPixels(newPixelX, newPixelY);
+                this.blackKnight1.setPixels(newPixelX, newPixelY);
                 break;
             case 4:
-                blackKnight2.setPixels(newPixelX, newPixelY);
+                this.blackKnight2.setPixels(newPixelX, newPixelY);
                 break;
             case 5:
-                blackBishop1.setPixels(newPixelX, newPixelY);
+                this.blackBishop1.setPixels(newPixelX, newPixelY);
                 break;
             case 6:
-                blackBishop2.setPixels(newPixelX, newPixelY);
+                this.blackBishop2.setPixels(newPixelX, newPixelY);
                 break;
             case 7:
-                blackQueen.setPixels(newPixelX, newPixelY);
+                this.blackQueen.setPixels(newPixelX, newPixelY);
                 break;
             case 8:
-                blackKing.setPixels(newPixelX, newPixelY);
+                this.blackKing.setPixels(newPixelX, newPixelY);
                 break;
             case 9:
-                blackPawns[0].setPixels(newPixelX, newPixelY);
+                this.blackPawns[0].setPixels(newPixelX, newPixelY);
                 break;
             case 10:
-                blackPawns[1].setPixels(newPixelX, newPixelY);
+                this.blackPawns[1].setPixels(newPixelX, newPixelY);
                 break;
             case 11:
-                blackPawns[2].setPixels(newPixelX, newPixelY);
+                this.blackPawns[2].setPixels(newPixelX, newPixelY);
                 break;
             case 12:
-                blackPawns[3].setPixels(newPixelX, newPixelY);
+                this.blackPawns[3].setPixels(newPixelX, newPixelY);
                 break;
             case 13:
-                blackPawns[4].setPixels(newPixelX, newPixelY);
+                this.blackPawns[4].setPixels(newPixelX, newPixelY);
                 break;
             case 14:
-                blackPawns[5].setPixels(newPixelX, newPixelY);
+                this.blackPawns[5].setPixels(newPixelX, newPixelY);
                 break;
             case 15:
-                blackPawns[6].setPixels(newPixelX, newPixelY);
+                this.blackPawns[6].setPixels(newPixelX, newPixelY);
                 break;
             case 16:
-                blackPawns[7].setPixels(newPixelX, newPixelY);
+                this.blackPawns[7].setPixels(newPixelX, newPixelY);
                 break;
             default:
                 break;
@@ -506,44 +520,45 @@ public class Player2 implements Enumeration {
     /**
      * Gets the pixel point.
      *
-     * @param i the i
+     * @param i
+     *            the i
      * @return the pixel point
      */
     public Point getPixelPoint(int i) {
-        choosenOne = i;
-        switch (choosenOne) {
+        this.choosenOne = i;
+        switch (this.choosenOne) {
             case 1:
-                return blackRook1.getpixelPoint();
+                return this.blackRook1.getpixelPoint();
             case 2:
-                return blackRook2.getpixelPoint();
+                return this.blackRook2.getpixelPoint();
             case 3:
-                return blackKnight1.getpixelPoint();
+                return this.blackKnight1.getpixelPoint();
             case 4:
-                return blackKnight2.getpixelPoint();
+                return this.blackKnight2.getpixelPoint();
             case 5:
-                return blackBishop1.getpixelPoint();
+                return this.blackBishop1.getpixelPoint();
             case 6:
-                return blackBishop2.getpixelPoint();
+                return this.blackBishop2.getpixelPoint();
             case 7:
-                return blackQueen.getpixelPoint();
+                return this.blackQueen.getpixelPoint();
             case 8:
-                return blackKing.getpixelPoint();
+                return this.blackKing.getpixelPoint();
             case 9:
-                return blackPawns[0].getpixelPoint();
+                return this.blackPawns[0].getpixelPoint();
             case 10:
-                return blackPawns[1].getpixelPoint();
+                return this.blackPawns[1].getpixelPoint();
             case 11:
-                return blackPawns[2].getpixelPoint();
+                return this.blackPawns[2].getpixelPoint();
             case 12:
-                return blackPawns[3].getpixelPoint();
+                return this.blackPawns[3].getpixelPoint();
             case 13:
-                return blackPawns[4].getpixelPoint();
+                return this.blackPawns[4].getpixelPoint();
             case 14:
-                return blackPawns[5].getpixelPoint();
+                return this.blackPawns[5].getpixelPoint();
             case 15:
-                return blackPawns[6].getpixelPoint();
+                return this.blackPawns[6].getpixelPoint();
             case 16:
-                return blackPawns[7].getpixelPoint();
+                return this.blackPawns[7].getpixelPoint();
             default:
                 break;
 
@@ -554,58 +569,59 @@ public class Player2 implements Enumeration {
     /**
      * Killed piece.
      *
-     * @param i the i
+     * @param i
+     *            the i
      * @return true, if successful
      */
     public boolean killedPiece(int i) {
         Point out = new Point(20, 20);
         switch (i) {
             case 1:
-                blackRook1.setPoint(out);
+                this.blackRook1.setPoint(out);
                 return true;
             case 2:
-                blackRook2.setPoint(out);
+                this.blackRook2.setPoint(out);
                 return true;
             case 3:
-                blackKnight1.setPoint(out);
+                this.blackKnight1.setPoint(out);
                 return true;
             case 4:
-                blackKnight2.setPoint(out);
+                this.blackKnight2.setPoint(out);
                 return true;
             case 5:
-                blackBishop1.setPoint(out);
+                this.blackBishop1.setPoint(out);
                 return true;
             case 6:
-                blackBishop2.setPoint(out);
+                this.blackBishop2.setPoint(out);
                 return true;
             case 7:
-                blackQueen.setPoint(out);
+                this.blackQueen.setPoint(out);
                 return true;
             case 8:
                 return true;// the King "Can't be moved out"
             case 9:
-                blackPawns[0].setPoint(out);
+                this.blackPawns[0].setPoint(out);
                 return true;
             case 10:
-                blackPawns[1].setPoint(out);
+                this.blackPawns[1].setPoint(out);
                 return true;
             case 11:
-                blackPawns[2].setPoint(out);
+                this.blackPawns[2].setPoint(out);
                 return true;
             case 12:
-                blackPawns[3].setPoint(out);
+                this.blackPawns[3].setPoint(out);
                 return true;
             case 13:
-                blackPawns[4].setPoint(out);
+                this.blackPawns[4].setPoint(out);
                 return true;
             case 14:
-                blackPawns[5].setPoint(out);
+                this.blackPawns[5].setPoint(out);
                 return true;
             case 15:
-                blackPawns[6].setPoint(out);
+                this.blackPawns[6].setPoint(out);
                 return true;
             case 16:
-                blackPawns[7].setPoint(out);
+                this.blackPawns[7].setPoint(out);
                 return true;
             default:
                 break;
@@ -616,46 +632,48 @@ public class Player2 implements Enumeration {
     /**
      * Check the move.
      *
-     * @param newP the new P
-     * @param i the i
+     * @param newP
+     *            the new P
+     * @param i
+     *            the i
      * @return true, if successful
      */
     public boolean checkTheMove(Point newP, int i) {
-        choosenOne = i;
-        switch (choosenOne) {
+        this.choosenOne = i;
+        switch (this.choosenOne) {
 
             case 1:
-                return blackRook1.canMove(newP.x, newP.y);
+                return this.blackRook1.canMove(newP.x, newP.y);
             case 2:
-                return blackRook2.canMove(newP.x, newP.y);
+                return this.blackRook2.canMove(newP.x, newP.y);
             case 3:
-                return blackKnight1.canMove(newP.x, newP.y);
+                return this.blackKnight1.canMove(newP.x, newP.y);
             case 4:
-                return blackKnight2.canMove(newP.x, newP.y);
+                return this.blackKnight2.canMove(newP.x, newP.y);
             case 5:
-                return blackBishop1.canMove(newP.x, newP.y);
+                return this.blackBishop1.canMove(newP.x, newP.y);
             case 6:
-                return blackBishop2.canMove(newP.x, newP.y);
+                return this.blackBishop2.canMove(newP.x, newP.y);
             case 7:
-                return blackQueen.canMove(newP.x, newP.y);
+                return this.blackQueen.canMove(newP.x, newP.y);
             case 8:
-                return blackKing.canMove(newP.x, newP.y);
+                return this.blackKing.canMove(newP.x, newP.y);
             case 9:
-                return blackPawns[0].canMove(newP.x, newP.y, color);
+                return this.blackPawns[0].canMove(newP.x, newP.y, this.color);
             case 10:
-                return blackPawns[1].canMove(newP.x, newP.y, color);
+                return this.blackPawns[1].canMove(newP.x, newP.y, this.color);
             case 11:
-                return blackPawns[2].canMove(newP.x, newP.y, color);
+                return this.blackPawns[2].canMove(newP.x, newP.y, this.color);
             case 12:
-                return blackPawns[3].canMove(newP.x, newP.y, color);
+                return this.blackPawns[3].canMove(newP.x, newP.y, this.color);
             case 13:
-                return blackPawns[4].canMove(newP.x, newP.y, color);
+                return this.blackPawns[4].canMove(newP.x, newP.y, this.color);
             case 14:
-                return blackPawns[5].canMove(newP.x, newP.y, color);
+                return this.blackPawns[5].canMove(newP.x, newP.y, this.color);
             case 15:
-                return blackPawns[6].canMove(newP.x, newP.y, color);
+                return this.blackPawns[6].canMove(newP.x, newP.y, this.color);
             case 16:
-                return blackPawns[7].canMove(newP.x, newP.y, color);
+                return this.blackPawns[7].canMove(newP.x, newP.y, this.color);
             default:
                 break;
         }
@@ -665,30 +683,32 @@ public class Player2 implements Enumeration {
     /**
      * Pawn seen.
      *
-     * @param i the i
-     * @param myPoint the my point
+     * @param i
+     *            the i
+     * @param myPoint
+     *            the my point
      * @return true, if successful
      */
-    //TODO: find out what this means.
+    // TODO: find out what this means.
     public boolean pawnSeen(int i, Point myPoint) {
 
         switch (i) {
             case 9:
-                return blackPawns[0].setSeenByChecking(myPoint, "black");
+                return this.blackPawns[0].setSeenByChecking(myPoint, "black");
             case 10:
-                return blackPawns[1].setSeenByChecking(myPoint, "black");
+                return this.blackPawns[1].setSeenByChecking(myPoint, "black");
             case 11:
-                return blackPawns[2].setSeenByChecking(myPoint, "black");
+                return this.blackPawns[2].setSeenByChecking(myPoint, "black");
             case 12:
-                return blackPawns[3].setSeenByChecking(myPoint, "black");
+                return this.blackPawns[3].setSeenByChecking(myPoint, "black");
             case 13:
-                return blackPawns[4].setSeenByChecking(myPoint, "black");
+                return this.blackPawns[4].setSeenByChecking(myPoint, "black");
             case 14:
-                return blackPawns[5].setSeenByChecking(myPoint, "black");
+                return this.blackPawns[5].setSeenByChecking(myPoint, "black");
             case 15:
-                return blackPawns[6].setSeenByChecking(myPoint, "black");
+                return this.blackPawns[6].setSeenByChecking(myPoint, "black");
             case 16:
-                return blackPawns[7].setSeenByChecking(myPoint, "black");
+                return this.blackPawns[7].setSeenByChecking(myPoint, "black");
             default:
                 break;
         }
@@ -699,28 +719,29 @@ public class Player2 implements Enumeration {
     /**
      * Return pawn seen.
      *
-     * @param i the i
+     * @param i
+     *            the i
      * @return true, if successful
      */
     public boolean returnPawnSeen(int i) {
         switch (i) {
 
             case 9:
-                return blackPawns[0].returnMyseen();
+                return this.blackPawns[0].returnMyseen();
             case 10:
-                return blackPawns[1].returnMyseen();
+                return this.blackPawns[1].returnMyseen();
             case 11:
-                return blackPawns[2].returnMyseen();
+                return this.blackPawns[2].returnMyseen();
             case 12:
-                return blackPawns[3].returnMyseen();
+                return this.blackPawns[3].returnMyseen();
             case 13:
-                return blackPawns[4].returnMyseen();
+                return this.blackPawns[4].returnMyseen();
             case 14:
-                return blackPawns[5].returnMyseen();
+                return this.blackPawns[5].returnMyseen();
             case 15:
-                return blackPawns[6].returnMyseen();
+                return this.blackPawns[6].returnMyseen();
             case 16:
-                return blackPawns[7].returnMyseen();
+                return this.blackPawns[7].returnMyseen();
             default:
                 break;
         }
@@ -730,40 +751,51 @@ public class Player2 implements Enumeration {
     /**
      * Check the way.
      *
-     * @param newP the new P
-     * @param postionFromOthers the postion from others
-     * @param i the i
+     * @param newP
+     *            the new P
+     * @param postionFromOthers
+     *            the postion from others
+     * @param i
+     *            the i
      * @return true, if successful
      */
-    //do you know da way?
+    // do you know da way?
     public boolean checkTheWay(Point newP, Point postionFromOthers, int i) {
         switch (i) {
             case 1:
-                return blackRook1.pieceInMyWay(newP.x, newP.y, postionFromOthers);
+                return this.blackRook1.pieceInMyWay(newP.x, newP.y, postionFromOthers);
             case 2:
-                return blackRook2.pieceInMyWay(newP.x, newP.y, postionFromOthers);
+                return this.blackRook2.pieceInMyWay(newP.x, newP.y, postionFromOthers);
             case 5:
-                return blackBishop1.pieceInMyWay(newP.x, newP.y, postionFromOthers);
+                return this.blackBishop1.pieceInMyWay(newP.x, newP.y, postionFromOthers);
             case 6:
-                return blackBishop2.pieceInMyWay(newP.x, newP.y, postionFromOthers);
+                return this.blackBishop2.pieceInMyWay(newP.x, newP.y, postionFromOthers);
             case 7:
-                return blackQueen.pieceInMyWay(newP.x, newP.y, postionFromOthers);
+                return this.blackQueen.pieceInMyWay(newP.x, newP.y, postionFromOthers);
             case 9:
-                return blackPawns[0].pieceInMyWay(newP.x, newP.y, postionFromOthers, color);
+                return this.blackPawns[0].pieceInMyWay(newP.x, newP.y, postionFromOthers,
+                        this.color);
             case 10:
-                return blackPawns[1].pieceInMyWay(newP.x, newP.y, postionFromOthers, color);
+                return this.blackPawns[1].pieceInMyWay(newP.x, newP.y, postionFromOthers,
+                        this.color);
             case 11:
-                return blackPawns[2].pieceInMyWay(newP.x, newP.y, postionFromOthers, color);
+                return this.blackPawns[2].pieceInMyWay(newP.x, newP.y, postionFromOthers,
+                        this.color);
             case 12:
-                return blackPawns[3].pieceInMyWay(newP.x, newP.y, postionFromOthers, color);
+                return this.blackPawns[3].pieceInMyWay(newP.x, newP.y, postionFromOthers,
+                        this.color);
             case 13:
-                return blackPawns[4].pieceInMyWay(newP.x, newP.y, postionFromOthers, color);
+                return this.blackPawns[4].pieceInMyWay(newP.x, newP.y, postionFromOthers,
+                        this.color);
             case 14:
-                return blackPawns[5].pieceInMyWay(newP.x, newP.y, postionFromOthers, color);
+                return this.blackPawns[5].pieceInMyWay(newP.x, newP.y, postionFromOthers,
+                        this.color);
             case 15:
-                return blackPawns[6].pieceInMyWay(newP.x, newP.y, postionFromOthers, color);
+                return this.blackPawns[6].pieceInMyWay(newP.x, newP.y, postionFromOthers,
+                        this.color);
             case 16: {
-                return blackPawns[7].pieceInMyWay(newP.x, newP.y, postionFromOthers, color);
+                return this.blackPawns[7].pieceInMyWay(newP.x, newP.y, postionFromOthers,
+                        this.color);
             }
             default:
                 break;
@@ -775,54 +807,58 @@ public class Player2 implements Enumeration {
     /**
      * Check king.
      *
-     * @param newkingcheck the newkingcheck
+     * @param newkingcheck
+     *            the newkingcheck
      */
     public void checkKing(boolean newkingcheck) {
-        kingischeck = newkingcheck;
+        this.kingischeck = newkingcheck;
     }
-    
+
     /**
      * Check king.
      *
-     * @param p1 the p 1
-     * @param p2 the p 2
-     * @param i the i
+     * @param p1
+     *            the p 1
+     * @param p2
+     *            the p 2
+     * @param i
+     *            the i
      * @return true, if successful
      */
     public boolean checkKing(Point p1, Point p2, int i) {
         switch (i) {
 
             case 1:
-                return blackRook1.checkKing(p1.x, p1.y, p2);
+                return this.blackRook1.checkKing(p1.x, p1.y, p2);
             case 2:
-                return blackRook2.checkKing(p1.x, p1.y, p2);
+                return this.blackRook2.checkKing(p1.x, p1.y, p2);
             case 3:
-                return blackKnight1.canMove(p1.x, p1.y);
+                return this.blackKnight1.canMove(p1.x, p1.y);
             case 4:
-                return blackKnight2.canMove(p1.x, p1.y);
+                return this.blackKnight2.canMove(p1.x, p1.y);
             case 5:
-                return blackBishop1.checkKing(p1.x, p1.y, p2);
+                return this.blackBishop1.checkKing(p1.x, p1.y, p2);
             case 6:
-                return blackBishop2.checkKing(p1.x, p1.y, p2);
+                return this.blackBishop2.checkKing(p1.x, p1.y, p2);
             case 7:
-                return blackQueen.checkKing(p1.x, p1.y, p2);
-    
+                return this.blackQueen.checkKing(p1.x, p1.y, p2);
+
             case 9:
-                return blackPawns[0].canMove(p1.x, p1.y, color);
+                return this.blackPawns[0].canMove(p1.x, p1.y, this.color);
             case 10:
-                return blackPawns[1].canMove(p1.x, p1.y, color);
+                return this.blackPawns[1].canMove(p1.x, p1.y, this.color);
             case 11:
-                return blackPawns[2].canMove(p1.x, p1.y, color);
+                return this.blackPawns[2].canMove(p1.x, p1.y, this.color);
             case 12:
-                return blackPawns[3].canMove(p1.x, p1.y, color);
+                return this.blackPawns[3].canMove(p1.x, p1.y, this.color);
             case 13:
-                return blackPawns[4].canMove(p1.x, p1.y, color);
+                return this.blackPawns[4].canMove(p1.x, p1.y, this.color);
             case 14:
-                return blackPawns[5].canMove(p1.x, p1.y, color);
+                return this.blackPawns[5].canMove(p1.x, p1.y, this.color);
             case 15:
-                return blackPawns[6].canMove(p1.x, p1.y, color);
+                return this.blackPawns[6].canMove(p1.x, p1.y, this.color);
             case 16:
-                return blackPawns[7].canMove(p1.x, p1.y, color);
+                return this.blackPawns[7].canMove(p1.x, p1.y, this.color);
             default:
                 break;
         }
@@ -835,16 +871,17 @@ public class Player2 implements Enumeration {
      * @return the int
      */
     public int returnChosen() {
-        return choosenOne;
+        return this.choosenOne;
     }
 
     /**
      * Sets the in hand.
      *
-     * @param i the new in hand
+     * @param i
+     *            the new in hand
      */
     public void setInHand(int i) {
-        inHand = i;
+        this.inHand = i;
     }
 
     /**
@@ -853,20 +890,21 @@ public class Player2 implements Enumeration {
      * @return the in hand
      */
     public int getInHand() {
-        return inHand;
+        return this.inHand;
     }
 
     /**
      * Can move.
      *
-     * @param x the x
-     * @param y the y
+     * @param x
+     *            the x
+     * @param y
+     *            the y
      * @return true, if successful
      */
     public boolean canMove(int x, int y) {
         return true;
     }
-
 
     /**
      * Returncheck king.
@@ -874,18 +912,19 @@ public class Player2 implements Enumeration {
      * @return true, if successful
      */
     public boolean returncheckKing() {
-        return kingischeck;
+        return this.kingischeck;
     }
 
     /**
      * Checks if is king checked.
      *
-     * @param white the white
+     * @param white
+     *            the white
      * @return true, if is king checked
      */
     public boolean isKingChecked(Player1 white) {
 
-        Point myKingPosition = blackKing.returnPostion();
+        Point myKingPosition = this.blackKing.returnPostion();
         boolean flag = false;
 
         ////////// Start Checking the King ////////////
@@ -898,24 +937,24 @@ public class Player2 implements Enumeration {
 
                         if (j < 17) {
 
-                            if (white.checkTheWay(myKingPosition, returnPostion(j), i)) {
+                            if (white.checkTheWay(myKingPosition, this.returnPostion(j), i)) {
                                 // Means there is somting in the Way so can't move'
 
                                 flag = false;
 
                             }
-                        } //else {
-//
-//                            if (j != 8) {
-//                                if (white.checkTheWay(myKingPosition, white.returnPostion(j), i)) {
-//
-//                                    flag = false;
-//                                    // Means there is somting in the Way so can't move'
-//
-//                                }
-//                            }
-//
-//                        }
+                        } // else {
+                        //
+                        // if (j != 8) {
+                        // if (white.checkTheWay(myKingPosition, white.returnPostion(j), i)) {
+                        //
+                        // flag = false;
+                        // // Means there is somting in the Way so can't move'
+                        //
+                        // }
+                        // }
+                        //
+                        // }
 
                     }
 
@@ -945,61 +984,62 @@ public class Player2 implements Enumeration {
     /**
      * Check mate game over.
      *
-     * @param enemy the enemy
+     * @param enemy
+     *            the enemy
      * @return true, if successful
      */
     public boolean checkMateGameOver(Player1 enemy) {
 
-        if (!generateKingMoves(enemy)) {
+        if (!this.generateKingMoves(enemy)) {
 
-            inHand = -1;
+            this.inHand = -1;
             System.out.println("I Killed King  2");
 
             return false;
-        } else if (!generateCastleMoves(enemy, blackRook1)) {
+        } else if (!this.generateCastleMoves(enemy, this.blackRook1)) {
 
-            inHand = -1;
+            this.inHand = -1;
             System.out.println("I Killed Rook 2");
 
             return false;
-        } else if (!generateCastleMoves(enemy, blackRook2)) {
+        } else if (!this.generateCastleMoves(enemy, this.blackRook2)) {
 
-            inHand = -1;
+            this.inHand = -1;
             System.out.println("I Killed Rook 2");
             return false;
-        } else if (!generateBishopMoves(enemy, blackBishop1)) {
+        } else if (!this.generateBishopMoves(enemy, this.blackBishop1)) {
 
-            inHand = -1;
+            this.inHand = -1;
             System.out.println("I Killed Bishop2");
             return false;
-        } else if (!generateBishopMoves(enemy, blackBishop2)) {
+        } else if (!this.generateBishopMoves(enemy, this.blackBishop2)) {
 
-            inHand = -1;
+            this.inHand = -1;
             System.out.println("I Killed Bishop2");
 
             return false;
-        } else if (!generateKnightMoves(enemy, blackKnight1)) {
+        } else if (!this.generateKnightMoves(enemy, this.blackKnight1)) {
 
-            inHand = -1;
+            this.inHand = -1;
             System.out.println("I Killed Knight 2");
             return false;
-        } else if (!generateKnightMoves(enemy, blackKnight2)) {
+        } else if (!this.generateKnightMoves(enemy, this.blackKnight2)) {
 
-            inHand = -1;
+            this.inHand = -1;
             System.out.println("I Killed Knight 2");
             return false;
-        } else if (!generateQueenMoves(enemy)) {
+        } else if (!this.generateQueenMoves(enemy)) {
 
-            inHand = -1;
+            this.inHand = -1;
             System.out.println("I Killed Queen 2");
             return false;
         }
 
         for (int i = 0; i <= 7; i++) {
-            inHand = 9 + i;
-            if (!generatePawnMoves(enemy, blackPawns[i])) {
+            this.inHand = 9 + i;
+            if (!this.generatePawnMoves(enemy, this.blackPawns[i])) {
 
-                inHand = -1;
+                this.inHand = -1;
 
                 System.out.println("I Killed Solider 2");
 
@@ -1007,7 +1047,7 @@ public class Player2 implements Enumeration {
             }
         }
 
-        inHand = -1;
+        this.inHand = -1;
         return true;
 
     }
@@ -1015,19 +1055,20 @@ public class Player2 implements Enumeration {
     /**
      * Friendly piece already there.
      *
-     * @param newP the new P
+     * @param newP
+     *            the new P
      * @return true, if successful
      */
     public boolean friendlyPieceAlreadyThere(Point newP) {
         Point samePostion;
         for (int i = 1; i <= 16; i++) {
             // There is no need to check the inHand pice
-            if (getInHand() != i) {
+            if (this.getInHand() != i) {
 
                 // Check if there is White Pices in the new Point
                 // If so we Can't move (Same color)!!
 
-                samePostion = returnPostion(i);
+                samePostion = this.returnPostion(i);
                 if (newP.x == samePostion.x && newP.y == samePostion.y) {
 
                     return false;
@@ -1042,8 +1083,10 @@ public class Player2 implements Enumeration {
     /**
      * Enemy piece already there.
      *
-     * @param newP the new P
-     * @param enemy the enemy
+     * @param newP
+     *            the new P
+     * @param enemy
+     *            the enemy
      * @return true, if successful
      */
     public boolean enemyPieceAlreadyThere(Point newP, Player1 enemy) {
@@ -1068,8 +1111,10 @@ public class Player2 implements Enumeration {
     /**
      * Gets the enemy piece there int.
      *
-     * @param newP the new P
-     * @param enemy the enemy
+     * @param newP
+     *            the new P
+     * @param enemy
+     *            the enemy
      * @return the enemy piece there int
      */
     public int getEnemyPieceThereInt(Point newP, Player1 enemy) {
@@ -1086,7 +1131,8 @@ public class Player2 implements Enumeration {
     /**
      * Generate king moves.
      *
-     * @param enemy the enemy
+     * @param enemy
+     *            the enemy
      * @return true, if successful
      */
     public boolean generateKingMoves(Player1 enemy) {
@@ -1094,30 +1140,30 @@ public class Player2 implements Enumeration {
         Point oldP = new Point();
 
         Point checkPlace = new Point();
-        inHand = 8;
+        this.inHand = 8;
 
-        int x = blackKing.returnX();
-        int y = blackKing.returnY();
+        int x = this.blackKing.returnX();
+        int y = this.blackKing.returnY();
 
         oldP.x = x;
         oldP.y = y;
 
         if (x + 1 <= 8) {
 
-            blackKing.setX(x + 1);
-            blackKing.setY(y);
+            this.blackKing.setX(x + 1);
+            this.blackKing.setY(y);
             checkPlace.x = x + 1;
             checkPlace.y = y;
 
-            if (killToProtectKing(enemy, returnPostion(inHand))) {
+            if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                 killedSomething = true;
             }
-            if (friendlyPieceAlreadyThere(checkPlace)) {
-                if (!isKingChecked(enemy)) {
+            if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                if (!this.isKingChecked(enemy)) {
 
-                    blackKing.setPoint(oldP);
+                    this.blackKing.setPoint(oldP);
                     if (killedSomething) {
-                        enemy.changePostion(other, killToProtect);
+                        enemy.changePostion(this.other, this.killToProtect);
                         killedSomething = false;
                     }
                     return false;
@@ -1125,26 +1171,26 @@ public class Player2 implements Enumeration {
             }
 
         }
-        blackKing.setPoint(oldP);
+        this.blackKing.setPoint(oldP);
         if (killedSomething) {
-            enemy.changePostion(other, killToProtect);
+            enemy.changePostion(this.other, this.killToProtect);
             killedSomething = false;
         }
         if (y + 1 <= 8) {
 
-            blackKing.setX(x);
-            blackKing.setY(y + 1);
+            this.blackKing.setX(x);
+            this.blackKing.setY(y + 1);
             checkPlace.x = x;
             checkPlace.y = y + 1;
-            if (killToProtectKing(enemy, returnPostion(inHand))) {
+            if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                 killedSomething = true;
             }
-            if (friendlyPieceAlreadyThere(checkPlace)) {
-                if (!isKingChecked(enemy)) {
+            if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                if (!this.isKingChecked(enemy)) {
 
-                    blackKing.setPoint(oldP);
+                    this.blackKing.setPoint(oldP);
                     if (killedSomething) {
-                        enemy.changePostion(other, killToProtect);
+                        enemy.changePostion(this.other, this.killToProtect);
                         killedSomething = false;
                     }
                     return false;
@@ -1153,30 +1199,30 @@ public class Player2 implements Enumeration {
             }
 
         }
-        blackKing.setPoint(oldP);
+        this.blackKing.setPoint(oldP);
         if (killedSomething) {
-            enemy.changePostion(other, killToProtect);
+            enemy.changePostion(this.other, this.killToProtect);
             killedSomething = false;
         }
 
         if (y - 1 > 0) {
 
-            blackKing.setX(x);
-            blackKing.setY(y - 1);
+            this.blackKing.setX(x);
+            this.blackKing.setY(y - 1);
 
             checkPlace.x = x;
             checkPlace.y = y - 1;
 
-            if (killToProtectKing(enemy, returnPostion(inHand))) {
+            if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                 killedSomething = true;
             }
 
-            if (friendlyPieceAlreadyThere(checkPlace)) {
-                if (!isKingChecked(enemy)) {
+            if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                if (!this.isKingChecked(enemy)) {
 
-                    blackKing.setPoint(oldP);
+                    this.blackKing.setPoint(oldP);
                     if (killedSomething) {
-                        enemy.changePostion(other, killToProtect);
+                        enemy.changePostion(this.other, this.killToProtect);
                         killedSomething = false;
                     }
 
@@ -1185,139 +1231,139 @@ public class Player2 implements Enumeration {
             }
 
         }
-        blackKing.setPoint(oldP);
+        this.blackKing.setPoint(oldP);
         if (killedSomething) {
-            enemy.changePostion(other, killToProtect);
+            enemy.changePostion(this.other, this.killToProtect);
             killedSomething = false;
         }
         if (x - 1 > 0) {
 
-            blackKing.setX(x - 1);
-            blackKing.setY(y);
+            this.blackKing.setX(x - 1);
+            this.blackKing.setY(y);
 
             checkPlace.x = x - 1;
             checkPlace.y = y;
-            if (killToProtectKing(enemy, returnPostion(inHand))) {
+            if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                 killedSomething = true;
             }
-            if (friendlyPieceAlreadyThere(checkPlace)) {
-                if (!isKingChecked(enemy)) {
+            if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                if (!this.isKingChecked(enemy)) {
                     if (killedSomething) {
-                        enemy.changePostion(other, killToProtect);
+                        enemy.changePostion(this.other, this.killToProtect);
                         killedSomething = false;
                     }
-                    blackKing.setPoint(oldP);
+                    this.blackKing.setPoint(oldP);
                     return false;
                 }
             }
 
         }
-        blackKing.setPoint(oldP);
+        this.blackKing.setPoint(oldP);
         if (killedSomething) {
-            enemy.changePostion(other, killToProtect);
+            enemy.changePostion(this.other, this.killToProtect);
             killedSomething = false;
         }
         if (y - 1 > 0 && x - 1 > 0) {
 
-            blackKing.setX(x - 1);
-            blackKing.setY(y - 1);
+            this.blackKing.setX(x - 1);
+            this.blackKing.setY(y - 1);
 
             checkPlace.x = x - 1;
             checkPlace.y = y - 1;
 
-            if (killToProtectKing(enemy, returnPostion(inHand))) {
+            if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                 killedSomething = true;
             }
-            if (friendlyPieceAlreadyThere(checkPlace)) {
-                if (!isKingChecked(enemy)) {
+            if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                if (!this.isKingChecked(enemy)) {
 
                     if (killedSomething) {
-                        enemy.changePostion(other, killToProtect);
+                        enemy.changePostion(this.other, this.killToProtect);
                         killedSomething = false;
                     }
-                    blackKing.setPoint(oldP);
+                    this.blackKing.setPoint(oldP);
                     return false;
                 }
             }
 
         }
-        blackKing.setPoint(oldP);
+        this.blackKing.setPoint(oldP);
         if (killedSomething) {
-            enemy.changePostion(other, killToProtect);
+            enemy.changePostion(this.other, this.killToProtect);
             killedSomething = false;
         }
         if (y + 1 <= 8 && x + 1 <= 8) {
 
-            blackKing.setX(x + 1);
-            blackKing.setY(y + 1);
+            this.blackKing.setX(x + 1);
+            this.blackKing.setY(y + 1);
 
             checkPlace.x = x + 1;
             checkPlace.y = y + 1;
-            if (killToProtectKing(enemy, returnPostion(inHand))) {
+            if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                 killedSomething = true;
             }
-            if (friendlyPieceAlreadyThere(checkPlace)) {
-                if (!isKingChecked(enemy)) {
+            if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                if (!this.isKingChecked(enemy)) {
 
                     if (killedSomething) {
-                        enemy.changePostion(other, killToProtect);
+                        enemy.changePostion(this.other, this.killToProtect);
                         killedSomething = false;
                     }
-                    blackKing.setPoint(oldP);
+                    this.blackKing.setPoint(oldP);
                     return false;
                 }
             }
 
         }
-        blackKing.setPoint(oldP);
+        this.blackKing.setPoint(oldP);
         if (killedSomething) {
-            enemy.changePostion(other, killToProtect);
+            enemy.changePostion(this.other, this.killToProtect);
             killedSomething = false;
         }
         if (y - 1 > 0 && x + 1 <= 8) {
 
-            blackKing.setX(x + 1);
-            blackKing.setY(y - 1);
+            this.blackKing.setX(x + 1);
+            this.blackKing.setY(y - 1);
 
             checkPlace.x = x + 1;
             checkPlace.y = y - 1;
-            if (killToProtectKing(enemy, returnPostion(inHand))) {
+            if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                 killedSomething = true;
             }
-            if (friendlyPieceAlreadyThere(checkPlace)) {
-                if (!isKingChecked(enemy)) {
+            if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                if (!this.isKingChecked(enemy)) {
                     if (killedSomething) {
-                        enemy.changePostion(other, killToProtect);
+                        enemy.changePostion(this.other, this.killToProtect);
                         killedSomething = false;
                     }
-                    blackKing.setPoint(oldP);
+                    this.blackKing.setPoint(oldP);
                     return false;
                 }
             }
 
         }
-        blackKing.setPoint(oldP);
+        this.blackKing.setPoint(oldP);
         if (killedSomething) {
-            enemy.changePostion(other, killToProtect);
+            enemy.changePostion(this.other, this.killToProtect);
             killedSomething = false;
         }
         if (y + 1 <= 8 && x - 1 > 0) {
 
-            blackKing.setX(x - 1);
-            blackKing.setY(y + 1);
+            this.blackKing.setX(x - 1);
+            this.blackKing.setY(y + 1);
 
             checkPlace.x = x - 1;
             checkPlace.y = y + 1;
-            if (killToProtectKing(enemy, returnPostion(inHand))) {
+            if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                 killedSomething = true;
             }
-            if (friendlyPieceAlreadyThere(checkPlace)) {
-                if (!isKingChecked(enemy)) {
+            if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                if (!this.isKingChecked(enemy)) {
                     if (killedSomething) {
-                        enemy.changePostion(other, killToProtect);
+                        enemy.changePostion(this.other, this.killToProtect);
                         killedSomething = false;
                     }
-                    blackKing.setPoint(oldP);
+                    this.blackKing.setPoint(oldP);
                     return false;
                 }
             }
@@ -1325,11 +1371,11 @@ public class Player2 implements Enumeration {
         }
 
         if (killedSomething) {
-            enemy.changePostion(other, killToProtect);
+            enemy.changePostion(this.other, this.killToProtect);
             killedSomething = false;
         }
 
-        blackKing.setPoint(oldP);
+        this.blackKing.setPoint(oldP);
         return true;
 
     }
@@ -1337,8 +1383,10 @@ public class Player2 implements Enumeration {
     /**
      * Generate castle moves.
      *
-     * @param enemy the enemy
-     * @param blackRook the black rook
+     * @param enemy
+     *            the enemy
+     * @param blackRook
+     *            the black rook
      * @return true, if successful
      */
     public boolean generateCastleMoves(Player1 enemy, Rook blackRook) {
@@ -1349,10 +1397,10 @@ public class Player2 implements Enumeration {
         int x1 = blackRook.returnX();
         int y1 = blackRook.returnY();
 
-        if (blackRook == blackRook1) {
-            inHand = 1;
+        if (blackRook == this.blackRook1) {
+            this.inHand = 1;
         } else {
-            inHand = 2;
+            this.inHand = 2;
         }
         /////////////////////
 
@@ -1367,18 +1415,18 @@ public class Player2 implements Enumeration {
                 blackRook.setX(i);
                 checkPlace.x = i;
 
-                if (checkWayToPosition(enemy, oldPoint1)) {
-                    if (killToProtectKing(enemy, returnPostion(inHand))) {
+                if (this.checkWayToPosition(enemy, oldPoint1)) {
+                    if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                         killedSomething = true;
                     }
 
-                    if (friendlyPieceAlreadyThere(checkPlace)) {
-                        if (!isKingChecked(enemy)) {
+                    if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                        if (!this.isKingChecked(enemy)) {
                             blackRook.setX(oldPoint1.x);
                             blackRook.setY(oldPoint1.y);
 
                             if (killedSomething) {
-                                enemy.changePostion(other, killToProtect);
+                                enemy.changePostion(this.other, this.killToProtect);
                                 killedSomething = false;
                             }
                             return false;
@@ -1387,7 +1435,7 @@ public class Player2 implements Enumeration {
                 }
 
                 if (killedSomething) {
-                    enemy.changePostion(other, killToProtect);
+                    enemy.changePostion(this.other, this.killToProtect);
                     killedSomething = false;
                 }
 
@@ -1396,23 +1444,23 @@ public class Player2 implements Enumeration {
             checkPlace.x = oldPoint1.x;
 
             if (killedSomething) {
-                enemy.changePostion(other, killToProtect);
+                enemy.changePostion(this.other, this.killToProtect);
                 killedSomething = false;
             }
             for (int i = 1; i <= 8; i++) {
                 blackRook.setY(i);
                 checkPlace.y = i;
-                if (checkWayToPosition(enemy, oldPoint1)) {
-                    if (killToProtectKing(enemy, returnPostion(inHand))) {
+                if (this.checkWayToPosition(enemy, oldPoint1)) {
+                    if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                         killedSomething = true;
                     }
-                    if (friendlyPieceAlreadyThere(checkPlace)) {
-                        if (!isKingChecked(enemy)) {
+                    if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                        if (!this.isKingChecked(enemy)) {
                             blackRook.setX(oldPoint1.x);
                             blackRook.setY(oldPoint1.y);
 
                             if (killedSomething) {
-                                enemy.changePostion(other, killToProtect);
+                                enemy.changePostion(this.other, this.killToProtect);
                                 killedSomething = false;
                             }
                             return false;
@@ -1421,7 +1469,7 @@ public class Player2 implements Enumeration {
                 }
 
                 if (killedSomething) {
-                    enemy.changePostion(other, killToProtect);
+                    enemy.changePostion(this.other, this.killToProtect);
                     killedSomething = false;
                 }
 
@@ -1432,7 +1480,7 @@ public class Player2 implements Enumeration {
         ///////////////////////////
 
         if (killedSomething) {
-            enemy.changePostion(other, killToProtect);
+            enemy.changePostion(this.other, this.killToProtect);
             killedSomething = false;
         }
         blackRook.setX(oldPoint1.x);
@@ -1443,8 +1491,10 @@ public class Player2 implements Enumeration {
     /**
      * Generate bishop moves.
      *
-     * @param enemy the enemy
-     * @param blackBishop the black bishop
+     * @param enemy
+     *            the enemy
+     * @param blackBishop
+     *            the black bishop
      * @return true, if successful
      */
     public boolean generateBishopMoves(Player1 enemy, Bishop blackBishop) {
@@ -1454,10 +1504,10 @@ public class Player2 implements Enumeration {
 
         oldPoint1 = blackBishop.returnPostion();
 
-        if (blackBishop == blackBishop1) {
-            inHand = 5;
+        if (blackBishop == this.blackBishop1) {
+            this.inHand = 5;
         } else {
-            inHand = 6;
+            this.inHand = 6;
         }
 
         if (oldPoint1.x != 20) {
@@ -1467,15 +1517,15 @@ public class Player2 implements Enumeration {
                 blackBishop.setY(y);
                 checkPlace.x = x;
                 checkPlace.y = y;
-                if (checkWayToPosition(enemy, oldPoint1)) {
-                    if (killToProtectKing(enemy, returnPostion(inHand))) {
+                if (this.checkWayToPosition(enemy, oldPoint1)) {
+                    if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                         killedSomething = true;
                     }
-                    if (friendlyPieceAlreadyThere(checkPlace)) {
-                        if (!isKingChecked(enemy)) {
+                    if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                        if (!this.isKingChecked(enemy)) {
 
                             if (killedSomething) {
-                                enemy.changePostion(other, killToProtect);
+                                enemy.changePostion(this.other, this.killToProtect);
                                 killedSomething = false;
                             }
                             blackBishop.setPoint(oldPoint1);
@@ -1485,13 +1535,13 @@ public class Player2 implements Enumeration {
                 }
 
                 if (killedSomething) {
-                    enemy.changePostion(other, killToProtect);
+                    enemy.changePostion(this.other, this.killToProtect);
                     killedSomething = false;
                 }
 
             }
             if (killedSomething) {
-                enemy.changePostion(other, killToProtect);
+                enemy.changePostion(this.other, this.killToProtect);
                 killedSomething = false;
             }
             for (int x = oldPoint1.x, y = oldPoint1.y; y >= 1 && x <= 8; x++, y--) {
@@ -1500,14 +1550,14 @@ public class Player2 implements Enumeration {
                 blackBishop.setY(y);
                 checkPlace.x = x;
                 checkPlace.y = y;
-                if (checkWayToPosition(enemy, oldPoint1)) {
-                    if (killToProtectKing(enemy, returnPostion(inHand))) {
+                if (this.checkWayToPosition(enemy, oldPoint1)) {
+                    if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                         killedSomething = true;
                     }
-                    if (friendlyPieceAlreadyThere(checkPlace)) {
-                        if (!isKingChecked(enemy)) {
+                    if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                        if (!this.isKingChecked(enemy)) {
                             if (killedSomething) {
-                                enemy.changePostion(other, killToProtect);
+                                enemy.changePostion(this.other, this.killToProtect);
                                 killedSomething = false;
                             }
                             blackBishop.setPoint(oldPoint1);
@@ -1517,7 +1567,7 @@ public class Player2 implements Enumeration {
                 }
 
                 if (killedSomething) {
-                    enemy.changePostion(other, killToProtect);
+                    enemy.changePostion(this.other, this.killToProtect);
                     killedSomething = false;
                 }
 
@@ -1529,7 +1579,7 @@ public class Player2 implements Enumeration {
         blackBishop.setPoint(oldPoint1);
 
         if (killedSomething) {
-            enemy.changePostion(other, killToProtect);
+            enemy.changePostion(this.other, this.killToProtect);
             killedSomething = false;
         }
 
@@ -1539,8 +1589,10 @@ public class Player2 implements Enumeration {
     /**
      * Generate knight moves.
      *
-     * @param enemy the enemy
-     * @param blackKnight the black knight
+     * @param enemy
+     *            the enemy
+     * @param blackKnight
+     *            the black knight
      * @return true, if successful
      */
     public boolean generateKnightMoves(Player1 enemy, Knight blackKnight) {
@@ -1550,10 +1602,10 @@ public class Player2 implements Enumeration {
 
         Point checkPlace = new Point();
 
-        if (blackKnight == blackKnight1) {
-            inHand = 3;
+        if (blackKnight == this.blackKnight1) {
+            this.inHand = 3;
         } else {
-            inHand = 4;
+            this.inHand = 4;
         }
 
         int x = oldp1.x;
@@ -1567,16 +1619,16 @@ public class Player2 implements Enumeration {
                 checkPlace.x = x + 1;
                 checkPlace.y = y + 2;
 
-                if (killToProtectKing(enemy, returnPostion(inHand))) {
+                if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                     killedSomething = true;
                 }
 
-                if (friendlyPieceAlreadyThere(checkPlace)) {
-                    if (!isKingChecked(enemy)) {
+                if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                    if (!this.isKingChecked(enemy)) {
                         blackKnight.setPoint(oldp1);
 
                         if (killedSomething) {
-                            enemy.changePostion(other, killToProtect);
+                            enemy.changePostion(this.other, this.killToProtect);
                             killedSomething = false;
                         }
 
@@ -1585,7 +1637,7 @@ public class Player2 implements Enumeration {
                 }
             }
             if (killedSomething) {
-                enemy.changePostion(other, killToProtect);
+                enemy.changePostion(this.other, this.killToProtect);
                 killedSomething = false;
             }
 
@@ -1594,14 +1646,14 @@ public class Player2 implements Enumeration {
                 blackKnight.setY(y - 2);
                 checkPlace.x = x + 1;
                 checkPlace.y = y - 2;
-                if (killToProtectKing(enemy, returnPostion(inHand))) {
+                if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                     killedSomething = true;
                 }
 
-                if (friendlyPieceAlreadyThere(checkPlace)) {
-                    if (!isKingChecked(enemy)) {
+                if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                    if (!this.isKingChecked(enemy)) {
                         if (killedSomething) {
-                            enemy.changePostion(other, killToProtect);
+                            enemy.changePostion(this.other, this.killToProtect);
                             killedSomething = false;
                         }
                         blackKnight.setPoint(oldp1);
@@ -1610,7 +1662,7 @@ public class Player2 implements Enumeration {
                 }
             }
             if (killedSomething) {
-                enemy.changePostion(other, killToProtect);
+                enemy.changePostion(this.other, this.killToProtect);
                 killedSomething = false;
             }
 
@@ -1620,14 +1672,14 @@ public class Player2 implements Enumeration {
                 checkPlace.x = x + 2;
                 checkPlace.y = y + 1;
 
-                if (killToProtectKing(enemy, returnPostion(inHand))) {
+                if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                     killedSomething = true;
                 }
 
-                if (friendlyPieceAlreadyThere(checkPlace)) {
-                    if (!isKingChecked(enemy)) {
+                if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                    if (!this.isKingChecked(enemy)) {
                         if (killedSomething) {
-                            enemy.changePostion(other, killToProtect);
+                            enemy.changePostion(this.other, this.killToProtect);
                             killedSomething = false;
                         }
                         blackKnight.setPoint(oldp1);
@@ -1637,7 +1689,7 @@ public class Player2 implements Enumeration {
             }
 
             if (killedSomething) {
-                enemy.changePostion(other, killToProtect);
+                enemy.changePostion(this.other, this.killToProtect);
                 killedSomething = false;
             }
             if (x + 2 <= 8 && y - 1 >= 1) {
@@ -1645,14 +1697,14 @@ public class Player2 implements Enumeration {
                 blackKnight.setY(y - 1);
                 checkPlace.x = x + 2;
                 checkPlace.y = y - 1;
-                if (killToProtectKing(enemy, returnPostion(inHand))) {
+                if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                     killedSomething = true;
                 }
 
-                if (friendlyPieceAlreadyThere(checkPlace)) {
-                    if (!isKingChecked(enemy)) {
+                if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                    if (!this.isKingChecked(enemy)) {
                         if (killedSomething) {
-                            enemy.changePostion(other, killToProtect);
+                            enemy.changePostion(this.other, this.killToProtect);
                             killedSomething = false;
                         }
                         blackKnight.setPoint(oldp1);
@@ -1661,7 +1713,7 @@ public class Player2 implements Enumeration {
                 }
             }
             if (killedSomething) {
-                enemy.changePostion(other, killToProtect);
+                enemy.changePostion(this.other, this.killToProtect);
                 killedSomething = false;
             }
 
@@ -1671,14 +1723,14 @@ public class Player2 implements Enumeration {
                 checkPlace.x = x - 1;
                 checkPlace.y = y + 2;
 
-                if (killToProtectKing(enemy, returnPostion(inHand))) {
+                if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                     killedSomething = true;
                 }
 
-                if (friendlyPieceAlreadyThere(checkPlace)) {
-                    if (!isKingChecked(enemy)) {
+                if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                    if (!this.isKingChecked(enemy)) {
                         if (killedSomething) {
-                            enemy.changePostion(other, killToProtect);
+                            enemy.changePostion(this.other, this.killToProtect);
                             killedSomething = false;
                         }
                         blackKnight.setPoint(oldp1);
@@ -1687,7 +1739,7 @@ public class Player2 implements Enumeration {
                 }
             }
             if (killedSomething) {
-                enemy.changePostion(other, killToProtect);
+                enemy.changePostion(this.other, this.killToProtect);
                 killedSomething = false;
             }
 
@@ -1696,14 +1748,14 @@ public class Player2 implements Enumeration {
                 blackKnight.setY(y - 2);
                 checkPlace.x = x - 1;
                 checkPlace.y = y - 2;
-                if (killToProtectKing(enemy, returnPostion(inHand))) {
+                if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                     killedSomething = true;
                 }
 
-                if (friendlyPieceAlreadyThere(checkPlace)) {
-                    if (!isKingChecked(enemy)) {
+                if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                    if (!this.isKingChecked(enemy)) {
                         if (killedSomething) {
-                            enemy.changePostion(other, killToProtect);
+                            enemy.changePostion(this.other, this.killToProtect);
                             killedSomething = false;
                         }
                         blackKnight.setPoint(oldp1);
@@ -1712,7 +1764,7 @@ public class Player2 implements Enumeration {
                 }
             }
             if (killedSomething) {
-                enemy.changePostion(other, killToProtect);
+                enemy.changePostion(this.other, this.killToProtect);
                 killedSomething = false;
             }
 
@@ -1722,13 +1774,13 @@ public class Player2 implements Enumeration {
                 checkPlace.x = x - 2;
                 checkPlace.y = y + 1;
 
-                if (killToProtectKing(enemy, returnPostion(inHand))) {
+                if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                     killedSomething = true;
                 }
-                if (friendlyPieceAlreadyThere(checkPlace)) {
-                    if (!isKingChecked(enemy)) {
+                if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                    if (!this.isKingChecked(enemy)) {
                         if (killedSomething) {
-                            enemy.changePostion(other, killToProtect);
+                            enemy.changePostion(this.other, this.killToProtect);
                             killedSomething = false;
                         }
                         blackKnight.setPoint(oldp1);
@@ -1738,7 +1790,7 @@ public class Player2 implements Enumeration {
             }
 
             if (killedSomething) {
-                enemy.changePostion(other, killToProtect);
+                enemy.changePostion(this.other, this.killToProtect);
                 killedSomething = false;
             }
 
@@ -1748,14 +1800,14 @@ public class Player2 implements Enumeration {
                 checkPlace.x = x - 2;
                 checkPlace.y = y - 1;
 
-                if (killToProtectKing(enemy, returnPostion(inHand))) {
+                if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                     killedSomething = true;
                 }
 
-                if (friendlyPieceAlreadyThere(checkPlace)) {
-                    if (!isKingChecked(enemy)) {
+                if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                    if (!this.isKingChecked(enemy)) {
                         if (killedSomething) {
-                            enemy.changePostion(other, killToProtect);
+                            enemy.changePostion(this.other, this.killToProtect);
                             killedSomething = false;
                         }
                         blackKnight.setPoint(oldp1);
@@ -1764,7 +1816,7 @@ public class Player2 implements Enumeration {
                 }
             }
             if (killedSomething) {
-                enemy.changePostion(other, killToProtect);
+                enemy.changePostion(this.other, this.killToProtect);
                 killedSomething = false;
             }
 
@@ -1777,7 +1829,8 @@ public class Player2 implements Enumeration {
     /**
      * Generate queen moves.
      *
-     * @param enemy the enemy
+     * @param enemy
+     *            the enemy
      * @return true, if successful
      */
     public boolean generateQueenMoves(Player1 enemy) {
@@ -1785,30 +1838,30 @@ public class Player2 implements Enumeration {
 
         Point oldPoint1 = new Point();
 
-        oldPoint1 = blackQueen.returnPostion();
+        oldPoint1 = this.blackQueen.returnPostion();
 
         Point checkPlace = new Point();
 
-        inHand = 7;
+        this.inHand = 7;
 
         if (oldPoint1.x != 20) {
             for (int x = oldPoint1.x, y = oldPoint1.y; x >= 1 && y <= 8; x--, y++) {
 
-                blackQueen.setX(x);
-                blackQueen.setY(y);
+                this.blackQueen.setX(x);
+                this.blackQueen.setY(y);
                 checkPlace.x = x;
                 checkPlace.y = y;
-                if (checkWayToPosition(enemy, oldPoint1)) {
-                    if (killToProtectKing(enemy, returnPostion(inHand))) {
+                if (this.checkWayToPosition(enemy, oldPoint1)) {
+                    if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                         killedSomething = true;
                     }
 
-                    if (friendlyPieceAlreadyThere(checkPlace)) {
-                        if (!isKingChecked(enemy)) {
-                            blackQueen.setPoint(oldPoint1);
+                    if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                        if (!this.isKingChecked(enemy)) {
+                            this.blackQueen.setPoint(oldPoint1);
 
                             if (killedSomething) {
-                                enemy.changePostion(other, killToProtect);
+                                enemy.changePostion(this.other, this.killToProtect);
                                 killedSomething = false;
                             }
                             return false;
@@ -1817,30 +1870,30 @@ public class Player2 implements Enumeration {
                 }
 
                 if (killedSomething) {
-                    enemy.changePostion(other, killToProtect);
+                    enemy.changePostion(this.other, this.killToProtect);
                     killedSomething = false;
                 }
 
             }
             if (killedSomething) {
-                enemy.changePostion(other, killToProtect);
+                enemy.changePostion(this.other, this.killToProtect);
                 killedSomething = false;
             }
             for (int x = oldPoint1.x, y = oldPoint1.y; y >= 1 && x <= 8; x++, y--) {
 
-                blackQueen.setX(x);
-                blackQueen.setY(y);
+                this.blackQueen.setX(x);
+                this.blackQueen.setY(y);
                 checkPlace.x = x;
                 checkPlace.y = y;
-                if (checkWayToPosition(enemy, oldPoint1)) {
-                    if (killToProtectKing(enemy, returnPostion(inHand))) {
+                if (this.checkWayToPosition(enemy, oldPoint1)) {
+                    if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                         killedSomething = true;
                     }
-                    if (friendlyPieceAlreadyThere(checkPlace)) {
-                        if (!isKingChecked(enemy)) {
-                            blackQueen.setPoint(oldPoint1);
+                    if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                        if (!this.isKingChecked(enemy)) {
+                            this.blackQueen.setPoint(oldPoint1);
                             if (killedSomething) {
-                                enemy.changePostion(other, killToProtect);
+                                enemy.changePostion(this.other, this.killToProtect);
                                 killedSomething = false;
                             }
                             return false;
@@ -1849,33 +1902,33 @@ public class Player2 implements Enumeration {
                 }
 
                 if (killedSomething) {
-                    enemy.changePostion(other, killToProtect);
+                    enemy.changePostion(this.other, this.killToProtect);
                     killedSomething = false;
                 }
 
             }
-            blackQueen.setPoint(oldPoint1);
+            this.blackQueen.setPoint(oldPoint1);
             checkPlace.x = oldPoint1.x;
             checkPlace.y = oldPoint1.y;
 
             if (killedSomething) {
-                enemy.changePostion(other, killToProtect);
+                enemy.changePostion(this.other, this.killToProtect);
                 killedSomething = false;
             }
 
             for (int i = 1; i <= 8; i++) {
-                blackQueen.setX(i);
+                this.blackQueen.setX(i);
 
                 checkPlace.x = i;
-                if (checkWayToPosition(enemy, oldPoint1)) {
-                    if (killToProtectKing(enemy, returnPostion(inHand))) {
+                if (this.checkWayToPosition(enemy, oldPoint1)) {
+                    if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                         killedSomething = true;
                     }
-                    if (friendlyPieceAlreadyThere(checkPlace)) {
-                        if (!isKingChecked(enemy)) {
-                            blackQueen.setX(oldPoint1.x);
+                    if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                        if (!this.isKingChecked(enemy)) {
+                            this.blackQueen.setX(oldPoint1.x);
                             if (killedSomething) {
-                                enemy.changePostion(other, killToProtect);
+                                enemy.changePostion(this.other, this.killToProtect);
                                 killedSomething = false;
                             }
                             return false;
@@ -1884,31 +1937,31 @@ public class Player2 implements Enumeration {
                 }
 
                 if (killedSomething) {
-                    enemy.changePostion(other, killToProtect);
+                    enemy.changePostion(this.other, this.killToProtect);
                     killedSomething = false;
                 }
 
             }
-            blackQueen.setX(oldPoint1.x);
+            this.blackQueen.setX(oldPoint1.x);
             checkPlace.x = oldPoint1.x;
 
             if (killedSomething) {
-                enemy.changePostion(other, killToProtect);
+                enemy.changePostion(this.other, this.killToProtect);
                 killedSomething = false;
             }
 
             for (int i = 1; i <= 8; i++) {
-                blackQueen.setY(i);
+                this.blackQueen.setY(i);
                 checkPlace.y = i;
-                if (checkWayToPosition(enemy, oldPoint1)) {
-                    if (killToProtectKing(enemy, returnPostion(inHand))) {
+                if (this.checkWayToPosition(enemy, oldPoint1)) {
+                    if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                         killedSomething = true;
                     }
-                    if (friendlyPieceAlreadyThere(checkPlace)) {
-                        if (!isKingChecked(enemy)) {
-                            blackQueen.setY(oldPoint1.y);
+                    if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                        if (!this.isKingChecked(enemy)) {
+                            this.blackQueen.setY(oldPoint1.y);
                             if (killedSomething) {
-                                enemy.changePostion(other, killToProtect);
+                                enemy.changePostion(this.other, this.killToProtect);
                                 killedSomething = false;
                             }
                             return false;
@@ -1917,16 +1970,16 @@ public class Player2 implements Enumeration {
                 }
 
                 if (killedSomething) {
-                    enemy.changePostion(other, killToProtect);
+                    enemy.changePostion(this.other, this.killToProtect);
                     killedSomething = false;
                 }
 
             }
-            blackQueen.setY(oldPoint1.y);
+            this.blackQueen.setY(oldPoint1.y);
         }
 
         if (killedSomething) {
-            enemy.changePostion(other, killToProtect);
+            enemy.changePostion(this.other, this.killToProtect);
             killedSomething = false;
         }
 
@@ -1937,8 +1990,10 @@ public class Player2 implements Enumeration {
     /**
      * Generate pawn moves.
      *
-     * @param enemy the enemy
-     * @param myPawn the my pawn
+     * @param enemy
+     *            the enemy
+     * @param myPawn
+     *            the my pawn
      * @return true, if successful
      */
     public boolean generatePawnMoves(Player1 enemy, Pawn myPawn) {
@@ -1949,14 +2004,14 @@ public class Player2 implements Enumeration {
         checkPlace.y = oldPoint1.y;
 
         if (oldPoint1.x != 20) {
-            if (myPawn.canMove(oldPoint1.x, oldPoint1.y + 2, color) && oldPoint1.y + 2 >= 1) {
+            if (myPawn.canMove(oldPoint1.x, oldPoint1.y + 2, this.color) && oldPoint1.y + 2 >= 1) {
                 myPawn.setY(oldPoint1.y + 2);
 
                 checkPlace.y = oldPoint1.y + 2;
 
-                if (friendlyPieceAlreadyThere(checkPlace)) {
-                    if (enemyPieceAlreadyThere(checkPlace, enemy)) {
-                        if (!isKingChecked(enemy)) {
+                if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                    if (this.enemyPieceAlreadyThere(checkPlace, enemy)) {
+                        if (!this.isKingChecked(enemy)) {
 
                             myPawn.setPoint(oldPoint1);
                             return false;
@@ -1965,13 +2020,13 @@ public class Player2 implements Enumeration {
                 }
 
             }
-            if (myPawn.canMove(oldPoint1.x, oldPoint1.y + 1, color) && oldPoint1.y + 1 >= 1) {
+            if (myPawn.canMove(oldPoint1.x, oldPoint1.y + 1, this.color) && oldPoint1.y + 1 >= 1) {
                 myPawn.setY(oldPoint1.y + 1);
                 checkPlace.y = oldPoint1.y + 1;
 
-                if (friendlyPieceAlreadyThere(checkPlace)) {
-                    if (enemyPieceAlreadyThere(checkPlace, enemy)) {
-                        if (!isKingChecked(enemy)) {
+                if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                    if (this.enemyPieceAlreadyThere(checkPlace, enemy)) {
+                        if (!this.isKingChecked(enemy)) {
                             myPawn.setPoint(oldPoint1);
 
                             return false;
@@ -1980,28 +2035,28 @@ public class Player2 implements Enumeration {
                 }
             }
 
-            if (enemyPieceAlreadyThere(new Point(oldPoint1.x - 1, oldPoint1.y + 1), enemy)) {
-                if (killToProtectKing(enemy, new Point(oldPoint1.x - 1, oldPoint1.y + 1))) {
+            if (this.enemyPieceAlreadyThere(new Point(oldPoint1.x - 1, oldPoint1.y + 1), enemy)) {
+                if (this.killToProtectKing(enemy, new Point(oldPoint1.x - 1, oldPoint1.y + 1))) {
 
-                    if (!isKingChecked(enemy)) {
-                        enemy.changePostion(other, killToProtect);
+                    if (!this.isKingChecked(enemy)) {
+                        enemy.changePostion(this.other, this.killToProtect);
                         myPawn.setPoint(oldPoint1);
 
                         return false;
                     }
-                    enemy.changePostion(other, killToProtect);
+                    enemy.changePostion(this.other, this.killToProtect);
                 }
             }
 
-            if (!enemyPieceAlreadyThere(new Point(oldPoint1.x + 1, oldPoint1.y + 1), enemy)) {
-                if (killToProtectKing(enemy, new Point(oldPoint1.x + 1, oldPoint1.y + 1))) {
-                    if (!isKingChecked(enemy)) {
-                        enemy.changePostion(other, killToProtect);
+            if (!this.enemyPieceAlreadyThere(new Point(oldPoint1.x + 1, oldPoint1.y + 1), enemy)) {
+                if (this.killToProtectKing(enemy, new Point(oldPoint1.x + 1, oldPoint1.y + 1))) {
+                    if (!this.isKingChecked(enemy)) {
+                        enemy.changePostion(this.other, this.killToProtect);
                         myPawn.setPoint(oldPoint1);
 
                         return false;
                     }
-                    enemy.changePostion(other, killToProtect);
+                    enemy.changePostion(this.other, this.killToProtect);
 
                 }
             }
@@ -2015,8 +2070,10 @@ public class Player2 implements Enumeration {
     /**
      * Check way to position.
      *
-     * @param enemy the enemy
-     * @param newP the new P
+     * @param enemy
+     *            the enemy
+     * @param newP
+     *            the new P
      * @return true, if successful
      */
     public boolean checkWayToPosition(Player1 enemy, Point newP) {
@@ -2024,12 +2081,12 @@ public class Player2 implements Enumeration {
 
         for (int i = 1; i <= 32; i++) {
             // check if there are pieces in the way.
-            if (inHand != i) {
+            if (this.inHand != i) {
                 if (i < 17) {
                     // Means there is something in the way so it can't move.
-                    flag = checkTheWay(newP, enemy.returnPostion(i), inHand);
+                    flag = this.checkTheWay(newP, enemy.returnPostion(i), this.inHand);
                 } else {
-                    flag = checkTheWay(newP, returnPostion(i), inHand);
+                    flag = this.checkTheWay(newP, this.returnPostion(i), this.inHand);
                 }
                 if (flag == true) {
                     return false;
@@ -2043,17 +2100,19 @@ public class Player2 implements Enumeration {
     /**
      * Kill to protect king.
      *
-     * @param enemy the enemy
-     * @param newP the new P
+     * @param enemy
+     *            the enemy
+     * @param newP
+     *            the new P
      * @return true, if successful
      */
     public boolean killToProtectKing(Player1 enemy, Point newP) {
 
         for (int i = 17; i <= 32; i++) {
 
-            other = enemy.returnPostion(i);
-            if (other.x == newP.x && other.y == newP.y) {
-                killToProtect = i;
+            this.other = enemy.returnPostion(i);
+            if (this.other.x == newP.x && this.other.y == newP.y) {
+                this.killToProtect = i;
 
                 enemy.killedPiece(i);
                 return true;
@@ -2063,7 +2122,9 @@ public class Player2 implements Enumeration {
         return false;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see java.util.Enumeration#hasMoreElements()
      */
     @Override
@@ -2071,7 +2132,9 @@ public class Player2 implements Enumeration {
         return false;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see java.util.Enumeration#nextElement()
      */
     @Override
@@ -2081,44 +2144,44 @@ public class Player2 implements Enumeration {
     }
 
     /**
-     *  tells user about last move. Previously named "Tell_Me_About_Last_Move"*
+     * tells user about last move. Previously named "Tell_Me_About_Last_Move"*
      *
      * @return the string
      */
     public String lastMove() {
-        switch (inHand) {
+        switch (this.inHand) {
             case 1:
-                return blackRook1.tellMe();
+                return this.blackRook1.tellMe();
             case 2:
-                return blackRook2.tellMe();
+                return this.blackRook2.tellMe();
             case 3:
-                return blackKnight1.tellMe();
+                return this.blackKnight1.tellMe();
             case 4:
-                return blackKnight2.tellMe();
+                return this.blackKnight2.tellMe();
             case 5:
-                return blackBishop1.tellMe();
+                return this.blackBishop1.tellMe();
             case 6:
-                return blackBishop2.tellMe();
+                return this.blackBishop2.tellMe();
             case 7:
-                return blackQueen.tellMe();
+                return this.blackQueen.tellMe();
             case 8:
-                return blackKing.tellMe();
+                return this.blackKing.tellMe();
             case 9:
-                return blackPawns[0].tellMe();
+                return this.blackPawns[0].tellMe();
             case 10:
-                return blackPawns[1].tellMe();
+                return this.blackPawns[1].tellMe();
             case 11:
-                return blackPawns[2].tellMe();
+                return this.blackPawns[2].tellMe();
             case 12:
-                return blackPawns[3].tellMe();
+                return this.blackPawns[3].tellMe();
             case 13:
-                return blackPawns[4].tellMe();
+                return this.blackPawns[4].tellMe();
             case 14:
-                return blackPawns[5].tellMe();
+                return this.blackPawns[5].tellMe();
             case 15:
-                return blackPawns[6].tellMe();
+                return this.blackPawns[6].tellMe();
             case 16:
-                return blackPawns[7].tellMe();
+                return this.blackPawns[7].tellMe();
             default:
                 break;
         }
