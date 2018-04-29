@@ -1,6 +1,7 @@
 package test;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.logging.Logger;
@@ -64,7 +65,6 @@ public class KnightTest {
      */
     @AfterClass
     public static void tearDownAfterClass() throws Exception {
-        whiteKnight1 = whiteKnight2 = blackKnight2 = blackKnight1 = null;
         LOG.info("@AfterClass KnightTest complete");
     }
 
@@ -89,5 +89,22 @@ public class KnightTest {
         assertTrue(blackKnight2.canMove(8, 3));
         assertFalse(blackKnight1.canMove(7, 3));
     }
+    
+    /**
+     * Test tellMe().
+     */
+    @Test
+    public void testTellMe() {
+    	assertNotNull(whiteKnight1.tellMe());
+    }
+
+    /**
+     * Test generatePossibleMoves()
+     */
+    @Test
+    public void testGeneratePossibleMoves() {
+    	assertNotNull(whiteKnight1.generatePossibleMoves());
+    }
+
 
 }
