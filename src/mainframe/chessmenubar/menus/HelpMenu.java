@@ -19,6 +19,7 @@ public class HelpMenu extends JMenu {
         setText("Help");
         add(aboutGame);
         add(aboutUs);
+        this.setEnabled(false);
     }
 
     /** The about game. */
