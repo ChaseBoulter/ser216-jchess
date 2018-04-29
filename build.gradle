@@ -73,7 +73,7 @@ dependencies {
 }
 
 jacoco {
-    applyTo run
+    //applyTo run
 }
 
 
