@@ -14,6 +14,7 @@ local.properties
 .settings/
 .loadpath
 .recommenders
+.idea
 
 # External tool builders
 .externalToolBuilders/
@@ -54,10 +55,10 @@ local.properties
 .worksheet
 
 ### Eclipse Patch ###
-# Eclipse Core		
+# Eclipse Core
 .project
 
-# JDT-specific (Eclipse Java Development Tools)		
+# JDT-specific (Eclipse Java Development Tools)
 .classpath
 
 ### Intellij ###
@@ -139,7 +140,6 @@ fabric.properties
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
 *.ear
 *.zip
@@ -172,3 +172,4 @@ nbactions.xml
 .gradle/vcsWorkingDirs/gc.properties
 .gradle/workspace-id.txt
 .gradle/workspace-id.txt.lock
+/.gradle/
