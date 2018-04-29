@@ -25,8 +25,8 @@ public class FileMenu extends JMenu {
         //newItem = new NewItem(ff);
         setText("File");
         
-        add(saveItem);
-        add(loadItem);
+        //add(saveItem);
+        //add(loadItem);
         add(exitItem);
 
     }
