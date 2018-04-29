@@ -104,7 +104,7 @@ public class RookTest {
      */
     @AfterClass
     public static void tearDownAfterClass() throws Exception {
-        whiteRook1 = whiteRook2 = blackRook1 = blackRook2 = null;
+        
         LOG.info("@AfterClass RookTest complete");
 
     }
@@ -144,7 +144,7 @@ public class RookTest {
      * Test pieceInMyWay.
      */
     @Test
-    public void testpieceInMyWay() {
+    public void testPieceInMyWay() {
      
        
        /** No pieces are in the way */
@@ -171,8 +171,18 @@ public class RookTest {
        
        
        /** A piece is in my way */
-       assertTrue(whiteRook1.pieceInMyWay(4, 8, p10));
-
+       assertTrue(whiteRook2.pieceInMyWay(4, 8, p9));
+       Rook whiteRook3 = new Rook("src" + fileSeparator + "Icons" + fileSeparator
+               + "Player1Icons" + fileSeparator + "whiteRook.png", 3, 6);
+       Point p12 = new Point (3,7);
+       Point p13 = new Point (3,5);
+       Point p14 = new Point (2,6);
+       Point p15 = new Point (4,6);
+       assertTrue(whiteRook3.pieceInMyWay(3, 8, p12));
+       assertTrue(whiteRook3.pieceInMyWay(3, 4, p13));
+       assertTrue(whiteRook3.pieceInMyWay(1, 6, p14));
+       assertTrue(whiteRook3.pieceInMyWay(5, 6, p15));
+       
 
         
     }
@@ -184,14 +194,18 @@ public class RookTest {
     public void testTellMe() {
     	assertNotNull(whiteRook1.tellMe());
     }
-
     
     /**
      * Test tellMe(
      */
     @Test
-    public void testPieceInMyWay() {
+    public void testCheckKing() {
+    	Rook whiteRook4 = new Rook("src" + fileSeparator + "Icons" + fileSeparator
+                + "Player1Icons" + fileSeparator + "whiteRook.png", 7, 3);
+    	Point p15 = new Point (8,8);
+    	assertFalse(whiteRook4.checkKing(7, 2, p15));
+    	assertFalse(whiteRook4.checkKing(8, 8, new Point(7,2)));
     	
-    }
-    
+    }   
+
 }

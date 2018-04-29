@@ -181,10 +181,23 @@ public class QueenTest {
        
        /** A piece is in my way */
        assertTrue(whiteQueen.pieceInMyWay(4, 8, p4));
+       Queen whiteQueen2 = new Queen("src" + fileSeparator + "Icons" + fileSeparator
+               + "Player1Icons" + fileSeparator + "whiteQueen.png", 4, 8); 
+       Point p11 = new Point(4,7);
+       Point p12 = new Point(3,8);
+       Point p13 = new Point(5,8);
+       Point p14 = new Point(3,7);
+       Point p15 = new Point(5,7);
+       assertTrue(whiteQueen2.pieceInMyWay(4, 6, p11));
+       assertTrue(whiteQueen2.pieceInMyWay(2, 8, p12));
+       assertTrue(whiteQueen2.pieceInMyWay(6, 8, p13));
+       assertTrue(whiteQueen2.pieceInMyWay(2, 6, p14));
+       assertTrue(whiteQueen2.pieceInMyWay(6, 6, p15));
+       assertTrue(whiteQueen.pieceInMyWay(4, 8, p11));
+       assertTrue(whiteQueen.pieceInMyWay(2, 8, p14));
+       assertTrue(whiteQueen.pieceInMyWay(6, 8, p15));
        assertTrue(blackQueen.pieceInMyWay(4, 1, p3));
-
-
-        
+  
     }
     
     

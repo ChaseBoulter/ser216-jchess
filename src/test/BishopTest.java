@@ -16,6 +16,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import pieces.Bishop;
+import pieces.Queen;
 
 /**
  * The Class BishopTest.
@@ -192,6 +193,19 @@ public class BishopTest {
        
        
        /** A piece is in my way */
+       whiteBishop1 = new Bishop("src" + fileSeparator + "Icons" + fileSeparator
+               + "Player1Icons" + fileSeparator + "whiteBishop.png", 4, 8);
+       whiteBishop2 = new Bishop("src" + fileSeparator + "Icons" + fileSeparator
+               + "Player1Icons" + fileSeparator + "whiteBishop.png", 4, 6); 
+       Point p14 = new Point(3,7);
+       Point p15 = new Point(5,7);
+
+       assertTrue(whiteBishop1.pieceInMyWay(2, 6, p14));
+       assertTrue(whiteBishop1.pieceInMyWay(6, 6, p15));
+  
+       assertTrue(whiteBishop2.pieceInMyWay(2, 8, p14));
+       assertTrue(whiteBishop2.pieceInMyWay(6, 8, p15));
+
 
   
     }

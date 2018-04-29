@@ -495,6 +495,14 @@ public class GameBoardSetupTest {
     }
     
     /**
+     * Test basic generateQueenMoves
+     */
+    @Test
+    public void testGenerateQueenMoves() {
+    	player2.generateQueenMoves(player1);
+    }
+    
+    /**
      * Test basic gui elements
      */
     @Test
