@@ -34,10 +34,10 @@ public class FileMenu extends JMenu {
 
     /** The save item. */
 //private final NewItem newItem;
-    private final SaveItem saveItem = new SaveItem();
+   // private final SaveItem saveItem = new SaveItem();
     
     /** The load item. */
-    private final LoadItem loadItem = new LoadItem();
+    //private final LoadItem loadItem = new LoadItem();
     
     /** The exit item. */
     private final ExitItem exitItem = new ExitItem();
