@@ -50,11 +50,9 @@ public class ChatPanel extends JPanel {
     
     /** The chat socket. */
     private Socket chatSocket;
-    private Socket heartSocket;
     
     /** The server chat. */
     private ServerSocket serverChat;
-    private ServerSocket heartBeatServerSocket;
     
     /** The in 1. */
     private BufferedReader in1;
@@ -80,7 +78,6 @@ public class ChatPanel extends JPanel {
     
     /** The send socket. */
     private Socket sendSocket;
-    private Socket heartBeatSocket;
     
     /** The client thread. */
     private ClientChat clientThread = new ClientChat();
@@ -146,6 +143,7 @@ public class ChatPanel extends JPanel {
         textField.addKeyListener(new KeyListener() {
             @Override
             public void keyPressed(KeyEvent e) {
+                // System.out.println("okdddd "+e.KEY_PRESSED+" "+e.VK_PAGE_DOWN);
 
                 if (e.getKeyChar() == '\n') {
                     textChatArea.append("\n" + preload.getName() + ": " + textField.getText());
@@ -189,12 +187,7 @@ public class ChatPanel extends JPanel {
             out2 = new PrintWriter(new OutputStreamWriter(
                     sendSocket.getOutputStream(), StandardCharsets.UTF_8), true);
             
-            
-            
-            heartBeatSocket = new Socket(preload.getIpAddress(), Integer.parseInt(preload.getPortNumber())-1);
-            recvHeartBeat = new BufferedReader(new InputStreamReader(heartBeatSocket.getInputStream(), StandardCharsets.UTF_8));
-            
-            chb.start();
+            recvHeartBeat = new BufferedReader(new InputStreamReader(sendSocket.getInputStream(), StandardCharsets.UTF_8));
             
         } catch (UnknownHostException ex) {
             ex.printStackTrace();
@@ -202,6 +195,7 @@ public class ChatPanel extends JPanel {
             ex.printStackTrace();
         }
         clientThread.start();
+        chb.start();
     }
 
     /**
@@ -237,7 +231,7 @@ public class ChatPanel extends JPanel {
         isServer = true;
         try {
             //HACK BECAUSE HOW THEY IMPLEMENTED: ADD 1 SO CHAT DOES NOT HAVE SAME SOCKET (BINDING WILL FAIL)
-            serverChat = new ServerSocket(Integer.parseInt(preload.getPortNumber())+1);
+            serverChat = new ServerSocket(Integer.parseInt(preload.getPortNumber())+1); 
 
             chatSocket = serverChat.accept();
 
@@ -246,12 +240,8 @@ public class ChatPanel extends JPanel {
             out1 = new PrintWriter(new OutputStreamWriter(
                     chatSocket.getOutputStream(), StandardCharsets.UTF_8), true);
             
-            
-            
-            heartBeatServerSocket = new ServerSocket(Integer.parseInt(preload.getPortNumber())-1);
-            heartSocket = heartBeatServerSocket.accept();
             heartbeat = new PrintWriter(new OutputStreamWriter(
-                    heartSocket.getOutputStream(), StandardCharsets.UTF_8), true);
+                    chatSocket.getOutputStream(), StandardCharsets.UTF_8), true);
 
             serverThread.start();
             shb.start();
@@ -308,11 +298,10 @@ public class ChatPanel extends JPanel {
                     e.printStackTrace();
                 }
 
-                if (receive == null) {
+                if (!receive.equals("ping")) {
                     System.out.println("ERROR");
                     System.exit(1);
                 }
-                System.out.println("heartbeat received");
                 receive = "";
             }
         }
@@ -332,7 +321,6 @@ public class ChatPanel extends JPanel {
                     e.printStackTrace();
                     
                 }
-                System.out.println("heartbeat sent.");
                 heartbeat.flush();
             }
         }
