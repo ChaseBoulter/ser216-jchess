@@ -172,3 +172,4 @@ nbactions.xml
 .gradle/vcsWorkingDirs/gc.properties
 .gradle/workspace-id.txt
 .gradle/workspace-id.txt.lock
+/.gradle/
