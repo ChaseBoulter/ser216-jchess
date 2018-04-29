@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.net.ConnectException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -50,9 +51,11 @@ public class ChatPanel extends JPanel {
     
     /** The chat socket. */
     private Socket chatSocket;
+    private Socket heartBeatServerAccept;
     
     /** The server chat. */
     private ServerSocket serverChat;
+    private ServerSocket heartBeatServerSocket;
     
     /** The in 1. */
     private BufferedReader in1;
@@ -78,6 +81,7 @@ public class ChatPanel extends JPanel {
     
     /** The send socket. */
     private Socket sendSocket;
+    private Socket heartBeatSocket;
     
     /** The client thread. */
     private ClientChat clientThread = new ClientChat();
@@ -183,21 +187,37 @@ public class ChatPanel extends JPanel {
         try {
             sendSocket = new Socket(preload.getIpAddress(), Integer.parseInt(preload.getPortNumber())+1);
             
+            
             in2 = new BufferedReader(new InputStreamReader(sendSocket.getInputStream(), StandardCharsets.UTF_8));
             out2 = new PrintWriter(new OutputStreamWriter(
                     sendSocket.getOutputStream(), StandardCharsets.UTF_8), true);
-            
-            recvHeartBeat = new BufferedReader(new InputStreamReader(sendSocket.getInputStream(), StandardCharsets.UTF_8));
-            
+                   
         } catch (UnknownHostException ex) {
             ex.printStackTrace();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+        
         clientThread.start();
-        chb.start();
     }
 
+//    public void startHeartBeat() {
+//        try {
+//            System.out.println(Integer.parseInt(preload.getPortNumber())+2);
+//            heartBeatSocket = new Socket(preload.getIpAddress(), Integer.parseInt(preload.getPortNumber())+2);
+//            recvHeartBeat = new BufferedReader(new InputStreamReader(heartBeatSocket.getInputStream(), StandardCharsets.UTF_8));
+//            
+//            //System.out.println(heartBeatSocket);
+//        } catch (UnknownHostException ex) {
+//            ex.printStackTrace();
+//        } catch (IOException ex) {
+//            ex.printStackTrace();
+//        }
+//        
+//        chb.start();
+//        
+//    }
+    
     /**
      * Send text chat.
      */
@@ -240,17 +260,34 @@ public class ChatPanel extends JPanel {
             out1 = new PrintWriter(new OutputStreamWriter(
                     chatSocket.getOutputStream(), StandardCharsets.UTF_8), true);
             
-            heartbeat = new PrintWriter(new OutputStreamWriter(
-                    chatSocket.getOutputStream(), StandardCharsets.UTF_8), true);
-
-            serverThread.start();
-            shb.start();
+            
+            
 
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+        
+        serverThread.start();
 
     }
+    
+//    public void serverHeartBeat() {
+//        try {
+//            heartBeatServerSocket = new ServerSocket(Integer.parseInt(preload.getPortNumber()) +2);
+//            
+//            heartBeatServerAccept = heartBeatServerSocket.accept();  
+//            
+//            heartbeat = new PrintWriter(new OutputStreamWriter(
+//                    heartBeatServerAccept.getOutputStream(), StandardCharsets.UTF_8), true);
+//            
+//            System.out.println(heartBeatServerAccept);
+//            
+//        } catch (NumberFormatException | IOException e) {
+//            e.printStackTrace();
+//        }
+//        
+//        shb.start();
+//    }
 
     /**
      * The Class ClientChat.
@@ -281,16 +318,14 @@ public class ChatPanel extends JPanel {
     /** The Class ClientHeartbeat to test is client is still running. */
     class ClientHeartBeat extends Thread {
         
-        /* (non-Javadoc)
-         * @see java.lang.Thread#run()
-         */
+
         @Override
         public void run() {
             String receive = "";
             while (true) {
                 try {
-                    receive = recvHeartBeat.readLine();
                     this.sleep(10000);
+                    receive = recvHeartBeat.readLine();
                 } catch (IOException ex) {
                     ex.printStackTrace();
                     
@@ -302,6 +337,8 @@ public class ChatPanel extends JPanel {
                     System.out.println("ERROR");
                     System.exit(1);
                 }
+                
+                System.out.println("received" + receive);
                 receive = "";
             }
         }
@@ -315,13 +352,14 @@ public class ChatPanel extends JPanel {
         public void run() {
             while (true) {
                 try {
-                    heartbeat.print("ping");
                     this.sleep(10000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                     
                 }
-                heartbeat.flush();
+                System.out.println("sending heartbeat to client from server");
+                //heartbeat.print("ping");
+                //heartbeat.flush();
             }
         }
     }

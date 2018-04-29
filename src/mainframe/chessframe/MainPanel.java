@@ -161,6 +161,8 @@ public class MainPanel extends JPanel {
                                     sock.getOutputStream(), StandardCharsets.UTF_8), true);
                             
                             receivedFrom.start();
+                            
+                            //receiveChat.serverHeartBeat();
 
                             gameStarted = true;
                             
@@ -243,6 +245,9 @@ public class MainPanel extends JPanel {
                         receivedFrom.start();
                         gameStarted = true;
                         receiveChat.startChat();
+                        
+                        //heartbeat
+                        //receiveChat.startHeartBeat();
 
                         isClient = true;
                         remove(waitingLabel);
