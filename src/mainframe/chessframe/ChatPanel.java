@@ -15,6 +15,7 @@ import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -49,15 +50,23 @@ public class ChatPanel extends JPanel {
     
     /** The chat socket. */
     private Socket chatSocket;
+    private Socket heartSocket;
     
     /** The server chat. */
     private ServerSocket serverChat;
+    private ServerSocket heartBeatServerSocket;
     
     /** The in 1. */
     private BufferedReader in1;
     
     /** The out 1. */
     private PrintWriter out1;
+    
+    /** sends a heartbeat **/
+    private PrintWriter heartbeat;
+    
+    /** receives heartbeat **/
+    private BufferedReader recvHeartBeat;
     
     /** The in 2. */
     private BufferedReader in2;
@@ -67,12 +76,15 @@ public class ChatPanel extends JPanel {
     
     /** The server thread. */
     private ServerChat serverThread = new ServerChat();
+    private ServerHeartBeat shb = new ServerHeartBeat();
     
     /** The send socket. */
     private Socket sendSocket;
+    private Socket heartBeatSocket;
     
     /** The client thread. */
     private ClientChat clientThread = new ClientChat();
+    private ClientHeartBeat chb = new ClientHeartBeat();
     
     /** The is server. */
     private boolean isServer;
@@ -134,7 +146,6 @@ public class ChatPanel extends JPanel {
         textField.addKeyListener(new KeyListener() {
             @Override
             public void keyPressed(KeyEvent e) {
-                // System.out.println("okdddd "+e.KEY_PRESSED+" "+e.VK_PAGE_DOWN);
 
                 if (e.getKeyChar() == '\n') {
                     textChatArea.append("\n" + preload.getName() + ": " + textField.getText());
@@ -159,8 +170,6 @@ public class ChatPanel extends JPanel {
             }
         });
 
-        // add(chatPanelScroll); //TODO: add chat panel scroll
-
     }
 
     /**
@@ -179,6 +188,13 @@ public class ChatPanel extends JPanel {
             in2 = new BufferedReader(new InputStreamReader(sendSocket.getInputStream(), StandardCharsets.UTF_8));
             out2 = new PrintWriter(new OutputStreamWriter(
                     sendSocket.getOutputStream(), StandardCharsets.UTF_8), true);
+            
+            
+            
+            heartBeatSocket = new Socket(preload.getIpAddress(), Integer.parseInt(preload.getPortNumber())-1);
+            recvHeartBeat = new BufferedReader(new InputStreamReader(heartBeatSocket.getInputStream(), StandardCharsets.UTF_8));
+            
+            chb.start();
             
         } catch (UnknownHostException ex) {
             ex.printStackTrace();
@@ -221,7 +237,7 @@ public class ChatPanel extends JPanel {
         isServer = true;
         try {
             //HACK BECAUSE HOW THEY IMPLEMENTED: ADD 1 SO CHAT DOES NOT HAVE SAME SOCKET (BINDING WILL FAIL)
-            serverChat = new ServerSocket(Integer.parseInt(preload.getPortNumber())+1); 
+            serverChat = new ServerSocket(Integer.parseInt(preload.getPortNumber())+1);
 
             chatSocket = serverChat.accept();
 
@@ -229,10 +245,16 @@ public class ChatPanel extends JPanel {
 
             out1 = new PrintWriter(new OutputStreamWriter(
                     chatSocket.getOutputStream(), StandardCharsets.UTF_8), true);
-
-            // chatSocket.setSoTimeout(10000);
+            
+            
+            
+            heartBeatServerSocket = new ServerSocket(Integer.parseInt(preload.getPortNumber())-1);
+            heartSocket = heartBeatServerSocket.accept();
+            heartbeat = new PrintWriter(new OutputStreamWriter(
+                    heartSocket.getOutputStream(), StandardCharsets.UTF_8), true);
 
             serverThread.start();
+            shb.start();
 
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -256,8 +278,8 @@ public class ChatPanel extends JPanel {
                     receive = in2.readLine();
                 } catch (IOException ex) {
                     ex.printStackTrace();
+                    
                 }
-
                 if (receive != null) {
                     textChatArea.append("\n" + receive);
                 }
@@ -265,6 +287,57 @@ public class ChatPanel extends JPanel {
         }
     }
 
+    
+    /** The Class ClientHeartbeat to test is client is still running. */
+    class ClientHeartBeat extends Thread {
+        
+        /* (non-Javadoc)
+         * @see java.lang.Thread#run()
+         */
+        @Override
+        public void run() {
+            String receive = "";
+            while (true) {
+                try {
+                    receive = recvHeartBeat.readLine();
+                    this.sleep(10000);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                    
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                if (receive == null) {
+                    System.out.println("ERROR");
+                    System.exit(1);
+                }
+                System.out.println("heartbeat received");
+                receive = "";
+            }
+        }
+    }
+    
+    
+    /** server heartbeat to test if server is still running**/
+    class ServerHeartBeat extends Thread {
+
+        @Override
+        public void run() {
+            while (true) {
+                try {
+                    heartbeat.print("ping");
+                    this.sleep(10000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                    
+                }
+                System.out.println("heartbeat sent.");
+                heartbeat.flush();
+            }
+        }
+    }
+    
     /**
      * The Class ServerChat.
      */
@@ -284,8 +357,6 @@ public class ChatPanel extends JPanel {
                 }
 
                 if (receive != null) {
-
-                    //textChatArea.append("\n" + preload.getName() + ": " + receive);
                     textChatArea.append("\n" + receive);
 
                 }

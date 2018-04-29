@@ -25,6 +25,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import players.Player1;
 import players.Player2;
@@ -108,7 +109,8 @@ public class MainPanel extends JPanel {
     private ChatPanel receiveChat;
     
     /** The waiting label. */
-    private final JLabel waitingLabel = new JLabel("Waiting...");
+    //private final JLabel waitingLabel = new JLabel("Waiting For Worthy Opponent...");
+    private JLabel waitingLabel;
 
     /**
      * Start as server.
@@ -125,12 +127,20 @@ public class MainPanel extends JPanel {
 
         myIPAddress = myIp;
         myPortNumber = myPort;
-
-        startAgain();
-        startServer = new JButton(" Start server");
-        startServer.setSize(150, 25);
-        startServer.setLocation(200, 300);
-        startServer.addActionListener(e -> {
+        
+        waitingLabel = new JLabel("Waiting for client connection...", SwingConstants.CENTER);
+        waitingLabel.setForeground(Color.WHITE);
+        //waiting label location
+        waitingLabel.setSize(250, 25);
+        waitingLabel.setLocation(150, 300);
+        waitingLabel.setBackground(Color.GRAY);
+        waitingLabel.setOpaque(true);
+        waitingLabel.setVisible(true);
+        
+        //startServer.addActionListener(e -> {
+        add(waitingLabel);
+        
+        //initialize server immediately
 
             try {
 
@@ -150,44 +160,28 @@ public class MainPanel extends JPanel {
                             out = new PrintWriter(new OutputStreamWriter(
                                     sock.getOutputStream(), StandardCharsets.UTF_8), true);
                             
-                            startServer.setVisible(false);
-                            startServer = null;
                             receivedFrom.start();
 
                             gameStarted = true;
+                            
+                            
+                            local = false;
+                            isServer = true;
+                            remove(waitingLabel);
+                            
+                            repaint();
 
                         } catch (IOException ex) {
                             ex.printStackTrace();
                         }
                     }
-                });
+               });
 
                 server.start();
 
-                /*
-                 * in=new BufferedReader(new InputStreamReader(sock.getInputStream())); out=new
-                 * PrintWriter(sock.getOutputStream());
-                 */
-                // sock.setSoTimeout(999999);
-                // receiveChat.listen_chat();
-
             } catch (IOException ex) {
                 ex.printStackTrace();
-                JOptionPane.showMessageDialog(null, "Server Error",
-                        "Error", JOptionPane.ERROR_MESSAGE, null);
             }
-            //startServer.removeAll();
-            startServer.setText("Waiting...");
-            startServer.setVisible(false);
-            //startServer = null;
-            //startServer.setEnabled(false);
-
-        });
-        local = false;
-        add(startServer);
-
-        isServer = true;
-        repaint();
     }
 
     /**
@@ -209,37 +203,63 @@ public class MainPanel extends JPanel {
         myIPAddress = myIp;
         myPortNumber = myPort;
         local = false;
-        startClient = new JButton("Start Client");
-        startClient.setSize(150, 25);
-        startClient.setLocation(200, 300);
+        
+        waitingLabel = new JLabel("Waiting for server connection...", SwingConstants.CENTER);
+        waitingLabel.setForeground(Color.WHITE);
+        //waiting label location
+        waitingLabel.setSize(250, 25);
+        waitingLabel.setLocation(150, 300);
+        waitingLabel.setBackground(Color.GRAY);
+        waitingLabel.setOpaque(true);
+        waitingLabel.setVisible(true);
+        
+        
+        //wait for server, time out function to attempt to connect every 5 seconds
 
-        startClient.addActionListener(e -> {
-            try {
+        //startClient.addActionListener(e -> {
+        
+        add(waitingLabel);
+        //waits 4 seconds to attempt reconnection.
+        new Thread() {
+            @Override
+            public void run() {
+                try {
+                    this.sleep(4000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
-                sock = new Socket(myIPAddress, Integer.parseInt(myPortNumber));
-                
-                in = new BufferedReader(new InputStreamReader(sock.getInputStream(), StandardCharsets.UTF_8));
-                out = new PrintWriter(new OutputStreamWriter(
-                        sock.getOutputStream(), StandardCharsets.UTF_8), true);
 
-                receivedFrom.start();
-                gameStarted = true;
-                receiveChat.startChat();
+                while(!gameStarted) {
+                    
+                    try {
 
-            } catch (UnknownHostException ex1) {
-                ex1.printStackTrace();
-            } catch (IOException ex2) {
-                ex2.printStackTrace();
-                JOptionPane.showMessageDialog(null, "Client Error occurred",
-                        "Error", JOptionPane.ERROR_MESSAGE, null);
+                        sock = new Socket(myIPAddress, Integer.parseInt(myPortNumber));
+                        
+                        in = new BufferedReader(new InputStreamReader(sock.getInputStream(), StandardCharsets.UTF_8));
+                        out = new PrintWriter(new OutputStreamWriter(
+                                sock.getOutputStream(), StandardCharsets.UTF_8), true);
+
+                        receivedFrom.start();
+                        gameStarted = true;
+                        receiveChat.startChat();
+
+                        isClient = true;
+                        remove(waitingLabel);
+                        
+                        repaint();
+
+                    } catch (UnknownHostException ex1) {
+                        ex1.printStackTrace();
+                    } catch (IOException ex2) {
+                        System.out.println("Client attempting to connect....");
+                        //ex2.printStackTrace();
+                    }
+                }
+
             }
-
-            startClient.setVisible(false);
-            startClient = null;
-        });
-
-        isClient = true;
-        add(startClient);
+        }.start();
+        
 
     }
 
@@ -253,7 +273,7 @@ public class MainPanel extends JPanel {
         playersTurn = 1;
         gameOver = false;
         local = true;
-        myTool.startAgain();
+        //myTool.startAgain();
         //myStatus.start_Again();
         isServer = false;
         isClient = false;
@@ -1034,6 +1054,7 @@ public class MainPanel extends JPanel {
     public void sendMove() {
         out.print(box);
         out.print("\r\n");
+        //out.print("heartbeat");
         out.flush();
 
     }
