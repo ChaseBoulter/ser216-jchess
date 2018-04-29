@@ -74,7 +74,7 @@ public class ServerTest {
         
         assertFalse(preloader.validatePortNumber("trying to break!"));
         
-        assertTrue(preloader.validatePortNumber("65533"));
+        assertFalse(preloader.validatePortNumber("65533"));
         preloader.setPortNumber("65533");
         assertTrue(preloader.getPortNumber().equals("65533"));
         
