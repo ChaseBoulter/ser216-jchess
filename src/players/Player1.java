@@ -64,25 +64,25 @@ public class Player1 {
     /** constructs Player1 pieces. **/
     public Player1() {
         String fileSeparator = System.getProperty("file.separator");
-        this.whiteRook1 = new Rook("src" + fileSeparator + "Icons" + fileSeparator + "Player1Icons"
+        this.whiteRook1 = new Rook( fileSeparator + "Icons" + fileSeparator + "Player1Icons"
                 + fileSeparator + "whiteRook.png", 8, 8);
-        this.whiteRook2 = new Rook("src" + fileSeparator + "Icons" + fileSeparator + "Player1Icons"
+        this.whiteRook2 = new Rook( fileSeparator + "Icons" + fileSeparator + "Player1Icons"
                 + fileSeparator + "whiteRook.png", 1, 8);
-        this.whiteKnight1 = new Knight("src" + fileSeparator + "Icons" + fileSeparator
+        this.whiteKnight1 = new Knight( fileSeparator + "Icons" + fileSeparator
                 + "Player1Icons" + fileSeparator + "whiteKnight.png", 2, 8);
-        this.whiteKnight2 = new Knight("src" + fileSeparator + "Icons" + fileSeparator
+        this.whiteKnight2 = new Knight( fileSeparator + "Icons" + fileSeparator
                 + "Player1Icons" + fileSeparator + "whiteKnight.png", 7, 8);
-        this.whiteBishop1 = new Bishop("src" + fileSeparator + "Icons" + fileSeparator
+        this.whiteBishop1 = new Bishop( fileSeparator + "Icons" + fileSeparator
                 + "Player1Icons" + fileSeparator + "whiteBishop.png", 3, 8);
-        this.whiteBishop2 = new Bishop("src" + fileSeparator + "Icons" + fileSeparator
+        this.whiteBishop2 = new Bishop( fileSeparator + "Icons" + fileSeparator
                 + "Player1Icons" + fileSeparator + "whiteBishop.png", 6, 8);
-        this.whiteQueen = new Queen("src" + fileSeparator + "Icons" + fileSeparator + "Player1Icons"
+        this.whiteQueen = new Queen( fileSeparator + "Icons" + fileSeparator + "Player1Icons"
                 + fileSeparator + "whiteQueen.png", 4, 8);
-        this.whiteKing = new King("src" + fileSeparator + "Icons" + fileSeparator + "Player1Icons"
+        this.whiteKing = new King( fileSeparator + "Icons" + fileSeparator + "Player1Icons"
                 + fileSeparator + "whiteKing.png", 5, 8);
         int j = 1;
         for (int i = 0; i <= 7; i++, j++) {
-            this.whitePawns[i] = new Pawn("src" + fileSeparator + "Icons" + fileSeparator
+            this.whitePawns[i] = new Pawn( fileSeparator + "Icons" + fileSeparator
                     + "Player1Icons" + fileSeparator + "WhitePawn.png", j, 7);
         }
     }

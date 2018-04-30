@@ -1,8 +1,12 @@
 
 package pieces;
 
+import chessgame.Chess;
+
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.net.URL;
+
 
 /**
  * The Class PieceIcon.
@@ -23,8 +27,12 @@ public class PieceIcon {
      */
     // throws IO Exception?
     public PieceIcon(String nameIcon) {
-
-        this.image = this.kit.getImage(nameIcon);
+        try {
+            URL url = Chess.class.getResource(nameIcon);
+            this.image = this.kit.getImage(url);
+        } catch (SecurityException s) {
+           System.out.println("Sec error with images.");
+        }
     }
 
     /**

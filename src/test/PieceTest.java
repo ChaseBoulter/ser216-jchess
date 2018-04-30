@@ -39,7 +39,7 @@ public class PieceTest {
      */
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
-        aPiece = new Piece("src" + fileSeparator + "Icons" + fileSeparator + "Player1Icons"
+        aPiece = new Piece( fileSeparator + "Icons" + fileSeparator + "Player1Icons"
                 + fileSeparator + "wr.gif", 1, 8);
     }
 

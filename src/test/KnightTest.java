@@ -43,13 +43,13 @@ public class KnightTest {
      */
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
-        whiteKnight1 = new Knight("src" + fileSeparator + "Icons" + fileSeparator + "Player1Icons"
+        whiteKnight1 = new Knight( fileSeparator + "Icons" + fileSeparator + "Player1Icons"
                 + fileSeparator + "wn.gif", 2, 8);
-        whiteKnight2 = new Knight("src" + fileSeparator + "Icons" + fileSeparator + "Player1Icons"
+        whiteKnight2 = new Knight( fileSeparator + "Icons" + fileSeparator + "Player1Icons"
                 + fileSeparator + "wn.gif", 7, 8);
-        blackKnight1 = new Knight("src" + fileSeparator + "Icons" + fileSeparator + "Player2Icons"
+        blackKnight1 = new Knight( fileSeparator + "Icons" + fileSeparator + "Player2Icons"
                 + fileSeparator + "bn.gif", 2, 1);
-        blackKnight2 = new Knight("src" + fileSeparator + "Icons" + fileSeparator + "Player2Icons"
+        blackKnight2 = new Knight( fileSeparator + "Icons" + fileSeparator + "Player2Icons"
                 + fileSeparator + "bn.gif", 7, 1);
     }
 

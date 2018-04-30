@@ -37,13 +37,13 @@ public class CheckMateTest {
      */
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
-        whiteKing = new King("src" + fileSeparator + "Icons" + fileSeparator + "Player1Icons"
+        whiteKing = new King( fileSeparator + "Icons" + fileSeparator + "Player1Icons"
                 + fileSeparator + "wk.gif", 6, 2);
-        blackKing = new King("src" + fileSeparator + "Icons" + fileSeparator + "Player2Icons"
+        blackKing = new King( fileSeparator + "Icons" + fileSeparator + "Player2Icons"
                 + fileSeparator + "bk.gif", 4, 5);
-        whiteRook1 = new Rook("src" + fileSeparator + "Icons" + fileSeparator + "Player1Icons"
+        whiteRook1 = new Rook( fileSeparator + "Icons" + fileSeparator + "Player1Icons"
                 + fileSeparator + "wr.gif", 7, 1);
-        whiteRook2 = new Rook("src" + fileSeparator + "Icons" + fileSeparator + "Player1Icons"
+        whiteRook2 = new Rook( fileSeparator + "Icons" + fileSeparator + "Player1Icons"
                 + fileSeparator + "wr.gif", 2, 2);
 
     }

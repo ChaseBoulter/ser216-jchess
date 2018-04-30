@@ -81,14 +81,14 @@ public class RookTest {
      */
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
-        whiteRook1 = new Rook("src" + fileSeparator + "Icons" + fileSeparator + "Player1Icons"
+        whiteRook1 = new Rook( fileSeparator + "Icons" + fileSeparator + "Player1Icons"
                 + fileSeparator + "wr.gif", 8, 8);
-        whiteRook2 = new Rook("src" + fileSeparator + "Icons" + fileSeparator + "Player1Icons"
+        whiteRook2 = new Rook( fileSeparator + "Icons" + fileSeparator + "Player1Icons"
                 + fileSeparator + "wr.gif", 1, 8);
-        blackRook1 = new Rook("src" + fileSeparator + "Icons" + fileSeparator + "Player2Icons"
+        blackRook1 = new Rook( fileSeparator + "Icons" + fileSeparator + "Player2Icons"
                 + fileSeparator + "br.gif", 1, 1);
 
-        blackRook2 = new Rook("src" + fileSeparator + "Icons" + fileSeparator + "Player2Icons"
+        blackRook2 = new Rook( fileSeparator + "Icons" + fileSeparator + "Player2Icons"
                 + fileSeparator + "br.gif", 8, 1);
     }
 
@@ -166,7 +166,7 @@ public class RookTest {
 
         /** A piece is in my way. */
         assertTrue(whiteRook2.pieceInMyWay(4, 8, p9));
-        Rook whiteRook3 = new Rook("src" + fileSeparator + "Icons" + fileSeparator + "Player1Icons"
+        Rook whiteRook3 = new Rook( fileSeparator + "Icons" + fileSeparator + "Player1Icons"
                 + fileSeparator + "whiteRook.png", 3, 6);
         Point p12 = new Point(3, 7);
         Point p13 = new Point(3, 5);
@@ -192,7 +192,7 @@ public class RookTest {
      */
     @Test
     public void testCheckKing() {
-        Rook whiteRook4 = new Rook("src" + fileSeparator + "Icons" + fileSeparator + "Player1Icons"
+        Rook whiteRook4 = new Rook( fileSeparator + "Icons" + fileSeparator + "Player1Icons"
                 + fileSeparator + "whiteRook.png", 7, 3);
         Point p15 = new Point(8, 8);
         assertFalse(whiteRook4.checkKing(7, 2, p15));

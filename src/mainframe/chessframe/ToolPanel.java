@@ -4,6 +4,7 @@ package mainframe.chessframe;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.net.URL;
 
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
@@ -13,7 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-//import mainframe.chessframe.timer.ThreadTimer;
+
+import chessgame.Chess;
 
 /**
  * The Class ToolPanel.
@@ -70,10 +72,18 @@ public class ToolPanel extends JPanel {
 
         this.setSize(310, 340);
         this.fs = System.getProperty("file.separator");
-        this.myTurn = new ImageIcon(
-                "src" + this.fs + "Icons" + this.fs + "other" + this.fs + "Turn.png");
-        this.myCheck = new ImageIcon(
-                "src" + this.fs + "Icons" + this.fs + "other" + this.fs + "CheckMate.png");
+        
+        try {
+            URL turnImgUrl = Chess.class.getResource(this.fs + "Icons" + this.fs + "other" + this.fs + "Turn.png");
+            URL checkMateImgUrl = Chess.class.getResource(this.fs + "Icons" + this.fs + "other" + this.fs + "Checkmate.png");
+            this.myTurn = new ImageIcon(turnImgUrl);
+            this.myCheck = new ImageIcon(checkMateImgUrl);
+        } catch (SecurityException s) {
+           System.out.println("Sec error with images.");
+        }
+        
+        
+
         this.imageLabelWhite = new JLabel(this.myTurn);
         this.imageLabelBlack = new JLabel(this.myTurn);
         this.checkLabelWhite = new JLabel(this.myCheck);

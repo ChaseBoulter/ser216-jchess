@@ -68,9 +68,9 @@ public class QueenTest {
      */
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
-        whiteQueen = new Queen("src" + fileSeparator + "Icons" + fileSeparator + "Player1Icons"
+        whiteQueen = new Queen( fileSeparator + "Icons" + fileSeparator + "Player1Icons"
                 + fileSeparator + "wq.gif", 4, 6);
-        blackQueen = new Queen("src" + fileSeparator + "Icons" + fileSeparator + "Player2Icons"
+        blackQueen = new Queen( fileSeparator + "Icons" + fileSeparator + "Player2Icons"
                 + fileSeparator + "bq.gif", 4, 3);
     }
 
@@ -178,7 +178,7 @@ public class QueenTest {
 
         /** A piece is in my way */
         assertTrue(whiteQueen.pieceInMyWay(4, 8, p4));
-        Queen whiteQueen2 = new Queen("src" + fileSeparator + "Icons" + fileSeparator
+        Queen whiteQueen2 = new Queen( fileSeparator + "Icons" + fileSeparator
                 + "Player1Icons" + fileSeparator + "whiteQueen.png", 4, 8);
         Point p11 = new Point(4, 7);
         Point p12 = new Point(3, 8);
