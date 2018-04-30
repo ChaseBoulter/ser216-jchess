@@ -39,8 +39,8 @@ public class PieceTest {
      */
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
-        aPiece = new Piece("src" + fileSeparator + "Icons" + fileSeparator 
-                + "Player1Icons" + fileSeparator + "wr.gif",1, 8);
+        aPiece = new Piece("src" + fileSeparator + "Icons" + fileSeparator + "Player1Icons"
+                + fileSeparator + "wr.gif", 1, 8);
     }
 
     /**
@@ -87,8 +87,8 @@ public class PieceTest {
         assertFalse(aPiece.inThisPosition(3, 8));
         aPiece.setY(1);
         aPiece.setX(1);
-        assertTrue(aPiece.returnPostion().y==1);
-        assertTrue(aPiece.returnPostion().x==1);
+        assertTrue(aPiece.returnPostion().y == 1);
+        assertTrue(aPiece.returnPostion().x == 1);
 
     }
 

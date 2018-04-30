@@ -13,7 +13,7 @@ public class AboutChessGame extends JMenuItem {
 
     /** Creates a new instance of AboutChessGame in the menu. */
     public AboutChessGame() {
-        setText("About This Game");
+        this.setText("About This Game");
     }
 
 }

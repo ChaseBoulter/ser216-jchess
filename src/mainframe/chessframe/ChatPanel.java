@@ -1,6 +1,8 @@
 
 package mainframe.chessframe;
 
+import chessgame.Preloader;
+
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -9,21 +11,18 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
-import java.net.ConnectException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
 
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
-import chessgame.Preloader;
 
 /**
  * The Class ChatPanel.
@@ -32,143 +31,133 @@ public class ChatPanel extends JPanel {
 
     /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
-    /** private fields for class.**/
+    /** private fields for class. **/
     private final JTextArea textChatArea = new JTextArea(6, 20);
-    
+
     /** The text border. */
     private final TitledBorder textBorder = new TitledBorder("Chat History");
-    
+
     /** The text field. */
     private final JTextField textField = new JTextField(10);
-    
+
     /** The send B. */
     private final JButton sendB = new JButton();
-    
+
     /** The text area scroll. */
-    private final JScrollPane textAreaScroll = new JScrollPane(
-            textChatArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-            JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-    
+    private final JScrollPane textAreaScroll = new JScrollPane(this.textChatArea,
+            JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+
     /** The chat socket. */
     private Socket chatSocket;
-    private Socket heartBeatServerAccept;
-    
     /** The server chat. */
     private ServerSocket serverChat;
-    private ServerSocket heartBeatServerSocket;
-    
     /** The in 1. */
     private BufferedReader in1;
-    
+
     /** The out 1. */
     private PrintWriter out1;
-    
-    /** sends a heartbeat **/
-    private PrintWriter heartbeat;
-    
-    /** receives heartbeat **/
+
+    /** receives heartbeat. **/
     private BufferedReader recvHeartBeat;
-    
+
     /** The in 2. */
     private BufferedReader in2;
-    
+
     /** The out 2. */
     private PrintWriter out2;
-    
+
     /** The server thread. */
-    private ServerChat serverThread = new ServerChat();
-    private ServerHeartBeat shb = new ServerHeartBeat();
-    
+    private final ServerChat serverThread = new ServerChat();
+    //private final ServerHeartBeat shb = new ServerHeartBeat();
+
     /** The send socket. */
     private Socket sendSocket;
-    private Socket heartBeatSocket;
-    
     /** The client thread. */
-    private ClientChat clientThread = new ClientChat();
-    private ClientHeartBeat chb = new ClientHeartBeat();
-    
+    private final ClientChat clientThread = new ClientChat();
+    //private final ClientHeartBeat chb = new ClientHeartBeat();
+
     /** The is server. */
     private boolean isServer;
-    
+
     /** The preload. */
-    Preloader preload = Preloader.getInstance(); //singleton
-    
+    Preloader preload = Preloader.getInstance(); // singleton
+
     /** Creates a new instance of ChatPanel. */
     public ChatPanel() {
-        setPreferredSize(new Dimension(300, 244));
-        setMinimumSize(new Dimension(300, 300));
-        setSize(300, 244);
-        setLocation(600, 350);
+        this.setPreferredSize(new Dimension(300, 244));
+        this.setMinimumSize(new Dimension(300, 300));
+        this.setSize(300, 244);
+        this.setLocation(600, 350);
 
-        textAreaScroll.setSize(284, 188);
-        textAreaScroll.setLocation(10, 0);
-        textChatArea.setLineWrap(true);
+        this.textAreaScroll.setSize(284, 188);
+        this.textAreaScroll.setLocation(10, 0);
+        this.textChatArea.setLineWrap(true);
 
-        setLayout(null);
+        this.setLayout(null);
 
-        textAreaScroll.setEnabled(false);
-        textField.setEnabled(false);
-        sendB.setEnabled(false);
-        
-        //set sendButton's info
-        sendB.setSize(80, 30);
-        sendB.setLocation(214, 192);
-        sendB.setText("Send");
-        
-        
-        //set TextField info
-        textField.setSize(180, 20);
-        textField.setLocation(10, 196);
-        //textField.add(textAreaScroll);
-        textField.setToolTipText("Write Text Here");
+        this.textAreaScroll.setEnabled(false);
+        this.textField.setEnabled(false);
+        this.sendB.setEnabled(false);
 
-        //set textChatArea info
-        textChatArea.setEditable(false);
-        textChatArea.setBorder(textBorder);
-        
-        
-        add(textAreaScroll);
-        add(textField);
-        add(sendB);
+        // set sendButton's info
+        this.sendB.setSize(80, 30);
+        this.sendB.setLocation(214, 192);
+        this.sendB.setText("Send");
 
-        sendB.addActionListener(e -> {
+        // set TextField info
+        this.textField.setSize(180, 20);
+        this.textField.setLocation(10, 196);
+        // textField.add(textAreaScroll);
+        this.textField.setToolTipText("Write Text Here");
 
-            textChatArea.append("\n" + preload.getName() + ": " + textField.getText());
-            if (isServer) {
-                sendTextServer();
-                textField.setText(null);
+        // set textChatArea info
+        this.textChatArea.setEditable(false);
+        this.textChatArea.setBorder(this.textBorder);
+
+        this.add(this.textAreaScroll);
+        this.add(this.textField);
+        this.add(this.sendB);
+
+        this.sendB.addActionListener(e -> {
+
+            this.textChatArea
+                    .append("\n" + this.preload.getName() + ": " + this.textField.getText());
+            if (this.isServer) {
+                this.sendTextServer();
+                this.textField.setText(null);
             } else {
-                sendTextChat();
-                textField.setText(null);
+                this.sendTextChat();
+                this.textField.setText(null);
             }
 
         });
 
-        textField.addKeyListener(new KeyListener() {
+        this.textField.addKeyListener(new KeyListener() {
             @Override
-            public void keyPressed(KeyEvent e) {
+            public void keyPressed(final KeyEvent e) {
                 // System.out.println("okdddd "+e.KEY_PRESSED+" "+e.VK_PAGE_DOWN);
 
                 if (e.getKeyChar() == '\n') {
-                    textChatArea.append("\n" + preload.getName() + ": " + textField.getText());
+                    ChatPanel.this.textChatArea.append("\n" + ChatPanel.this.preload.getName()
+                            + ": " + ChatPanel.this.textField.getText());
 
-                    if (isServer) {
-                        sendTextServer();
-                        textField.setText(null);
+                    if (ChatPanel.this.isServer) {
+                        ChatPanel.this.sendTextServer();
+                        ChatPanel.this.textField.setText(null);
                     } else {
-                        sendTextChat();
-                        textField.setText(null);
+                        ChatPanel.this.sendTextChat();
+                        ChatPanel.this.textField.setText(null);
                     }
 
                 }
             }
 
             @Override
-            public void keyReleased(KeyEvent e) {
+            public void keyReleased(final KeyEvent e) {
             }
 
             @Override
-            public void keyTyped(KeyEvent e) {
+            public void keyTyped(final KeyEvent e) {
             }
         });
 
@@ -179,53 +168,37 @@ public class ChatPanel extends JPanel {
      */
     // TODO: fix chat panel with correct sockets and ports
     public void startChat() {
-        textAreaScroll.setEnabled(true);
-        textField.setEnabled(true);
-        sendB.setEnabled(true);
+        this.textAreaScroll.setEnabled(true);
+        this.textField.setEnabled(true);
+        this.sendB.setEnabled(true);
 
-        isServer = false;
+        this.isServer = false;
         try {
-            sendSocket = new Socket(preload.getIpAddress(), Integer.parseInt(preload.getPortNumber())+1);
-            
-            
-            in2 = new BufferedReader(new InputStreamReader(sendSocket.getInputStream(), StandardCharsets.UTF_8));
-            out2 = new PrintWriter(new OutputStreamWriter(
-                    sendSocket.getOutputStream(), StandardCharsets.UTF_8), true);
-                   
-        } catch (UnknownHostException ex) {
+            this.sendSocket = new Socket(this.preload.getIpAddress(),
+                    Integer.parseInt(this.preload.getPortNumber()) + 1);
+
+            this.in2 = new BufferedReader(new InputStreamReader(this.sendSocket.getInputStream(),
+                    StandardCharsets.UTF_8));
+            this.out2 = new PrintWriter(new OutputStreamWriter(this.sendSocket.getOutputStream(),
+                    StandardCharsets.UTF_8), true);
+
+        } catch (final UnknownHostException ex) {
             ex.printStackTrace();
-        } catch (IOException ex) {
+        } catch (final IOException ex) {
             ex.printStackTrace();
         }
-        
-        clientThread.start();
+
+        this.clientThread.start();
     }
 
-//    public void startHeartBeat() {
-//        try {
-//            System.out.println(Integer.parseInt(preload.getPortNumber())+2);
-//            heartBeatSocket = new Socket(preload.getIpAddress(), Integer.parseInt(preload.getPortNumber())+2);
-//            recvHeartBeat = new BufferedReader(new InputStreamReader(heartBeatSocket.getInputStream(), StandardCharsets.UTF_8));
-//            
-//            //System.out.println(heartBeatSocket);
-//        } catch (UnknownHostException ex) {
-//            ex.printStackTrace();
-//        } catch (IOException ex) {
-//            ex.printStackTrace();
-//        }
-//        
-//        chb.start();
-//        
-//    }
-    
     /**
      * Send text chat.
      */
     public void sendTextChat() {
-        out2.print(preload.getName() + ": " + textField.getText());
-        out2.print("\r\n");
+        this.out2.print(this.preload.getName() + ": " + this.textField.getText());
+        this.out2.print("\r\n");
 
-        out2.flush();
+        this.out2.flush();
 
     }
 
@@ -233,10 +206,10 @@ public class ChatPanel extends JPanel {
      * Send text server.
      */
     public void sendTextServer() {
-        out1.print(preload.getName() + ": " + textField.getText());
-        out1.print("\r\n");
+        this.out1.print(this.preload.getName() + ": " + this.textField.getText());
+        this.out1.print("\r\n");
 
-        out1.flush();
+        this.out1.flush();
 
     }
 
@@ -244,57 +217,40 @@ public class ChatPanel extends JPanel {
      * Listen to chat.
      */
     public void listenToChat() {
-        textAreaScroll.setEnabled(true);
-        textField.setEnabled(true);
-        sendB.setEnabled(true);
+        this.textAreaScroll.setEnabled(true);
+        this.textField.setEnabled(true);
+        this.sendB.setEnabled(true);
 
-        isServer = true;
+        this.isServer = true;
         try {
-            //HACK BECAUSE HOW THEY IMPLEMENTED: ADD 1 SO CHAT DOES NOT HAVE SAME SOCKET (BINDING WILL FAIL)
-            serverChat = new ServerSocket(Integer.parseInt(preload.getPortNumber())+1); 
+            // HACK BECAUSE HOW THEY IMPLEMENTED: ADD 1 SO CHAT DOES NOT HAVE SAME SOCKET (BINDING
+            // WILL FAIL)
+            this.serverChat = new ServerSocket(Integer.parseInt(this.preload.getPortNumber()) + 1);
 
-            chatSocket = serverChat.accept();
+            this.chatSocket = this.serverChat.accept();
 
-            in1 = new BufferedReader(new InputStreamReader(chatSocket.getInputStream(), StandardCharsets.UTF_8));
+            this.in1 = new BufferedReader(new InputStreamReader(this.chatSocket.getInputStream(),
+                    StandardCharsets.UTF_8));
 
-            out1 = new PrintWriter(new OutputStreamWriter(
-                    chatSocket.getOutputStream(), StandardCharsets.UTF_8), true);
-            
-            
-            
+            this.out1 = new PrintWriter(new OutputStreamWriter(this.chatSocket.getOutputStream(),
+                    StandardCharsets.UTF_8), true);
 
-        } catch (IOException ex) {
+        } catch (final IOException ex) {
             ex.printStackTrace();
         }
-        
-        serverThread.start();
+
+        this.serverThread.start();
 
     }
-    
-//    public void serverHeartBeat() {
-//        try {
-//            heartBeatServerSocket = new ServerSocket(Integer.parseInt(preload.getPortNumber()) +2);
-//            
-//            heartBeatServerAccept = heartBeatServerSocket.accept();  
-//            
-//            heartbeat = new PrintWriter(new OutputStreamWriter(
-//                    heartBeatServerAccept.getOutputStream(), StandardCharsets.UTF_8), true);
-//            
-//            System.out.println(heartBeatServerAccept);
-//            
-//        } catch (NumberFormatException | IOException e) {
-//            e.printStackTrace();
-//        }
-//        
-//        shb.start();
-//    }
 
     /**
      * The Class ClientChat.
      */
     class ClientChat extends Thread {
-        
-        /* (non-Javadoc)
+
+        /*
+         * (non-Javadoc)
+         * 
          * @see java.lang.Thread#run()
          */
         @Override
@@ -302,34 +258,32 @@ public class ChatPanel extends JPanel {
             String receive = null;
             while (true) {
                 try {
-                    receive = in2.readLine();
-                } catch (IOException ex) {
+                    receive = ChatPanel.this.in2.readLine();
+                } catch (final IOException ex) {
                     ex.printStackTrace();
-                    
+
                 }
                 if (receive != null) {
-                    textChatArea.append("\n" + receive);
+                    ChatPanel.this.textChatArea.append("\n" + receive);
                 }
             }
         }
     }
 
-    
     /** The Class ClientHeartbeat to test is client is still running. */
     class ClientHeartBeat extends Thread {
-        
 
         @Override
         public void run() {
             String receive = "";
             while (true) {
                 try {
-                    this.sleep(10000);
-                    receive = recvHeartBeat.readLine();
-                } catch (IOException ex) {
+                    Thread.sleep(10000);
+                    receive = ChatPanel.this.recvHeartBeat.readLine();
+                } catch (final IOException ex) {
                     ex.printStackTrace();
-                    
-                } catch (InterruptedException e) {
+
+                } catch (final InterruptedException e) {
                     e.printStackTrace();
                 }
 
@@ -337,39 +291,38 @@ public class ChatPanel extends JPanel {
                     System.out.println("ERROR");
                     System.exit(1);
                 }
-                
+
                 System.out.println("received" + receive);
                 receive = "";
             }
         }
     }
-    
-    
-    /** server heartbeat to test if server is still running**/
+
+    /** server heart beat to test if server is still running. **/
     class ServerHeartBeat extends Thread {
 
         @Override
         public void run() {
             while (true) {
                 try {
-                    this.sleep(10000);
-                } catch (InterruptedException e) {
+                    Thread.sleep(10000);
+                } catch (final InterruptedException e) {
                     e.printStackTrace();
-                    
+
                 }
                 System.out.println("sending heartbeat to client from server");
-                //heartbeat.print("ping");
-                //heartbeat.flush();
             }
         }
     }
-    
+
     /**
      * The Class ServerChat.
      */
     class ServerChat extends Thread {
-        
-        /* (non-Javadoc)
+
+        /*
+         * (non-Javadoc)
+         * 
          * @see java.lang.Thread#run()
          */
         @Override
@@ -377,13 +330,13 @@ public class ChatPanel extends JPanel {
             String receive = null;
             while (true) {
                 try {
-                    receive = in1.readLine();
-                } catch (IOException ex) {
+                    receive = ChatPanel.this.in1.readLine();
+                } catch (final IOException ex) {
                     ex.printStackTrace();
                 }
 
                 if (receive != null) {
-                    textChatArea.append("\n" + receive);
+                    ChatPanel.this.textChatArea.append("\n" + receive);
 
                 }
             }

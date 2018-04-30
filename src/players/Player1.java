@@ -18,79 +18,80 @@ public class Player1 {
 
     /** Creates a new instance of Player1. */
     public Rook whiteRook1;
-    
+
     /** The white rook 2. */
     public Rook whiteRook2;
-    
+
     /** The white knight 1. */
     public Knight whiteKnight1;
-    
+
     /** The white knight 2. */
     public Knight whiteKnight2;
-    
+
     /** The white queen. */
     public Queen whiteQueen;
-    
+
     /** The white bishop 1. */
     public Bishop whiteBishop1;
-    
+
     /** The white bishop 2. */
     public Bishop whiteBishop2;
-    
+
     /** The white pawns. */
     public Pawn[] whitePawns = new Pawn[8];
-    
+
     /** The white king. */
     public King whiteKing;
-    
+
     /** The in hand. */
     private int inHand = -1;
-    
+
     /** The kingischeck. */
     private boolean kingischeck = false;
-    
+
     /** The choosen one. */
     private int choosenOne;
-    
+
     /** The color. */
     String color = "white";
-    
+
     /** The other. */
     private Point other;
-    
+
     /** The kill to protect. */
     int killToProtect;
 
     /** constructs Player1 pieces. **/
     public Player1() {
         String fileSeparator = System.getProperty("file.separator");
-        whiteRook1 = new Rook("src" + fileSeparator + "Icons" + fileSeparator
-                + "Player1Icons" + fileSeparator + "whiteRook.png", 8, 8);
-        whiteRook2 = new Rook("src" + fileSeparator + "Icons" + fileSeparator
-                + "Player1Icons" + fileSeparator + "whiteRook.png", 1, 8);
-        whiteKnight1 = new Knight("src" + fileSeparator + "Icons" + fileSeparator
+        this.whiteRook1 = new Rook("src" + fileSeparator + "Icons" + fileSeparator + "Player1Icons"
+                + fileSeparator + "whiteRook.png", 8, 8);
+        this.whiteRook2 = new Rook("src" + fileSeparator + "Icons" + fileSeparator + "Player1Icons"
+                + fileSeparator + "whiteRook.png", 1, 8);
+        this.whiteKnight1 = new Knight("src" + fileSeparator + "Icons" + fileSeparator
                 + "Player1Icons" + fileSeparator + "whiteKnight.png", 2, 8);
-        whiteKnight2 = new Knight("src" + fileSeparator + "Icons" + fileSeparator
+        this.whiteKnight2 = new Knight("src" + fileSeparator + "Icons" + fileSeparator
                 + "Player1Icons" + fileSeparator + "whiteKnight.png", 7, 8);
-        whiteBishop1 = new Bishop("src" + fileSeparator + "Icons" + fileSeparator
+        this.whiteBishop1 = new Bishop("src" + fileSeparator + "Icons" + fileSeparator
                 + "Player1Icons" + fileSeparator + "whiteBishop.png", 3, 8);
-        whiteBishop2 = new Bishop("src" + fileSeparator + "Icons" + fileSeparator
+        this.whiteBishop2 = new Bishop("src" + fileSeparator + "Icons" + fileSeparator
                 + "Player1Icons" + fileSeparator + "whiteBishop.png", 6, 8);
-        whiteQueen = new Queen("src" + fileSeparator + "Icons" + fileSeparator
-                + "Player1Icons" + fileSeparator + "whiteQueen.png", 4, 8);
-        whiteKing = new King("src" + fileSeparator + "Icons" + fileSeparator
-                + "Player1Icons" + fileSeparator + "whiteKing.png", 5, 8);
+        this.whiteQueen = new Queen("src" + fileSeparator + "Icons" + fileSeparator + "Player1Icons"
+                + fileSeparator + "whiteQueen.png", 4, 8);
+        this.whiteKing = new King("src" + fileSeparator + "Icons" + fileSeparator + "Player1Icons"
+                + fileSeparator + "whiteKing.png", 5, 8);
         int j = 1;
         for (int i = 0; i <= 7; i++, j++) {
-            whitePawns[i] = new Pawn("src" + fileSeparator + "Icons" 
-                    + fileSeparator + "Player1Icons" + fileSeparator + "WhitePawn.png", j, 7);
+            this.whitePawns[i] = new Pawn("src" + fileSeparator + "Icons" + fileSeparator
+                    + "Player1Icons" + fileSeparator + "WhitePawn.png", j, 7);
         }
     }
 
     /**
-     *  returns position of each piece wrapped all in a switch case. *
+     * returns position of each piece wrapped all in a switch case. *
      *
-     * @param i the i
+     * @param i
+     *            the i
      * @return the point
      */
     public Point returnPostion(int i) {
@@ -98,37 +99,37 @@ public class Player1 {
         switch (i) {
 
             case 17:
-                return whiteRook1.returnPostion();
+                return this.whiteRook1.returnPostion();
             case 18:
-                return whiteRook2.returnPostion();
+                return this.whiteRook2.returnPostion();
             case 19:
-                return whiteKnight1.returnPostion();
+                return this.whiteKnight1.returnPostion();
             case 20:
-                return whiteKnight2.returnPostion();
+                return this.whiteKnight2.returnPostion();
             case 21:
-                return whiteBishop1.returnPostion();
+                return this.whiteBishop1.returnPostion();
             case 22:
-                return whiteBishop2.returnPostion();
+                return this.whiteBishop2.returnPostion();
             case 23:
-                return whiteQueen.returnPostion();
+                return this.whiteQueen.returnPostion();
             case 24:
-                return whiteKing.returnPostion();
+                return this.whiteKing.returnPostion();
             case 25:
-                return whitePawns[0].returnPostion();
+                return this.whitePawns[0].returnPostion();
             case 26:
-                return whitePawns[1].returnPostion();
+                return this.whitePawns[1].returnPostion();
             case 27:
-                return whitePawns[2].returnPostion();
+                return this.whitePawns[2].returnPostion();
             case 28:
-                return whitePawns[3].returnPostion();
+                return this.whitePawns[3].returnPostion();
             case 29:
-                return whitePawns[4].returnPostion();
+                return this.whitePawns[4].returnPostion();
             case 30:
-                return whitePawns[5].returnPostion();
+                return this.whitePawns[5].returnPostion();
             case 31:
-                return whitePawns[6].returnPostion();
+                return this.whitePawns[6].returnPostion();
             case 32:
-                return whitePawns[7].returnPostion();
+                return this.whitePawns[7].returnPostion();
             default:
                 break;
         }
@@ -136,9 +137,10 @@ public class Player1 {
     }
 
     /**
-     *  returns position of each old piece wrapped all in a switch case. *
+     * returns position of each old piece wrapped all in a switch case. *
      *
-     * @param i the i
+     * @param i
+     *            the i
      * @return the point
      */
     public Point returnOldPostion(int i) {
@@ -146,37 +148,37 @@ public class Player1 {
         switch (i) {
 
             case 17:
-                return whiteRook1.returnOld();
+                return this.whiteRook1.returnOld();
             case 18:
-                return whiteRook2.returnOld();
+                return this.whiteRook2.returnOld();
             case 19:
-                return whiteKnight1.returnOld();
+                return this.whiteKnight1.returnOld();
             case 20:
-                return whiteKnight2.returnOld();
+                return this.whiteKnight2.returnOld();
             case 21:
-                return whiteBishop1.returnOld();
+                return this.whiteBishop1.returnOld();
             case 22:
-                return whiteBishop2.returnOld();
+                return this.whiteBishop2.returnOld();
             case 23:
-                return whiteQueen.returnOld();
+                return this.whiteQueen.returnOld();
             case 24:
-                return whiteKing.returnOld();
+                return this.whiteKing.returnOld();
             case 25:
-                return whitePawns[0].returnOld();
+                return this.whitePawns[0].returnOld();
             case 26:
-                return whitePawns[1].returnOld();
+                return this.whitePawns[1].returnOld();
             case 27:
-                return whitePawns[2].returnOld();
+                return this.whitePawns[2].returnOld();
             case 28:
-                return whitePawns[3].returnOld();
+                return this.whitePawns[3].returnOld();
             case 29:
-                return whitePawns[4].returnOld();
+                return this.whitePawns[4].returnOld();
             case 30:
-                return whitePawns[5].returnOld();
+                return this.whitePawns[5].returnOld();
             case 31:
-                return whitePawns[6].returnOld();
+                return this.whitePawns[6].returnOld();
             case 32:
-                return whitePawns[7].returnOld();
+                return this.whitePawns[7].returnOld();
             default:
                 break;
         }
@@ -184,47 +186,48 @@ public class Player1 {
     }
 
     /**
-     *  returns position of each image wrapped all in a switch case. *
+     * returns position of each image wrapped all in a switch case. *
      *
-     * @param i the i
+     * @param i
+     *            the i
      * @return the image
      */
     public Image returnIconImage(int i) {
 
         switch (i) {
-    
+
             case 17:
-                return whiteRook1.returnPieceImage();
+                return this.whiteRook1.returnPieceImage();
             case 18:
-                return whiteRook2.returnPieceImage();
+                return this.whiteRook2.returnPieceImage();
             case 19:
-                return whiteKnight1.returnPieceImage();
+                return this.whiteKnight1.returnPieceImage();
             case 20:
-                return whiteKnight2.returnPieceImage();
+                return this.whiteKnight2.returnPieceImage();
             case 21:
-                return whiteBishop1.returnPieceImage();
+                return this.whiteBishop1.returnPieceImage();
             case 22:
-                return whiteBishop2.returnPieceImage();
+                return this.whiteBishop2.returnPieceImage();
             case 23:
-                return whiteQueen.returnPieceImage();
+                return this.whiteQueen.returnPieceImage();
             case 24:
-                return whiteKing.returnPieceImage();
+                return this.whiteKing.returnPieceImage();
             case 25:
-                return whitePawns[0].returnPieceImage();
+                return this.whitePawns[0].returnPieceImage();
             case 26:
-                return whitePawns[1].returnPieceImage();
+                return this.whitePawns[1].returnPieceImage();
             case 27:
-                return whitePawns[2].returnPieceImage();
+                return this.whitePawns[2].returnPieceImage();
             case 28:
-                return whitePawns[3].returnPieceImage();
+                return this.whitePawns[3].returnPieceImage();
             case 29:
-                return whitePawns[4].returnPieceImage();
+                return this.whitePawns[4].returnPieceImage();
             case 30:
-                return whitePawns[5].returnPieceImage();
+                return this.whitePawns[5].returnPieceImage();
             case 31:
-                return whitePawns[6].returnPieceImage();
+                return this.whitePawns[6].returnPieceImage();
             case 32:
-                return whitePawns[7].returnPieceImage();
+                return this.whitePawns[7].returnPieceImage();
             default:
                 break;
         }
@@ -234,59 +237,61 @@ public class Player1 {
     /**
      * Change postion.
      *
-     * @param newPoint the new point
-     * @param i the i
+     * @param newPoint
+     *            the new point
+     * @param i
+     *            the i
      */
     public void changePostion(Point newPoint, int i) {
         switch (i) {
 
             case 17:
-                whiteRook1.setPoint(newPoint);
+                this.whiteRook1.setPoint(newPoint);
                 break;
             case 18:
-                whiteRook2.setPoint(newPoint);
+                this.whiteRook2.setPoint(newPoint);
                 break;
             case 19:
-                whiteKnight1.setPoint(newPoint);
+                this.whiteKnight1.setPoint(newPoint);
                 break;
             case 20:
-                whiteKnight2.setPoint(newPoint);
+                this.whiteKnight2.setPoint(newPoint);
                 break;
             case 21:
-                whiteBishop1.setPoint(newPoint);
+                this.whiteBishop1.setPoint(newPoint);
                 break;
             case 22:
-                whiteBishop2.setPoint(newPoint);
+                this.whiteBishop2.setPoint(newPoint);
                 break;
             case 23:
-                whiteQueen.setPoint(newPoint);
+                this.whiteQueen.setPoint(newPoint);
                 break;
             case 24:
-                whiteKing.setPoint(newPoint);
+                this.whiteKing.setPoint(newPoint);
                 break;
             case 25:
-                whitePawns[0].setPoint(newPoint);
+                this.whitePawns[0].setPoint(newPoint);
                 break;
             case 26:
-                whitePawns[1].setPoint(newPoint);
+                this.whitePawns[1].setPoint(newPoint);
                 break;
             case 27:
-                whitePawns[2].setPoint(newPoint);
+                this.whitePawns[2].setPoint(newPoint);
                 break;
             case 28:
-                whitePawns[3].setPoint(newPoint);
+                this.whitePawns[3].setPoint(newPoint);
                 break;
             case 29:
-                whitePawns[4].setPoint(newPoint);
+                this.whitePawns[4].setPoint(newPoint);
                 break;
             case 30:
-                whitePawns[5].setPoint(newPoint);
+                this.whitePawns[5].setPoint(newPoint);
                 break;
             case 31:
-                whitePawns[6].setPoint(newPoint);
+                this.whitePawns[6].setPoint(newPoint);
                 break;
             case 32:
-                whitePawns[7].setPoint(newPoint);
+                this.whitePawns[7].setPoint(newPoint);
                 break;
             default:
                 break;
@@ -297,59 +302,61 @@ public class Player1 {
     /**
      * Change position to old.
      *
-     * @param newPoint the new point
-     * @param i the i
+     * @param newPoint
+     *            the new point
+     * @param i
+     *            the i
      */
     public void changePostionToOld(Point newPoint, int i) {
         switch (i) {
 
             case 17:
-                whiteRook1.toOld(newPoint);
+                this.whiteRook1.toOld(newPoint);
                 break;
             case 18:
-                whiteRook2.toOld(newPoint);
+                this.whiteRook2.toOld(newPoint);
                 break;
             case 19:
-                whiteKnight1.toOld(newPoint);
+                this.whiteKnight1.toOld(newPoint);
                 break;
             case 20:
-                whiteKnight2.toOld(newPoint);
+                this.whiteKnight2.toOld(newPoint);
                 break;
             case 21:
-                whiteBishop1.toOld(newPoint);
+                this.whiteBishop1.toOld(newPoint);
                 break;
             case 22:
-                whiteBishop2.toOld(newPoint);
+                this.whiteBishop2.toOld(newPoint);
                 break;
             case 23:
-                whiteQueen.toOld(newPoint);
+                this.whiteQueen.toOld(newPoint);
                 break;
             case 24:
-                whiteKing.toOld(newPoint);
+                this.whiteKing.toOld(newPoint);
                 break;
             case 25:
-                whitePawns[0].toOld(newPoint);
+                this.whitePawns[0].toOld(newPoint);
                 break;
             case 26:
-                whitePawns[1].toOld(newPoint);
+                this.whitePawns[1].toOld(newPoint);
                 break;
             case 27:
-                whitePawns[2].toOld(newPoint);
+                this.whitePawns[2].toOld(newPoint);
                 break;
             case 28:
-                whitePawns[3].toOld(newPoint);
+                this.whitePawns[3].toOld(newPoint);
                 break;
             case 29:
-                whitePawns[4].toOld(newPoint);
+                this.whitePawns[4].toOld(newPoint);
                 break;
             case 30:
-                whitePawns[5].toOld(newPoint);
+                this.whitePawns[5].toOld(newPoint);
                 break;
             case 31:
-                whitePawns[6].toOld(newPoint);
+                this.whitePawns[6].toOld(newPoint);
                 break;
             case 32:
-                whitePawns[7].toOld(newPoint);
+                this.whitePawns[7].toOld(newPoint);
                 break;
             default:
                 break;
@@ -359,61 +366,64 @@ public class Player1 {
     /**
      * Change pixel.
      *
-     * @param newPixelX the new pixel X
-     * @param newPixelY the new pixel Y
-     * @param i the i
+     * @param newPixelX
+     *            the new pixel X
+     * @param newPixelY
+     *            the new pixel Y
+     * @param i
+     *            the i
      */
     public void changePixel(int newPixelX, int newPixelY, int i) {
-        choosenOne = i;
-        switch (choosenOne) {
+        this.choosenOne = i;
+        switch (this.choosenOne) {
 
             case 17:
-                whiteRook1.setPixels(newPixelX, newPixelY);
+                this.whiteRook1.setPixels(newPixelX, newPixelY);
                 break;
             case 18:
-                whiteRook2.setPixels(newPixelX, newPixelY);
+                this.whiteRook2.setPixels(newPixelX, newPixelY);
                 break;
             case 19:
-                whiteKnight1.setPixels(newPixelX, newPixelY);
+                this.whiteKnight1.setPixels(newPixelX, newPixelY);
                 break;
             case 20:
-                whiteKnight2.setPixels(newPixelX, newPixelY);
+                this.whiteKnight2.setPixels(newPixelX, newPixelY);
                 break;
             case 21:
-                whiteBishop1.setPixels(newPixelX, newPixelY);
+                this.whiteBishop1.setPixels(newPixelX, newPixelY);
                 break;
             case 22:
-                whiteBishop2.setPixels(newPixelX, newPixelY);
+                this.whiteBishop2.setPixels(newPixelX, newPixelY);
                 break;
             case 23:
-                whiteQueen.setPixels(newPixelX, newPixelY);
+                this.whiteQueen.setPixels(newPixelX, newPixelY);
                 break;
             case 24:
-                whiteKing.setPixels(newPixelX, newPixelY);
+                this.whiteKing.setPixels(newPixelX, newPixelY);
                 break;
             case 25:
-                whitePawns[0].setPixels(newPixelX, newPixelY);
+                this.whitePawns[0].setPixels(newPixelX, newPixelY);
                 break;
             case 26:
-                whitePawns[1].setPixels(newPixelX, newPixelY);
+                this.whitePawns[1].setPixels(newPixelX, newPixelY);
                 break;
             case 27:
-                whitePawns[2].setPixels(newPixelX, newPixelY);
+                this.whitePawns[2].setPixels(newPixelX, newPixelY);
                 break;
             case 28:
-                whitePawns[3].setPixels(newPixelX, newPixelY);
+                this.whitePawns[3].setPixels(newPixelX, newPixelY);
                 break;
             case 29:
-                whitePawns[4].setPixels(newPixelX, newPixelY);
+                this.whitePawns[4].setPixels(newPixelX, newPixelY);
                 break;
             case 30:
-                whitePawns[5].setPixels(newPixelX, newPixelY);
+                this.whitePawns[5].setPixels(newPixelX, newPixelY);
                 break;
             case 31:
-                whitePawns[6].setPixels(newPixelX, newPixelY);
+                this.whitePawns[6].setPixels(newPixelX, newPixelY);
                 break;
             case 32:
-                whitePawns[7].setPixels(newPixelX, newPixelY);
+                this.whitePawns[7].setPixels(newPixelX, newPixelY);
                 break;
             default:
                 break;
@@ -423,45 +433,46 @@ public class Player1 {
     /**
      * Gets the pixel point.
      *
-     * @param i the i
+     * @param i
+     *            the i
      * @return the pixel point
      */
     public Point getPixelPoint(int i) {
-        choosenOne = i;
-        switch (choosenOne) {
+        this.choosenOne = i;
+        switch (this.choosenOne) {
 
             case 17:
-                return whiteRook1.getpixelPoint();
+                return this.whiteRook1.getpixelPoint();
             case 18:
-                return whiteRook2.getpixelPoint();
+                return this.whiteRook2.getpixelPoint();
             case 19:
-                return whiteKnight1.getpixelPoint();
+                return this.whiteKnight1.getpixelPoint();
             case 20:
-                return whiteKnight2.getpixelPoint();
+                return this.whiteKnight2.getpixelPoint();
             case 21:
-                return whiteBishop1.getpixelPoint();
+                return this.whiteBishop1.getpixelPoint();
             case 22:
-                return whiteBishop2.getpixelPoint();
+                return this.whiteBishop2.getpixelPoint();
             case 23:
-                return whiteQueen.getpixelPoint();
+                return this.whiteQueen.getpixelPoint();
             case 24:
-                return whiteKing.getpixelPoint();
+                return this.whiteKing.getpixelPoint();
             case 25:
-                return whitePawns[0].getpixelPoint();
+                return this.whitePawns[0].getpixelPoint();
             case 26:
-                return whitePawns[1].getpixelPoint();
+                return this.whitePawns[1].getpixelPoint();
             case 27:
-                return whitePawns[2].getpixelPoint();
+                return this.whitePawns[2].getpixelPoint();
             case 28:
-                return whitePawns[3].getpixelPoint();
+                return this.whitePawns[3].getpixelPoint();
             case 29:
-                return whitePawns[4].getpixelPoint();
+                return this.whitePawns[4].getpixelPoint();
             case 30:
-                return whitePawns[5].getpixelPoint();
+                return this.whitePawns[5].getpixelPoint();
             case 31:
-                return whitePawns[6].getpixelPoint();
+                return this.whitePawns[6].getpixelPoint();
             case 32:
-                return whitePawns[7].getpixelPoint();
+                return this.whitePawns[7].getpixelPoint();
             default:
                 break;
         }
@@ -471,46 +482,48 @@ public class Player1 {
     /**
      * Check move.
      *
-     * @param newP the new P
-     * @param i the i
+     * @param newP
+     *            the new P
+     * @param i
+     *            the i
      * @return true, if successful
      */
     public boolean checkMove(Point newP, int i) {
-        choosenOne = i;
-        switch (choosenOne) {
+        this.choosenOne = i;
+        switch (this.choosenOne) {
 
             case 17:
-                return whiteRook1.canMove(newP.x, newP.y);
+                return this.whiteRook1.canMove(newP.x, newP.y);
             case 18:
-                return whiteRook2.canMove(newP.x, newP.y);
+                return this.whiteRook2.canMove(newP.x, newP.y);
             case 19:
-                return whiteKnight1.canMove(newP.x, newP.y);
+                return this.whiteKnight1.canMove(newP.x, newP.y);
             case 20:
-                return whiteKnight2.canMove(newP.x, newP.y);
+                return this.whiteKnight2.canMove(newP.x, newP.y);
             case 21:
-                return whiteBishop1.canMove(newP.x, newP.y);
+                return this.whiteBishop1.canMove(newP.x, newP.y);
             case 22:
-                return whiteBishop2.canMove(newP.x, newP.y);
+                return this.whiteBishop2.canMove(newP.x, newP.y);
             case 23:
-                return whiteQueen.canMove(newP.x, newP.y);
+                return this.whiteQueen.canMove(newP.x, newP.y);
             case 24:
-                return whiteKing.canMove(newP.x, newP.y);
+                return this.whiteKing.canMove(newP.x, newP.y);
             case 25:
-                return whitePawns[0].canMove(newP.x, newP.y, color);
+                return this.whitePawns[0].canMove(newP.x, newP.y, this.color);
             case 26:
-                return whitePawns[1].canMove(newP.x, newP.y, color);
+                return this.whitePawns[1].canMove(newP.x, newP.y, this.color);
             case 27:
-                return whitePawns[2].canMove(newP.x, newP.y, color);
+                return this.whitePawns[2].canMove(newP.x, newP.y, this.color);
             case 28:
-                return whitePawns[3].canMove(newP.x, newP.y, color);
+                return this.whitePawns[3].canMove(newP.x, newP.y, this.color);
             case 29:
-                return whitePawns[4].canMove(newP.x, newP.y, color);
+                return this.whitePawns[4].canMove(newP.x, newP.y, this.color);
             case 30:
-                return whitePawns[5].canMove(newP.x, newP.y, color);
+                return this.whitePawns[5].canMove(newP.x, newP.y, this.color);
             case 31:
-                return whitePawns[6].canMove(newP.x, newP.y, color);
+                return this.whitePawns[6].canMove(newP.x, newP.y, this.color);
             case 32:
-                return whitePawns[7].canMove(newP.x, newP.y, color);
+                return this.whitePawns[7].canMove(newP.x, newP.y, this.color);
             default:
                 break;
         }
@@ -518,30 +531,32 @@ public class Player1 {
     }
 
     /**
-     *  originally named setSeenToSiliders, so I have no idea what this does. *
+     * originally named setSeenToSiliders, so I have no idea what this does. *
      *
-     * @param i the i
-     * @param myPoint the my point
+     * @param i
+     *            the i
+     * @param myPoint
+     *            the my point
      * @return true, if successful
      */
     public boolean pawnSeen(int i, Point myPoint) {
         switch (i) {
             case 25:
-                return whitePawns[0].setSeenByChecking(myPoint, "white");
+                return this.whitePawns[0].setSeenByChecking(myPoint, "white");
             case 26:
-                return whitePawns[1].setSeenByChecking(myPoint, "white");
+                return this.whitePawns[1].setSeenByChecking(myPoint, "white");
             case 27:
-                return whitePawns[2].setSeenByChecking(myPoint, "white");
+                return this.whitePawns[2].setSeenByChecking(myPoint, "white");
             case 28:
-                return whitePawns[3].setSeenByChecking(myPoint, "white");
+                return this.whitePawns[3].setSeenByChecking(myPoint, "white");
             case 29:
-                return whitePawns[4].setSeenByChecking(myPoint, "white");
+                return this.whitePawns[4].setSeenByChecking(myPoint, "white");
             case 30:
-                return whitePawns[5].setSeenByChecking(myPoint, "white");
+                return this.whitePawns[5].setSeenByChecking(myPoint, "white");
             case 31:
-                return whitePawns[6].setSeenByChecking(myPoint, "white");
+                return this.whitePawns[6].setSeenByChecking(myPoint, "white");
             case 32:
-                return whitePawns[7].setSeenByChecking(myPoint, "white");
+                return this.whitePawns[7].setSeenByChecking(myPoint, "white");
             default:
                 break;
         }
@@ -551,27 +566,28 @@ public class Player1 {
     /**
      * Return pawn position.
      *
-     * @param i the i
+     * @param i
+     *            the i
      * @return true, if successful
      */
     public boolean returnPawnPosition(int i) {
         switch (i) {
             case 25:
-                return whitePawns[0].returnMyseen();
+                return this.whitePawns[0].returnMyseen();
             case 26:
-                return whitePawns[1].returnMyseen();
+                return this.whitePawns[1].returnMyseen();
             case 27:
-                return whitePawns[2].returnMyseen();
+                return this.whitePawns[2].returnMyseen();
             case 28:
-                return whitePawns[3].returnMyseen();
+                return this.whitePawns[3].returnMyseen();
             case 29:
-                return whitePawns[4].returnMyseen();
+                return this.whitePawns[4].returnMyseen();
             case 30:
-                return whitePawns[5].returnMyseen();
+                return this.whitePawns[5].returnMyseen();
             case 31:
-                return whitePawns[6].returnMyseen();
+                return this.whitePawns[6].returnMyseen();
             case 32:
-                return whitePawns[7].returnMyseen();
+                return this.whitePawns[7].returnMyseen();
             default:
                 break;
         }
@@ -581,40 +597,51 @@ public class Player1 {
     /**
      * Check the way.
      *
-     * @param newP the new P
-     * @param postionFromOthers the postion from others
-     * @param i the i
+     * @param newP
+     *            the new P
+     * @param postionFromOthers
+     *            the postion from others
+     * @param i
+     *            the i
      * @return true, if successful
      */
     public boolean checkTheWay(Point newP, Point postionFromOthers, int i) {
         switch (i) {
 
             case 17:
-                return whiteRook1.pieceInMyWay(newP.x, newP.y, postionFromOthers);
+                return this.whiteRook1.pieceInMyWay(newP.x, newP.y, postionFromOthers);
             case 18:
-                return whiteRook2.pieceInMyWay(newP.x, newP.y, postionFromOthers);
+                return this.whiteRook2.pieceInMyWay(newP.x, newP.y, postionFromOthers);
             case 21:
-                return whiteBishop1.pieceInMyWay(newP.x, newP.y, postionFromOthers);
+                return this.whiteBishop1.pieceInMyWay(newP.x, newP.y, postionFromOthers);
             case 22:
-                return whiteBishop2.pieceInMyWay(newP.x, newP.y, postionFromOthers);
+                return this.whiteBishop2.pieceInMyWay(newP.x, newP.y, postionFromOthers);
             case 23:
-                return whiteQueen.pieceInMyWay(newP.x, newP.y, postionFromOthers);
+                return this.whiteQueen.pieceInMyWay(newP.x, newP.y, postionFromOthers);
             case 25:
-                return whitePawns[0].pieceInMyWay(newP.x, newP.y, postionFromOthers, color);
+                return this.whitePawns[0].pieceInMyWay(newP.x, newP.y, postionFromOthers,
+                        this.color);
             case 26:
-                return whitePawns[1].pieceInMyWay(newP.x, newP.y, postionFromOthers, color);
+                return this.whitePawns[1].pieceInMyWay(newP.x, newP.y, postionFromOthers,
+                        this.color);
             case 27:
-                return whitePawns[2].pieceInMyWay(newP.x, newP.y, postionFromOthers, color);
+                return this.whitePawns[2].pieceInMyWay(newP.x, newP.y, postionFromOthers,
+                        this.color);
             case 28:
-                return whitePawns[3].pieceInMyWay(newP.x, newP.y, postionFromOthers, color);
+                return this.whitePawns[3].pieceInMyWay(newP.x, newP.y, postionFromOthers,
+                        this.color);
             case 29:
-                return whitePawns[4].pieceInMyWay(newP.x, newP.y, postionFromOthers, color);
+                return this.whitePawns[4].pieceInMyWay(newP.x, newP.y, postionFromOthers,
+                        this.color);
             case 30:
-                return whitePawns[5].pieceInMyWay(newP.x, newP.y, postionFromOthers, color);
+                return this.whitePawns[5].pieceInMyWay(newP.x, newP.y, postionFromOthers,
+                        this.color);
             case 31:
-                return whitePawns[6].pieceInMyWay(newP.x, newP.y, postionFromOthers, color);
+                return this.whitePawns[6].pieceInMyWay(newP.x, newP.y, postionFromOthers,
+                        this.color);
             case 32:
-                return whitePawns[7].pieceInMyWay(newP.x, newP.y, postionFromOthers, color);
+                return this.whitePawns[7].pieceInMyWay(newP.x, newP.y, postionFromOthers,
+                        this.color);
             default:
                 break;
 
@@ -625,7 +652,8 @@ public class Player1 {
     /**
      * Killed piece.
      *
-     * @param i the i
+     * @param i
+     *            the i
      * @return true, if successful
      */
     public boolean killedPiece(int i) {
@@ -633,51 +661,51 @@ public class Player1 {
         switch (i) {
 
             case 17:
-                whiteRook1.setPoint(out);
+                this.whiteRook1.setPoint(out);
                 return true;
             case 18:
-                whiteRook2.setPoint(out);
+                this.whiteRook2.setPoint(out);
                 return true;
             case 19:
-                whiteKnight1.setPoint(out);
+                this.whiteKnight1.setPoint(out);
                 return true;
             case 20:
-                whiteKnight2.setPoint(out);
+                this.whiteKnight2.setPoint(out);
                 return true;
             case 21:
-                whiteBishop1.setPoint(out);
+                this.whiteBishop1.setPoint(out);
                 return true;
             case 22:
-                whiteBishop2.setPoint(out);
+                this.whiteBishop2.setPoint(out);
                 return true;
             case 23:
-                whiteQueen.setPoint(out);
+                this.whiteQueen.setPoint(out);
                 return true;
             case 24:
                 return false;
             case 25:
-                whitePawns[0].setPoint(out);
+                this.whitePawns[0].setPoint(out);
                 return true;
             case 26:
-                whitePawns[1].setPoint(out);
+                this.whitePawns[1].setPoint(out);
                 return true;
             case 27:
-                whitePawns[2].setPoint(out);
+                this.whitePawns[2].setPoint(out);
                 return true;
             case 28:
-                whitePawns[3].setPoint(out);
+                this.whitePawns[3].setPoint(out);
                 return true;
             case 29:
-                whitePawns[4].setPoint(out);
+                this.whitePawns[4].setPoint(out);
                 return true;
             case 30:
-                whitePawns[5].setPoint(out);
+                this.whitePawns[5].setPoint(out);
                 return true;
             case 31:
-                whitePawns[6].setPoint(out);
+                this.whitePawns[6].setPoint(out);
                 return true;
             case 32:
-                whitePawns[7].setPoint(out);
+                this.whitePawns[7].setPoint(out);
                 return true;
             default:
                 break;
@@ -685,59 +713,62 @@ public class Player1 {
 
         return false;
     }
-    
 
     /**
      * Check king.
      *
-     * @param newkingcheck the newkingcheck
+     * @param newkingcheck
+     *            the newkingcheck
      */
     public void checkKing(boolean newkingcheck) {
-        kingischeck = newkingcheck;
+        this.kingischeck = newkingcheck;
     }
 
     /**
      * Check king.
      *
-     * @param p1 the p 1
-     * @param p2 the p 2
-     * @param i the i
+     * @param p1
+     *            the p 1
+     * @param p2
+     *            the p 2
+     * @param i
+     *            the i
      * @return true, if successful
      */
     public boolean checkKing(Point p1, Point p2, int i) {
         switch (i) {
 
             case 17:
-                return whiteRook1.checkKing(p1.x, p1.y, p2);
+                return this.whiteRook1.checkKing(p1.x, p1.y, p2);
             case 18:
-                return whiteRook2.checkKing(p1.x, p1.y, p2);
+                return this.whiteRook2.checkKing(p1.x, p1.y, p2);
             case 19:
-                return whiteKnight1.canMove(p1.x, p1.y);
+                return this.whiteKnight1.canMove(p1.x, p1.y);
             case 20:
-                return whiteKnight2.canMove(p1.x, p1.y);
+                return this.whiteKnight2.canMove(p1.x, p1.y);
             case 21:
-                return whiteBishop1.checkKing(p1.x, p1.y, p2);
+                return this.whiteBishop1.checkKing(p1.x, p1.y, p2);
             case 22:
-                return whiteBishop2.checkKing(p1.x, p1.y, p2);
+                return this.whiteBishop2.checkKing(p1.x, p1.y, p2);
             case 23:
-                return whiteQueen.checkKing(p1.x, p1.y, p2);
+                return this.whiteQueen.checkKing(p1.x, p1.y, p2);
 
             case 25:
-                return whitePawns[0].canMove(p1.x, p1.y, color);
+                return this.whitePawns[0].canMove(p1.x, p1.y, this.color);
             case 26:
-                return whitePawns[1].canMove(p1.x, p1.y, color);
+                return this.whitePawns[1].canMove(p1.x, p1.y, this.color);
             case 27:
-                return whitePawns[2].canMove(p1.x, p1.y, color);
+                return this.whitePawns[2].canMove(p1.x, p1.y, this.color);
             case 28:
-                return whitePawns[3].canMove(p1.x, p1.y, color);
+                return this.whitePawns[3].canMove(p1.x, p1.y, this.color);
             case 29:
-                return whitePawns[4].canMove(p1.x, p1.y, color);
+                return this.whitePawns[4].canMove(p1.x, p1.y, this.color);
             case 30:
-                return whitePawns[5].canMove(p1.x, p1.y, color);
+                return this.whitePawns[5].canMove(p1.x, p1.y, this.color);
             case 31:
-                return whitePawns[6].canMove(p1.x, p1.y, color);
+                return this.whitePawns[6].canMove(p1.x, p1.y, this.color);
             case 32:
-                return whitePawns[7].canMove(p1.x, p1.y, color);
+                return this.whitePawns[7].canMove(p1.x, p1.y, this.color);
             default:
                 break;
         }
@@ -750,16 +781,17 @@ public class Player1 {
      * @return the int
      */
     public int returnChosen() {
-        return choosenOne;
+        return this.choosenOne;
     }
 
     /**
      * Sets the in hand.
      *
-     * @param i the new in hand
+     * @param i
+     *            the new in hand
      */
     public void setInHand(int i) {
-        inHand = i;
+        this.inHand = i;
     }
 
     /**
@@ -768,20 +800,21 @@ public class Player1 {
      * @return the in hand
      */
     public int getInHand() {
-        return inHand;
+        return this.inHand;
     }
 
     /**
      * Can move.
      *
-     * @param x the x
-     * @param y the y
+     * @param x
+     *            the x
+     * @param y
+     *            the y
      * @return true, if successful
      */
     public boolean canMove(int x, int y) {
         return true;
     }
-
 
     /**
      * Returncheck king.
@@ -790,18 +823,19 @@ public class Player1 {
      */
     public boolean returncheckKing() {
 
-        return kingischeck;
+        return this.kingischeck;
     }
 
     /**
      * King in check.
      *
-     * @param black the black
+     * @param black
+     *            the black
      * @return true, if successful
      */
     public boolean kingInCheck(Player2 black) {
-//        boolean isCheckmate = false;
-//        boolean flag = false;
+        // boolean isCheckmate = false;
+        // boolean flag = false;
 
         return false;
     }
@@ -809,56 +843,57 @@ public class Player1 {
     /**
      * Check mate.
      *
-     * @param enemy the enemy
+     * @param enemy
+     *            the enemy
      * @return true, if successful
      */
     public boolean checkMate(Player2 enemy) {
 
-        if (!generateKingMoves(enemy)) {
+        if (!this.generateKingMoves(enemy)) {
 
-            inHand = -1;
+            this.inHand = -1;
             return false;
-        } else if (!generateCastleMoves(enemy, whiteRook1)) {
+        } else if (!this.generateCastleMoves(enemy, this.whiteRook1)) {
 
-            inHand = -1;
+            this.inHand = -1;
             return false;
-        } else if (!generateCastleMoves(enemy, whiteRook2)) {
+        } else if (!this.generateCastleMoves(enemy, this.whiteRook2)) {
 
-            inHand = -1;
+            this.inHand = -1;
             return false;
-        } else if (!generateBishopMoves(enemy, whiteBishop1)) {
+        } else if (!this.generateBishopMoves(enemy, this.whiteBishop1)) {
 
-            inHand = -1;
+            this.inHand = -1;
             return false;
-        } else if (!generateBishopMoves(enemy, whiteBishop2)) {
+        } else if (!this.generateBishopMoves(enemy, this.whiteBishop2)) {
 
-            inHand = -1;
+            this.inHand = -1;
             return false;
-        } else if (!generateHorseMoves(enemy, whiteKnight1)) {
+        } else if (!this.generateHorseMoves(enemy, this.whiteKnight1)) {
 
-            inHand = -1;
+            this.inHand = -1;
             return false;
-        } else if (!generateHorseMoves(enemy, whiteKnight2)) {
+        } else if (!this.generateHorseMoves(enemy, this.whiteKnight2)) {
 
-            inHand = -1;
+            this.inHand = -1;
             return false;
-        } else if (!generateMoves(enemy)) {
+        } else if (!this.generateMoves(enemy)) {
 
-            inHand = -1;
+            this.inHand = -1;
             return false;
         }
 
         for (int i = 0; i <= 7; i++) {
-            inHand = 25 + i;
-            if (!generatePawnMoves(enemy, whitePawns[i])) {
+            this.inHand = 25 + i;
+            if (!this.generatePawnMoves(enemy, this.whitePawns[i])) {
 
-                inHand = -1;
+                this.inHand = -1;
                 System.out.println("I Killed Solider 1");
                 return false;
             }
         }
 
-        inHand = -1;
+        this.inHand = -1;
         return true;
 
     }
@@ -866,12 +901,13 @@ public class Player1 {
     /**
      * Checks if is king checked.
      *
-     * @param black the black
+     * @param black
+     *            the black
      * @return true, if is king checked
      */
     public boolean isKingChecked(Player2 black) {
 
-        Point myKingPosition = whiteKing.returnPostion();
+        Point myKingPosition = this.whiteKing.returnPostion();
         boolean flag = false;
 
         ////////// Start Checking the King ////////////
@@ -890,7 +926,7 @@ public class Player1 {
                             }
                         } else {
                             if (j != 24) {
-                                if (black.checkTheWay(myKingPosition, returnPostion(j), i)) {
+                                if (black.checkTheWay(myKingPosition, this.returnPostion(j), i)) {
 
                                     flag = false;
                                     // Means there is something in the Way so can't move'
@@ -929,20 +965,21 @@ public class Player1 {
     /**
      * Friendly piece already there.
      *
-     * @param newP the new P
+     * @param newP
+     *            the new P
      * @return true, if successful
      */
-    //TODO: combine friendlyPiece and enemyPiece together?
+    // TODO: combine friendlyPiece and enemyPiece together?
     public boolean friendlyPieceAlreadyThere(Point newP) {
         Point samePostion;
         for (int i = 17; i <= 32; i++) {
             // There is no need to check the inHand pice
-            if (getInHand() != i) {
+            if (this.getInHand() != i) {
 
                 // Check if there is White Pices in the new Point
                 // If so we Can't move (Same color)!!
 
-                samePostion = returnPostion(i);
+                samePostion = this.returnPostion(i);
                 if (newP.x == samePostion.x && newP.y == samePostion.y) {
 
                     return false;
@@ -957,8 +994,10 @@ public class Player1 {
     /**
      * Enemy piece already there.
      *
-     * @param newP the new P
-     * @param enemy the enemy
+     * @param newP
+     *            the new P
+     * @param enemy
+     *            the enemy
      * @return true, if successful
      */
     public boolean enemyPieceAlreadyThere(Point newP, Player2 enemy) {
@@ -978,11 +1017,13 @@ public class Player1 {
     /**
      * Gets the enemy piece location int.
      *
-     * @param newP the new P
-     * @param enemy the enemy
+     * @param newP
+     *            the new P
+     * @param enemy
+     *            the enemy
      * @return the enemy piece location int
      */
-    //TODO: why does this return int?
+    // TODO: why does this return int?
     public int getEnemyPieceLocationInt(Point newP, Player2 enemy) {
         Point samePostion;
         for (int i = 1; i <= 16; i++) {
@@ -1000,7 +1041,8 @@ public class Player1 {
     /**
      * Generate king moves.
      *
-     * @param enemy the enemy
+     * @param enemy
+     *            the enemy
      * @return true, if successful
      */
     public boolean generateKingMoves(Player2 enemy) {
@@ -1008,29 +1050,29 @@ public class Player1 {
         Point oldP = new Point();
 
         Point checkPlace = new Point();
-        inHand = 24;
+        this.inHand = 24;
 
-        int x = whiteKing.returnX();
-        int y = whiteKing.returnY();
+        int x = this.whiteKing.returnX();
+        int y = this.whiteKing.returnY();
         oldP.x = x;
         oldP.y = y;
 
         if (x + 1 <= 8) {
 
-            whiteKing.setX(x + 1);
-            whiteKing.setY(y);
+            this.whiteKing.setX(x + 1);
+            this.whiteKing.setY(y);
             checkPlace.x = x + 1;
             checkPlace.y = y;
 
-            if (killToProtectKing(enemy, returnPostion(inHand))) {
+            if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                 killedSomething = true;
             }
-            if (friendlyPieceAlreadyThere(checkPlace)) {
-                if (!isKingChecked(enemy)) {
+            if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                if (!this.isKingChecked(enemy)) {
 
-                    whiteKing.setPoint(oldP);
+                    this.whiteKing.setPoint(oldP);
                     if (killedSomething) {
-                        enemy.changePostion(other, killToProtect);
+                        enemy.changePostion(this.other, this.killToProtect);
                         killedSomething = false;
                     }
                     return false;
@@ -1038,26 +1080,26 @@ public class Player1 {
             }
 
         }
-        whiteKing.setPoint(oldP);
+        this.whiteKing.setPoint(oldP);
         if (killedSomething) {
-            enemy.changePostion(other, killToProtect);
+            enemy.changePostion(this.other, this.killToProtect);
             killedSomething = false;
         }
         if (y + 1 <= 8) {
 
-            whiteKing.setX(x);
-            whiteKing.setY(y + 1);
+            this.whiteKing.setX(x);
+            this.whiteKing.setY(y + 1);
             checkPlace.x = x;
             checkPlace.y = y + 1;
-            if (killToProtectKing(enemy, returnPostion(inHand))) {
+            if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                 killedSomething = true;
             }
-            if (friendlyPieceAlreadyThere(checkPlace)) {
-                if (!isKingChecked(enemy)) {
+            if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                if (!this.isKingChecked(enemy)) {
 
-                    whiteKing.setPoint(oldP);
+                    this.whiteKing.setPoint(oldP);
                     if (killedSomething) {
-                        enemy.changePostion(other, killToProtect);
+                        enemy.changePostion(this.other, this.killToProtect);
                         killedSomething = false;
                     }
                     return false;
@@ -1066,30 +1108,30 @@ public class Player1 {
             }
 
         }
-        whiteKing.setPoint(oldP);
+        this.whiteKing.setPoint(oldP);
         if (killedSomething) {
-            enemy.changePostion(other, killToProtect);
+            enemy.changePostion(this.other, this.killToProtect);
             killedSomething = false;
         }
 
         if (y - 1 > 0) {
 
-            whiteKing.setX(x);
-            whiteKing.setY(y - 1);
+            this.whiteKing.setX(x);
+            this.whiteKing.setY(y - 1);
 
             checkPlace.x = x;
             checkPlace.y = y - 1;
 
-            if (killToProtectKing(enemy, returnPostion(inHand))) {
+            if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                 killedSomething = true;
             }
 
-            if (friendlyPieceAlreadyThere(checkPlace)) {
-                if (!isKingChecked(enemy)) {
+            if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                if (!this.isKingChecked(enemy)) {
 
-                    whiteKing.setPoint(oldP);
+                    this.whiteKing.setPoint(oldP);
                     if (killedSomething) {
-                        enemy.changePostion(other, killToProtect);
+                        enemy.changePostion(this.other, this.killToProtect);
                         killedSomething = false;
                     }
 
@@ -1098,139 +1140,139 @@ public class Player1 {
             }
 
         }
-        whiteKing.setPoint(oldP);
+        this.whiteKing.setPoint(oldP);
         if (killedSomething) {
-            enemy.changePostion(other, killToProtect);
+            enemy.changePostion(this.other, this.killToProtect);
             killedSomething = false;
         }
         if (x - 1 > 0) {
 
-            whiteKing.setX(x - 1);
-            whiteKing.setY(y);
+            this.whiteKing.setX(x - 1);
+            this.whiteKing.setY(y);
 
             checkPlace.x = x - 1;
             checkPlace.y = y;
-            if (killToProtectKing(enemy, returnPostion(inHand))) {
+            if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                 killedSomething = true;
             }
-            if (friendlyPieceAlreadyThere(checkPlace)) {
-                if (!isKingChecked(enemy)) {
+            if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                if (!this.isKingChecked(enemy)) {
                     if (killedSomething) {
-                        enemy.changePostion(other, killToProtect);
+                        enemy.changePostion(this.other, this.killToProtect);
                         killedSomething = false;
                     }
-                    whiteKing.setPoint(oldP);
+                    this.whiteKing.setPoint(oldP);
                     return false;
                 }
             }
 
         }
-        whiteKing.setPoint(oldP);
+        this.whiteKing.setPoint(oldP);
         if (killedSomething) {
-            enemy.changePostion(other, killToProtect);
+            enemy.changePostion(this.other, this.killToProtect);
             killedSomething = false;
         }
         if (y - 1 > 0 && x - 1 > 0) {
 
-            whiteKing.setX(x - 1);
-            whiteKing.setY(y - 1);
+            this.whiteKing.setX(x - 1);
+            this.whiteKing.setY(y - 1);
 
             checkPlace.x = x - 1;
             checkPlace.y = y - 1;
 
-            if (killToProtectKing(enemy, returnPostion(inHand))) {
+            if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                 killedSomething = true;
             }
-            if (friendlyPieceAlreadyThere(checkPlace)) {
-                if (!isKingChecked(enemy)) {
+            if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                if (!this.isKingChecked(enemy)) {
 
                     if (killedSomething) {
-                        enemy.changePostion(other, killToProtect);
+                        enemy.changePostion(this.other, this.killToProtect);
                         killedSomething = false;
                     }
-                    whiteKing.setPoint(oldP);
+                    this.whiteKing.setPoint(oldP);
                     return false;
                 }
             }
 
         }
-        whiteKing.setPoint(oldP);
+        this.whiteKing.setPoint(oldP);
         if (killedSomething) {
-            enemy.changePostion(other, killToProtect);
+            enemy.changePostion(this.other, this.killToProtect);
             killedSomething = false;
         }
         if (y + 1 <= 8 && x + 1 <= 8) {
 
-            whiteKing.setX(x + 1);
-            whiteKing.setY(y + 1);
+            this.whiteKing.setX(x + 1);
+            this.whiteKing.setY(y + 1);
 
             checkPlace.x = x + 1;
             checkPlace.y = y + 1;
-            if (killToProtectKing(enemy, returnPostion(inHand))) {
+            if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                 killedSomething = true;
             }
-            if (friendlyPieceAlreadyThere(checkPlace)) {
-                if (!isKingChecked(enemy)) {
+            if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                if (!this.isKingChecked(enemy)) {
 
                     if (killedSomething) {
-                        enemy.changePostion(other, killToProtect);
+                        enemy.changePostion(this.other, this.killToProtect);
                         killedSomething = false;
                     }
-                    whiteKing.setPoint(oldP);
+                    this.whiteKing.setPoint(oldP);
                     return false;
                 }
             }
 
         }
-        whiteKing.setPoint(oldP);
+        this.whiteKing.setPoint(oldP);
         if (killedSomething) {
-            enemy.changePostion(other, killToProtect);
+            enemy.changePostion(this.other, this.killToProtect);
             killedSomething = false;
         }
         if (y - 1 > 0 && x + 1 <= 8) {
 
-            whiteKing.setX(x + 1);
-            whiteKing.setY(y - 1);
+            this.whiteKing.setX(x + 1);
+            this.whiteKing.setY(y - 1);
 
             checkPlace.x = x + 1;
             checkPlace.y = y - 1;
-            if (killToProtectKing(enemy, returnPostion(inHand))) {
+            if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                 killedSomething = true;
             }
-            if (friendlyPieceAlreadyThere(checkPlace)) {
-                if (!isKingChecked(enemy)) {
+            if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                if (!this.isKingChecked(enemy)) {
                     if (killedSomething) {
-                        enemy.changePostion(other, killToProtect);
+                        enemy.changePostion(this.other, this.killToProtect);
                         killedSomething = false;
                     }
-                    whiteKing.setPoint(oldP);
+                    this.whiteKing.setPoint(oldP);
                     return false;
                 }
             }
 
         }
-        whiteKing.setPoint(oldP);
+        this.whiteKing.setPoint(oldP);
         if (killedSomething) {
-            enemy.changePostion(other, killToProtect);
+            enemy.changePostion(this.other, this.killToProtect);
             killedSomething = false;
         }
         if (y + 1 <= 8 && x - 1 > 0) {
 
-            whiteKing.setX(x - 1);
-            whiteKing.setY(y + 1);
+            this.whiteKing.setX(x - 1);
+            this.whiteKing.setY(y + 1);
 
             checkPlace.x = x - 1;
             checkPlace.y = y + 1;
-            if (killToProtectKing(enemy, returnPostion(inHand))) {
+            if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                 killedSomething = true;
             }
-            if (friendlyPieceAlreadyThere(checkPlace)) {
-                if (!isKingChecked(enemy)) {
+            if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                if (!this.isKingChecked(enemy)) {
                     if (killedSomething) {
-                        enemy.changePostion(other, killToProtect);
+                        enemy.changePostion(this.other, this.killToProtect);
                         killedSomething = false;
                     }
-                    whiteKing.setPoint(oldP);
+                    this.whiteKing.setPoint(oldP);
                     return false;
                 }
             }
@@ -1238,11 +1280,11 @@ public class Player1 {
         }
 
         if (killedSomething) {
-            enemy.changePostion(other, killToProtect);
+            enemy.changePostion(this.other, this.killToProtect);
             killedSomething = false;
         }
 
-        whiteKing.setPoint(oldP);
+        this.whiteKing.setPoint(oldP);
         return true;
 
     }
@@ -1250,8 +1292,10 @@ public class Player1 {
     /**
      * Generate castle moves.
      *
-     * @param enemy the enemy
-     * @param whiteRook the white rook
+     * @param enemy
+     *            the enemy
+     * @param whiteRook
+     *            the white rook
      * @return true, if successful
      */
     public boolean generateCastleMoves(Player2 enemy, Rook whiteRook) {
@@ -1262,10 +1306,10 @@ public class Player1 {
         int x1 = whiteRook.returnX();
         int y1 = whiteRook.returnY();
 
-        if (whiteRook == whiteRook1) {
-            inHand = 17;
+        if (whiteRook == this.whiteRook1) {
+            this.inHand = 17;
         } else {
-            inHand = 18;
+            this.inHand = 18;
         }
         /////////////////////
 
@@ -1279,17 +1323,17 @@ public class Player1 {
                 whiteRook.setX(i);
                 checkPlace.x = i;
 
-                if (checkWayToPosition(enemy, oldp1)) {
-                    if (killToProtectKing(enemy, returnPostion(inHand))) {
+                if (this.checkWayToPosition(enemy, oldp1)) {
+                    if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                         killedSomething = true;
                     }
-                    if (friendlyPieceAlreadyThere(checkPlace)) {
-                        if (!isKingChecked(enemy)) {
+                    if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                        if (!this.isKingChecked(enemy)) {
                             whiteRook.setX(oldp1.x);
                             whiteRook.setY(oldp1.y);
 
                             if (killedSomething) {
-                                enemy.changePostion(other, killToProtect);
+                                enemy.changePostion(this.other, this.killToProtect);
                                 killedSomething = false;
                             }
                             return false;
@@ -1298,7 +1342,7 @@ public class Player1 {
                 }
 
                 if (killedSomething) {
-                    enemy.changePostion(other, killToProtect);
+                    enemy.changePostion(this.other, this.killToProtect);
                     killedSomething = false;
                 }
 
@@ -1307,23 +1351,23 @@ public class Player1 {
             checkPlace.x = oldp1.x;
 
             if (killedSomething) {
-                enemy.changePostion(other, killToProtect);
+                enemy.changePostion(this.other, this.killToProtect);
                 killedSomething = false;
             }
             for (int i = 1; i <= 8; i++) {
                 whiteRook.setY(i);
                 checkPlace.y = i;
-                if (checkWayToPosition(enemy, oldp1)) {
-                    if (killToProtectKing(enemy, returnPostion(inHand))) {
+                if (this.checkWayToPosition(enemy, oldp1)) {
+                    if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                         killedSomething = true;
                     }
-                    if (friendlyPieceAlreadyThere(checkPlace)) {
-                        if (!isKingChecked(enemy)) {
+                    if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                        if (!this.isKingChecked(enemy)) {
                             whiteRook.setX(oldp1.x);
                             whiteRook.setY(oldp1.y);
 
                             if (killedSomething) {
-                                enemy.changePostion(other, killToProtect);
+                                enemy.changePostion(this.other, this.killToProtect);
                                 killedSomething = false;
                             }
                             return false;
@@ -1332,7 +1376,7 @@ public class Player1 {
                 }
 
                 if (killedSomething) {
-                    enemy.changePostion(other, killToProtect);
+                    enemy.changePostion(this.other, this.killToProtect);
                     killedSomething = false;
                 }
 
@@ -1343,7 +1387,7 @@ public class Player1 {
         ///////////////////////////
 
         if (killedSomething) {
-            enemy.changePostion(other, killToProtect);
+            enemy.changePostion(this.other, this.killToProtect);
             killedSomething = false;
         }
         whiteRook.setX(oldp1.x);
@@ -1354,8 +1398,10 @@ public class Player1 {
     /**
      * Generate bishop moves.
      *
-     * @param enemy the enemy
-     * @param whiteBishop the white bishop
+     * @param enemy
+     *            the enemy
+     * @param whiteBishop
+     *            the white bishop
      * @return true, if successful
      */
     public boolean generateBishopMoves(Player2 enemy, Bishop whiteBishop) {
@@ -1365,10 +1411,10 @@ public class Player1 {
 
         oldP1 = whiteBishop.returnPostion();
 
-        if (whiteBishop == whiteBishop1) {
-            inHand = 21;
+        if (whiteBishop == this.whiteBishop1) {
+            this.inHand = 21;
         } else {
-            inHand = 22;
+            this.inHand = 22;
         }
 
         if (oldP1.x != 20) {
@@ -1378,15 +1424,15 @@ public class Player1 {
                 whiteBishop.setY(y);
                 checkPlace.x = x;
                 checkPlace.y = y;
-                if (checkWayToPosition(enemy, oldP1)) {
-                    if (killToProtectKing(enemy, returnPostion(inHand))) {
+                if (this.checkWayToPosition(enemy, oldP1)) {
+                    if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                         killedSomething = true;
                     }
-                    if (friendlyPieceAlreadyThere(checkPlace)) {
-                        if (!isKingChecked(enemy)) {
+                    if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                        if (!this.isKingChecked(enemy)) {
 
                             if (killedSomething) {
-                                enemy.changePostion(other, killToProtect);
+                                enemy.changePostion(this.other, this.killToProtect);
                                 killedSomething = false;
                             }
                             whiteBishop.setPoint(oldP1);
@@ -1396,13 +1442,13 @@ public class Player1 {
                 }
 
                 if (killedSomething) {
-                    enemy.changePostion(other, killToProtect);
+                    enemy.changePostion(this.other, this.killToProtect);
                     killedSomething = false;
                 }
 
             }
             if (killedSomething) {
-                enemy.changePostion(other, killToProtect);
+                enemy.changePostion(this.other, this.killToProtect);
                 killedSomething = false;
             }
             for (int x = oldP1.x, y = oldP1.y; y >= 1 && x <= 8; x++, y--) {
@@ -1411,14 +1457,14 @@ public class Player1 {
                 whiteBishop.setY(y);
                 checkPlace.x = x;
                 checkPlace.y = y;
-                if (checkWayToPosition(enemy, oldP1)) {
-                    if (killToProtectKing(enemy, returnPostion(inHand))) {
+                if (this.checkWayToPosition(enemy, oldP1)) {
+                    if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                         killedSomething = true;
                     }
-                    if (friendlyPieceAlreadyThere(checkPlace)) {
-                        if (!isKingChecked(enemy)) {
+                    if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                        if (!this.isKingChecked(enemy)) {
                             if (killedSomething) {
-                                enemy.changePostion(other, killToProtect);
+                                enemy.changePostion(this.other, this.killToProtect);
                                 killedSomething = false;
                             }
                             whiteBishop.setPoint(oldP1);
@@ -1428,7 +1474,7 @@ public class Player1 {
                 }
 
                 if (killedSomething) {
-                    enemy.changePostion(other, killToProtect);
+                    enemy.changePostion(this.other, this.killToProtect);
                     killedSomething = false;
                 }
 
@@ -1440,7 +1486,7 @@ public class Player1 {
         whiteBishop.setPoint(oldP1);
 
         if (killedSomething) {
-            enemy.changePostion(other, killToProtect);
+            enemy.changePostion(this.other, this.killToProtect);
             killedSomething = false;
         }
 
@@ -1450,8 +1496,10 @@ public class Player1 {
     /**
      * Generate horse moves.
      *
-     * @param enemy the enemy
-     * @param whiteKnight the white knight
+     * @param enemy
+     *            the enemy
+     * @param whiteKnight
+     *            the white knight
      * @return true, if successful
      */
     public boolean generateHorseMoves(Player2 enemy, Knight whiteKnight) {
@@ -1461,10 +1509,10 @@ public class Player1 {
 
         Point checkPlace = new Point();
 
-        if (whiteKnight == whiteKnight1) {
-            inHand = 19;
+        if (whiteKnight == this.whiteKnight1) {
+            this.inHand = 19;
         } else {
-            inHand = 20;
+            this.inHand = 20;
         }
 
         int x = oldp1.x;
@@ -1478,16 +1526,16 @@ public class Player1 {
                 checkPlace.x = x + 1;
                 checkPlace.y = y + 2;
 
-                if (killToProtectKing(enemy, returnPostion(inHand))) {
+                if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                     killedSomething = true;
                 }
 
-                if (friendlyPieceAlreadyThere(checkPlace)) {
-                    if (!isKingChecked(enemy)) {
+                if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                    if (!this.isKingChecked(enemy)) {
                         whiteKnight.setPoint(oldp1);
 
                         if (killedSomething) {
-                            enemy.changePostion(other, killToProtect);
+                            enemy.changePostion(this.other, this.killToProtect);
                             killedSomething = false;
                         }
 
@@ -1496,7 +1544,7 @@ public class Player1 {
                 }
             }
             if (killedSomething) {
-                enemy.changePostion(other, killToProtect);
+                enemy.changePostion(this.other, this.killToProtect);
                 killedSomething = false;
             }
 
@@ -1505,14 +1553,14 @@ public class Player1 {
                 whiteKnight.setY(y - 2);
                 checkPlace.x = x + 1;
                 checkPlace.y = y - 2;
-                if (killToProtectKing(enemy, returnPostion(inHand))) {
+                if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                     killedSomething = true;
                 }
 
-                if (friendlyPieceAlreadyThere(checkPlace)) {
-                    if (!isKingChecked(enemy)) {
+                if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                    if (!this.isKingChecked(enemy)) {
                         if (killedSomething) {
-                            enemy.changePostion(other, killToProtect);
+                            enemy.changePostion(this.other, this.killToProtect);
                             killedSomething = false;
                         }
                         whiteKnight.setPoint(oldp1);
@@ -1521,7 +1569,7 @@ public class Player1 {
                 }
             }
             if (killedSomething) {
-                enemy.changePostion(other, killToProtect);
+                enemy.changePostion(this.other, this.killToProtect);
                 killedSomething = false;
             }
 
@@ -1531,14 +1579,14 @@ public class Player1 {
                 checkPlace.x = x + 2;
                 checkPlace.y = y + 1;
 
-                if (killToProtectKing(enemy, returnPostion(inHand))) {
+                if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                     killedSomething = true;
                 }
 
-                if (friendlyPieceAlreadyThere(checkPlace)) {
-                    if (!isKingChecked(enemy)) {
+                if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                    if (!this.isKingChecked(enemy)) {
                         if (killedSomething) {
-                            enemy.changePostion(other, killToProtect);
+                            enemy.changePostion(this.other, this.killToProtect);
                             killedSomething = false;
                         }
                         whiteKnight.setPoint(oldp1);
@@ -1548,7 +1596,7 @@ public class Player1 {
             }
 
             if (killedSomething) {
-                enemy.changePostion(other, killToProtect);
+                enemy.changePostion(this.other, this.killToProtect);
                 killedSomething = false;
             }
             if (x + 2 <= 8 && y - 1 >= 1) {
@@ -1556,14 +1604,14 @@ public class Player1 {
                 whiteKnight.setY(y - 1);
                 checkPlace.x = x + 2;
                 checkPlace.y = y - 1;
-                if (killToProtectKing(enemy, returnPostion(inHand))) {
+                if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                     killedSomething = true;
                 }
 
-                if (friendlyPieceAlreadyThere(checkPlace)) {
-                    if (!isKingChecked(enemy)) {
+                if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                    if (!this.isKingChecked(enemy)) {
                         if (killedSomething) {
-                            enemy.changePostion(other, killToProtect);
+                            enemy.changePostion(this.other, this.killToProtect);
                             killedSomething = false;
                         }
                         whiteKnight.setPoint(oldp1);
@@ -1572,7 +1620,7 @@ public class Player1 {
                 }
             }
             if (killedSomething) {
-                enemy.changePostion(other, killToProtect);
+                enemy.changePostion(this.other, this.killToProtect);
                 killedSomething = false;
             }
 
@@ -1582,14 +1630,14 @@ public class Player1 {
                 checkPlace.x = x - 1;
                 checkPlace.y = y + 2;
 
-                if (killToProtectKing(enemy, returnPostion(inHand))) {
+                if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                     killedSomething = true;
                 }
 
-                if (friendlyPieceAlreadyThere(checkPlace)) {
-                    if (!isKingChecked(enemy)) {
+                if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                    if (!this.isKingChecked(enemy)) {
                         if (killedSomething) {
-                            enemy.changePostion(other, killToProtect);
+                            enemy.changePostion(this.other, this.killToProtect);
                             killedSomething = false;
                         }
                         whiteKnight.setPoint(oldp1);
@@ -1598,7 +1646,7 @@ public class Player1 {
                 }
             }
             if (killedSomething) {
-                enemy.changePostion(other, killToProtect);
+                enemy.changePostion(this.other, this.killToProtect);
                 killedSomething = false;
             }
 
@@ -1607,14 +1655,14 @@ public class Player1 {
                 whiteKnight.setY(y - 2);
                 checkPlace.x = x - 1;
                 checkPlace.y = y - 2;
-                if (killToProtectKing(enemy, returnPostion(inHand))) {
+                if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                     killedSomething = true;
                 }
 
-                if (friendlyPieceAlreadyThere(checkPlace)) {
-                    if (!isKingChecked(enemy)) {
+                if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                    if (!this.isKingChecked(enemy)) {
                         if (killedSomething) {
-                            enemy.changePostion(other, killToProtect);
+                            enemy.changePostion(this.other, this.killToProtect);
                             killedSomething = false;
                         }
                         whiteKnight.setPoint(oldp1);
@@ -1623,7 +1671,7 @@ public class Player1 {
                 }
             }
             if (killedSomething) {
-                enemy.changePostion(other, killToProtect);
+                enemy.changePostion(this.other, this.killToProtect);
                 killedSomething = false;
             }
 
@@ -1633,13 +1681,13 @@ public class Player1 {
                 checkPlace.x = x - 2;
                 checkPlace.y = y + 1;
 
-                if (killToProtectKing(enemy, returnPostion(inHand))) {
+                if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                     killedSomething = true;
                 }
-                if (friendlyPieceAlreadyThere(checkPlace)) {
-                    if (!isKingChecked(enemy)) {
+                if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                    if (!this.isKingChecked(enemy)) {
                         if (killedSomething) {
-                            enemy.changePostion(other, killToProtect);
+                            enemy.changePostion(this.other, this.killToProtect);
                             killedSomething = false;
                         }
                         whiteKnight.setPoint(oldp1);
@@ -1649,7 +1697,7 @@ public class Player1 {
             }
 
             if (killedSomething) {
-                enemy.changePostion(other, killToProtect);
+                enemy.changePostion(this.other, this.killToProtect);
                 killedSomething = false;
             }
 
@@ -1659,14 +1707,14 @@ public class Player1 {
                 checkPlace.x = x - 2;
                 checkPlace.y = y - 1;
 
-                if (killToProtectKing(enemy, returnPostion(inHand))) {
+                if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                     killedSomething = true;
                 }
 
-                if (friendlyPieceAlreadyThere(checkPlace)) {
-                    if (!isKingChecked(enemy)) {
+                if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                    if (!this.isKingChecked(enemy)) {
                         if (killedSomething) {
-                            enemy.changePostion(other, killToProtect);
+                            enemy.changePostion(this.other, this.killToProtect);
                             killedSomething = false;
                         }
                         whiteKnight.setPoint(oldp1);
@@ -1675,7 +1723,7 @@ public class Player1 {
                 }
             }
             if (killedSomething) {
-                enemy.changePostion(other, killToProtect);
+                enemy.changePostion(this.other, this.killToProtect);
                 killedSomething = false;
             }
 
@@ -1688,7 +1736,8 @@ public class Player1 {
     /**
      * Generate moves.
      *
-     * @param enemy the enemy
+     * @param enemy
+     *            the enemy
      * @return true, if successful
      */
     public boolean generateMoves(Player2 enemy) {
@@ -1696,30 +1745,30 @@ public class Player1 {
 
         Point oldp1 = new Point();
 
-        oldp1 = whiteQueen.returnPostion();
+        oldp1 = this.whiteQueen.returnPostion();
 
         Point checkPlace = new Point();
 
-        inHand = 23;
+        this.inHand = 23;
 
         if (oldp1.x != 20) {
             for (int x = oldp1.x, y = oldp1.y; x >= 1 && y <= 8; x--, y++) {
 
-                whiteQueen.setX(x);
-                whiteQueen.setY(y);
+                this.whiteQueen.setX(x);
+                this.whiteQueen.setY(y);
                 checkPlace.x = x;
                 checkPlace.y = y;
-                if (checkWayToPosition(enemy, oldp1)) {
-                    if (killToProtectKing(enemy, returnPostion(inHand))) {
+                if (this.checkWayToPosition(enemy, oldp1)) {
+                    if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                         killedSomething = true;
                     }
 
-                    if (friendlyPieceAlreadyThere(checkPlace)) {
-                        if (!isKingChecked(enemy)) {
-                            whiteQueen.setPoint(oldp1);
+                    if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                        if (!this.isKingChecked(enemy)) {
+                            this.whiteQueen.setPoint(oldp1);
 
                             if (killedSomething) {
-                                enemy.changePostion(other, killToProtect);
+                                enemy.changePostion(this.other, this.killToProtect);
                                 killedSomething = false;
                             }
                             return false;
@@ -1728,30 +1777,30 @@ public class Player1 {
                 }
 
                 if (killedSomething) {
-                    enemy.changePostion(other, killToProtect);
+                    enemy.changePostion(this.other, this.killToProtect);
                     killedSomething = false;
                 }
 
             }
             if (killedSomething) {
-                enemy.changePostion(other, killToProtect);
+                enemy.changePostion(this.other, this.killToProtect);
                 killedSomething = false;
             }
             for (int x = oldp1.x, y = oldp1.y; y >= 1 && x <= 8; x++, y--) {
 
-                whiteQueen.setX(x);
-                whiteQueen.setY(y);
+                this.whiteQueen.setX(x);
+                this.whiteQueen.setY(y);
                 checkPlace.x = x;
                 checkPlace.y = y;
-                if (checkWayToPosition(enemy, oldp1)) {
-                    if (killToProtectKing(enemy, returnPostion(inHand))) {
+                if (this.checkWayToPosition(enemy, oldp1)) {
+                    if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                         killedSomething = true;
                     }
-                    if (friendlyPieceAlreadyThere(checkPlace)) {
-                        if (!isKingChecked(enemy)) {
-                            whiteQueen.setPoint(oldp1);
+                    if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                        if (!this.isKingChecked(enemy)) {
+                            this.whiteQueen.setPoint(oldp1);
                             if (killedSomething) {
-                                enemy.changePostion(other, killToProtect);
+                                enemy.changePostion(this.other, this.killToProtect);
                                 killedSomething = false;
                             }
                             return false;
@@ -1760,33 +1809,33 @@ public class Player1 {
                 }
 
                 if (killedSomething) {
-                    enemy.changePostion(other, killToProtect);
+                    enemy.changePostion(this.other, this.killToProtect);
                     killedSomething = false;
                 }
 
             }
-            whiteQueen.setPoint(oldp1);
+            this.whiteQueen.setPoint(oldp1);
             checkPlace.x = oldp1.x;
             checkPlace.y = oldp1.y;
 
             if (killedSomething) {
-                enemy.changePostion(other, killToProtect);
+                enemy.changePostion(this.other, this.killToProtect);
                 killedSomething = false;
             }
 
             for (int i = 1; i <= 8; i++) {
-                whiteQueen.setX(i);
+                this.whiteQueen.setX(i);
 
                 checkPlace.x = i;
-                if (checkWayToPosition(enemy, oldp1)) {
-                    if (killToProtectKing(enemy, returnPostion(inHand))) {
+                if (this.checkWayToPosition(enemy, oldp1)) {
+                    if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                         killedSomething = true;
                     }
-                    if (friendlyPieceAlreadyThere(checkPlace)) {
-                        if (!isKingChecked(enemy)) {
-                            whiteQueen.setX(oldp1.x);
+                    if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                        if (!this.isKingChecked(enemy)) {
+                            this.whiteQueen.setX(oldp1.x);
                             if (killedSomething) {
-                                enemy.changePostion(other, killToProtect);
+                                enemy.changePostion(this.other, this.killToProtect);
                                 killedSomething = false;
                             }
                             return false;
@@ -1795,31 +1844,31 @@ public class Player1 {
                 }
 
                 if (killedSomething) {
-                    enemy.changePostion(other, killToProtect);
+                    enemy.changePostion(this.other, this.killToProtect);
                     killedSomething = false;
                 }
 
             }
-            whiteQueen.setX(oldp1.x);
+            this.whiteQueen.setX(oldp1.x);
             checkPlace.x = oldp1.x;
 
             if (killedSomething) {
-                enemy.changePostion(other, killToProtect);
+                enemy.changePostion(this.other, this.killToProtect);
                 killedSomething = false;
             }
 
             for (int i = 1; i <= 8; i++) {
-                whiteQueen.setY(i);
+                this.whiteQueen.setY(i);
                 checkPlace.y = i;
-                if (checkWayToPosition(enemy, oldp1)) {
-                    if (killToProtectKing(enemy, returnPostion(inHand))) {
+                if (this.checkWayToPosition(enemy, oldp1)) {
+                    if (this.killToProtectKing(enemy, this.returnPostion(this.inHand))) {
                         killedSomething = true;
                     }
-                    if (friendlyPieceAlreadyThere(checkPlace)) {
-                        if (!isKingChecked(enemy)) {
-                            whiteQueen.setY(oldp1.y);
+                    if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                        if (!this.isKingChecked(enemy)) {
+                            this.whiteQueen.setY(oldp1.y);
                             if (killedSomething) {
-                                enemy.changePostion(other, killToProtect);
+                                enemy.changePostion(this.other, this.killToProtect);
                                 killedSomething = false;
                             }
                             return false;
@@ -1828,16 +1877,16 @@ public class Player1 {
                 }
 
                 if (killedSomething) {
-                    enemy.changePostion(other, killToProtect);
+                    enemy.changePostion(this.other, this.killToProtect);
                     killedSomething = false;
                 }
 
             }
-            whiteQueen.setY(oldp1.y);
+            this.whiteQueen.setY(oldp1.y);
         }
 
         if (killedSomething) {
-            enemy.changePostion(other, killToProtect);
+            enemy.changePostion(this.other, this.killToProtect);
             killedSomething = false;
         }
 
@@ -1848,8 +1897,10 @@ public class Player1 {
     /**
      * Generate pawn moves.
      *
-     * @param enemy the enemy
-     * @param myPawn the my pawn
+     * @param enemy
+     *            the enemy
+     * @param myPawn
+     *            the my pawn
      * @return true, if successful
      */
     public boolean generatePawnMoves(Player2 enemy, Pawn myPawn) {
@@ -1860,14 +1911,14 @@ public class Player1 {
         checkPlace.y = oldp1.y;
 
         if (oldp1.x != 20) {
-            if (myPawn.canMove(oldp1.x, oldp1.y - 2, color) && oldp1.y - 2 >= 1) {
+            if (myPawn.canMove(oldp1.x, oldp1.y - 2, this.color) && oldp1.y - 2 >= 1) {
                 myPawn.setY(oldp1.y - 2);
 
                 checkPlace.y = oldp1.y - 1;
 
-                if (friendlyPieceAlreadyThere(checkPlace)) {
-                    if (enemyPieceAlreadyThere(checkPlace, enemy)) {
-                        if (!isKingChecked(enemy)) {
+                if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                    if (this.enemyPieceAlreadyThere(checkPlace, enemy)) {
+                        if (!this.isKingChecked(enemy)) {
 
                             myPawn.setPoint(oldp1);
                             return false;
@@ -1876,14 +1927,14 @@ public class Player1 {
                 }
 
             }
-            if (myPawn.canMove(oldp1.x, oldp1.y - 1, color) && oldp1.y - 1 >= 1) {
+            if (myPawn.canMove(oldp1.x, oldp1.y - 1, this.color) && oldp1.y - 1 >= 1) {
                 myPawn.setY(oldp1.y - 1);
                 checkPlace.y = oldp1.y - 1;
 
-                if (friendlyPieceAlreadyThere(checkPlace)) {
-                    if (enemyPieceAlreadyThere(checkPlace, enemy)) {
+                if (this.friendlyPieceAlreadyThere(checkPlace)) {
+                    if (this.enemyPieceAlreadyThere(checkPlace, enemy)) {
 
-                        if (!isKingChecked(enemy)) {
+                        if (!this.isKingChecked(enemy)) {
                             myPawn.setPoint(oldp1);
                             System.out.println("dff");
                             System.out.println("dff");
@@ -1894,28 +1945,28 @@ public class Player1 {
                 }
             }
 
-            if (!enemyPieceAlreadyThere(new Point(oldp1.x - 1, oldp1.y - 1), enemy)) {
-                if (killToProtectKing(enemy, new Point(oldp1.x - 1, oldp1.y - 1))) {
+            if (!this.enemyPieceAlreadyThere(new Point(oldp1.x - 1, oldp1.y - 1), enemy)) {
+                if (this.killToProtectKing(enemy, new Point(oldp1.x - 1, oldp1.y - 1))) {
 
-                    if (!isKingChecked(enemy)) {
-                        enemy.changePostion(other, killToProtect);
+                    if (!this.isKingChecked(enemy)) {
+                        enemy.changePostion(this.other, this.killToProtect);
                         myPawn.setPoint(oldp1);
 
                         return false;
                     }
-                    enemy.changePostion(other, killToProtect);
+                    enemy.changePostion(this.other, this.killToProtect);
                 }
             }
 
-            if (!enemyPieceAlreadyThere(new Point(oldp1.x + 1, oldp1.y - 1), enemy)) {
-                if (killToProtectKing(enemy, new Point(oldp1.x + 1, oldp1.y - 1))) {
-                    if (!isKingChecked(enemy)) {
-                        enemy.changePostion(other, killToProtect);
+            if (!this.enemyPieceAlreadyThere(new Point(oldp1.x + 1, oldp1.y - 1), enemy)) {
+                if (this.killToProtectKing(enemy, new Point(oldp1.x + 1, oldp1.y - 1))) {
+                    if (!this.isKingChecked(enemy)) {
+                        enemy.changePostion(this.other, this.killToProtect);
                         myPawn.setPoint(oldp1);
 
                         return false;
                     }
-                    enemy.changePostion(other, killToProtect);
+                    enemy.changePostion(this.other, this.killToProtect);
 
                 }
             }
@@ -1929,8 +1980,10 @@ public class Player1 {
     /**
      * Check way to position.
      *
-     * @param enemy the enemy
-     * @param newP the new P
+     * @param enemy
+     *            the enemy
+     * @param newP
+     *            the new P
      * @return true, if successful
      */
     public boolean checkWayToPosition(Player2 enemy, Point newP) {
@@ -1938,12 +1991,12 @@ public class Player1 {
 
         for (int i = 1; i <= 32; i++) {
             // check if there is peices in the WAY
-            if (inHand != i) {
+            if (this.inHand != i) {
                 if (i < 17) {
                     // Means there is something in the way
-                    flag = checkTheWay(newP, enemy.returnPostion(i), inHand);
+                    flag = this.checkTheWay(newP, enemy.returnPostion(i), this.inHand);
                 } else {
-                    flag = checkTheWay(newP, returnPostion(i), inHand);
+                    flag = this.checkTheWay(newP, this.returnPostion(i), this.inHand);
                 }
 
                 if (flag == true) {
@@ -1958,17 +2011,19 @@ public class Player1 {
     /**
      * Kill to protect king.
      *
-     * @param enemy the enemy
-     * @param newP the new P
+     * @param enemy
+     *            the enemy
+     * @param newP
+     *            the new P
      * @return true, if successful
      */
     public boolean killToProtectKing(Player2 enemy, Point newP) {
 
         for (int i = 1; i < 17; i++) {
 
-            other = enemy.returnPostion(i);
-            if (other.x == newP.x && other.y == newP.y) {
-                killToProtect = i;
+            this.other = enemy.returnPostion(i);
+            if (this.other.x == newP.x && this.other.y == newP.y) {
+                this.killToProtect = i;
 
                 enemy.killedPiece(i);
                 return true;
@@ -1979,45 +2034,45 @@ public class Player1 {
     }
 
     /**
-     *  tells user about last move. Previously named "Tell_Me_About_Last_Move"*
+     * tells user about last move. Previously named "Tell_Me_About_Last_Move"*
      *
      * @return the string
      */
     public String lastMove() {
-        switch (inHand) {
+        switch (this.inHand) {
 
             case 17:
-                return whiteRook1.tellMe();
+                return this.whiteRook1.tellMe();
             case 18:
-                return whiteRook2.tellMe();
+                return this.whiteRook2.tellMe();
             case 19:
-                return whiteKnight1.tellMe();
+                return this.whiteKnight1.tellMe();
             case 20:
-                return whiteKnight2.tellMe();
+                return this.whiteKnight2.tellMe();
             case 21:
-                return whiteBishop1.tellMe();
+                return this.whiteBishop1.tellMe();
             case 22:
-                return whiteBishop2.tellMe();
+                return this.whiteBishop2.tellMe();
             case 23:
-                return whiteQueen.tellMe();
+                return this.whiteQueen.tellMe();
             case 24:
-                return whiteKing.tellMe();
+                return this.whiteKing.tellMe();
             case 25:
-                return whitePawns[0].tellMe();
+                return this.whitePawns[0].tellMe();
             case 26:
-                return whitePawns[1].tellMe();
+                return this.whitePawns[1].tellMe();
             case 27:
-                return whitePawns[2].tellMe();
+                return this.whitePawns[2].tellMe();
             case 28:
-                return whitePawns[3].tellMe();
+                return this.whitePawns[3].tellMe();
             case 29:
-                return whitePawns[4].tellMe();
+                return this.whitePawns[4].tellMe();
             case 30:
-                return whitePawns[5].tellMe();
+                return this.whitePawns[5].tellMe();
             case 31:
-                return whitePawns[6].tellMe();
+                return this.whitePawns[6].tellMe();
             case 32:
-                return whitePawns[7].tellMe();
+                return this.whitePawns[7].tellMe();
             default:
                 break;
         }

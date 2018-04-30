@@ -14,8 +14,8 @@ public class SaveItem extends JMenuItem {
 
     /** Creates a new instance of SaveItem. */
     public SaveItem() {
-        setText("Save Game");
-        addActionListener(e -> saveFile.showSaveDialog(null));
+        this.setText("Save Game");
+        this.addActionListener(e -> this.saveFile.showSaveDialog(null));
     }
 
     /** The save file. */

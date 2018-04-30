@@ -8,22 +8,23 @@ import java.awt.Toolkit;
  * The Class PieceIcon.
  */
 public class PieceIcon {
-    
+
     /** The kit. */
     private Toolkit kit = Toolkit.getDefaultToolkit();
-    
+
     /** The image. */
     private Image image;
 
     /**
      * Instantiates a new piece icon.
      *
-     * @param nameIcon the name icon
+     * @param nameIcon
+     *            the name icon
      */
-    //throws IO Exception?
+    // throws IO Exception?
     public PieceIcon(String nameIcon) {
 
-        image = kit.getImage(nameIcon);
+        this.image = this.kit.getImage(nameIcon);
     }
 
     /**
@@ -32,7 +33,7 @@ public class PieceIcon {
      * @return the image
      */
     public Image returnPieceIcon() {
-        return image;
+        return this.image;
     }
 
 }
