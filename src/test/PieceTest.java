@@ -39,8 +39,9 @@ public class PieceTest {
      */
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
-        aPiece = new Piece( fileSeparator + "Icons" + fileSeparator + "Player1Icons"
-                + fileSeparator + "wr.gif", 1, 8);
+        aPiece = new Piece(
+                fileSeparator + "Icons" + fileSeparator + "Player1Icons" + fileSeparator + "wr.gif",
+                1, 8);
     }
 
     /**

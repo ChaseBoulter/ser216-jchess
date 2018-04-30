@@ -66,34 +66,34 @@ public class Player2 implements Enumeration {
     /** Creates a new instance of Player2. */
     public Player2() {
         String fileSeparator = System.getProperty("file.separator");
-        this.blackRook1 = new Rook( fileSeparator + "Icons" + fileSeparator + "Player2Icons"
+        this.blackRook1 = new Rook(fileSeparator + "Icons" + fileSeparator + "Player2Icons"
                 + fileSeparator + "blackRook.png", 1, 1);
 
-        this.blackRook2 = new Rook( fileSeparator + "Icons" + fileSeparator + "Player2Icons"
+        this.blackRook2 = new Rook(fileSeparator + "Icons" + fileSeparator + "Player2Icons"
                 + fileSeparator + "blackRook.png", 8, 1);
 
-        this.blackKnight1 = new Knight( fileSeparator + "Icons" + fileSeparator
-                + "Player2Icons" + fileSeparator + "blackKnight.png", 2, 1);
+        this.blackKnight1 = new Knight(fileSeparator + "Icons" + fileSeparator + "Player2Icons"
+                + fileSeparator + "blackKnight.png", 2, 1);
 
-        this.blackKnight2 = new Knight( fileSeparator + "Icons" + fileSeparator
-                + "Player2Icons" + fileSeparator + "blackKnight.png", 7, 1);
+        this.blackKnight2 = new Knight(fileSeparator + "Icons" + fileSeparator + "Player2Icons"
+                + fileSeparator + "blackKnight.png", 7, 1);
 
-        this.blackBishop1 = new Bishop( fileSeparator + "Icons" + fileSeparator
-                + "Player2Icons" + fileSeparator + "blackBishop.png", 3, 1);
+        this.blackBishop1 = new Bishop(fileSeparator + "Icons" + fileSeparator + "Player2Icons"
+                + fileSeparator + "blackBishop.png", 3, 1);
 
-        this.blackBishop2 = new Bishop( fileSeparator + "Icons" + fileSeparator
-                + "Player2Icons" + fileSeparator + "blackBishop.png", 6, 1);
+        this.blackBishop2 = new Bishop(fileSeparator + "Icons" + fileSeparator + "Player2Icons"
+                + fileSeparator + "blackBishop.png", 6, 1);
 
-        this.blackQueen = new Queen( fileSeparator + "Icons" + fileSeparator + "Player2Icons"
+        this.blackQueen = new Queen(fileSeparator + "Icons" + fileSeparator + "Player2Icons"
                 + fileSeparator + "blackQueen.png", 4, 1);
 
-        this.blackKing = new King( fileSeparator + "Icons" + fileSeparator + "Player2Icons"
+        this.blackKing = new King(fileSeparator + "Icons" + fileSeparator + "Player2Icons"
                 + fileSeparator + "blackKing.png", 5, 1);
 
         int j = 1;
         for (int i = 0; i <= 7; i++, j++) {
-            this.blackPawns[i] = new Pawn( fileSeparator + "Icons" + fileSeparator
-                    + "Player2Icons" + fileSeparator + "BlackPawn.png", j, 2);
+            this.blackPawns[i] = new Pawn(fileSeparator + "Icons" + fileSeparator + "Player2Icons"
+                    + fileSeparator + "BlackPawn.png", j, 2);
         }
     }
 
@@ -944,17 +944,17 @@ public class Player2 implements Enumeration {
 
                             }
                         } // else {
-                        //
-                        // if (j != 8) {
-                        // if (white.checkTheWay(myKingPosition, white.returnPostion(j), i)) {
-                        //
-                        // flag = false;
-                        // // Means there is somting in the Way so can't move'
-                        //
-                        // }
-                        // }
-                        //
-                        // }
+                          //
+                          // if (j != 8) {
+                          // if (white.checkTheWay(myKingPosition, white.returnPostion(j), i)) {
+                          //
+                          // flag = false;
+                          // // Means there is somting in the Way so can't move'
+                          //
+                          // }
+                          // }
+                          //
+                          // }
 
                     }
 
@@ -2124,7 +2124,7 @@ public class Player2 implements Enumeration {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see java.util.Enumeration#hasMoreElements()
      */
     @Override
@@ -2134,7 +2134,7 @@ public class Player2 implements Enumeration {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see java.util.Enumeration#nextElement()
      */
     @Override

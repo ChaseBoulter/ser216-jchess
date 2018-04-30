@@ -78,14 +78,18 @@ public class BishopTest {
      */
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
-        whiteBishop1 = new Bishop( fileSeparator + "Icons" + fileSeparator + "Player1Icons"
-                + fileSeparator + "wb.gif", 3, 8);
-        whiteBishop2 = new Bishop( fileSeparator + "Icons" + fileSeparator + "Player1Icons"
-                + fileSeparator + "wb.gif", 6, 8);
-        blackBishop1 = new Bishop( fileSeparator + "Icons" + fileSeparator + "Player2Icons"
-                + fileSeparator + "bb.gif", 3, 1);
-        blackBishop2 = new Bishop( fileSeparator + "Icons" + fileSeparator + "Player2Icons"
-                + fileSeparator + "bb.gif", 6, 1);
+        whiteBishop1 = new Bishop(
+                fileSeparator + "Icons" + fileSeparator + "Player1Icons" + fileSeparator + "wb.gif",
+                3, 8);
+        whiteBishop2 = new Bishop(
+                fileSeparator + "Icons" + fileSeparator + "Player1Icons" + fileSeparator + "wb.gif",
+                6, 8);
+        blackBishop1 = new Bishop(
+                fileSeparator + "Icons" + fileSeparator + "Player2Icons" + fileSeparator + "bb.gif",
+                3, 1);
+        blackBishop2 = new Bishop(
+                fileSeparator + "Icons" + fileSeparator + "Player2Icons" + fileSeparator + "bb.gif",
+                6, 1);
     }
 
     /**
@@ -185,9 +189,9 @@ public class BishopTest {
         assertFalse(whiteBishop1.pieceInMyWay(4, 8, p4));
 
         /** A piece is in my way */
-        whiteBishop1 = new Bishop( fileSeparator + "Icons" + fileSeparator + "Player1Icons"
+        whiteBishop1 = new Bishop(fileSeparator + "Icons" + fileSeparator + "Player1Icons"
                 + fileSeparator + "whiteBishop.png", 4, 8);
-        whiteBishop2 = new Bishop( fileSeparator + "Icons" + fileSeparator + "Player1Icons"
+        whiteBishop2 = new Bishop(fileSeparator + "Icons" + fileSeparator + "Player1Icons"
                 + fileSeparator + "whiteBishop.png", 4, 6);
         Point p14 = new Point(3, 7);
         Point p15 = new Point(5, 7);

@@ -1,12 +1,11 @@
 
 package pieces;
 
-import chessgame.Chess;
-
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
 
+import chessgame.Chess;
 
 /**
  * The Class PieceIcon.
@@ -31,7 +30,7 @@ public class PieceIcon {
             URL url = Chess.class.getResource(nameIcon);
             this.image = this.kit.getImage(url);
         } catch (SecurityException s) {
-           System.out.println("Sec error with images.");
+            System.out.println("Sec error with images.");
         }
     }
 

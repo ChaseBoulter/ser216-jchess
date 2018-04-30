@@ -72,17 +72,17 @@ public class ToolPanel extends JPanel {
 
         this.setSize(310, 340);
         this.fs = System.getProperty("file.separator");
-        
+
         try {
-            URL turnImgUrl = Chess.class.getResource(this.fs + "Icons" + this.fs + "other" + this.fs + "Turn.png");
-            URL checkMateImgUrl = Chess.class.getResource(this.fs + "Icons" + this.fs + "other" + this.fs + "Checkmate.png");
+            URL turnImgUrl = Chess.class
+                    .getResource(this.fs + "Icons" + this.fs + "other" + this.fs + "Turn.png");
+            URL checkMateImgUrl = Chess.class
+                    .getResource(this.fs + "Icons" + this.fs + "other" + this.fs + "Checkmate.png");
             this.myTurn = new ImageIcon(turnImgUrl);
             this.myCheck = new ImageIcon(checkMateImgUrl);
         } catch (SecurityException s) {
-           System.out.println("Sec error with images.");
+            System.out.println("Sec error with images.");
         }
-        
-        
 
         this.imageLabelWhite = new JLabel(this.myTurn);
         this.imageLabelBlack = new JLabel(this.myTurn);
@@ -259,7 +259,7 @@ class MyHistoryList extends JList {
         this.data.listModel.removeElement(newItem);
     }
 
-    private myHistoryListData data = new myHistoryListData(new DefaultListModel<Object>());
+    private myHistoryListData data = new myHistoryListData(new DefaultListModel<>());
 }
 
 /**

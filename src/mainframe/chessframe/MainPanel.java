@@ -387,7 +387,7 @@ public class MainPanel extends JPanel {
 
         /*
          * (non-Javadoc)
-         * 
+         *
          * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
          */
         @Override
@@ -397,7 +397,7 @@ public class MainPanel extends JPanel {
 
         /*
          * (non-Javadoc)
-         * 
+         *
          * @see java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent)
          */
         @Override
@@ -407,7 +407,7 @@ public class MainPanel extends JPanel {
 
         /*
          * (non-Javadoc)
-         * 
+         *
          * @see java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent)
          */
         @Override
@@ -425,8 +425,8 @@ public class MainPanel extends JPanel {
                     newP.y /= MainPanel.this.divide;
                     newP.x++;
                     newP.y++;
-                    //Point old = 
-                    //MainPanel.this.player1.returnOldPostion(MainPanel.this.player1.getInHand());
+                    // Point old =
+                    // MainPanel.this.player1.returnOldPostion(MainPanel.this.player1.getInHand());
                     Point present = MainPanel.this.player1
                             .returnPostion(MainPanel.this.player1.getInHand());
 
@@ -837,7 +837,7 @@ public class MainPanel extends JPanel {
 
         /*
          * (non-Javadoc)
-         * 
+         *
          * @see java.awt.event.MouseListener#mouseEntered(java.awt.event.MouseEvent)
          */
         @Override
@@ -847,7 +847,7 @@ public class MainPanel extends JPanel {
 
         /*
          * (non-Javadoc)
-         * 
+         *
          * @see java.awt.event.MouseListener#mouseExited(java.awt.event.MouseEvent)
          */
         @Override
@@ -858,6 +858,7 @@ public class MainPanel extends JPanel {
 
     /**
      * Gets the board positions for players.
+     * 
      * @param x
      *            the x
      * @param y
@@ -972,7 +973,7 @@ public class MainPanel extends JPanel {
 
         /*
          * (non-Javadoc)
-         * 
+         *
          * @see java.awt.event.MouseMotionListener#mouseDragged(java.awt.event.MouseEvent)
          */
         @Override
@@ -989,7 +990,7 @@ public class MainPanel extends JPanel {
 
         /*
          * (non-Javadoc)
-         * 
+         *
          * @see java.awt.event.MouseMotionListener#mouseMoved(java.awt.event.MouseEvent)
          */
         @Override
@@ -1130,7 +1131,7 @@ public class MainPanel extends JPanel {
 
         /*
          * (non-Javadoc)
-         * 
+         *
          * @see java.lang.Thread#run()
          */
         @Override

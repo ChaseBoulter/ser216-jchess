@@ -7,15 +7,14 @@ import static org.junit.Assert.assertTrue;
 import java.awt.Point;
 import java.util.logging.Logger;
 
-import mainframe.chessframe.ChatPanel;
-import mainframe.chessframe.MainFrame;
-import mainframe.chessframe.MainPanel;
-import mainframe.chessframe.ToolPanel;
-
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import mainframe.chessframe.ChatPanel;
+import mainframe.chessframe.MainFrame;
+import mainframe.chessframe.MainPanel;
+import mainframe.chessframe.ToolPanel;
 import pieces.Bishop;
 import pieces.Knight;
 import pieces.Pawn;
@@ -39,7 +38,9 @@ public class GameBoardSetupTest {
 
     /**
      * Setup.
-     * @throws Exception Throws Exception.
+     * 
+     * @throws Exception
+     *             Throws Exception.
      */
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
@@ -49,7 +50,9 @@ public class GameBoardSetupTest {
 
     /**
      * Tear Down.
-     * @throws Exception Throws Exception.
+     * 
+     * @throws Exception
+     *             Throws Exception.
      */
     @AfterClass
     public static void tearDownAfterClass() throws Exception {
@@ -188,10 +191,10 @@ public class GameBoardSetupTest {
     @Test
     public void testGenerateBishopMoves() {
 
-        Bishop whiteBishop = new Bishop( fileSeparator + "Icons" + fileSeparator
-                + "Player1Icons" + fileSeparator + "whiteBishop.png", 3, 8);
-        Bishop blackBishop = new Bishop( fileSeparator + "Icons" + fileSeparator
-                + "Player2Icons" + fileSeparator + "blackBishop.png", 3, 1);
+        Bishop whiteBishop = new Bishop(fileSeparator + "Icons" + fileSeparator + "Player1Icons"
+                + fileSeparator + "whiteBishop.png", 3, 8);
+        Bishop blackBishop = new Bishop(fileSeparator + "Icons" + fileSeparator + "Player2Icons"
+                + fileSeparator + "blackBishop.png", 3, 1);
         assertFalse(player1.generateBishopMoves(player2, whiteBishop));
         assertFalse(player2.generateBishopMoves(player1, blackBishop));
     }
@@ -201,7 +204,8 @@ public class GameBoardSetupTest {
      */
     @Test
     public void testGenerateCastleMoves() {
-        Rook whiteRook1 = new Rook(fileSeparator + "Icons" + fileSeparator + "Player2Icons" + fileSeparator + "blackRook.png", 1, 1);
+        Rook whiteRook1 = new Rook(fileSeparator + "Icons" + fileSeparator + "Player2Icons"
+                + fileSeparator + "blackRook.png", 1, 1);
         assertTrue(player1.generateCastleMoves(player2, whiteRook1));
     }
 
@@ -210,22 +214,22 @@ public class GameBoardSetupTest {
      */
     @Test
     public void testGenerateKnightMoves() {
-        Knight whiteKnight1 = new Knight( fileSeparator + "Icons" + fileSeparator
-                + "Player1Icons" + fileSeparator + "whiteKnight.png", 2, 8);
-        Knight whiteKnight2 = new Knight( fileSeparator + "Icons" + fileSeparator
-                + "Player1Icons" + fileSeparator + "whiteKnight.png", 3, 3);
-        Knight whiteKnight3 = new Knight( fileSeparator + "Icons" + fileSeparator
-                + "Player1Icons" + fileSeparator + "whiteKnight.png", 4, 5);
-        Knight whiteKnight4 = new Knight( fileSeparator + "Icons" + fileSeparator
-                + "Player1Icons" + fileSeparator + "whiteKnight.png", 7, 6);
-        Knight blackKnight1 = new Knight( fileSeparator + "Icons" + fileSeparator
-                + "Player2Icons" + fileSeparator + "blackKnight.png", 2, 1);
-        Knight blackKnight2 = new Knight( fileSeparator + "Icons" + fileSeparator
-                + "Player2Icons" + fileSeparator + "blackKnight.png", 7, 1);
-        Knight blackKnight3 = new Knight( fileSeparator + "Icons" + fileSeparator
-                + "Player2Icons" + fileSeparator + "blackKnight.png", 3, 2);
-        Knight blackKnight4 = new Knight( fileSeparator + "Icons" + fileSeparator
-                + "Player2Icons" + fileSeparator + "blackKnight.png", 6, 2);
+        Knight whiteKnight1 = new Knight(fileSeparator + "Icons" + fileSeparator + "Player1Icons"
+                + fileSeparator + "whiteKnight.png", 2, 8);
+        Knight whiteKnight2 = new Knight(fileSeparator + "Icons" + fileSeparator + "Player1Icons"
+                + fileSeparator + "whiteKnight.png", 3, 3);
+        Knight whiteKnight3 = new Knight(fileSeparator + "Icons" + fileSeparator + "Player1Icons"
+                + fileSeparator + "whiteKnight.png", 4, 5);
+        Knight whiteKnight4 = new Knight(fileSeparator + "Icons" + fileSeparator + "Player1Icons"
+                + fileSeparator + "whiteKnight.png", 7, 6);
+        Knight blackKnight1 = new Knight(fileSeparator + "Icons" + fileSeparator + "Player2Icons"
+                + fileSeparator + "blackKnight.png", 2, 1);
+        Knight blackKnight2 = new Knight(fileSeparator + "Icons" + fileSeparator + "Player2Icons"
+                + fileSeparator + "blackKnight.png", 7, 1);
+        Knight blackKnight3 = new Knight(fileSeparator + "Icons" + fileSeparator + "Player2Icons"
+                + fileSeparator + "blackKnight.png", 3, 2);
+        Knight blackKnight4 = new Knight(fileSeparator + "Icons" + fileSeparator + "Player2Icons"
+                + fileSeparator + "blackKnight.png", 6, 2);
 
         assertFalse(player1.generateHorseMoves(player2, whiteKnight1));
         assertFalse(player1.generateHorseMoves(player2, whiteKnight2));
@@ -252,7 +256,8 @@ public class GameBoardSetupTest {
     public void testGeneratePawnMoves() {
         Pawn[] whitePawns1 = new Pawn[8];
         for (int i = 0, j = 1; i <= 7; i++, j++) {
-            whitePawns1[i] = new Pawn(fileSeparator + "Icons" + fileSeparator + "Player1Icons" + fileSeparator + "whitePawn.png", j, 7);
+            whitePawns1[i] = new Pawn(fileSeparator + "Icons" + fileSeparator + "Player1Icons"
+                    + fileSeparator + "whitePawn.png", j, 7);
             assertFalse(player1.generatePawnMoves(player2, whitePawns1[i]));
         }
     }

@@ -1,8 +1,6 @@
 
 package mainframe.chessframe;
 
-import chessgame.Preloader;
-
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -23,6 +21,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
+import chessgame.Preloader;
 
 /**
  * The Class ChatPanel.
@@ -68,13 +67,13 @@ public class ChatPanel extends JPanel {
 
     /** The server thread. */
     private final ServerChat serverThread = new ServerChat();
-    //private final ServerHeartBeat shb = new ServerHeartBeat();
+    // private final ServerHeartBeat shb = new ServerHeartBeat();
 
     /** The send socket. */
     private Socket sendSocket;
     /** The client thread. */
     private final ClientChat clientThread = new ClientChat();
-    //private final ClientHeartBeat chb = new ClientHeartBeat();
+    // private final ClientHeartBeat chb = new ClientHeartBeat();
 
     /** The is server. */
     private boolean isServer;
@@ -250,7 +249,7 @@ public class ChatPanel extends JPanel {
 
         /*
          * (non-Javadoc)
-         * 
+         *
          * @see java.lang.Thread#run()
          */
         @Override
@@ -322,7 +321,7 @@ public class ChatPanel extends JPanel {
 
         /*
          * (non-Javadoc)
-         * 
+         *
          * @see java.lang.Thread#run()
          */
         @Override

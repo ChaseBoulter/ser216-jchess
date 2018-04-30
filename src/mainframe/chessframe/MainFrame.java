@@ -1,8 +1,6 @@
 
 package mainframe.chessframe;
 
-import chessgame.Preloader;
-
 //import java.awt.BorderLayout;
 //import java.awt.Color;
 import java.awt.Container;
@@ -13,6 +11,7 @@ import java.awt.Container;
 //import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 
+import chessgame.Preloader;
 import mainframe.chessmenubar.ChessMainMenuBar;
 //import mainframe.chessframe.StatusPanel;
 

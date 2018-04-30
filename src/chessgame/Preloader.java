@@ -573,7 +573,7 @@ public class Preloader extends JFrame {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see java.awt.Component#getName()
      */
     // Method: Set Player Full Name
@@ -624,7 +624,7 @@ public class Preloader extends JFrame {
 
     /**
      * assumed that validatePortNumber is used with it.
-     * 
+     *
      * @param port
      *            valid port number.
      */
